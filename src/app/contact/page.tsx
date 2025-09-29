@@ -22,7 +22,7 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Create form data for Netlify
+    // Create form data for Netlify Forms
     const formDataToSend = new FormData();
     formDataToSend.append('form-name', 'contact');
     formDataToSend.append('name', formData.name);
@@ -32,7 +32,7 @@ export default function Contact() {
     formDataToSend.append('budget', formData.budget);
     formDataToSend.append('message', formData.message);
 
-    // Submit to Netlify
+    // Submit to Netlify Forms
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
