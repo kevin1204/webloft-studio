@@ -316,7 +316,7 @@ export default function About() {
                   {/* Kevin's Photo */}
                   <div className="w-72 h-72 rounded-xl overflow-hidden">
                     <Image
-                      src="/Kevin.png"
+                      src="/kevin.png"
                       alt="Kevin Ortega - Founder of Webloft Studio"
                       width={288}
                       height={288}
