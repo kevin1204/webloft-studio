@@ -22,7 +22,6 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/wflogo.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: 'any' },
     ],
     shortcut: '/wflogo.svg',
     apple: [
@@ -63,7 +62,6 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/wflogo.svg" type="image/svg+xml" />
         <link rel="shortcut icon" href="/wflogo.svg" type="image/svg+xml" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="canonical" href="https://webloftstudio.com" />
