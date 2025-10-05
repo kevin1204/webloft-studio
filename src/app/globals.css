@@ -344,7 +344,6 @@ main {
 
 /* Performance optimizations to prevent rendering issues */
 .particle-container {
-  contain: layout style paint;
   will-change: transform;
   transform: translateZ(0);
 }
@@ -392,5 +391,5 @@ section[class*="h-screen"] {
 .card-enhanced,
 .btn-primary-enhanced,
 .btn-secondary-enhanced {
-  contain: layout style paint;
+  /* Removed contain to allow particle overflow */
 }
