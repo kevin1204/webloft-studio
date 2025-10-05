@@ -1,0 +1,44 @@
+name: Build Static Site
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        # Restore original package.json for build
+        git checkout HEAD~1 -- package.json || true
+        npm install
+    
+    - name: Build static site
+      run: |
+        # Restore Next.js config
+        if [ -f next.config.mjs.backup ]; then
+          mv next.config.mjs.backup next.config.mjs
+        fi
+        npm run build
+    
+    - name: Commit static files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add out/
+        git add package.json
+        git add netlify.toml
+        git commit -m "Auto-build static site" || exit 0
+        git push

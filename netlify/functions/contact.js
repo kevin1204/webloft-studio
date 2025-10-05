@@ -1,8 +1,24 @@
 exports.handler = async (event, context) => {
+  // Handle CORS preflight requests
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS'
+      },
+      body: ''
+    };
+  }
+
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
       body: JSON.stringify({ error: 'Method not allowed' })
     };
   }
@@ -11,50 +27,85 @@ exports.handler = async (event, context) => {
     // Parse the form data
     const formData = new URLSearchParams(event.body);
     const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      company: formData.get('company'),
-      projectType: formData.get('projectType'),
-      budget: formData.get('budget'),
-      message: formData.get('message')
+      name: formData.get('name')?.trim(),
+      email: formData.get('email')?.trim(),
+      company: formData.get('company')?.trim(),
+      projectType: formData.get('projectType')?.trim(),
+      budget: formData.get('budget')?.trim(),
+      message: formData.get('message')?.trim()
     };
 
-    // Basic validation
+    // Enhanced validation
     if (!data.name || !data.email || !data.message) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing required fields' })
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({ 
+          error: 'Missing required fields',
+          required: ['name', 'email', 'message']
+        })
       };
     }
 
-    // Here you would typically send an email or save to a database
-    // For now, we'll just log the data and return success
-    console.log('Contact form submission:', data);
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(data.email)) {
+      return {
+        statusCode: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({ error: 'Invalid email format' })
+      };
+    }
 
-    // You can integrate with services like:
-    // - SendGrid for email
+    // Log the submission with timestamp
+    const timestamp = new Date().toISOString();
+    console.log(`[${timestamp}] Contact form submission:`, {
+      name: data.name,
+      email: data.email,
+      company: data.company || 'Not provided',
+      projectType: data.projectType || 'Not specified',
+      budget: data.budget || 'Not specified',
+      message: data.message.substring(0, 100) + (data.message.length > 100 ? '...' : ''),
+      ip: event.headers['x-forwarded-for'] || event.headers['client-ip'] || 'Unknown'
+    });
+
+    // TODO: Integrate with your preferred service:
+    // - SendGrid for email notifications
     // - Airtable for data storage
     // - Zapier for automation
-    // - Or any other service you prefer
+    // - EmailJS for client-side email sending
+    // - Netlify Forms (if you want to use their built-in form handling)
 
     return {
       statusCode: 200,
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS'
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({ 
-        message: 'Form submitted successfully',
-        data: data
+        success: true,
+        message: 'Thank you for your message! We\'ll get back to you within 24 hours.',
+        timestamp: timestamp
       })
     };
 
   } catch (error) {
-    console.error('Error processing form:', error);
+    console.error('Error processing contact form:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Internal server error' })
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify({ 
+        error: 'Internal server error',
+        message: 'There was an error processing your request. Please try again later.'
+      })
     };
   }
 };

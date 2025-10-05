@@ -1,5 +1,5 @@
 [build]
-  command = "node build-static.js"
+  command = "npm run build"
   publish = "out"
 
 [build.environment]
@@ -7,6 +7,10 @@
 
 [functions]
   directory = "netlify/functions"
+
+# Disable the problematic Next.js plugin
+[plugins]
+  disabled = ["@netlify/plugin-nextjs"]
 
 # Redirect rules for static site
 [[redirects]]

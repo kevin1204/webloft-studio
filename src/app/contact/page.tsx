@@ -19,8 +19,13 @@ export default function Contact() {
     });
   };
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
     
     try {
       // Submit to Netlify function
@@ -37,8 +42,10 @@ export default function Contact() {
         }).toString()
       });
 
-      if (response.ok) {
-        alert('Thank you for your inquiry! We\'ll get back to you within 24 hours.');
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setSubmitStatus('success');
         // Reset form
         setFormData({
           name: '',
@@ -49,11 +56,13 @@ export default function Contact() {
           message: '',
         });
       } else {
-        throw new Error('Form submission failed');
+        throw new Error(result.error || 'Form submission failed');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('There was an error sending your message. Please try again or contact us directly.');
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -191,11 +200,27 @@ export default function Contact() {
                   ></textarea>
                 </div>
 
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                    ✅ Thank you for your message! We'll get back to you within 24 hours.
+                  </div>
+                )}
+                
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                    ❌ There was an error sending your message. Please try again or contact us directly.
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="btn-primary-enhanced w-full py-4 text-lg"
+                  disabled={isSubmitting}
+                  className={`btn-primary-enhanced w-full py-4 text-lg ${
+                    isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
