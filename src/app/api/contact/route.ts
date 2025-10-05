@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     if (!process.env.RESEND_API_KEY) {
       console.error('RESEND_API_KEY is not set in environment variables');
       return NextResponse.json(
-        { error: 'Email service not configured. Please contact us directly at infowebloftstudio@gmail.com' },
+        { error: 'Email service not configured. Please contact us directly at kevin.ortega2011@gmail.com' },
         { status: 500 }
       );
     }
@@ -53,12 +53,12 @@ export async function POST(request: NextRequest) {
     console.log('Message:', message);
     console.log('Timestamp:', new Date().toISOString());
 
-    // Send email using Resend with simplified approach
+    // Send email using Resend - using verified email address
     console.log('=== ATTEMPTING TO SEND EMAIL ===');
     
     const emailData = {
       from: 'onboarding@resend.dev',
-      to: 'infowebloftstudio@gmail.com', // Direct email, no env var
+      to: 'kevin.ortega2011@gmail.com', // Use your verified email address
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -145,7 +145,7 @@ export async function POST(request: NextRequest) {
     console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
     
     return NextResponse.json(
-      { error: 'Failed to process message. Please try again or contact us directly at infowebloftstudio@gmail.com' },
+      { error: 'Failed to process message. Please try again or contact us directly at kevin.ortega2011@gmail.com' },
       { status: 500 }
     );
   }
