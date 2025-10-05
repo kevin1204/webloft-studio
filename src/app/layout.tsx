@@ -24,6 +24,7 @@ export const metadata: Metadata = {
       { url: '/wflogo.svg', type: 'image/svg+xml' },
       { url: '/favicon.ico', sizes: 'any' },
     ],
+    shortcut: '/wflogo.svg',
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
@@ -61,6 +62,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/wflogo.svg" type="image/svg+xml" />
+        <link rel="shortcut icon" href="/wflogo.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
