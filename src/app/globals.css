@@ -616,6 +616,18 @@ section[class*="h-screen"] {
   }
 }
 
+/* Mobile viewport height fixes */
+.hero-section {
+  min-height: 100vh;
+}
+
+/* Ensure hero section takes full height on all devices */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 100vh;
+  }
+}
+
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .animate-slide-in-bottom,
