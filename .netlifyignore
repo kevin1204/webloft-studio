@@ -1,0 +1,17 @@
+# Ignore Next.js specific files to prevent auto-detection
+next.config.mjs.backup
+.next/
+node_modules/
+*.log
+
+# Keep only the essential files for static deployment
+!out/
+!netlify/
+!public/
+!src/
+!package.json
+!package-lock.json
+!tsconfig.json
+!tailwind.config.js
+!postcss.config.mjs
+!build-static.js

@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "node build-static.js"
   publish = "out"
 
 [build.environment]
@@ -7,6 +7,21 @@
 
 [functions]
   directory = "netlify/functions"
+
+# Explicitly disable framework detection and all plugins
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
 
 # Disable all plugins to prevent auto-detection
 [plugins]
