@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
 
     // Send email using Resend
     const emailData = {
-      from: 'onboarding@resend.dev', // Use Resend's default domain for now
+      from: 'Webloft Studio <onboarding@resend.dev>', // Use Resend's default domain for now
       to: process.env.CONTACT_EMAIL || 'infowebloftstudio@gmail.com',
       subject: `New Contact Form Submission from ${name}`,
       html: `
