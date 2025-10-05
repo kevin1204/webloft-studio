@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata = {
   title: "Insights & Resources - Webloft Studio",
@@ -70,8 +71,15 @@ const categories = ["All", "Platform", "Business", "SEO", "Design", "Maintenance
 export default function Blog() {
   return (
     <div className="min-h-screen bg-white">
+      {/* Breadcrumb */}
+      <section className="pt-20 pb-4 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumb />
+        </div>
+      </section>
+
       {/* Hero Section */}
-      <section className="pt-20 pb-16 bg-gradient-to-r from-green-50 to-emerald-50">
+      <section className="pb-16 bg-gradient-to-r from-green-50 to-emerald-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-fade-in-up">
@@ -129,6 +137,7 @@ export default function Blog() {
                     width={600}
                     height={300}
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -185,6 +194,7 @@ export default function Blog() {
                     width={400}
                     height={200}
                     className="w-full h-40 object-cover hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                   <div className="absolute top-3 left-3">
                     <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">

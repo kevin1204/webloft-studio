@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import BlogPostStructuredData from "@/components/BlogPostStructuredData";
 
 export const metadata = {
   title: "Why Webflow is the Best Platform for Small & Medium Businesses | Webloft Studio",
@@ -9,6 +10,15 @@ export const metadata = {
 
 export default function WebflowArticle() {
   return (
+    <>
+      <BlogPostStructuredData
+        title="Why Webflow is the Best Platform for Small & Medium Businesses"
+        description="Discover why Webflow outperforms WordPress, Wix, and Squarespace for growing businesses. Learn about speed, design flexibility, and client autonomy."
+        slug="why-webflow-best-platform-small-medium-businesses"
+        date="2025-01-15"
+        readTime="5 min read"
+        category="Platform"
+      />
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="pt-20 pb-16 bg-gradient-to-r from-green-50 to-emerald-50">
@@ -207,5 +217,6 @@ export default function WebflowArticle() {
         </div>
       </section>
     </div>
+    </>
   );
 }

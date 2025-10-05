@@ -2,10 +2,39 @@ import Image from "next/image";
 import Link from "next/link";
 import ParticleTextAnimation from "@/components/ParticleTextAnimation";
 import ScrollDownArrow from "@/components/ScrollDownArrow";
+import TestimonialStructuredData from "@/components/TestimonialStructuredData";
 
 export default function Home() {
+  const testimonials = [
+    {
+      name: "Marcus Johnson",
+      title: "CEO",
+      company: "TechStart Solutions",
+      rating: 5,
+      review: "Working with Webloft Studio transformed our online presence. Within 3 months, we saw a 150% increase in qualified leads. Their attention to detail and understanding of business needs is exceptional.",
+      date: "2024-12-15"
+    },
+    {
+      name: "Sarah Mitchell",
+      title: "Founder",
+      company: "Bloom Wellness",
+      rating: 5,
+      review: "The team at Webloft Studio didn't just build us a website—they built us a lead generation machine. Our booking rate increased by 200% and we finally have a site that represents our brand perfectly.",
+      date: "2024-11-20"
+    },
+    {
+      name: "David Chen",
+      title: "Owner",
+      company: "Local Home Services",
+      rating: 5,
+      review: "From strategy to execution, everything was seamless. They understood our local market and built a website that actually brings in customers. Best investment we've made for our business.",
+      date: "2024-10-30"
+    }
+  ];
+
   return (
     <>
+      <TestimonialStructuredData testimonials={testimonials} />
       {/* Hero Section */}
       <section className="relative h-screen bg-black text-white">
         <div className="flex h-screen flex-col pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-12 lg:pb-12">
@@ -403,6 +432,7 @@ export default function Home() {
                   width={60}
                   height={60}
                   className="rounded-full mr-4"
+                  loading="lazy"
                 />
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">Marcus Johnson</h4>
@@ -429,6 +459,7 @@ export default function Home() {
                   width={60}
                   height={60}
                   className="rounded-full mr-4"
+                  loading="lazy"
                 />
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">Sarah Mitchell</h4>
@@ -455,6 +486,7 @@ export default function Home() {
                   width={60}
                   height={60}
                   className="rounded-full mr-4"
+                  loading="lazy"
                 />
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">David Chen</h4>

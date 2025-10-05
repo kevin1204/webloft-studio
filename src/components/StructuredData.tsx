@@ -5,12 +5,12 @@ export default function StructuredData() {
     "name": "Webloft Studio",
     "description": "Professional web development and design agency. We build modern, high-performing websites that bring you leads, clients, and growth.",
     "url": "https://webloftstudio.com",
-    "logo": "https://webloftstudio.com/logo.png",
+    "logo": "https://webloftstudio.com/webloftstudio.png",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+1-234-567-8900",
+      "telephone": "+1-226-376-6326",
       "contactType": "customer service",
-      "email": "hello@webloftstudio.com",
+      "email": "infowebloftstudio@gmail.com",
       "availableLanguage": "English"
     },
     "address": {

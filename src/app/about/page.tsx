@@ -1,6 +1,13 @@
-'use client';
-
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us - Webloft Studio",
+  description: "Learn about Webloft Studio's mission to create websites that drive business growth. Meet our team and discover our passion for web development.",
+  alternates: {
+    canonical: "https://webloftstudio.com/about",
+  },
+};
 
 export default function About() {
   return (

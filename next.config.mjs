@@ -11,6 +11,10 @@ const nextConfig = {
   trailingSlash: false,
   // Enable compression
   compress: true,
+  // Enable experimental optimizations
+  experimental: {
+    optimizePackageImports: ['@/components'],
+  },
 };
 
 export default nextConfig;

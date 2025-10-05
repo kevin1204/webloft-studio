@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import ServiceWorkerRegistration from "../components/ServiceWorkerRegistration";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,10 +16,40 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://webloftstudio.com'),
   title: "Webloft Studio - Modern Websites That Drive Business Growth",
   description: "Professional web development and design agency. We build modern, high-performing websites that bring you leads, clients, and growth.",
   icons: {
-    icon: '/wflogo.svg',
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  openGraph: {
+    title: "Webloft Studio - Modern Websites That Drive Business Growth",
+    description: "Professional web development and design agency. We build modern, high-performing websites that bring you leads, clients, and growth.",
+    url: "https://webloftstudio.com",
+    siteName: "Webloft Studio",
+    images: [
+      {
+        url: "/webloftstudio.png",
+        width: 1200,
+        height: 630,
+        alt: "Webloft Studio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Webloft Studio - Modern Websites That Drive Business Growth",
+    description: "Professional web development and design agency. We build modern, high-performing websites that bring you leads, clients, and growth.",
+    images: ["/webloftstudio.png"],
   },
 };
 
@@ -30,13 +61,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/wflogo.svg" type="image/svg+xml" />
-        <link rel="shortcut icon" href="/wflogo.svg" />
-        <link rel="apple-touch-icon" href="/wflogo.svg" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="canonical" href="https://webloftstudio.com" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ServiceWorkerRegistration />
         <Navbar />
         <main className="pt-16">
           {children}

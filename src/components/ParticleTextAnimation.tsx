@@ -379,45 +379,45 @@ export default function ParticleTextAnimation() {
       lineWidth = linkWidth;
     };
 
-    const connectParticles = () => {
-      const particles = particlesRef.current;
-      const maxDistance = connectionDistance;
+  const connectParticles = () => {
+    const particles = particlesRef.current;
+    const maxDistance = connectionDistance;
 
-      ctx.save();
-      const maxLinks = 22;
-      for (let i = 0; i < particles.length; i += 1) {
-        for (let j = i + 1; j < particles.length && j - i <= maxLinks; j += 1) {
-          const particleA = particles[i];
-          const particleB = particles[j];
-          const dx = particleA.x - particleB.x;
-          const dy = particleA.y - particleB.y;
-          const distance = Math.hypot(dx, dy);
+    ctx.save();
+    const maxLinks = 22;
+    for (let i = 0; i < particles.length; i += 1) {
+      for (let j = i + 1; j < particles.length && j - i <= maxLinks; j += 1) {
+        const particleA = particles[i];
+        const particleB = particles[j];
+        const dx = particleA.x - particleB.x;
+        const dy = particleA.y - particleB.y;
+        const distance = Math.hypot(dx, dy);
 
-          if (distance > maxDistance) {
-            continue;
-          }
-
-          const opacity = 1 - distance / maxDistance;
-          const easedAlpha = Math.pow(opacity, 1.5);
-          if (easedAlpha < 0.05) {
-            continue;
-          }
-
-          ctx.globalAlpha = Math.min(0.32, easedAlpha);
-          ctx.lineWidth = lineWidth;
-          const strokeColor =
-            particleA.strokeColor === particleB.strokeColor
-              ? particleA.strokeColor
-              : '#ffffff';
-          ctx.strokeStyle = strokeColor;
-          ctx.beginPath();
-          ctx.moveTo(particleA.x, particleA.y);
-          ctx.lineTo(particleB.x, particleB.y);
-          ctx.stroke();
+        if (distance > maxDistance) {
+          continue;
         }
+
+        const opacity = 1 - distance / maxDistance;
+        const easedAlpha = Math.pow(opacity, 1.5);
+        if (easedAlpha < 0.05) {
+          continue;
+        }
+
+        ctx.globalAlpha = Math.min(0.32, easedAlpha);
+        ctx.lineWidth = lineWidth;
+        const strokeColor =
+          particleA.strokeColor === particleB.strokeColor
+            ? particleA.strokeColor
+            : '#ffffff';
+        ctx.strokeStyle = strokeColor;
+        ctx.beginPath();
+        ctx.moveTo(particleA.x, particleA.y);
+        ctx.lineTo(particleB.x, particleB.y);
+        ctx.stroke();
       }
-      ctx.restore();
-    };
+    }
+    ctx.restore();
+  };
 
     const draw = () => {
       const bleed = bleedRef.current;
