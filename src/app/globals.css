@@ -19,10 +19,17 @@
   }
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
+  margin: 0;
+  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 .btn-primary {
@@ -114,6 +121,15 @@ body {
   }
 }
 
+@keyframes bounce-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
 /* Animation utility classes */
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out;
@@ -141,6 +157,10 @@ body {
 
 .animate-bounce-subtle {
   animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+.animate-bounce-down {
+  animation: bounce-down 2s ease-in-out infinite;
 }
 
 /* Enhanced Card Hover Effects */
@@ -301,4 +321,9 @@ a:focus-visible, button:focus-visible {
 /* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Prevent horizontal overflow */
+* {
+  box-sizing: border-box;
 }

@@ -1,19 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import ParticleTextAnimation from "@/components/ParticleTextAnimation";
+import ScrollDownArrow from "@/components/ScrollDownArrow";
 
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-screen bg-black text-white">
-        <div className="flex min-h-screen flex-col pt-6 pb-12 sm:pt-8 sm:pb-14 lg:pt-12 lg:pb-16">
-          {/* Particle Text Animation Strip */}
-          <ParticleTextAnimation />
+      <section className="relative h-screen bg-black text-white">
+        <div className="flex h-screen flex-col pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-12 lg:pb-12">
+          {/* Particle Text Animation Strip - Allow particles to overflow */}
+          <div className="relative overflow-visible">
+            <ParticleTextAnimation />
+          </div>
 
           {/* Hero Content */}
-          <div className="relative z-10 mx-auto flex flex-1 w-full max-w-4xl flex-col items-center px-4 text-center gap-6 sm:px-6 lg:px-8">
-            <div className="flex flex-col items-center gap-5 sm:gap-10">
+          <div className="relative z-10 mx-auto flex flex-1 w-full max-w-4xl flex-col items-center px-4 text-center gap-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col items-center gap-4 sm:gap-6">
               <h1 className="text-[32px] sm:text-5xl md:text-6xl font-bold text-white leading-tight animate-fade-in-up">
                 Modern Websites That Drive
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 gradient-text-animated"> Business Growth</span>
@@ -30,6 +33,11 @@ export default function Home() {
                 <Link href="/projects" className="btn-secondary-enhanced text-lg px-8 py-4">
                   View Our Work
                 </Link>
+              </div>
+              
+              {/* Scroll Down Arrow - positioned below buttons on all devices */}
+              <div className="mt-6 animate-fade-in-up stagger-3">
+                <ScrollDownArrow />
               </div>
             </div>
 
