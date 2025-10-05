@@ -56,7 +56,7 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up stagger-2">
-                <Link href="/contact" className="btn-primary-enhanced text-lg px-8 py-4 animate-bounce-subtle">
+                <Link href="/contact" className="btn-primary-enhanced text-lg px-8 py-4">
                   Start Your Project
                 </Link>
                 <Link href="/projects" className="btn-secondary-enhanced text-lg px-8 py-4">
@@ -75,7 +75,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-white dark:bg-gray-900 -mt-20 relative z-10">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
