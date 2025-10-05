@@ -5,14 +5,7 @@
 [build.environment]
   NODE_VERSION = "18"
 
-[functions]
-  directory = "netlify/functions"
-
-# Disable the problematic Next.js plugin
-[plugins]
-  disabled = ["@netlify/plugin-nextjs"]
-
-# Redirect rules for static site
+# Redirect rules for SPA
 [[redirects]]
   from = "/*"
   to = "/index.html"
