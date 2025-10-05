@@ -2,6 +2,11 @@
 
 import { useState, useEffect } from 'react';
 
+interface FormStatus {
+  type: 'success' | 'error' | 'loading' | null;
+  message: string;
+}
+
 export default function Contact() {
   // Add canonical URL to head
   useEffect(() => {
@@ -14,6 +19,7 @@ export default function Contact() {
       document.head.removeChild(link);
     };
   }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,18 +29,61 @@ export default function Contact() {
     message: '',
   });
 
+  const [formStatus, setFormStatus] = useState<FormStatus>({ type: null, message: '' });
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+    
+    // Clear field error when user starts typing
+    if (fieldErrors[name]) {
+      setFieldErrors(prev => ({
+        ...prev,
+        [name]: '',
+      }));
+    }
   };
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const validateForm = () => {
+    const errors: Record<string, string> = {};
+    
+    if (!formData.name.trim()) {
+      errors.name = 'Name is required';
+    }
+    
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+    
+    if (!formData.projectType) {
+      errors.projectType = 'Please select a project type';
+    }
+    
+    if (!formData.message.trim()) {
+      errors.message = 'Message is required';
+    } else if (formData.message.trim().length < 10) {
+      errors.message = 'Message must be at least 10 characters long';
+    }
+    
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    
+    if (!validateForm()) {
+      setFormStatus({ type: 'error', message: 'Please fix the errors below and try again.' });
+      return;
+    }
+
+    setFormStatus({ type: 'loading', message: 'Sending your message...' });
 
     try {
       const response = await fetch('/api/contact', {
@@ -48,7 +97,11 @@ export default function Contact() {
       const result = await response.json();
 
       if (response.ok) {
-        alert('Thank you for your inquiry! We\'ll get back to you within 24 hours.');
+        setFormStatus({ 
+          type: 'success', 
+          message: 'Thank you for your inquiry! We\'ll get back to you within 24 hours.' 
+        });
+        
         // Reset form
         setFormData({
           name: '',
@@ -58,14 +111,20 @@ export default function Contact() {
           budget: '',
           message: '',
         });
+        
+        // Clear status after 5 seconds
+        setTimeout(() => {
+          setFormStatus({ type: null, message: '' });
+        }, 5000);
       } else {
         throw new Error(result.error || 'Failed to send message');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('There was an error sending your message. Please try again or contact us directly.');
-    } finally {
-      setIsSubmitting(false);
+      setFormStatus({ 
+        type: 'error', 
+        message: 'There was an error sending your message. Please try again or contact us directly.' 
+      });
     }
   };
 
@@ -91,10 +150,42 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16">
             {/* Contact Form */}
-            <div className="animate-fade-in-left">
+            <div className="">
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
                 Get Your Free Consultation
               </h2>
+              
+              {/* Status Messages */}
+              {formStatus.type && (
+                <div className={`mb-6 p-4 rounded-lg border ${
+                  formStatus.type === 'success' 
+                    ? 'bg-green-50 border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-300'
+                    : formStatus.type === 'error'
+                    ? 'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-300'
+                    : 'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-300'
+                }`}>
+                  <div className="flex items-center">
+                    {formStatus.type === 'success' && (
+                      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                    {formStatus.type === 'error' && (
+                      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                    {formStatus.type === 'loading' && (
+                      <svg className="w-5 h-5 mr-2 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                    )}
+                    <span className="font-medium">{formStatus.message}</span>
+                  </div>
+                </div>
+              )}
+              
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
@@ -105,12 +196,18 @@ export default function Contact() {
                       type="text"
                       id="name"
                       name="name"
-                      required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors ${
+                        fieldErrors.name 
+                          ? 'border-red-300 dark:border-red-600' 
+                          : 'border-gray-300 dark:border-gray-600'
+                      }`}
                       placeholder="Your name"
                     />
+                    {fieldErrors.name && (
+                      <p className="mt-1 text-sm text-red-600 dark:text-red-400">{fieldErrors.name}</p>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -120,12 +217,18 @@ export default function Contact() {
                       type="email"
                       id="email"
                       name="email"
-                      required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors ${
+                        fieldErrors.email 
+                          ? 'border-red-300 dark:border-red-600' 
+                          : 'border-gray-300 dark:border-gray-600'
+                      }`}
                       placeholder="your@email.com"
                     />
+                    {fieldErrors.email && (
+                      <p className="mt-1 text-sm text-red-600 dark:text-red-400">{fieldErrors.email}</p>
+                    )}
                   </div>
                 </div>
 
@@ -152,10 +255,13 @@ export default function Contact() {
                     <select
                       id="projectType"
                       name="projectType"
-                      required
                       value={formData.projectType}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors ${
+                        fieldErrors.projectType 
+                          ? 'border-red-300 dark:border-red-600' 
+                          : 'border-gray-300 dark:border-gray-600'
+                      }`}
                     >
                       <option value="">Select project type</option>
                       <option value="new-website">New Website</option>
@@ -165,6 +271,9 @@ export default function Contact() {
                       <option value="website-maintenance">Website Maintenance</option>
                       <option value="other">Other</option>
                     </select>
+                    {fieldErrors.projectType && (
+                      <p className="mt-1 text-sm text-red-600 dark:text-red-400">{fieldErrors.projectType}</p>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="budget" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -194,27 +303,43 @@ export default function Contact() {
                   <textarea
                     id="message"
                     name="message"
-                    required
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors resize-none ${
+                      fieldErrors.message 
+                        ? 'border-red-300 dark:border-red-600' 
+                        : 'border-gray-300 dark:border-gray-600'
+                    }`}
                     placeholder="Describe your project goals, timeline, and any specific requirements..."
                   ></textarea>
+                  {fieldErrors.message && (
+                    <p className="mt-1 text-sm text-red-600 dark:text-red-400">{fieldErrors.message}</p>
+                  )}
                 </div>
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="btn-primary-enhanced w-full py-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={formStatus.type === 'loading'}
+                  className="btn-primary-enhanced w-full py-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {formStatus.type === 'loading' ? (
+                    <>
+                      <svg className="w-5 h-5 mr-2 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    'Send Message'
+                  )}
                 </button>
               </form>
             </div>
 
             {/* Contact Information */}
-            <div className="animate-fade-in-right">
+            <div className="">
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
                 Get in Touch
               </h2>

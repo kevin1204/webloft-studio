@@ -46,17 +46,17 @@ export default function Home() {
           {/* Hero Content */}
           <div className="relative z-10 mx-auto flex flex-1 w-full max-w-4xl flex-col items-center px-4 text-center gap-4 sm:px-6 lg:px-8">
             <div className="flex flex-col items-center gap-4 sm:gap-6">
-              <h1 className="text-[32px] sm:text-5xl md:text-6xl font-bold text-white leading-tight animate-fade-in-up">
+              <h1 className="text-[32px] sm:text-5xl md:text-6xl font-bold text-white leading-tight">
                 Modern Websites That Drive
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 gradient-text-animated"> Business Growth</span>
               </h1>
 
-              <p className="text-base sm:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed animate-fade-in-up stagger-1">
+              <p className="text-base sm:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
                 Your website is not an expense—it's an investment. We build high-performing, lead-generating websites that scale with your business success.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up stagger-2">
-                <Link href="/contact" className="btn-primary-enhanced text-lg px-8 py-4 animate-bounce-subtle">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Link href="/contact" className="btn-primary-enhanced text-lg px-8 py-4">
                   Start Your Project
                 </Link>
                 <Link href="/projects" className="btn-secondary-enhanced text-lg px-8 py-4">
@@ -65,7 +65,7 @@ export default function Home() {
               </div>
               
               {/* Scroll Down Arrow - positioned below buttons on all devices */}
-              <div className="mt-6 animate-fade-in-up stagger-3">
+              <div className="mt-6">
                 <ScrollDownArrow />
               </div>
             </div>
@@ -87,23 +87,23 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div className="p-6 hover-glow rounded-xl transition-all duration-300 hover:scale-105 animate-fade-in-up stagger-1">
-              <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2 animate-pulse-slow">50+</div>
+            <div className="p-6 hover-glow rounded-xl transition-all duration-300 hover:scale-105">
+              <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2">50+</div>
               <div className="text-gray-600 dark:text-gray-300 font-medium">Projects Delivered</div>
               <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">Across various industries</div>
             </div>
-            <div className="p-6 hover-glow rounded-xl transition-all duration-300 hover:scale-105 animate-fade-in-up stagger-2">
-              <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2 animate-pulse-slow">250%</div>
+            <div className="p-6 hover-glow rounded-xl transition-all duration-300 hover:scale-105">
+              <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2">250%</div>
               <div className="text-gray-600 dark:text-gray-300 font-medium">Avg. Lead Increase</div>
               <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">Within first 6 months</div>
             </div>
-            <div className="p-6 hover-glow rounded-xl transition-all duration-300 hover:scale-105 animate-fade-in-up stagger-3">
-              <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2 animate-pulse-slow">98%</div>
+            <div className="p-6 hover-glow rounded-xl transition-all duration-300 hover:scale-105">
+              <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2">98%</div>
               <div className="text-gray-600 dark:text-gray-300 font-medium">Client Satisfaction</div>
               <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">Based on project reviews</div>
             </div>
-            <div className="p-6 hover-glow rounded-xl transition-all duration-300 hover:scale-105 animate-fade-in-up stagger-4">
-              <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2 animate-pulse-slow">24hrs</div>
+            <div className="p-6 hover-glow rounded-xl transition-all duration-300 hover:scale-105">
+              <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2">24hrs</div>
               <div className="text-gray-600 dark:text-gray-300 font-medium">Response Time</div>
               <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">Usually much faster</div>
             </div>
@@ -124,7 +124,7 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="card-enhanced animate-fade-in-up stagger-1">
+            <div className="card-enhanced ">
               <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center mb-6 icon-hover">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -156,7 +156,7 @@ export default function Home() {
               </ul>
             </div>
 
-            <div className="card-enhanced animate-fade-in-up stagger-2">
+            <div className="card-enhanced ">
               <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center mb-6 icon-hover">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -188,7 +188,7 @@ export default function Home() {
               </ul>
             </div>
 
-            <div className="card-enhanced animate-fade-in-up stagger-3">
+            <div className="card-enhanced ">
               <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center mb-6 icon-hover">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -236,7 +236,7 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group card-enhanced animate-fade-in-up stagger-1">
+            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group card-enhanced ">
               <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform icon-hover">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -249,7 +249,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group card-enhanced animate-fade-in-up stagger-2">
+            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group card-enhanced ">
               <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform icon-hover">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -262,7 +262,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group card-enhanced animate-fade-in-up stagger-3">
+            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group card-enhanced ">
               <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform icon-hover">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -275,7 +275,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group card-enhanced animate-fade-in-up stagger-4">
+            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group card-enhanced ">
               <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform icon-hover">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
