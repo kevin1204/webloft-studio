@@ -1,11 +1,12 @@
 {
-  "name": "webloft-static-site",
-  "version": "1.0.0",
+  "name": "app",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "node build-static.js",
-    "dev": "node build-static.js && python3 -m http.server 8000 -d out",
-    "start": "node build-static.js"
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint"
   },
   "dependencies": {
     "react": "19.1.0",

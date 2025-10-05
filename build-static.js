@@ -9,18 +9,27 @@ console.log('🚀 Starting custom static build process...');
 try {
   // Step 1: Restore the Next.js config temporarily
   console.log('📝 Restoring Next.js config...');
-  fs.renameSync('next.config.mjs.backup', 'next.config.mjs');
+  if (fs.existsSync('next.config.mjs.backup')) {
+    fs.renameSync('next.config.mjs.backup', 'next.config.mjs');
+  }
   
-  // Step 2: Run Next.js build
+  // Step 2: Restore original package.json temporarily
+  console.log('📦 Restoring Next.js package.json...');
+  if (fs.existsSync('package.json.backup')) {
+    fs.renameSync('package.json', 'package.json.temp');
+    fs.renameSync('package.json.backup', 'package.json');
+  }
+  
+  // Step 3: Run Next.js build
   console.log('🔨 Running Next.js build...');
   execSync('npm run build', { stdio: 'inherit' });
   
-  // Step 3: Verify output directory exists
+  // Step 4: Verify output directory exists
   if (!fs.existsSync('out')) {
     throw new Error('Build output directory "out" not found');
   }
   
-  // Step 4: Copy additional static files if needed
+  // Step 5: Copy additional static files if needed
   console.log('📋 Copying additional static files...');
   
   // Ensure _redirects and _headers are in the output
@@ -31,9 +40,17 @@ try {
     fs.copyFileSync('public/_headers', 'out/_headers');
   }
   
-  // Step 5: Hide Next.js config again to prevent plugin detection
-  console.log('🔒 Hiding Next.js config to prevent plugin detection...');
-  fs.renameSync('next.config.mjs', 'next.config.mjs.backup');
+  // Step 6: Hide Next.js files again to prevent plugin detection
+  console.log('🔒 Hiding Next.js files to prevent plugin detection...');
+  if (fs.existsSync('next.config.mjs')) {
+    fs.renameSync('next.config.mjs', 'next.config.mjs.backup');
+  }
+  
+  // Restore our custom package.json
+  if (fs.existsSync('package.json.temp')) {
+    fs.renameSync('package.json', 'package.json.backup');
+    fs.renameSync('package.json.temp', 'package.json');
+  }
   
   console.log('✅ Static build completed successfully!');
   console.log('📁 Output directory: out/');
