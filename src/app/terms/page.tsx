@@ -144,7 +144,7 @@ export default function TermsOfService() {
                 <strong>Email:</strong> infowebloftstudio@gmail.com
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Phone:</strong> +1 (226) 376-6326
+                <strong>Email:</strong> infowebloftstudio@gmail.com
               </p>
               <p className="text-gray-700">
                 <strong>Website:</strong> webloftstudio.com

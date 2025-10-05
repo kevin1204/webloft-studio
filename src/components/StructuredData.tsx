@@ -8,7 +8,6 @@ export default function StructuredData() {
     "logo": "https://webloftstudio.com/webloftstudio.png",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+1-226-376-6326",
       "contactType": "customer service",
       "email": "infowebloftstudio@gmail.com",
       "availableLanguage": "English"
