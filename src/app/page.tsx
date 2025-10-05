@@ -1,49 +1,47 @@
 import Image from "next/image";
 import Link from "next/link";
+import ParticleTextAnimation from "@/components/ParticleTextAnimation";
+import ScrollDownArrow from "@/components/ScrollDownArrow";
 
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/hero-bg.jpg"
-            alt="Modern office workspace"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/60"></div>
-        </div>
-
-        {/* Hero Content */}
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight animate-fade-in-up">
-            Modern Websites That Drive
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 gradient-text-animated"> Business Growth</span>
-          </h1>
-
-          <p className="text-xl sm:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed animate-fade-in-up stagger-1">
-            Your website is not an expense—it's an investment. We build high-performing, lead-generating websites that scale with your business success.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up stagger-2">
-            <Link href="/contact" className="btn-primary-enhanced text-lg px-8 py-4 animate-bounce-subtle">
-              Start Your Project
-            </Link>
-            <Link href="/projects" className="btn-secondary-enhanced text-lg px-8 py-4">
-              View Our Work
-            </Link>
+      <section className="relative h-screen bg-black text-white">
+        <div className="flex h-screen flex-col pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-12 lg:pb-12">
+          {/* Particle Text Animation Strip - Allow particles to overflow */}
+          <div className="relative overflow-visible">
+            <ParticleTextAnimation />
           </div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+          {/* Hero Content */}
+          <div className="relative z-10 mx-auto flex flex-1 w-full max-w-4xl flex-col items-center px-4 text-center gap-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col items-center gap-4 sm:gap-6">
+              <h1 className="text-[32px] sm:text-5xl md:text-6xl font-bold text-white leading-tight animate-fade-in-up">
+                Modern Websites That Drive
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 gradient-text-animated"> Business Growth</span>
+              </h1>
+
+              <p className="text-base sm:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed animate-fade-in-up stagger-1">
+                Your website is not an expense—it's an investment. We build high-performing, lead-generating websites that scale with your business success.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up stagger-2">
+                <Link href="/contact" className="btn-primary-enhanced text-lg px-8 py-4 animate-bounce-subtle">
+                  Start Your Project
+                </Link>
+                <Link href="/projects" className="btn-secondary-enhanced text-lg px-8 py-4">
+                  View Our Work
+                </Link>
+              </div>
+              
+              {/* Scroll Down Arrow - positioned below buttons on all devices */}
+              <div className="mt-6 animate-fade-in-up stagger-3">
+                <ScrollDownArrow />
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
