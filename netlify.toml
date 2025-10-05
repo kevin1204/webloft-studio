@@ -9,6 +9,7 @@
   package = "@netlify/plugin-nextjs"
   [plugins.inputs]
     disableIncrementalStaticRegeneration = false
+    disableNetlifyForms = true
 
 [functions]
   directory = "netlify/functions"
