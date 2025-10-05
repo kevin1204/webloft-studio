@@ -43,8 +43,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // For now, let's just log the submission and return success
-    // This will help us confirm the API is working
+    // Log the form submission
     console.log('=== FORM SUBMISSION LOGGED ===');
     console.log('Name:', name);
     console.log('Email:', email);
@@ -54,8 +53,9 @@ export async function POST(request: NextRequest) {
     console.log('Message:', message);
     console.log('Timestamp:', new Date().toISOString());
 
-    // TODO: Re-enable email sending once we confirm the API works
-    /*
+    // Send email using Resend
+    console.log('=== ATTEMPTING TO SEND EMAIL ===');
+    
     const emailData = {
       from: 'onboarding@resend.dev',
       to: process.env.CONTACT_EMAIL || 'infowebloftstudio@gmail.com',
@@ -84,6 +84,12 @@ export async function POST(request: NextRequest) {
       `,
     };
 
+    console.log('Email data prepared:', {
+      from: emailData.from,
+      to: emailData.to,
+      subject: emailData.subject
+    });
+
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -93,18 +99,22 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify(emailData),
     });
 
+    console.log('Resend API response status:', response.status);
+    console.log('Resend API response headers:', Object.fromEntries(response.headers.entries()));
+
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({ message: 'Failed to parse error response' }));
       console.error('Resend API error:', errorData);
+      console.error('Response status:', response.status);
+      console.error('Response statusText:', response.statusText);
       throw new Error(`Failed to send email: ${errorData.message || 'Unknown error'}`);
     }
 
     const result = await response.json();
     console.log('Email sent successfully:', result);
-    */
 
     return NextResponse.json(
-      { message: 'Message received! We will contact you soon.' },
+      { message: 'Message sent successfully! We will contact you soon.' },
       { status: 200 }
     );
 
