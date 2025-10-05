@@ -33,6 +33,7 @@ export async function POST(request: NextRequest) {
     // Check environment variables
     console.log('Environment check:');
     console.log('- RESEND_API_KEY present:', !!process.env.RESEND_API_KEY);
+    console.log('- RESEND_API_KEY starts with:', process.env.RESEND_API_KEY?.substring(0, 10) + '...');
     console.log('- CONTACT_EMAIL:', process.env.CONTACT_EMAIL || 'not set');
     
     if (!process.env.RESEND_API_KEY) {
@@ -53,33 +54,20 @@ export async function POST(request: NextRequest) {
     console.log('Message:', message);
     console.log('Timestamp:', new Date().toISOString());
 
-    // Send email using Resend - using verified email address
-    console.log('=== ATTEMPTING TO SEND EMAIL ===');
+    // Test with a simple email first
+    console.log('=== ATTEMPTING TO SEND SIMPLE TEST EMAIL ===');
     
     const emailData = {
       from: 'onboarding@resend.dev',
-      to: 'kevin.ortega2011@gmail.com', // Use your verified email address
-      subject: `New Contact Form Submission from ${name}`,
+      to: 'kevin.ortega2011@gmail.com',
+      subject: `Test Email from Webloft Studio - ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #009E69;">New Contact Form Submission</h2>
-          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #333; margin-top: 0;">Contact Information</h3>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Company:</strong> ${company || 'Not provided'}</p>
-            <p><strong>Project Type:</strong> ${projectType}</p>
-            <p><strong>Budget:</strong> ${budget || 'Not specified'}</p>
-          </div>
-          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #333; margin-top: 0;">Message</h3>
-            <p style="white-space: pre-wrap;">${message}</p>
-          </div>
-          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
-            <p style="color: #666; font-size: 14px;">
-              This message was sent from the Webloft Studio contact form.
-            </p>
-          </div>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong> ${message}</p>
+          <p><strong>Time:</strong> ${new Date().toISOString()}</p>
         </div>
       `,
     };
