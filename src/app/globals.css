@@ -191,6 +191,7 @@ body {
   position: relative;
   overflow: hidden !important;
   isolation: isolate;
+  contain: layout style paint;
 }
 
 .btn-primary-enhanced::before {
@@ -204,6 +205,8 @@ body {
   transition: left 0.6s ease;
   z-index: 1;
   clip-path: inset(0);
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .btn-primary-enhanced:hover::before {
