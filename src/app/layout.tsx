@@ -73,7 +73,7 @@ export default function RootLayout({
       >
         <ServiceWorkerRegistration />
         <Navbar />
-        <main className="pt-16">
+        <main className="pt-16 overflow-visible">
           {children}
         </main>
         <Footer />

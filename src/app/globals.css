@@ -339,6 +339,7 @@ body {
 main {
   position: relative;
   z-index: 1;
+  overflow: visible;
 }
 
 /* Performance optimizations to prevent rendering issues */
@@ -351,6 +352,17 @@ main {
 /* Ensure particle overflow works properly */
 .particle-container,
 .particle-container * {
+  overflow: visible !important;
+}
+
+/* Hero section overflow fix */
+section[class*="h-screen"] {
+  overflow: visible !important;
+}
+
+/* Ensure all containers allow particle overflow */
+.overflow-visible,
+.overflow-visible * {
   overflow: visible !important;
 }
 
