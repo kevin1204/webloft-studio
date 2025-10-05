@@ -33,8 +33,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/wflogo.svg" type="image/svg+xml" />
-        <link rel="shortcut icon" href="/wflogo.svg" />
+        <link rel="shortcut icon" href="/wflogo.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/wflogo.svg" />
+        <link rel="icon" href="/wflogo.svg" sizes="any" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
