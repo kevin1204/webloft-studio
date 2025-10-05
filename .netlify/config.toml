@@ -8,7 +8,7 @@
 [functions]
   directory = "netlify/functions"
 
-# Disable all plugins to prevent auto-detection
+# Explicitly disable all plugins to prevent auto-detection
 [plugins]
   disabled = ["@netlify/plugin-nextjs", "@netlify/plugin-lighthouse", "netlify-plugin-cloudinary"]
 
