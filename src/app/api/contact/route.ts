@@ -56,10 +56,11 @@ export async function POST(request: NextRequest) {
     // Send TWO emails: notification to you + confirmation to user
     console.log('=== ATTEMPTING TO SEND DUAL EMAILS ===');
     
-    // Email 1: Notification to you (business owner)
+    // Email 1: Notification to you (business owner) with reply-to header
     const notificationEmail = {
       from: 'info@webloftstudio.com',
       to: ['kevin.ortega2011@gmail.com', 'infowebloftstudio@gmail.com'],
+      reply_to: email, // This makes replies go directly to the user
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -80,8 +81,11 @@ export async function POST(request: NextRequest) {
             <p style="color: #666; font-size: 14px;">
               This message was sent from the Webloft Studio contact form.
             </p>
+            <p style="color: #009E69; font-size: 16px; font-weight: bold;">
+              💡 Simply reply to this email to respond to ${name} (${email})
+            </p>
             <p style="color: #666; font-size: 14px;">
-              <strong>Reply to: ${email}</strong> to respond to the client.
+              Your reply will be sent from info@webloftstudio.com to ${email}
             </p>
           </div>
         </div>
@@ -131,6 +135,7 @@ export async function POST(request: NextRequest) {
 
     console.log('Email data prepared:');
     console.log('- Notification to:', notificationEmail.to);
+    console.log('- Reply-to:', notificationEmail.reply_to);
     console.log('- Confirmation to:', confirmationEmail.to);
 
     // Send notification email to you
