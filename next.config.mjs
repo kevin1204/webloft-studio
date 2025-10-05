@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com', 'via.placeholder.com'],
     formats: ['image/webp', 'image/avif'],
+    unoptimized: true, // Disable optimization for static export
   },
   // Ensure proper SEO
   trailingSlash: false,
