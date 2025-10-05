@@ -150,7 +150,7 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16">
             {/* Contact Form */}
-            <div className="">
+            <div className="animate-fade-in-left">
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
                 Get Your Free Consultation
               </h2>
@@ -339,7 +339,7 @@ export default function Contact() {
             </div>
 
             {/* Contact Information */}
-            <div className="">
+            <div className="animate-fade-in-right">
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
                 Get in Touch
               </h2>

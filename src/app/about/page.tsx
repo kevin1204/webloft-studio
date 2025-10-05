@@ -30,7 +30,7 @@ export default function About() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="">
+            <div className="animate-fade-in-left">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
                 Our Mission
               </h2>
@@ -58,7 +58,7 @@ export default function About() {
               </div>
             </div>
             
-            <div className="">
+            <div className="animate-fade-in-left">
               <div className="relative">
                 <div className="w-full h-96 bg-gradient-to-br from-green-100 to-emerald-200 dark:from-green-800 dark:to-emerald-900 rounded-2xl flex items-center justify-center shadow-2xl">
               <div className="text-center">
@@ -149,7 +149,7 @@ export default function About() {
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Founder Photo */}
-            <div className="">
+            <div className="animate-fade-in-left">
               <div className="relative">
                 <div className="w-80 h-80 mx-auto bg-gradient-to-br from-green-100 to-emerald-200 dark:from-green-800 dark:to-emerald-900 rounded-2xl flex items-center justify-center shadow-2xl p-4">
                   {/* Kevin's Photo */}
@@ -171,7 +171,7 @@ export default function About() {
             </div>
 
             {/* Founder Bio */}
-            <div className="">
+            <div className="animate-fade-in-left">
               <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6">
                 Hi, I'm Kevin Ortega
               </h3>
