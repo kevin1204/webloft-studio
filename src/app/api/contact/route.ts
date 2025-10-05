@@ -34,7 +34,6 @@ export async function POST(request: NextRequest) {
     console.log('Environment check:');
     console.log('- RESEND_API_KEY present:', !!process.env.RESEND_API_KEY);
     console.log('- RESEND_API_KEY starts with:', process.env.RESEND_API_KEY?.substring(0, 10) + '...');
-    console.log('- CONTACT_EMAIL:', process.env.CONTACT_EMAIL || 'not set');
     
     if (!process.env.RESEND_API_KEY) {
       console.error('RESEND_API_KEY is not set in environment variables');
@@ -54,12 +53,13 @@ export async function POST(request: NextRequest) {
     console.log('Message:', message);
     console.log('Timestamp:', new Date().toISOString());
 
-    // Send email to BOTH addresses using your professional domain email
-    console.log('=== ATTEMPTING TO SEND EMAIL TO BOTH ADDRESSES ===');
+    // Send TWO emails: notification to you + confirmation to user
+    console.log('=== ATTEMPTING TO SEND DUAL EMAILS ===');
     
-    const emailData = {
-      from: 'info@webloftstudio.com', // Your professional domain email
-      to: ['kevin.ortega2011@gmail.com', 'infowebloftstudio@gmail.com'], // Both emails
+    // Email 1: Notification to you (business owner)
+    const notificationEmail = {
+      from: 'info@webloftstudio.com',
+      to: ['kevin.ortega2011@gmail.com', 'infowebloftstudio@gmail.com'],
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -81,66 +81,110 @@ export async function POST(request: NextRequest) {
               This message was sent from the Webloft Studio contact form.
             </p>
             <p style="color: #666; font-size: 14px;">
-              Reply to this email to respond to the client.
+              <strong>Reply to: ${email}</strong> to respond to the client.
             </p>
           </div>
         </div>
       `,
     };
 
-    console.log('Email data prepared:', {
-      from: emailData.from,
-      to: emailData.to,
-      subject: emailData.subject
-    });
+    // Email 2: Confirmation to the user
+    const confirmationEmail = {
+      from: 'info@webloftstudio.com',
+      to: email, // Send to the user who submitted the form
+      subject: `Thank you for contacting Webloft Studio!`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #009E69;">Thank You for Contacting Webloft Studio!</h2>
+          
+          <p>Hi ${name},</p>
+          
+          <p>Thank you for reaching out to us! We've received your message and will get back to you within 24 hours.</p>
+          
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #333; margin-top: 0;">Your Message Summary</h3>
+            <p><strong>Project Type:</strong> ${projectType}</p>
+            <p><strong>Budget:</strong> ${budget || 'Not specified'}</p>
+            <p><strong>Message:</strong></p>
+            <p style="white-space: pre-wrap; background: white; padding: 10px; border-radius: 4px;">${message}</p>
+          </div>
+          
+          <p>In the meantime, feel free to:</p>
+          <ul>
+            <li>Check out our <a href="https://webloftstudio.com/projects" style="color: #009E69;">recent projects</a></li>
+            <li>Learn more <a href="https://webloftstudio.com/about" style="color: #009E69;">about our team</a></li>
+            <li>Follow us on social media for updates</li>
+          </ul>
+          
+          <p>We look forward to working with you!</p>
+          
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+            <p style="color: #666; font-size: 14px;">
+              Best regards,<br>
+              <strong>The Webloft Studio Team</strong><br>
+              <a href="mailto:info@webloftstudio.com" style="color: #009E69;">info@webloftstudio.com</a>
+            </p>
+          </div>
+        </div>
+      `,
+    };
 
+    console.log('Email data prepared:');
+    console.log('- Notification to:', notificationEmail.to);
+    console.log('- Confirmation to:', confirmationEmail.to);
+
+    // Send notification email to you
     try {
-      const response = await fetch('https://api.resend.com/emails', {
+      const notificationResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(emailData),
+        body: JSON.stringify(notificationEmail),
       });
 
-      console.log('Resend API response status:', response.status);
-      console.log('Resend API response headers:', Object.fromEntries(response.headers.entries()));
+      console.log('Notification email response status:', notificationResponse.status);
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: 'Failed to parse error response' }));
-        console.error('Resend API error:', errorData);
-        console.error('Response status:', response.status);
-        console.error('Response statusText:', response.statusText);
-        
-        // Log the error but still return success to user
-        console.log('Email sending failed, but form submission was successful');
-        console.log('Error details:', errorData);
-        
-        return NextResponse.json(
-          { message: 'Message received! We will contact you soon.' },
-          { status: 200 }
-        );
+      if (!notificationResponse.ok) {
+        const errorData = await notificationResponse.json().catch(() => ({ message: 'Failed to parse error response' }));
+        console.error('Notification email error:', errorData);
+      } else {
+        const result = await notificationResponse.json();
+        console.log('Notification email sent successfully:', result);
       }
-
-      const result = await response.json();
-      console.log('Email sent successfully:', result);
-
-      return NextResponse.json(
-        { message: 'Message sent successfully! We will contact you soon.' },
-        { status: 200 }
-      );
-
-    } catch (emailError) {
-      console.error('Email sending error:', emailError);
-      console.log('Email sending failed, but form submission was successful');
-      
-      // Still return success to user even if email fails
-      return NextResponse.json(
-        { message: 'Message received! We will contact you soon.' },
-        { status: 200 }
-      );
+    } catch (notificationError) {
+      console.error('Notification email sending error:', notificationError);
     }
+
+    // Send confirmation email to user
+    try {
+      const confirmationResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(confirmationEmail),
+      });
+
+      console.log('Confirmation email response status:', confirmationResponse.status);
+
+      if (!confirmationResponse.ok) {
+        const errorData = await confirmationResponse.json().catch(() => ({ message: 'Failed to parse error response' }));
+        console.error('Confirmation email error:', errorData);
+      } else {
+        const result = await confirmationResponse.json();
+        console.log('Confirmation email sent successfully:', result);
+      }
+    } catch (confirmationError) {
+      console.error('Confirmation email sending error:', confirmationError);
+    }
+
+    return NextResponse.json(
+      { message: 'Message sent successfully! Check your email for confirmation.' },
+      { status: 200 }
+    );
 
   } catch (error) {
     console.error('=== CONTACT FORM ERROR ===');
