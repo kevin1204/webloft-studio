@@ -318,12 +318,32 @@ a:focus-visible, button:focus-visible {
   box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
 }
 
-/* Smooth Scrolling */
+/* Smooth Scrolling and font rendering */
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Prevent horizontal overflow */
 * {
   box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Ensure content is always visible */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Fix particle animation container */
+.particle-container {
+  contain: layout style paint;
+  will-change: transform;
+  transform: translateZ(0);
 }

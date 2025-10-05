@@ -500,9 +500,20 @@ export default function ParticleTextAnimation() {
           ref={wrapperRef}
           className="relative mx-auto h-44 sm:h-56 md:h-64 lg:h-72 bg-black"
           aria-hidden="true"
+          style={{ 
+            contain: 'layout style paint',
+            willChange: 'transform'
+          }}
         >
           {!prefersReducedMotion ? (
-            <canvas ref={canvasRef} className="pointer-events-none absolute inset-0" />
+            <canvas 
+              ref={canvasRef} 
+              className="pointer-events-none absolute inset-0"
+              style={{
+                contain: 'layout style paint',
+                willChange: 'transform'
+              }}
+            />
           ) : (
             <div className="flex h-full w-full items-center justify-center">
               <div className="flex flex-col items-center gap-2 text-center text-sm sm:text-base md:text-lg tracking-[0.5em] uppercase sm:flex-row">

@@ -17,6 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Webloft Studio - Modern Websites That Drive Business Growth",
   description: "Professional web development and design agency. We build modern, high-performing websites that bring you leads, clients, and growth.",
+  icons: {
+    icon: '/wflogo.svg',
+    shortcut: '/wflogo.svg',
+    apple: '/wflogo.svg',
+  },
 };
 
 export default function RootLayout({
@@ -26,6 +31,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/wflogo.svg" type="image/svg+xml" />
+        <link rel="shortcut icon" href="/wflogo.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/wflogo.svg" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
