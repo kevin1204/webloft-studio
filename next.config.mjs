@@ -1,16 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export',
-  trailingSlash: true,
-  distDir: 'out',
+  // Vercel handles static generation automatically
   images: {
-    unoptimized: true
+    domains: ['images.unsplash.com', 'via.placeholder.com'],
+    formats: ['image/webp', 'image/avif'],
   },
-  // Ensure proper static generation
-  generateBuildId: async () => {
-    return 'static-build'
-  }
+  // Ensure proper SEO
+  trailingSlash: false,
+  // Enable compression
+  compress: true,
 };
 
 export default nextConfig;

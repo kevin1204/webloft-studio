@@ -19,41 +19,43 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Create form data for Netlify Forms
-    const formDataToSend = new FormData();
-    formDataToSend.append('form-name', 'contact');
-    formDataToSend.append('name', formData.name);
-    formDataToSend.append('email', formData.email);
-    formDataToSend.append('company', formData.company);
-    formDataToSend.append('projectType', formData.projectType);
-    formDataToSend.append('budget', formData.budget);
-    formDataToSend.append('message', formData.message);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Submit to Netlify Forms
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formDataToSend as unknown as Record<string, string>).toString()
-    })
-    .then(() => {
-      alert('Thank you for your inquiry! We\'ll get back to you within 24 hours.');
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        projectType: '',
-        budget: '',
-        message: '',
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-    })
-    .catch((error) => {
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('Thank you for your inquiry! We\'ll get back to you within 24 hours.');
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          projectType: '',
+          budget: '',
+          message: '',
+        });
+      } else {
+        throw new Error(result.error || 'Failed to send message');
+      }
+    } catch (error) {
       console.error('Error:', error);
       alert('There was an error sending your message. Please try again or contact us directly.');
-    });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -82,7 +84,7 @@ export default function Contact() {
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
                 Get Your Free Consultation
               </h2>
-              <form name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -190,12 +192,12 @@ export default function Contact() {
                   ></textarea>
                 </div>
 
-                <input type="hidden" name="form-name" value="contact" />
                 <button
                   type="submit"
-                  className="btn-primary-enhanced w-full py-4 text-lg"
+                  disabled={isSubmitting}
+                  className="btn-primary-enhanced w-full py-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
