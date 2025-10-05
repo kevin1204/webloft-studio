@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const GREEN = '#009E69';
 const WHITE = '#ffffff';
@@ -244,8 +244,52 @@ export default function ParticleTextAnimation() {
   const mouseRef = useRef<MouseState>({ x: 0, y: 0, radius: 120, active: false });
   const animationFrame = useRef<number | undefined>(undefined);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [sweepAnimationCompleted, setSweepAnimationCompleted] = useState(false);
   const bleedRef = useRef(0);
   const dprRef = useRef(1);
+
+  const startSweepAnimation = useCallback(() => {
+    if (sweepAnimationCompleted || prefersReducedMotion) {
+      return;
+    }
+
+    const wrapper = wrapperRef.current;
+    if (!wrapper) {
+      return;
+    }
+
+    const rect = wrapper.getBoundingClientRect();
+    const startX = 0;
+    const endX = rect.width;
+    const centerY = rect.height / 2;
+    const duration = 4500; // 4.5 seconds
+    const startTime = performance.now();
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Use easeOutCubic for smooth deceleration
+      const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+      
+      const currentX = startX + (endX - startX) * easeOutCubic;
+      
+      // Update mouse position
+      mouseRef.current.x = currentX;
+      mouseRef.current.y = centerY;
+      mouseRef.current.active = true;
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        // Animation completed, deactivate mouse
+        mouseRef.current.active = false;
+        setSweepAnimationCompleted(true);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [sweepAnimationCompleted, prefersReducedMotion]);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -421,6 +465,11 @@ export default function ParticleTextAnimation() {
     configureCanvas();
     draw();
 
+    // Start sweep animation after a short delay to ensure canvas is ready
+    const sweepTimeout = setTimeout(() => {
+      startSweepAnimation();
+    }, 100);
+
     window.addEventListener('resize', configureCanvas);
     wrapper.addEventListener('pointermove', handlePointerMove);
     wrapper.addEventListener('pointerleave', handlePointerLeave);
@@ -433,6 +482,7 @@ export default function ParticleTextAnimation() {
       if (animationFrame.current) {
         window.cancelAnimationFrame(animationFrame.current);
       }
+      clearTimeout(sweepTimeout);
       window.removeEventListener('resize', configureCanvas);
       wrapper.removeEventListener('pointermove', handlePointerMove);
       wrapper.removeEventListener('pointerleave', handlePointerLeave);
@@ -441,7 +491,7 @@ export default function ParticleTextAnimation() {
       wrapper.removeEventListener('touchend', handlePointerLeave);
       wrapper.removeEventListener('touchcancel', handlePointerLeave);
     };
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, sweepAnimationCompleted, startSweepAnimation]);
 
   return (
     <div className="w-full bg-black">
