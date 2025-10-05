@@ -80,12 +80,7 @@ export default function Footer() {
                   infowebloftstudio@gmail.com
                 </a>
               </li>
-              <li>
-                <a href="tel:+12263766326" className="text-gray-400 hover:text-green-400 transition-colors">
-                  +1 (226) 376-6326
-                </a>
-              </li>
-              <li><span className="text-gray-400">Mon-Fri, 9AM-6PM EST</span></li>
+              <li><span className="text-gray-400">Response within 24 hours</span></li>
             </ul>
           </div>
         </div>
