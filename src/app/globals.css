@@ -121,6 +121,21 @@ body {
   }
 }
 
+@keyframes bounce-attention {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    transform: translateY(-3px) scale(1.01);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.02);
+  }
+  75% {
+    transform: translateY(-2px) scale(1.01);
+  }
+}
+
 @keyframes bounce-down {
   0%, 100% {
     transform: translateY(0);
@@ -157,6 +172,10 @@ body {
 
 .animate-bounce-subtle {
   animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+.animate-bounce-attention {
+  animation: bounce-attention 2.5s ease-in-out infinite;
 }
 
 .animate-bounce-down {
@@ -606,7 +625,9 @@ section[class*="h-screen"] {
   .animate-glow,
   .animate-pulse-glow,
   .icon-float,
-  .icon-bounce {
+  .icon-bounce,
+  .animate-bounce-attention,
+  .animate-bounce-subtle {
     animation: none;
   }
   
