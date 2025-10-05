@@ -103,50 +103,6 @@ body {
   }
 }
 
-/* Gradient Animation Keyframes */
-@keyframes gradient-shift {
-  0%, 100% {
-    transform: translateX(0%) translateY(0%) rotate(0deg);
-    opacity: 0.8;
-  }
-  25% {
-    transform: translateX(2%) translateY(-1%) rotate(1deg);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateX(-1%) translateY(2%) rotate(-1deg);
-    opacity: 0.9;
-  }
-  75% {
-    transform: translateX(1%) translateY(-2%) rotate(0.5deg);
-    opacity: 0.7;
-  }
-}
-
-@keyframes gradient-float {
-  0%, 100% {
-    transform: translateY(0%) translateX(0%) scale(1);
-    opacity: 0.3;
-  }
-  33% {
-    transform: translateY(-2%) translateX(1%) scale(1.02);
-    opacity: 0.5;
-  }
-  66% {
-    transform: translateY(1%) translateX(-1%) scale(0.98);
-    opacity: 0.4;
-  }
-}
-
-@keyframes grid-move {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(50px, 50px);
-  }
-}
-
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -201,18 +157,6 @@ body {
 
 .animate-bounce-subtle {
   animation: bounce-subtle 2s ease-in-out infinite;
-}
-
-.animate-gradient-shift {
-  animation: gradient-shift 8s ease-in-out infinite;
-}
-
-.animate-gradient-float {
-  animation: gradient-float 12s ease-in-out infinite;
-}
-
-.animate-grid-move {
-  animation: grid-move 20s linear infinite;
 }
 
 .animate-bounce-down {

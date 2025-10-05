@@ -7,23 +7,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-screen text-white overflow-hidden">
-        {/* Animated Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800">
-          <div className="absolute inset-0 bg-gradient-to-tr from-green-900/20 via-transparent to-emerald-900/20 animate-gradient-shift"></div>
-          <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-green-800/10 to-transparent animate-gradient-float"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-green-600/10 via-transparent to-transparent animate-pulse-slow"></div>
-        </div>
-        
-        {/* Subtle Grid Pattern Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(34,197,94,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,197,94,0.03)_1px,transparent_1px)] bg-[size:50px_50px] animate-grid-move"></div>
-        
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-2 h-2 bg-green-400/30 rounded-full animate-float"></div>
-        <div className="absolute top-40 right-16 w-1 h-1 bg-emerald-400/40 rounded-full animate-float" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-32 left-20 w-1.5 h-1.5 bg-green-300/30 rounded-full animate-float" style={{animationDelay: '4s'}}></div>
-        <div className="absolute top-60 right-32 w-1 h-1 bg-emerald-300/50 rounded-full animate-float" style={{animationDelay: '6s'}}></div>
-        <div className="absolute bottom-40 right-10 w-2 h-2 bg-green-400/20 rounded-full animate-float" style={{animationDelay: '8s'}}></div>
+      <section className="relative h-screen bg-black text-white">
         <div className="flex h-screen flex-col pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-12 lg:pb-12">
           {/* Particle Text Animation Strip - Allow particles to overflow */}
           <div className="relative overflow-visible">
@@ -35,10 +19,7 @@ export default function Home() {
             <div className="flex flex-col items-center gap-4 sm:gap-6">
               <h1 className="text-[32px] sm:text-5xl md:text-6xl font-bold text-white leading-tight animate-fade-in-up">
                 Modern Websites That Drive
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-400 to-green-300 gradient-text-animated relative">
-                  Business Growth
-                  <span className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-400 to-green-300 animate-shimmer bg-[length:200%_100%] opacity-75"></span>
-                </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 gradient-text-animated"> Business Growth</span>
               </h1>
 
               <p className="text-base sm:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed animate-fade-in-up stagger-1">
