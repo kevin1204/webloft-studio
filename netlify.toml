@@ -6,10 +6,7 @@
   NODE_VERSION = "18"
 
 [[plugins]]
-  package = "@netlify/plugin-nextjs"
-  [plugins.inputs]
-    disableIncrementalStaticRegeneration = false
-    disableNetlifyForms = true
+  package = "@netlify/plugin-nextjs@4.44.0"
 
 [functions]
   directory = "netlify/functions"
