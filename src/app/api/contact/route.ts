@@ -53,6 +53,17 @@ export async function POST(request: NextRequest) {
     console.log('Message:', message);
     console.log('Timestamp:', new Date().toISOString());
 
+    // For now, let's just return success without sending email
+    // This will help us confirm the form works
+    console.log('=== FORM SUBMISSION SUCCESSFUL (EMAIL DISABLED FOR TESTING) ===');
+
+    return NextResponse.json(
+      { message: 'Message received! We will contact you soon.' },
+      { status: 200 }
+    );
+
+    // TODO: Re-enable email sending once we confirm the form works
+    /*
     // Send email using Resend
     console.log('=== ATTEMPTING TO SEND EMAIL ===');
     
@@ -117,6 +128,7 @@ export async function POST(request: NextRequest) {
       { message: 'Message sent successfully! We will contact you soon.' },
       { status: 200 }
     );
+    */
 
   } catch (error) {
     console.error('=== CONTACT FORM ERROR ===');
