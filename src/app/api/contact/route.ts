@@ -22,9 +22,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // For now, we'll log the form data and send a simple response
-    // In production, you'll want to set up a proper email service like Resend
-    
+    // Log the form data for debugging
     console.log('New contact form submission:', {
       name,
       email,
@@ -35,10 +33,9 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
 
-    // If you have Resend API key set up, uncomment this section:
-    /*
+    // Send email using Resend
     const emailData = {
-      from: 'contact@webloftstudio.com',
+      from: 'onboarding@resend.dev', // Use Resend's default domain for now
       to: process.env.CONTACT_EMAIL || 'infowebloftstudio@gmail.com',
       subject: `New Contact Form Submission from ${name}`,
       html: `
@@ -68,6 +65,15 @@ export async function POST(request: NextRequest) {
       `,
     };
 
+    // Check if Resend API key is available
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not set in environment variables');
+      return NextResponse.json(
+        { error: 'Email service not configured. Please contact us directly.' },
+        { status: 500 }
+      );
+    }
+
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -78,9 +84,13 @@ export async function POST(request: NextRequest) {
     });
 
     if (!response.ok) {
-      throw new Error('Failed to send email');
+      const errorData = await response.json();
+      console.error('Resend API error:', errorData);
+      throw new Error(`Failed to send email: ${errorData.message || 'Unknown error'}`);
     }
-    */
+
+    const result = await response.json();
+    console.log('Email sent successfully:', result);
 
     return NextResponse.json(
       { message: 'Message sent successfully!' },
