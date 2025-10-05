@@ -494,14 +494,13 @@ export default function ParticleTextAnimation() {
   }, [prefersReducedMotion, sweepAnimationCompleted, startSweepAnimation]);
 
   return (
-    <div className="w-full bg-black overflow-visible">
+    <div className="w-full bg-black overflow-visible particle-container">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           ref={wrapperRef}
           className="relative mx-auto h-44 sm:h-56 md:h-64 lg:h-72 bg-black overflow-visible"
           aria-hidden="true"
           style={{ 
-            contain: 'layout style paint',
             willChange: 'transform'
           }}
         >
@@ -510,7 +509,6 @@ export default function ParticleTextAnimation() {
               ref={canvasRef} 
               className="pointer-events-none absolute inset-0"
               style={{
-                contain: 'layout style paint',
                 willChange: 'transform'
               }}
             />

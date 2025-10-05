@@ -37,7 +37,7 @@ export default function Home() {
       <TestimonialStructuredData testimonials={testimonials} />
       {/* Hero Section */}
       <section className="relative h-screen bg-black text-white overflow-visible">
-        <div className="flex h-screen flex-col pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-12 lg:pb-12">
+        <div className="flex h-screen flex-col pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-12 lg:pb-12 overflow-visible">
           {/* Particle Text Animation Strip - Allow particles to overflow */}
           <div className="relative overflow-visible">
             <ParticleTextAnimation />

@@ -348,6 +348,12 @@ main {
   transform: translateZ(0);
 }
 
+/* Ensure particle overflow works properly */
+.particle-container,
+.particle-container * {
+  overflow: visible !important;
+}
+
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up,
