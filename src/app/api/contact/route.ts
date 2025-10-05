@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     if (!process.env.RESEND_API_KEY) {
       console.error('RESEND_API_KEY is not set in environment variables');
       return NextResponse.json(
-        { error: 'Email service not configured. Please contact us directly at kevin.ortega2011@gmail.com' },
+        { error: 'Email service not configured. Please contact us directly at info@webloftstudio.com' },
         { status: 500 }
       );
     }
@@ -54,20 +54,36 @@ export async function POST(request: NextRequest) {
     console.log('Message:', message);
     console.log('Timestamp:', new Date().toISOString());
 
-    // Test with a simple email first
-    console.log('=== ATTEMPTING TO SEND SIMPLE TEST EMAIL ===');
+    // Send email to BOTH addresses using your professional domain email
+    console.log('=== ATTEMPTING TO SEND EMAIL TO BOTH ADDRESSES ===');
     
     const emailData = {
-      from: 'onboarding@resend.dev',
-      to: 'kevin.ortega2011@gmail.com',
-      subject: `Test Email from Webloft Studio - ${name}`,
+      from: 'info@webloftstudio.com', // Your professional domain email
+      to: ['kevin.ortega2011@gmail.com', 'infowebloftstudio@gmail.com'], // Both emails
+      subject: `New Contact Form Submission from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #009E69;">New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Message:</strong> ${message}</p>
-          <p><strong>Time:</strong> ${new Date().toISOString()}</p>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #333; margin-top: 0;">Contact Information</h3>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Company:</strong> ${company || 'Not provided'}</p>
+            <p><strong>Project Type:</strong> ${projectType}</p>
+            <p><strong>Budget:</strong> ${budget || 'Not specified'}</p>
+          </div>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #333; margin-top: 0;">Message</h3>
+            <p style="white-space: pre-wrap;">${message}</p>
+          </div>
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+            <p style="color: #666; font-size: 14px;">
+              This message was sent from the Webloft Studio contact form.
+            </p>
+            <p style="color: #666; font-size: 14px;">
+              Reply to this email to respond to the client.
+            </p>
+          </div>
         </div>
       `,
     };
@@ -133,7 +149,7 @@ export async function POST(request: NextRequest) {
     console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
     
     return NextResponse.json(
-      { error: 'Failed to process message. Please try again or contact us directly at kevin.ortega2011@gmail.com' },
+      { error: 'Failed to process message. Please try again or contact us directly at info@webloftstudio.com' },
       { status: 500 }
     );
   }
