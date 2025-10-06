@@ -263,8 +263,13 @@ export default function ParticleTextAnimation() {
       return true;
     }
     
-    // Only animate if visible and mouse is active
-    return isVisibleRef.current && mouse.active;
+    // Always animate if mouse is active (for hover effects)
+    if (mouse.active) {
+      return true;
+    }
+    
+    // Only animate if visible
+    return isVisibleRef.current;
   }, []);
 
   const startSweepAnimation = useCallback(() => {
@@ -474,8 +479,8 @@ export default function ParticleTextAnimation() {
       // Store current mouse state for comparison
       lastMouseStateRef.current = { ...mouse };
       
-      // Only continue animation if particles are moving or mouse is active
-      if (shouldContinueAnimation() || isAnimatingRef.current) {
+      // Continue animation based on our smart logic
+      if (shouldContinueAnimation()) {
         animationFrame.current = window.requestAnimationFrame(draw);
       } else {
         // Stop animation loop when idle
@@ -489,7 +494,7 @@ export default function ParticleTextAnimation() {
       mouseRef.current.y = clientY - rect.top;
       mouseRef.current.active = true;
       
-      // Restart animation if it was stopped
+      // Always restart animation when mouse is active
       if (!animationFrame.current) {
         isAnimatingRef.current = true;
         draw();
