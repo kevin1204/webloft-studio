@@ -15,8 +15,8 @@ interface MouseState {
 class Particle {
   private _x: number;
   private _y: number;
-  private readonly baseX: number;
-  private readonly baseY: number;
+  readonly baseX: number;
+  readonly baseY: number;
   private readonly size: number;
   private readonly density: number;
   private readonly color: string;
@@ -46,6 +46,7 @@ class Particle {
   get y(): number {
     return this._y;
   }
+
 
   draw(ctx: CanvasRenderingContext2D) {
     ctx.fillStyle = this.color;
@@ -247,6 +248,19 @@ export default function ParticleTextAnimation() {
   const [sweepAnimationCompleted, setSweepAnimationCompleted] = useState(false);
   const bleedRef = useRef(0);
   const dprRef = useRef(1);
+  const isAnimatingRef = useRef(false);
+  const lastMouseStateRef = useRef<MouseState>({ x: 0, y: 0, radius: 120, active: false });
+  const lastFrameTimeRef = useRef(0);
+  const targetFPS = 30; // Limit to 30 FPS instead of 60
+  const isVisibleRef = useRef(true);
+
+  // Simple performance optimization: only animate when needed
+  const shouldContinueAnimation = useCallback(() => {
+    const mouse = mouseRef.current;
+    
+    // Only animate if visible and (mouse is active or we're animating)
+    return isVisibleRef.current && (mouse.active || isAnimatingRef.current);
+  }, []);
 
   const startSweepAnimation = useCallback(() => {
     if (sweepAnimationCompleted || prefersReducedMotion) {
@@ -278,6 +292,7 @@ export default function ParticleTextAnimation() {
       mouseRef.current.x = currentX;
       mouseRef.current.y = centerY;
       mouseRef.current.active = true;
+      isAnimatingRef.current = true;
 
       if (progress < 1) {
         requestAnimationFrame(animate);
@@ -285,6 +300,10 @@ export default function ParticleTextAnimation() {
         // Animation completed, deactivate mouse
         mouseRef.current.active = false;
         setSweepAnimationCompleted(true);
+        // Keep animation running for a bit longer to let particles settle
+        setTimeout(() => {
+          isAnimatingRef.current = false;
+        }, 2000); // Increased timeout to 2 seconds
       }
     };
 
@@ -419,7 +438,17 @@ export default function ParticleTextAnimation() {
     ctx.restore();
   };
 
-    const draw = () => {
+    const draw = (currentTime: number = 0) => {
+      // Frame rate limiting
+      const frameInterval = 1000 / targetFPS;
+      if (currentTime - lastFrameTimeRef.current < frameInterval) {
+        if (shouldContinueAnimation() || isAnimatingRef.current) {
+          animationFrame.current = window.requestAnimationFrame(draw);
+        }
+        return;
+      }
+      lastFrameTimeRef.current = currentTime;
+
       const bleed = bleedRef.current;
       const dpr = dprRef.current;
 
@@ -436,7 +465,17 @@ export default function ParticleTextAnimation() {
       }
 
       connectParticles();
-      animationFrame.current = window.requestAnimationFrame(draw);
+      
+      // Store current mouse state for comparison
+      lastMouseStateRef.current = { ...mouse };
+      
+      // Only continue animation if particles are moving or mouse is active
+      if (shouldContinueAnimation() || isAnimatingRef.current) {
+        animationFrame.current = window.requestAnimationFrame(draw);
+      } else {
+        // Stop animation loop when idle
+        animationFrame.current = undefined;
+      }
     };
 
     const updatePointer = (clientX: number, clientY: number) => {
@@ -444,6 +483,12 @@ export default function ParticleTextAnimation() {
       mouseRef.current.x = clientX - rect.left;
       mouseRef.current.y = clientY - rect.top;
       mouseRef.current.active = true;
+      
+      // Restart animation if it was stopped
+      if (!animationFrame.current) {
+        isAnimatingRef.current = true;
+        draw();
+      }
     };
 
     const handlePointerMove = (event: PointerEvent) => {
@@ -460,10 +505,28 @@ export default function ParticleTextAnimation() {
 
     const handlePointerLeave = () => {
       mouseRef.current.active = false;
+      // Keep animation running briefly to let particles settle back to base positions
+      setTimeout(() => {
+        isAnimatingRef.current = false;
+      }, 500);
     };
 
     configureCanvas();
     draw();
+
+    // Set up Intersection Observer to pause animation when not visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isVisibleRef.current = entry.isIntersecting;
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (wrapper) {
+      observer.observe(wrapper);
+    }
 
     // Start sweep animation after a short delay to ensure canvas is ready
     const sweepTimeout = setTimeout(() => {
@@ -483,6 +546,7 @@ export default function ParticleTextAnimation() {
         window.cancelAnimationFrame(animationFrame.current);
       }
       clearTimeout(sweepTimeout);
+      observer.disconnect();
       window.removeEventListener('resize', configureCanvas);
       wrapper.removeEventListener('pointermove', handlePointerMove);
       wrapper.removeEventListener('pointerleave', handlePointerLeave);
