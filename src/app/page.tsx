@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ParticleTextAnimation from "@/components/ParticleTextAnimation";
+import RotatingTypewriterText from "@/components/RotatingTypewriterText";
 import ScrollDownArrow from "@/components/ScrollDownArrow";
 import TestimonialStructuredData from "@/components/TestimonialStructuredData";
 
@@ -61,7 +62,7 @@ export default function Home() {
               <h1 className="text-[32px] sm:text-5xl md:text-6xl font-bold text-white leading-tight animate-fade-in-up">
                 Modern Websites That Drive
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 gradient-text-animated typewriter-text">Business Growth</span>
+                <RotatingTypewriterText />
               </h1>
 
               <p className="text-base sm:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed animate-fade-in-up stagger-1">
