@@ -110,66 +110,110 @@ export default function Projects() {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Featured Projects
+      <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-green-400 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-emerald-500 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-400 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-8 relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 bg-green-100 dark:bg-green-900/30 rounded-full text-green-700 dark:text-green-300 text-sm font-medium mb-6 animate-fade-in-up">
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+              </svg>
+              Featured Work
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 animate-fade-in-up stagger-1">
+              Featured 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600"> Projects</span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              Our most successful projects that delivered exceptional results for our clients.
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in-up stagger-2">
+              Our most successful projects that delivered exceptional results for our clients. Each project showcases our expertise in creating high-converting websites.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="grid lg:grid-cols-2 gap-8 mb-16">
             {projects.filter(project => project.featured).map((project, index) => (
-              <div key={project.id} className={`card-enhanced animate-fade-in-up stagger-${index + 1}`}>
-                <div className="relative overflow-hidden rounded-lg mb-6">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={600}
-                    height={400}
-                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {project.category}
-                    </span>
+              <div key={project.id} className="group relative">
+                {/* Card Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-600 rounded-3xl blur-lg opacity-0 group-hover:opacity-20 transition-all duration-700"></div>
+                
+                {/* Main Card */}
+                <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-102 animate-fade-in-up overflow-hidden" style={{animationDelay: `${index * 0.2}s`}}>
+                  {/* Image Container */}
+                  <div className="relative overflow-hidden rounded-t-3xl h-64 project-image-container">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={600}
+                      height={400}
+                      className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 project-card-image"
+                    />
+                    
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-3xl"></div>
+                    
+                    {/* Category Badge */}
+                    <div className="absolute top-6 left-6">
+                      <span className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                        {project.category}
+                      </span>
+                    </div>
+                    
+                    {/* View Project Button */}
+                    <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                      <a 
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white text-green-600 px-6 py-3 rounded-full font-semibold hover:bg-green-50 transition-colors duration-300 shadow-lg flex items-center gap-2"
+                      >
+                        View Project
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                  {project.title}
-                </h3>
-                
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span 
-                      key={techIndex}
-                      className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div className="text-green-600 dark:text-green-400 font-semibold">
-                    {project.results}
+                  
+                  {/* Content */}
+                  <div className="p-8">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                      {project.description}
+                    </p>
+                    
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.technologies.map((tech, techIndex) => (
+                        <span 
+                          key={techIndex}
+                          className="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    {/* Results */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-green-600 dark:text-green-400 font-bold text-lg">
+                          {project.results}
+                        </span>
+                      </div>
+                      <div className="text-gray-500 dark:text-gray-400 text-sm">
+                        Featured Project
+                      </div>
+                    </div>
                   </div>
-                  <a 
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-medium"
-                  >
-                    View Project →
-                  </a>
                 </div>
               </div>
             ))}
@@ -178,66 +222,145 @@ export default function Projects() {
       </section>
 
       {/* All Projects */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              All Projects
+      <section className="py-24 bg-white dark:bg-gray-900 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-indigo-600/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-gradient-to-l from-purple-400/20 to-pink-600/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-8 relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-700 dark:text-blue-300 text-sm font-medium mb-6 animate-fade-in-up">
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+              Complete Portfolio
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 animate-fade-in-up stagger-1">
+              All 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600"> Projects</span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              Explore our complete portfolio of successful web development projects.
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in-up stagger-2">
+              Explore our complete portfolio of successful web development projects across various industries and technologies.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
-              <div key={project.id} className={`card-enhanced animate-fade-in-up stagger-${index + 1}`}>
-                <div className="relative overflow-hidden rounded-lg mb-6">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={400}
-                    height={300}
-                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {project.category}
-                    </span>
+              <div key={project.id} className="group relative">
+                {/* Card Background Glow */}
+                <div className={`absolute inset-0 rounded-3xl blur-lg opacity-0 group-hover:opacity-20 transition-all duration-700 ${
+                  project.category === 'Construction' ? 'bg-gradient-to-r from-green-400 to-emerald-600' :
+                  project.category === 'Business' ? 'bg-gradient-to-r from-blue-400 to-indigo-600' :
+                  project.category === 'Wellness' ? 'bg-gradient-to-r from-purple-400 to-pink-600' :
+                  project.category === 'Events' ? 'bg-gradient-to-r from-orange-400 to-red-600' :
+                  'bg-gradient-to-r from-gray-400 to-gray-600'
+                }`}></div>
+                
+                {/* Main Card */}
+                <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-102 animate-fade-in-up overflow-hidden" style={{animationDelay: `${index * 0.1}s`}}>
+                  {/* Image Container */}
+                  <div className="relative overflow-hidden rounded-t-3xl h-48 project-image-container">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={400}
+                      height={300}
+                      className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 project-card-image"
+                    />
+                    
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-3xl"></div>
+                    
+                    {/* Category Badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold shadow-lg ${
+                        project.category === 'Construction' ? 'bg-green-500 text-white' :
+                        project.category === 'Business' ? 'bg-blue-500 text-white' :
+                        project.category === 'Wellness' ? 'bg-purple-500 text-white' :
+                        project.category === 'Events' ? 'bg-orange-500 text-white' :
+                        'bg-gray-500 text-white'
+                      }`}>
+                        {project.category}
+                      </span>
+                    </div>
+                    
+                    {/* Featured Badge */}
+                    {project.featured && (
+                      <div className="absolute top-4 right-4">
+                        <span className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg flex items-center gap-1">
+                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                          Featured
+                        </span>
+                      </div>
+                    )}
+                    
+                    {/* View Project Button */}
+                    <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                      <a 
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-gray-50 transition-colors duration-300 shadow-lg flex items-center gap-2 text-sm"
+                      >
+                        View
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  {project.title}
-                </h3>
-                
-                <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span 
-                      key={techIndex}
-                      className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full text-xs"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div className="text-green-600 dark:text-green-400 font-semibold text-sm">
-                    {project.results}
+                  
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
+                      {project.description}
+                    </p>
+                    
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.map((tech, techIndex) => (
+                        <span 
+                          key={techIndex}
+                          className="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full text-xs font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    {/* Results */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className={`w-2 h-2 rounded-full animate-pulse ${
+                          project.category === 'Construction' ? 'bg-green-500' :
+                          project.category === 'Business' ? 'bg-blue-500' :
+                          project.category === 'Wellness' ? 'bg-purple-500' :
+                          project.category === 'Events' ? 'bg-orange-500' :
+                          'bg-gray-500'
+                        }`}></div>
+                        <span className={`font-bold text-sm ${
+                          project.category === 'Construction' ? 'text-green-600 dark:text-green-400' :
+                          project.category === 'Business' ? 'text-blue-600 dark:text-blue-400' :
+                          project.category === 'Wellness' ? 'text-purple-600 dark:text-purple-400' :
+                          project.category === 'Events' ? 'text-orange-600 dark:text-orange-400' :
+                          'text-gray-600 dark:text-gray-400'
+                        }`}>
+                          {project.results}
+                        </span>
+                      </div>
+                      <div className="text-gray-400 dark:text-gray-500 text-xs">
+                        {project.category}
+                      </div>
+                    </div>
                   </div>
-                  <a 
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-medium text-sm"
-                  >
-                    View →
-                  </a>
                 </div>
               </div>
             ))}
