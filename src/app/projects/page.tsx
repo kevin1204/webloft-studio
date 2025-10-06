@@ -14,6 +14,7 @@ const projects = [
     technologies: ["Webflow", "CMS", "SEO"],
     results: "+180% Lead Increase",
     link: "https://amigocontracting.com/",
+    caseStudyLink: "/case-studies/amigo-contracting-services",
     featured: true
   },
   {
@@ -25,6 +26,7 @@ const projects = [
     technologies: ["Webflow", "Responsive Design"],
     results: "Improved User Experience",
     link: "https://wfm5-level-3.webflow.io/",
+    caseStudyLink: "/case-studies/aeries",
     featured: false
   },
   {
@@ -36,6 +38,7 @@ const projects = [
     technologies: ["Webflow", "Booking System", "CMS"],
     results: "+300% Online Bookings",
     link: "https://flowgav2.webflow.io/",
+    caseStudyLink: "/case-studies/flowga-yoga-studio",
     featured: true
   },
   {
@@ -47,6 +50,7 @@ const projects = [
     technologies: ["Webflow", "Registration System", "Database"],
     results: "500+ Participants Managed",
     link: "https://wfm5-level-1-course-build-725271.design.webflow.com/",
+    caseStudyLink: "/case-studies/sportlink-events",
     featured: false
   },
   {
@@ -58,6 +62,7 @@ const projects = [
     technologies: ["Webflow", "Animations", "Portfolio"],
     results: "Enhanced Brand Presence",
     link: "https://wfm5-level-1-course-build-725271.webflow.io/",
+    caseStudyLink: "/case-studies/lila-hart",
     featured: false
   }
 ];
@@ -228,7 +233,7 @@ export default function Projects() {
                         </svg>
                       </a>
                       <Link 
-                        href="/case-study"
+                        href={project.caseStudyLink}
                         className="flex-1 bg-green-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-300 text-center flex items-center justify-center gap-2"
                       >
                         View Case Study
@@ -399,7 +404,7 @@ export default function Projects() {
                         </svg>
                       </a>
                       <Link 
-                        href="/case-study"
+                        href={project.caseStudyLink}
                         className="flex-1 bg-green-600 text-white px-3 py-2 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-300 text-center flex items-center justify-center gap-1 text-sm"
                       >
                         Case Study
