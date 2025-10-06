@@ -152,7 +152,7 @@ export default function Projects() {
                   <div className="relative overflow-hidden rounded-t-3xl h-64 project-image-container">
                     <Image
                       src={project.image}
-                      alt={project.title}
+                      alt={`${project.title} - Professional web design project by Webloft Studio showcasing ${project.category.toLowerCase()} website development and custom design solutions`}
                       width={600}
                       height={400}
                       className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 project-card-image"
@@ -293,7 +293,7 @@ export default function Projects() {
                   <div className="relative overflow-hidden rounded-t-3xl h-48 project-image-container">
                     <Image
                       src={project.image}
-                      alt={project.title}
+                      alt={`${project.title} - Professional web design project by Webloft Studio showcasing ${project.category.toLowerCase()} website development and custom design solutions`}
                       width={400}
                       height={300}
                       className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 project-card-image"

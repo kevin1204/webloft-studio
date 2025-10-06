@@ -4,6 +4,9 @@ import Image from "next/image";
 export const metadata = {
   title: "About Us - Webloft Studio",
   description: "Learn about Webloft Studio, our mission to help small and medium businesses succeed online, and our approach to web development.",
+  alternates: {
+    canonical: 'https://webloftstudio.com/about'
+  }
 };
 
 export default function About() {
