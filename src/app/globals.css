@@ -852,7 +852,9 @@ section[class*="h-screen"] {
   border-right: 3px solid #34d399; /* emerald-400 cursor color */
   animation: blink-cursor 0.75s step-end infinite;
   min-width: 0;
-  min-height: 1.2em; /* Prevent layout shift during rotation */
+  height: 1.2em; /* Fixed height to prevent layout shift */
+  line-height: 1.2em; /* Ensure consistent line height */
+  vertical-align: top; /* Align to top to prevent baseline shifts */
 }
 
 @keyframes typewriter {
@@ -877,14 +879,16 @@ section[class*="h-screen"] {
 @media (max-width: 768px) {
   .typewriter-rotating-text {
     border-right-width: 2px;
-    min-height: 1.1em;
+    height: 1.1em;
+    line-height: 1.1em;
   }
 }
 
 @media (max-width: 480px) {
   .typewriter-rotating-text {
     border-right-width: 1.5px;
-    min-height: 1em;
+    height: 1em;
+    line-height: 1em;
   }
 }
 
