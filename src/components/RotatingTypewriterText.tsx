@@ -30,7 +30,7 @@ const RotatingTypewriterText = () => {
         // Finished typing, wait a bit then start erasing
         const timeout = setTimeout(() => {
           setIsTyping(false);
-        }, 2000); // Wait 2 seconds before erasing
+        }, 3000); // Wait 3 seconds before erasing
         
         return () => clearTimeout(timeout);
       }
