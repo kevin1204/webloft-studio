@@ -60,7 +60,8 @@ export default function Home() {
             <div className="flex flex-col items-center gap-4 sm:gap-6">
               <h1 className="text-[32px] sm:text-5xl md:text-6xl font-bold text-white leading-tight animate-fade-in-up">
                 Modern Websites That Drive
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 gradient-text-animated"> Business Growth</span>
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 gradient-text-animated typewriter-text">Business Growth</span>
               </h1>
 
               <p className="text-base sm:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed animate-fade-in-up stagger-1">
