@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +7,8 @@ export const metadata = {
   description: "Get your free professional website audit checklist. Discover what's hurting your website's performance and how to fix it. No strings attached.",
   keywords: "free website audit, website analysis, website performance, SEO audit, web design audit",
 };
+
+"use client";
 
 export default function FreeWebsiteAuditPage() {
   const [formData, setFormData] = useState({

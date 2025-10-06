@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +7,8 @@ export const metadata = {
   description: "Get our comprehensive web design pricing guide. Learn exactly what websites cost in 2024, what factors affect pricing, and how to budget for your project.",
   keywords: "web design pricing, website cost, web design cost, website pricing guide, web development pricing",
 };
+
+"use client";
 
 export default function WebDesignPricingGuidePage() {
   const [formData, setFormData] = useState({
