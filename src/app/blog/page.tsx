@@ -65,98 +65,86 @@ const blogPosts = [
   }
 ];
 
-const categories = ["All", "Platform", "Business", "SEO", "Design", "Maintenance"];
 
 export default function Blog() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="pt-20 pb-16 bg-gradient-to-r from-green-50 to-emerald-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="pt-20 pb-16 bg-white">
+        <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-fade-in-up">
-              <span className="gradient-text-animated">Insights & Resources</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Insights & Resources
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 animate-fade-in-up stagger-1">
-              Actionable advice, tips, and insights to grow your business online.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
+              Actionable advice, tips, and insights to grow your business online. Expert web development and digital marketing strategies.
             </p>
-            <Link href="/contact" className="btn-primary text-lg px-8 py-4 animate-fade-in-up stagger-2">
+            <Link href="/contact" className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-200">
               Get Free Consultation
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Filter Section */}
-      <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category, index) => (
-              <button
-                key={category}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 animate-fade-in-up stagger-${index + 1} ${
-                  category === "All" 
-                    ? "bg-green-500 text-white shadow-lg" 
-                    : "bg-gray-100 text-gray-700 hover:bg-green-100 hover:text-green-700"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Featured Articles */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+      <section className="pt-8 pb-16 bg-white">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-8">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Featured Articles
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Our most popular and impactful articles for growing your business online.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             {blogPosts.filter(post => post.featured).map((post, index) => (
-              <article key={post.id} className={`bg-white border border-gray-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up stagger-${index + 1}`}>
-                <div className="relative overflow-hidden rounded-lg mb-6">
+              <article key={post.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
+                {/* Image Container */}
+                <div className="relative w-full h-48 overflow-hidden">
                   <Image
                     src={post.image}
                     alt={post.title}
                     width={600}
                     height={300}
-                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="bg-green-600 text-white px-3 py-1 rounded-md text-sm font-medium">
                       {post.category}
                     </span>
                   </div>
                 </div>
                 
-                <div className="flex items-center text-sm text-gray-600 mb-3">
-                  <span>{post.date}</span>
-                  <span className="mx-2">•</span>
-                  <span>{post.readTime}</span>
+                {/* Content */}
+                <div className="p-6">
+                  {/* Meta Info */}
+                  <div className="flex items-center text-sm text-gray-500 mb-3">
+                    <span>{post.date}</span>
+                    <span className="mx-2">•</span>
+                    <span>{post.readTime}</span>
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-green-600 transition-colors duration-200">
+                    {post.title}
+                  </h3>
+                  
+                  {/* Excerpt */}
+                  <p className="text-gray-600 mb-4 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  
+                  {/* Read More Link */}
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="text-green-600 hover:text-green-700 font-semibold"
+                  >
+                    Read Full Article →
+                  </Link>
                 </div>
-                
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                  {post.title}
-                </h3>
-                
-                <p className="text-gray-700 mb-6">
-                  {post.excerpt}
-                </p>
-                
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="link-hover text-green-600 hover:text-green-700 font-medium"
-                >
-                  Read Full Article →
-                </Link>
               </article>
             ))}
           </div>
@@ -164,55 +152,63 @@ export default function Blog() {
       </section>
 
       {/* All Articles Grid */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-8">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               All Articles
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Complete collection of our web development and digital marketing insights.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {blogPosts.map((post, index) => (
-              <article key={post.id} className={`bg-white border border-gray-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up stagger-${(index % 3) + 1}`}>
-                <div className="relative overflow-hidden rounded-lg mb-4">
+              <article key={post.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
+                {/* Image Container */}
+                <div className="relative w-full h-40 overflow-hidden">
                   <Image
                     src={post.image}
                     alt={post.title}
                     width={400}
                     height={200}
-                    className="w-full h-40 object-cover hover:scale-105 transition-transform duration-500"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
-                  <div className="absolute top-3 left-3">
-                    <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="bg-green-600 text-white px-2 py-1 rounded-md text-xs font-medium">
                       {post.category}
                     </span>
                   </div>
                 </div>
                 
-                <div className="flex items-center text-xs text-gray-600 mb-2">
-                  <span>{post.date}</span>
-                  <span className="mx-2">•</span>
-                  <span>{post.readTime}</span>
+                {/* Content */}
+                <div className="p-5">
+                  {/* Meta Info */}
+                  <div className="flex items-center text-xs text-gray-500 mb-2">
+                    <span>{post.date}</span>
+                    <span className="mx-2">•</span>
+                    <span>{post.readTime}</span>
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 hover:text-green-600 transition-colors duration-200">
+                    {post.title}
+                  </h3>
+                  
+                  {/* Excerpt */}
+                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  
+                  {/* Read More Link */}
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="text-green-600 hover:text-green-700 font-semibold text-sm"
+                  >
+                    Read More →
+                  </Link>
                 </div>
-                
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {post.title}
-                </h3>
-                
-                <p className="text-gray-700 mb-4 text-sm">
-                  {post.excerpt}
-                </p>
-                
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="link-hover text-green-600 hover:text-green-700 font-medium text-sm"
-                >
-                  Read More →
-                </Link>
               </article>
             ))}
           </div>
@@ -220,21 +216,21 @@ export default function Blog() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-20 bg-gradient-to-r from-green-400 to-emerald-600">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+      <section className="py-16 bg-green-600">
+        <div className="max-w-4xl mx-auto text-center px-6 sm:px-8 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Stay Updated with Our Latest Insights
           </h2>
-          <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-green-100 mb-8 max-w-2xl mx-auto">
             Get weekly tips, industry insights, and exclusive content delivered to your inbox.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 border-2 border-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:border-white"
+              className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
             />
-            <button className="btn-primary px-6 py-3 whitespace-nowrap">
+            <button className="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200">
               Subscribe
             </button>
           </div>
@@ -242,17 +238,17 @@ export default function Blog() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto text-center px-6 sm:px-8 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Ready to Transform Your Online Presence?
           </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
             Let's discuss your project and create a website that drives real business results. Get a free consultation today.
           </p>
           <Link
             href="/contact"
-            className="btn-primary text-lg px-8 py-4"
+            className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-200"
           >
             Get Your Free Consultation
           </Link>

@@ -16,7 +16,7 @@ export default function Footer() {
                 alt="Webloft Studio"
                 width={32}
                 height={32}
-                className="h-8 w-auto"
+                className="footer-logo"
               />
               <span className="text-white font-bold text-xl">Webloft Studio</span>
             </Link>

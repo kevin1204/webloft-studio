@@ -716,6 +716,88 @@ section[class*="h-screen"] {
   }
 }
 
+/* Chrome-specific fixes for consistent rendering */
+@supports (-webkit-appearance: none) {
+  /* Chrome/WebKit specific styles */
+  .grid {
+    display: -webkit-grid;
+    display: grid;
+  }
+  
+  /* Remove Chrome image rendering fixes that interfere with logos */
+  
+  /* Fix Chrome flexbox issues */
+  .flex {
+    display: -webkit-flex;
+    display: flex;
+  }
+  
+  /* Fix Chrome border-radius rendering */
+  .rounded-lg {
+    -webkit-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+  }
+  
+  .rounded-md {
+    -webkit-border-radius: 0.375rem;
+    border-radius: 0.375rem;
+  }
+}
+
+/* Cross-browser compatibility fixes */
+* {
+  box-sizing: border-box;
+}
+
+/* Logo-specific fixes to prevent overflow */
+.navbar-logo {
+  max-width: 120px !important;
+  height: 32px !important;
+  width: auto !important;
+}
+
+.footer-logo {
+  max-width: 32px !important;
+  height: 32px !important;
+  width: auto !important;
+}
+
+/* Fix Chrome grid gap issues */
+.grid {
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    gap: 2rem;
+  }
+}
+
+/* Chrome-specific overflow fixes */
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+/* Fix Chrome absolute positioning issues */
+.absolute {
+  position: absolute !important;
+}
+
+.relative {
+  position: relative !important;
+}
+
+/* Chrome-specific z-index fixes */
+.z-10 {
+  z-index: 10 !important;
+}
+
 /* Mobile viewport height fixes */
 .hero-section {
   min-height: 100vh;

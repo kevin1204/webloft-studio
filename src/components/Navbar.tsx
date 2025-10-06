@@ -29,7 +29,8 @@ export default function Navbar() {
               alt="Webloft Studio"
               width={120}
               height={40}
-              className="h-8 w-auto"
+              className="navbar-logo"
+              priority
             />
           </Link>
 

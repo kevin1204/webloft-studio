@@ -12,7 +12,11 @@ export default function Home() {
       company: "TechStart Solutions",
       rating: 5,
       review: "Working with Webloft Studio transformed our online presence. Within 3 months, we saw a 150% increase in qualified leads. Their attention to detail and understanding of business needs is exceptional.",
-      date: "2024-12-15"
+      date: "2024-12-15",
+      projectImage: "/PROJECTS/AMIGO CONTRACTING SERVICES.png",
+      projectName: "Amigo Contracting Services",
+      projectCategory: "Construction",
+      projectResult: "+180% Lead Increase"
     },
     {
       name: "Sarah Mitchell",
@@ -20,7 +24,11 @@ export default function Home() {
       company: "Bloom Wellness",
       rating: 5,
       review: "The team at Webloft Studio didn't just build us a website—they built us a lead generation machine. Our booking rate increased by 200% and we finally have a site that represents our brand perfectly.",
-      date: "2024-11-20"
+      date: "2024-11-20",
+      projectImage: "/PROJECTS/FLOWGA.png",
+      projectName: "Flowga Yoga Studio",
+      projectCategory: "Wellness",
+      projectResult: "+300% Online Bookings"
     },
     {
       name: "David Chen",
@@ -28,7 +36,11 @@ export default function Home() {
       company: "Local Home Services",
       rating: 5,
       review: "From strategy to execution, everything was seamless. They understood our local market and built a website that actually brings in customers. Best investment we've made for our business.",
-      date: "2024-10-30"
+      date: "2024-10-30",
+      projectImage: "/PROJECTS/AERIES.png",
+      projectName: "Aeries",
+      projectCategory: "Business",
+      projectResult: "Improved User Experience"
     }
   ];
 
@@ -144,22 +156,22 @@ export default function Home() {
               <div className="relative bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 animate-fade-in-up stagger-1 flex flex-col h-full">
                 <div className="absolute top-6 right-6 w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 z-10">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
                 <div className="mb-6 pr-20 flex flex-col flex-grow">
                   <div className="w-12 h-1 bg-gradient-to-r from-green-400 to-emerald-600 rounded-full mb-4"></div>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 transition-colors duration-300 pr-4">Results-Focused Approach</h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
-                    Every design decision is made with your business goals in mind. We don't just build pretty websites—we build lead-generating machines.
-                  </p>
+                Every design decision is made with your business goals in mind. We don't just build pretty websites—we build lead-generating machines.
+              </p>
                 </div>
                 <div className="space-y-3 mt-auto">
                   <div className="flex items-center hover:scale-105 transition-transform duration-300">
                     <div className="w-6 h-6 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mr-3 hover:scale-110 transition-transform duration-300">
                       <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
+                  </svg>
                     </div>
                     <span className="text-gray-700 dark:text-gray-300 font-medium">Conversion optimization built-in</span>
                   </div>
@@ -167,7 +179,7 @@ export default function Home() {
                     <div className="w-6 h-6 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mr-3 hover:scale-110 transition-transform duration-300">
                       <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
+                  </svg>
                     </div>
                     <span className="text-gray-700 dark:text-gray-300 font-medium">Performance tracking and analytics</span>
                   </div>
@@ -175,7 +187,7 @@ export default function Home() {
                     <div className="w-6 h-6 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mr-3 hover:scale-110 transition-transform duration-300">
                       <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
+                  </svg>
                     </div>
                     <span className="text-gray-700 dark:text-gray-300 font-medium">ROI-focused strategies</span>
                   </div>
@@ -189,22 +201,22 @@ export default function Home() {
               <div className="relative bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 animate-fade-in-up stagger-2 flex flex-col h-full">
                 <div className="absolute top-6 right-6 w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 z-10">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
                 <div className="mb-6 pr-20 flex flex-col flex-grow">
                   <div className="w-12 h-1 bg-gradient-to-r from-blue-400 to-indigo-600 rounded-full mb-4"></div>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 transition-colors duration-300 pr-4">Fast Turnaround</h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
-                    We understand that time is money. Our streamlined process gets your website live quickly without compromising quality.
-                  </p>
+                We understand that time is money. Our streamlined process gets your website live quickly without compromising quality.
+              </p>
                 </div>
                 <div className="space-y-3 mt-auto">
                   <div className="flex items-center hover:scale-105 transition-transform duration-300">
                     <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 hover:scale-110 transition-transform duration-300">
                       <svg className="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
+                  </svg>
                     </div>
                     <span className="text-gray-700 dark:text-gray-300 font-medium">2-4 week typical delivery</span>
                   </div>
@@ -212,7 +224,7 @@ export default function Home() {
                     <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 hover:scale-110 transition-transform duration-300">
                       <svg className="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
+                  </svg>
                     </div>
                     <span className="text-gray-700 dark:text-gray-300 font-medium">Clear milestones and updates</span>
                   </div>
@@ -220,7 +232,7 @@ export default function Home() {
                     <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 hover:scale-110 transition-transform duration-300">
                       <svg className="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
+                  </svg>
                     </div>
                     <span className="text-gray-700 dark:text-gray-300 font-medium">Emergency support available</span>
                   </div>
@@ -234,22 +246,22 @@ export default function Home() {
               <div className="relative bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 animate-fade-in-up stagger-3 flex flex-col h-full">
                 <div className="absolute top-6 right-6 w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 z-10">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
                 <div className="mb-6 pr-20 flex flex-col flex-grow">
                   <div className="w-12 h-1 bg-gradient-to-r from-purple-400 to-pink-600 rounded-full mb-4"></div>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 transition-colors duration-300 pr-4">Personal Service</h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
-                    You're not just a project number. We take the time to understand your business and provide personalized solutions.
-                  </p>
+                You're not just a project number. We take the time to understand your business and provide personalized solutions.
+              </p>
                 </div>
                 <div className="space-y-3 mt-auto">
                   <div className="flex items-center hover:scale-105 transition-transform duration-300">
                     <div className="w-6 h-6 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mr-3 hover:scale-110 transition-transform duration-300">
                       <svg className="w-3 h-3 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
+                  </svg>
                     </div>
                     <span className="text-gray-700 dark:text-gray-300 font-medium">Direct access to your developer</span>
                   </div>
@@ -257,7 +269,7 @@ export default function Home() {
                     <div className="w-6 h-6 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mr-3 hover:scale-110 transition-transform duration-300">
                       <svg className="w-3 h-3 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
+                  </svg>
                     </div>
                     <span className="text-gray-700 dark:text-gray-300 font-medium">Custom solutions for your industry</span>
                   </div>
@@ -265,7 +277,7 @@ export default function Home() {
                     <div className="w-6 h-6 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mr-3 hover:scale-110 transition-transform duration-300">
                       <svg className="w-3 h-3 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
+                  </svg>
                     </div>
                     <span className="text-gray-700 dark:text-gray-300 font-medium">Ongoing partnership approach</span>
                   </div>
@@ -308,8 +320,8 @@ export default function Home() {
               <div className="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 md:p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 animate-fade-in-up stagger-1 flex flex-col h-full">
                 <div className="absolute -top-4 -right-4 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg">
                   <svg className="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
                 </div>
                 <div className="pt-4 flex flex-col flex-grow">
                   <div className="w-8 h-1 bg-gradient-to-r from-green-400 to-emerald-600 rounded-full mb-6"></div>
@@ -347,8 +359,8 @@ export default function Home() {
               <div className="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 md:p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 animate-fade-in-up stagger-2 flex flex-col h-full">
                 <div className="absolute -top-4 -right-4 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg">
                   <svg className="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
                 </div>
                 <div className="pt-4 flex flex-col flex-grow">
                   <div className="w-8 h-1 bg-gradient-to-r from-blue-400 to-indigo-600 rounded-full mb-6"></div>
@@ -386,8 +398,8 @@ export default function Home() {
               <div className="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 md:p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 animate-fade-in-up stagger-3 flex flex-col h-full">
                 <div className="absolute -top-4 -right-4 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg">
                   <svg className="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
                 </div>
                 <div className="pt-4 flex flex-col flex-grow">
                   <div className="w-8 h-1 bg-gradient-to-r from-purple-400 to-pink-600 rounded-full mb-6"></div>
@@ -453,7 +465,7 @@ export default function Home() {
                     Learn More 
                     <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                </svg>
                   </Link>
                 </div>
               </div>
@@ -519,59 +531,121 @@ export default function Home() {
       </section>
 
       {/* Featured Projects Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Recent Success Stories
+      <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-purple-400 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-pink-500 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-400 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-8 relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 bg-purple-100 dark:bg-purple-900/30 rounded-full text-purple-700 dark:text-purple-300 text-sm font-medium mb-6 animate-fade-in-up">
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Client Success
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 animate-fade-in-up stagger-1">
+              Recent 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-600"> Success Stories</span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in-up stagger-2">
               See how we've helped businesses like yours achieve remarkable online growth with strategic web design and development.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20 p-8 rounded-xl">
-              <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Amigo Contracting</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">Construction services website with lead capture optimization</p>
-              <div className="text-green-600 font-semibold mb-4">+180% Lead Increase</div>
-              <a href="https://amigocontracting.com/" target="_blank" rel="noopener noreferrer" className="text-sm text-green-600 hover:text-green-700 font-medium">
-                View Project →
-              </a>
+          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="group relative">
+                {/* Card Background Glow */}
+                <div className={`absolute inset-0 rounded-3xl blur-lg opacity-0 group-hover:opacity-20 transition-all duration-700 ${
+                  testimonial.projectCategory === 'Construction' ? 'bg-gradient-to-r from-green-400 to-emerald-600' :
+                  testimonial.projectCategory === 'Wellness' ? 'bg-gradient-to-r from-purple-400 to-pink-600' :
+                  'bg-gradient-to-r from-blue-400 to-indigo-600'
+                }`}></div>
+                
+                {/* Main Card */}
+                <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-102 animate-fade-in-up overflow-hidden" style={{animationDelay: `${index * 0.2}s`}}>
+                  {/* Image Container */}
+                  <div className="relative overflow-hidden rounded-t-3xl h-48 project-image-container">
+                    <Image
+                      src={testimonial.projectImage}
+                      alt={testimonial.projectName}
+                      width={400}
+                      height={300}
+                      className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 project-card-image"
+                    />
+                    
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-3xl"></div>
+                    
+                    {/* Category Badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold shadow-lg ${
+                        testimonial.projectCategory === 'Construction' ? 'bg-green-500 text-white' :
+                        testimonial.projectCategory === 'Wellness' ? 'bg-purple-500 text-white' :
+                        'bg-blue-500 text-white'
+                      }`}>
+                        {testimonial.projectCategory}
+                      </span>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 p-8 rounded-xl">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    {/* View Project Button */}
+                    <div className="absolute bottom-4 right-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-0 md:translate-y-2 group-hover:translate-y-0">
+                      <a 
+                        href="#"
+                        className="bg-white text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-gray-50 transition-colors duration-300 shadow-lg flex items-center gap-2 text-sm"
+                      >
+                        View
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Flowga Yoga Studio</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">Wellness website with online booking and class management</p>
-              <div className="text-blue-600 font-semibold mb-4">+300% Online Bookings</div>
-              <a href="https://flowgav2.webflow.io/" target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
-                View Project →
               </a>
+            </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="p-6">
+                    {/* Project Info */}
+                    <div className="mb-4">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 transition-colors duration-300">
+                        {testimonial.projectName}
+                      </h3>
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className={`w-2 h-2 rounded-full animate-pulse ${
+                          testimonial.projectCategory === 'Construction' ? 'bg-green-500' :
+                          testimonial.projectCategory === 'Wellness' ? 'bg-purple-500' :
+                          'bg-blue-500'
+                        }`}></div>
+                        <span className={`font-bold text-sm ${
+                          testimonial.projectCategory === 'Construction' ? 'text-green-600 dark:text-green-400' :
+                          testimonial.projectCategory === 'Wellness' ? 'text-purple-600 dark:text-purple-400' :
+                          'text-blue-600 dark:text-blue-400'
+                        }`}>
+                          {testimonial.projectResult}
+                        </span>
+                      </div>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 p-8 rounded-xl">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-600 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    {/* Testimonial */}
+                    <div className="mb-4">
+                      <div className="flex items-center mb-3">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <svg key={i} className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
+                        ))}
+                      </div>
+                      <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed italic">
+                        "{testimonial.review}"
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Sportlink Events</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">Event management platform with registration system</p>
-              <div className="text-purple-600 font-semibold mb-4">500+ Participants Managed</div>
-              <a href="https://wfm5-level-1-course-build-725271.design.webflow.com/" target="_blank" rel="noopener noreferrer" className="text-sm text-purple-600 hover:text-purple-700 font-medium">
-                View Project →
-              </a>
-            </div>
+            ))}
           </div>
 
           <div className="text-center">
@@ -597,14 +671,16 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg">
               <div className="flex items-center mb-4">
+                <div className="w-15 h-15 rounded-full overflow-hidden mr-4 flex-shrink-0">
                 <Image
                   src="/avatar1.jpg"
                   alt="Client testimonial"
                   width={60}
                   height={60}
-                  className="rounded-full mr-4"
+                    className="w-full h-full object-cover"
                   loading="lazy"
                 />
+                </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">Marcus Johnson</h4>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">CEO, TechStart Solutions</p>
@@ -624,14 +700,16 @@ export default function Home() {
 
             <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg">
               <div className="flex items-center mb-4">
+                <div className="w-15 h-15 rounded-full overflow-hidden mr-4 flex-shrink-0">
                 <Image
                   src="/avatar2.jpg"
                   alt="Client testimonial"
                   width={60}
                   height={60}
-                  className="rounded-full mr-4"
+                    className="w-full h-full object-cover"
                   loading="lazy"
                 />
+                </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">Sarah Mitchell</h4>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">Founder, Bloom Wellness</p>
@@ -651,14 +729,16 @@ export default function Home() {
 
             <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg">
               <div className="flex items-center mb-4">
+                <div className="w-15 h-15 rounded-full overflow-hidden mr-4 flex-shrink-0">
                 <Image
                   src="/avatar3.jpg"
                   alt="Client testimonial"
                   width={60}
                   height={60}
-                  className="rounded-full mr-4"
+                    className="w-full h-full object-cover"
                   loading="lazy"
                 />
+                </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">David Chen</h4>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">Owner, Local Home Services</p>
