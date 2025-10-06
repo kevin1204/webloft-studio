@@ -48,6 +48,87 @@ export default function Home() {
   return (
     <>
       <TestimonialStructuredData testimonials={testimonials} />
+      
+      {/* Service Area Business Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Webloft Studio",
+            "description": "Professional web design services serving businesses across North America",
+            "provider": {
+              "@type": "Organization",
+              "name": "Webloft Studio",
+              "description": "Professional web design services serving businesses across North America",
+              "url": "https://webloftstudio.com",
+              "email": "infowebloftstudio@gmail.com",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "CA"
+              },
+              "areaServed": [
+                {
+                  "@type": "Country",
+                  "name": "North America"
+                },
+                {
+                  "@type": "Country", 
+                  "name": "United States"
+                },
+                {
+                  "@type": "Country",
+                  "name": "Canada"
+                }
+              ],
+              "serviceType": "Web Design Agency",
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Web Design Services",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Web Design"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Website Development"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "SEO Optimization"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Responsive Design"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "E-commerce Development"
+                    }
+                  }
+                ]
+              }
+            }
+          })
+        }}
+      />
+
       {/* Hero Section */}
       <section className="relative h-screen hero-section bg-black text-white overflow-visible">
         <div className="flex h-full flex-col pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-12 lg:pb-12 overflow-visible">
@@ -574,7 +655,7 @@ export default function Home() {
                   <div className="relative overflow-hidden rounded-t-3xl h-48 project-image-container">
                     <Image
                       src={testimonial.projectImage}
-                      alt={testimonial.projectName}
+                      alt={`${testimonial.projectName} - Professional web design project by Webloft Studio showcasing custom website design and development services`}
                       width={400}
                       height={300}
                       className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 project-card-image"
@@ -676,7 +757,7 @@ export default function Home() {
                 <div className="w-15 h-15 rounded-full overflow-hidden mr-4 flex-shrink-0">
                 <Image
                   src="/avatar1.jpg"
-                  alt="Client testimonial"
+                  alt="Marcus Johnson - CEO of TechStart Solutions - Client testimonial for professional web design services"
                   width={60}
                   height={60}
                     className="w-full h-full object-cover"
@@ -705,7 +786,7 @@ export default function Home() {
                 <div className="w-15 h-15 rounded-full overflow-hidden mr-4 flex-shrink-0">
                 <Image
                   src="/avatar2.jpg"
-                  alt="Client testimonial"
+                  alt="Sarah Mitchell - Founder of Bloom Wellness - Client testimonial for custom website design and development"
                   width={60}
                   height={60}
                     className="w-full h-full object-cover"
@@ -734,7 +815,7 @@ export default function Home() {
                 <div className="w-15 h-15 rounded-full overflow-hidden mr-4 flex-shrink-0">
                 <Image
                   src="/avatar3.jpg"
-                  alt="Client testimonial"
+                  alt="David Chen - Owner of Local Home Services - Client testimonial for professional web development services"
                   width={60}
                   height={60}
                     className="w-full h-full object-cover"
@@ -757,6 +838,221 @@ export default function Home() {
                 "From strategy to execution, everything was seamless. They understood our local market and built a website that actually brings in customers. Best investment we've made for our business."
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Get answers to the most common questions about our web design services and process.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {/* FAQ Item 1 */}
+            <div className="group">
+              <details className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+                    How much does a website cost?
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Website costs depend on several factors including complexity, number of pages, features needed, and specific requirements. Every project is unique, so it's best to <Link href="/contact" className="text-green-600 hover:text-green-700 font-semibold underline">contact us</Link> or fill out our project form for a personalized quote. We'll provide detailed pricing after understanding your specific needs and goals. Every project includes responsive design, SEO optimization, and 3 months of free support.
+                  </p>
+                </div>
+              </details>
+            </div>
+
+            {/* FAQ Item 2 */}
+            <div className="group">
+              <details className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+                    How long does it take to build a website?
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    For most business websites, we deliver within 2-4 weeks. Simple brochure sites can be completed in 1-2 weeks, while complex e-commerce or custom applications may take 4-8 weeks. We provide a detailed timeline during our initial consultation and keep you updated throughout the process with regular milestones and previews.
+                  </p>
+                </div>
+              </details>
+            </div>
+
+            {/* FAQ Item 3 */}
+            <div className="group">
+              <details className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+                    Do you provide ongoing website maintenance?
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Yes! We offer comprehensive maintenance plans starting at $150/month. This includes security updates, performance monitoring, content updates, backup management, and technical support. We also provide emergency support and can help with ongoing SEO improvements, content additions, and feature enhancements as your business grows.
+                  </p>
+                </div>
+              </details>
+            </div>
+
+            {/* FAQ Item 4 */}
+            <div className="group">
+              <details className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+                    What platforms do you work with?
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    We specialize in Webflow, WordPress, and custom React/Next.js solutions. Webflow is our preferred platform for most business websites due to its flexibility, performance, and ease of management. We also work with Shopify for e-commerce, and can migrate existing sites from platforms like Squarespace, Wix, or older WordPress installations.
+                  </p>
+                </div>
+              </details>
+            </div>
+
+            {/* FAQ Item 5 */}
+            <div className="group">
+              <details className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+                    Do you offer SEO services?
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Absolutely! SEO is built into every website we create. We include technical SEO optimization, keyword research, meta tag optimization, site speed optimization, and mobile responsiveness. We also offer ongoing SEO services including content strategy, local SEO optimization, Google Analytics setup, and monthly performance reports to help you rank higher in search results.
+                  </p>
+                </div>
+              </details>
+            </div>
+
+            {/* FAQ Item 6 */}
+            <div className="group">
+              <details className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+                    Can you redesign my existing website?
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Yes! We frequently help businesses modernize their existing websites. Whether you need a complete redesign or just want to update specific sections, we can work with your current content and branding to create a fresh, modern look. We also offer website audits to identify areas for improvement and can migrate your site to a better platform if needed.
+                  </p>
+                </div>
+              </details>
+            </div>
+
+            {/* FAQ Item 7 */}
+            <div className="group">
+              <details className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+                    What makes your web design different?
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    We focus on results, not just aesthetics. Every design decision is made with your business goals in mind. We combine beautiful, modern design with conversion optimization, fast loading speeds, and mobile-first responsive design. Our clients typically see 150-300% increases in leads within the first 6 months because we build websites that actually work for your business.
+                  </p>
+                </div>
+              </details>
+            </div>
+
+            {/* FAQ Item 8 */}
+            <div className="group">
+              <details className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+                    Do you provide content for my website?
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    We can help with content strategy and copywriting as part of our web design package. While we encourage you to provide your own content (as you know your business best), we can write compelling headlines, service descriptions, and calls-to-action. We also offer content creation services including blog posts, case studies, and marketing copy to help establish your expertise and improve SEO.
+                  </p>
+                </div>
+              </details>
+            </div>
+
+            {/* FAQ Item 9 */}
+            <div className="group">
+              <details className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+                    Will my website work on mobile devices?
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Absolutely! All our websites are built mobile-first and are fully responsive. This means they automatically adapt to any screen size - from phones to tablets to desktops. With over 60% of web traffic coming from mobile devices, we ensure your website looks and functions perfectly on every device, which also helps with Google rankings and user experience.
+                  </p>
+                </div>
+              </details>
+            </div>
+
+            {/* FAQ Item 10 */}
+            <div className="group">
+              <details className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+                    What happens after my website is launched?
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    After launch, we provide 3 months of free support for any technical issues. We also offer training on how to update your website content, and can set up Google Analytics to track your website's performance. Many clients choose our ongoing maintenance plans to keep their site updated, secure, and optimized. We're always available for questions and can help with future enhancements as your business grows.
+                  </p>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
+              Still have questions? We'd love to help!
+            </p>
+            <Link href="/contact" className="btn-primary">
+              Get Your Free Consultation
+            </Link>
           </div>
         </div>
       </section>

@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://webloftstudio.com'),
-  title: "Webloft Studio - Modern Websites That Drive Business Growth",
-  description: "Professional web development and design agency. We build modern, high-performing websites that bring you leads, clients, and growth.",
+  title: "Web Design Services | Custom Website Design Company | Webloft Studio",
+  description: "Professional web design services that drive business growth. Custom websites, responsive design, SEO optimization. Get more leads with our expert web design company.",
   icons: {
     icon: [
       { url: '/wflogo.svg', type: 'image/svg+xml' },
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Webloft Studio - Modern Websites That Drive Business Growth",
-    description: "Professional web development and design agency. We build modern, high-performing websites that bring you leads, clients, and growth.",
+    title: "Web Design Services | Custom Website Design Company | Webloft Studio",
+    description: "Professional web design services that drive business growth. Custom websites, responsive design, SEO optimization. Get more leads with our expert web design company.",
     url: "https://webloftstudio.com",
     siteName: "Webloft Studio",
     images: [
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Webloft Studio - Modern Websites That Drive Business Growth",
-    description: "Professional web development and design agency. We build modern, high-performing websites that bring you leads, clients, and growth.",
+    title: "Web Design Services | Custom Website Design Company | Webloft Studio",
+    description: "Professional web design services that drive business growth. Custom websites, responsive design, SEO optimization. Get more leads with our expert web design company.",
     images: ["/webloftstudio.png"],
   },
 };
