@@ -258,8 +258,13 @@ export default function ParticleTextAnimation() {
   const shouldContinueAnimation = useCallback(() => {
     const mouse = mouseRef.current;
     
-    // Only animate if visible and (mouse is active or we're animating)
-    return isVisibleRef.current && (mouse.active || isAnimatingRef.current);
+    // Always animate if we're in the middle of sweep animation
+    if (isAnimatingRef.current) {
+      return true;
+    }
+    
+    // Only animate if visible and mouse is active
+    return isVisibleRef.current && mouse.active;
   }, []);
 
   const startSweepAnimation = useCallback(() => {
@@ -300,10 +305,10 @@ export default function ParticleTextAnimation() {
         // Animation completed, deactivate mouse
         mouseRef.current.active = false;
         setSweepAnimationCompleted(true);
-        // Keep animation running for a bit longer to let particles settle
+        // Keep animation running longer to let particles settle back to base positions
         setTimeout(() => {
           isAnimatingRef.current = false;
-        }, 2000); // Increased timeout to 2 seconds
+        }, 2000); // Keep animation running for 2 seconds after sweep
       }
     };
 
@@ -505,13 +510,17 @@ export default function ParticleTextAnimation() {
 
     const handlePointerLeave = () => {
       mouseRef.current.active = false;
-      // Keep animation running briefly to let particles settle back to base positions
+      // Keep animation running longer to let particles settle back to base positions
+      isAnimatingRef.current = true;
       setTimeout(() => {
         isAnimatingRef.current = false;
-      }, 500);
+      }, 1500); // Increased timeout to 1.5 seconds
     };
 
     configureCanvas();
+    
+    // Start animation immediately to ensure particles are visible
+    isAnimatingRef.current = true;
     draw();
 
     // Set up Intersection Observer to pause animation when not visible
