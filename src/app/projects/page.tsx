@@ -164,7 +164,7 @@ export default function Projects() {
                     </div>
                     
                     {/* View Project Button */}
-                    <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                    <div className="absolute bottom-6 right-6 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-0 md:translate-y-4 group-hover:translate-y-0">
                       <a 
                         href={project.link}
                         target="_blank"
@@ -299,7 +299,7 @@ export default function Projects() {
                     )}
                     
                     {/* View Project Button */}
-                    <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                    <div className="absolute bottom-4 right-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-0 md:translate-y-2 group-hover:translate-y-0">
                       <a 
                         href={project.link}
                         target="_blank"
