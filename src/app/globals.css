@@ -372,6 +372,12 @@ main {
 .particle-container {
   will-change: transform;
   transform: translateZ(0);
+  /* Isolate the particle animation to prevent affecting the rest of the page */
+  contain: layout style paint;
+  isolation: isolate;
+  /* Create a new stacking context */
+  position: relative;
+  z-index: 1;
 }
 
 /* Ensure particle overflow works properly */
