@@ -50,7 +50,7 @@ export default function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
       aria-label="Breadcrumb"
     >
       <ol className="flex items-center space-x-2">
-        {breadcrumbItems.map((item, index) => (
+        {breadcrumbItems.map((item) => (
           <li key={item.href} className="flex items-center">
             {index > 0 && (
               <svg 

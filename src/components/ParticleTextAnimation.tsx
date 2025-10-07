@@ -569,7 +569,7 @@ export default function ParticleTextAnimation() {
       wrapper.removeEventListener('touchend', handlePointerLeave);
       wrapper.removeEventListener('touchcancel', handlePointerLeave);
     };
-  }, [prefersReducedMotion, sweepAnimationCompleted, startSweepAnimation]);
+  }, [prefersReducedMotion, sweepAnimationCompleted, startSweepAnimation, shouldContinueAnimation]);
 
   return (
     <div className="w-full bg-black overflow-visible particle-container">

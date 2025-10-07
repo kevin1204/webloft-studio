@@ -8,7 +8,7 @@ declare global {
         event_category?: string;
         event_label?: string;
         value?: number;
-        custom_parameters?: Record<string, any>;
+        custom_parameters?: Record<string, string | number | boolean>;
       }
     ) => void;
   }
@@ -86,7 +86,7 @@ export const trackCTAClick = (ctaText: string, ctaLocation: string, destination:
 };
 
 // Track lead magnet downloads
-export const trackLeadMagnetDownload = (leadMagnetType: string, formData?: any) => {
+export const trackLeadMagnetDownload = (leadMagnetType: string, formData?: Record<string, string>) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'lead_magnet_download', {
       event_category: 'Lead Generation',

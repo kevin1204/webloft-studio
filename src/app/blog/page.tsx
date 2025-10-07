@@ -103,7 +103,7 @@ export default function Blog() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-            {blogPosts.filter(post => post.featured).map((post, index) => (
+            {blogPosts.filter(post => post.featured).map((post) => (
               <article key={post.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
                 {/* Image Container */}
                 <div className="relative w-full h-48 overflow-hidden">
@@ -169,7 +169,7 @@ export default function Blog() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.map((post, index) => (
+            {blogPosts.map((post) => (
               <article key={post.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
                 {/* Image Container */}
                 <div className="relative w-full h-40 overflow-hidden">
