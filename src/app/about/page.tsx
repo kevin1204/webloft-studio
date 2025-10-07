@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata = {
-  title: "About Us - Webloft Studio",
-  description: "Learn about Webloft Studio, our mission to help small and medium businesses succeed online, and our approach to web development.",
+  title: "About Webloft Studio | Toronto Web Design Company | Our Story",
+  description: "Meet Webloft Studio, Toronto's premier web design company. Learn about our mission to help small businesses succeed online with custom websites and digital solutions.",
   alternates: {
     canonical: 'https://webloftstudio.com/about'
   }
@@ -320,11 +320,11 @@ export default function About() {
                   <div className="w-full h-full rounded-xl overflow-hidden">
                     <Image
                       src="/kevin.png"
-                      alt="Kevin Ortega - Founder of Webloft Studio"
+                      alt="Kevin Ortega - Founder of Webloft Studio - Professional web developer and digital marketing expert specializing in custom website design and development"
                       width={400}
                       height={500}
                       className="w-full h-full object-cover"
-                      priority
+                      priority={true}
                     />
                   </div>
                 </div>

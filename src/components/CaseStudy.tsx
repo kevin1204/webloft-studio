@@ -138,6 +138,8 @@ export default function CaseStudy({
                 alt={projectImages[selectedImage].alt}
                 fill
                 className="object-cover"
+                loading="lazy"
+                priority={false}
               />
               {projectImages[selectedImage].caption && (
                 <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4">
@@ -164,6 +166,8 @@ export default function CaseStudy({
                       alt={image.alt}
                       fill
                       className="object-cover"
+                      loading="lazy"
+                      priority={false}
                     />
                   </button>
                 ))}
@@ -267,6 +271,8 @@ export default function CaseStudy({
                     width={80}
                     height={80}
                     className="w-20 h-20 rounded-full object-cover"
+                    loading="lazy"
+                    priority={false}
                   />
                 ) : (
                   <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center">

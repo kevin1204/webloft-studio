@@ -1,14 +1,27 @@
 import Link from "next/link";
 import Image from "next/image";
+import BlogPostStructuredData from "@/components/BlogPostStructuredData";
 
 export const metadata = {
   title: "The Real ROI of a Great Website: Why It's an Investment, Not an Expense | Webloft Studio",
   description: "Learn how a professionally designed website generates leads, builds trust, and delivers measurable returns on your investment.",
   keywords: "website ROI, invest in a website, lead-generating websites, website investment, business website benefits",
+  alternates: {
+    canonical: 'https://webloftstudio.com/blog/real-roi-great-website-investment-not-expense'
+  }
 };
 
 export default function WebsiteROIArticle() {
   return (
+    <>
+      <BlogPostStructuredData
+        title="The Real ROI of a Great Website: Why It's an Investment, Not an Expense"
+        description="Learn how a professionally designed website generates leads, builds trust, and delivers measurable returns on your investment."
+        slug="real-roi-great-website-investment-not-expense"
+        date="2025-01-14"
+        readTime="8 min read"
+        category="Business Strategy"
+      />
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="pt-20 pb-16 bg-gradient-to-r from-green-50 to-emerald-50">
@@ -63,7 +76,7 @@ export default function WebsiteROIArticle() {
             </p>
 
             <p className="text-gray-600 mb-8">
-              Think about it: Would you trust a business with an outdated, poorly designed website? Neither would your potential customers. A great website positions you as professional, reliable, and trustworthy.
+              Think about it: Would you trust a business with an outdated, poorly designed website? Neither would your potential customers. A great website positions you as professional, reliable, and trustworthy. See examples of professional designs in our <Link href="/projects" className="text-green-600 hover:text-green-700 font-medium">web design projects</Link>.
             </p>
 
             <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-12">
@@ -75,7 +88,7 @@ export default function WebsiteROIArticle() {
             </p>
 
             <p className="text-gray-600 mb-8">
-              With proper SEO and lead capture forms, your website can generate qualified leads even while you sleep. This consistent lead flow is invaluable for business growth and stability.
+              With proper SEO and lead capture forms, your website can generate qualified leads even while you sleep. This consistent lead flow is invaluable for business growth and stability. Our <Link href="/services/seo-optimization" className="text-green-600 hover:text-green-700 font-medium">SEO optimization services</Link> help maximize your website's lead generation potential.
             </p>
 
             <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-12">
@@ -106,7 +119,7 @@ export default function WebsiteROIArticle() {
             </p>
 
             <p className="text-gray-600 mb-8">
-              A great website levels the playing field and can even give you an edge over larger competitors who might have outdated or poorly designed sites.
+              A great website levels the playing field and can even give you an edge over larger competitors who might have outdated or poorly designed sites. Learn more about common website mistakes in our article on <Link href="/blog/5-common-website-mistakes-costing-clients" className="text-green-600 hover:text-green-700 font-medium">5 Common Website Mistakes That Could Be Costing You Clients</Link>.
             </p>
 
             <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-12">
@@ -118,7 +131,7 @@ export default function WebsiteROIArticle() {
             </p>
 
             <p className="text-gray-600 mb-8">
-              This data allows you to make informed decisions about your marketing strategy and continuously improve your results.
+              This data allows you to make informed decisions about your marketing strategy and continuously improve your results. See real examples of measurable results in our <Link href="/case-studies" className="text-green-600 hover:text-green-700 font-medium">case studies</Link>.
             </p>
 
             <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-12">
@@ -126,7 +139,7 @@ export default function WebsiteROIArticle() {
             </h2>
             
             <p className="text-gray-600 mb-8">
-              A great website isn't an expense—it's an investment in your business's future. It builds trust, generates leads, provides competitive advantage, and delivers measurable returns. The question isn't whether you can afford a great website, but whether you can afford not to have one.
+              A great website isn't an expense—it's an investment in your business's future. It builds trust, generates leads, provides competitive advantage, and delivers measurable returns. The question isn't whether you can afford a great website, but whether you can afford not to have one. Our <Link href="/services/web-design" className="text-green-600 hover:text-green-700 font-medium">web design services</Link> are designed to deliver maximum ROI for your business.
             </p>
 
             <div className="bg-green-50 border-l-4 border-green-500 p-6 my-8">
@@ -168,10 +181,12 @@ export default function WebsiteROIArticle() {
             <Link href="/blog/why-webflow-best-platform-small-medium-businesses" className="card-enhanced group">
               <Image
                 src="/hero-bg.jpg"
-                alt="Webflow Platform"
+                alt="Webflow Platform - Professional web design platform for small and medium businesses by Webloft Studio"
                 width={400}
                 height={200}
                 className="w-full h-40 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                priority={false}
               />
               <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                 Why Webflow is the Best Platform
@@ -184,10 +199,12 @@ export default function WebsiteROIArticle() {
             <Link href="/blog/5-common-website-mistakes-costing-clients" className="card-enhanced group">
               <Image
                 src="/hero-bg.jpg"
-                alt="Website Mistakes"
+                alt="Website Mistakes - Common web design errors that cost businesses clients and conversions by Webloft Studio"
                 width={400}
                 height={200}
                 className="w-full h-40 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                priority={false}
               />
               <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                 5 Common Website Mistakes
@@ -200,10 +217,12 @@ export default function WebsiteROIArticle() {
             <Link href="/blog/how-often-update-website-why-matters" className="card-enhanced group">
               <Image
                 src="/hero-bg.jpg"
-                alt="Website Maintenance"
+                alt="Website Maintenance - Professional website maintenance and update services by Webloft Studio"
                 width={400}
                 height={200}
                 className="w-full h-40 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                priority={false}
               />
               <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                 How Often Should You Update Your Website?
@@ -216,5 +235,6 @@ export default function WebsiteROIArticle() {
         </div>
       </section>
     </div>
+    </>
   );
 }

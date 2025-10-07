@@ -1,14 +1,27 @@
 import Link from "next/link";
 import Image from "next/image";
+import BlogPostStructuredData from "@/components/BlogPostStructuredData";
 
 export const metadata = {
   title: "How Often Should You Update Your Website? (And Why It Matters) | Webloft Studio",
   description: "Learn the importance of regular website updates and maintenance. Discover how often you should update your website to maintain performance and security.",
   keywords: "website maintenance, website updates, website security, content updates, website performance",
+  alternates: {
+    canonical: 'https://webloftstudio.com/blog/how-often-update-website-why-matters'
+  }
 };
 
 export default function WebsiteUpdatesArticle() {
   return (
+    <>
+      <BlogPostStructuredData
+        title="How Often Should You Update Your Website? (And Why It Matters)"
+        description="Learn the importance of regular website updates and maintenance. Discover how often you should update your website to maintain performance and security."
+        slug="how-often-update-website-why-matters"
+        date="2025-01-16"
+        readTime="7 min read"
+        category="Website Maintenance"
+      />
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="pt-20 pb-16 bg-gradient-to-r from-green-50 to-emerald-50">
@@ -61,7 +74,7 @@ export default function WebsiteUpdatesArticle() {
             </p>
 
             <p className="text-gray-600 mb-8">
-              This includes updating your content management system (CMS), plugins, themes, and any third-party integrations. Many security breaches happen because businesses ignore available updates.
+              This includes updating your content management system (CMS), plugins, themes, and any third-party integrations. Many security breaches happen because businesses ignore available updates. Our <Link href="/services/website-maintenance" className="text-green-600 hover:text-green-700 font-medium">website maintenance services</Link> include regular security updates to keep your site protected.
             </p>
 
             <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-12">
@@ -73,7 +86,7 @@ export default function WebsiteUpdatesArticle() {
             </p>
 
             <p className="text-gray-600 mb-8">
-              This doesn't mean you need to rewrite everything weekly, but regular blog posts, updated service descriptions, new testimonials, and current information help maintain your online authority.
+              This doesn't mean you need to rewrite everything weekly, but regular blog posts, updated service descriptions, new testimonials, and current information help maintain your online authority. Our <Link href="/services/seo-optimization" className="text-green-600 hover:text-green-700 font-medium">SEO optimization services</Link> include content strategy to keep your site fresh and relevant.
             </p>
 
             <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-12">
@@ -85,7 +98,7 @@ export default function WebsiteUpdatesArticle() {
             </p>
 
             <p className="text-gray-600 mb-8">
-              This includes optimizing images, cleaning up unused code, updating plugins, and monitoring your site's speed and performance metrics.
+              This includes optimizing images, cleaning up unused code, updating plugins, and monitoring your site's speed and performance metrics. See how we've helped businesses improve their site performance in our <Link href="/case-studies" className="text-green-600 hover:text-green-700 font-medium">case studies</Link>.
             </p>
 
             <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-12">
@@ -130,7 +143,7 @@ export default function WebsiteUpdatesArticle() {
             </p>
 
             <p className="text-gray-600 mb-8">
-              The cost of recovering from a security breach or rebuilding lost search rankings often far exceeds the investment in regular maintenance.
+              The cost of recovering from a security breach or rebuilding lost search rankings often far exceeds the investment in regular maintenance. Learn more about the <Link href="/blog/real-roi-great-website-investment-not-expense" className="text-green-600 hover:text-green-700 font-medium">real ROI of a great website</Link> and how proper maintenance protects your investment.
             </p>
 
             <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-12">
@@ -145,7 +158,7 @@ export default function WebsiteUpdatesArticle() {
               <li><strong>Automate what you can:</strong> Set up automatic backups and security monitoring</li>
               <li><strong>Create a schedule:</strong> Block time monthly for website maintenance</li>
               <li><strong>Work with professionals:</strong> Hire experts to handle technical updates</li>
-              <li><strong>Use maintenance plans:</strong> Many agencies offer ongoing website care</li>
+              <li><strong>Use maintenance plans:</strong> Many agencies offer ongoing website care like our <Link href="/services/website-maintenance" className="text-green-600 hover:text-green-700 font-medium">website maintenance services</Link></li>
             </ul>
 
             <div className="bg-green-50 border-l-4 border-green-500 p-6 my-8">
@@ -187,10 +200,12 @@ export default function WebsiteUpdatesArticle() {
             <Link href="/blog/5-common-website-mistakes-costing-clients" className="card-enhanced group">
               <Image
                 src="/hero-bg.jpg"
-                alt="Website Mistakes"
+                alt="Website Mistakes - Common web design errors that cost businesses clients and conversions by Webloft Studio"
                 width={400}
                 height={200}
                 className="w-full h-40 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                priority={false}
               />
               <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                 5 Common Website Mistakes
@@ -203,10 +218,12 @@ export default function WebsiteUpdatesArticle() {
             <Link href="/blog/real-roi-great-website-investment-not-expense" className="card-enhanced group">
               <Image
                 src="/hero-bg.jpg"
-                alt="Website ROI"
+                alt="Website ROI - Professional website investment and return on investment analysis by Webloft Studio"
                 width={400}
                 height={200}
                 className="w-full h-40 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                priority={false}
               />
               <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                 The Real ROI of a Great Website
@@ -219,10 +236,12 @@ export default function WebsiteUpdatesArticle() {
             <Link href="/blog/seo-local-seo-secret-getting-found-online" className="card-enhanced group">
               <Image
                 src="/hero-bg.jpg"
-                alt="SEO Tips"
+                alt="SEO Tips - Professional search engine optimization and local SEO strategies by Webloft Studio"
                 width={400}
                 height={200}
                 className="w-full h-40 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                priority={false}
               />
               <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                 SEO: The Secret to Getting Found
@@ -235,5 +254,6 @@ export default function WebsiteUpdatesArticle() {
         </div>
       </section>
     </div>
+    </>
   );
 }

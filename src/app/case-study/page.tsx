@@ -1,8 +1,11 @@
 import CaseStudy from "@/components/CaseStudy";
 
 export const metadata = {
-  title: "Case Study - Flowga Yoga Studio | Webloft Studio",
-  description: "See how we helped Flowga Yoga Studio increase online bookings by 300% with a complete website redesign and mobile optimization.",
+  title: "Case Study: Flowga Yoga Studio | 300% Booking Increase | Webloft",
+  description: "See how we helped Flowga Yoga Studio increase online bookings by 300% with our Toronto web design services. Complete website redesign and mobile optimization.",
+  alternates: {
+    canonical: 'https://webloftstudio.com/case-study'
+  }
 };
 
 export default function CaseStudyPage() {

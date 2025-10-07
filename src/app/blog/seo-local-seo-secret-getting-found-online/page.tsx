@@ -1,14 +1,28 @@
 import Link from "next/link";
 import Image from "next/image";
+import BlogPostStructuredData from "@/components/BlogPostStructuredData";
 
 export const metadata = {
   title: "SEO & Local SEO: The Secret to Getting Found Online | Webloft Studio",
   description: "Master SEO fundamentals to attract more customers and dominate your local market. Learn proven strategies for getting found online.",
   keywords: "local SEO, search engine optimization, Google My Business, local search ranking, SEO for small business",
+  alternates: {
+    canonical: 'https://webloftstudio.com/blog/seo-local-seo-secret-getting-found-online'
+  }
 };
+
 
 export default function SEOArticle() {
   return (
+    <>
+      <BlogPostStructuredData
+        title="SEO & Local SEO: The Secret to Getting Found Online"
+        description="Master SEO fundamentals to attract more customers and dominate your local market. Learn proven strategies for getting found online."
+        slug="seo-local-seo-secret-getting-found-online"
+        date="2025-01-20"
+        readTime="10 min read"
+        category="SEO"
+      />
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="pt-20 pb-16 bg-gradient-to-r from-green-50 to-emerald-50">
@@ -175,10 +189,12 @@ export default function SEOArticle() {
             <Link href="/blog/why-webflow-best-platform-small-medium-businesses" className="card-enhanced group">
               <Image
                 src="/hero-bg.jpg"
-                alt="Webflow Platform"
+                alt="Webflow Platform - Professional web design platform for small and medium businesses by Webloft Studio"
                 width={400}
                 height={200}
                 className="w-full h-40 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                priority={false}
               />
               <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                 Why Webflow is the Best Platform
@@ -191,10 +207,12 @@ export default function SEOArticle() {
             <Link href="/blog/5-common-website-mistakes-costing-clients" className="card-enhanced group">
               <Image
                 src="/hero-bg.jpg"
-                alt="Website Mistakes"
+                alt="Website Mistakes - Common web design errors that cost businesses clients and conversions by Webloft Studio"
                 width={400}
                 height={200}
                 className="w-full h-40 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                priority={false}
               />
               <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                 5 Common Website Mistakes
@@ -207,10 +225,12 @@ export default function SEOArticle() {
             <Link href="/blog/how-often-update-website-why-matters" className="card-enhanced group">
               <Image
                 src="/hero-bg.jpg"
-                alt="Website Updates"
+                alt="Website Updates - Professional website maintenance and update services by Webloft Studio"
                 width={400}
                 height={200}
                 className="w-full h-40 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                priority={false}
               />
               <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                 How Often Should You Update Your Website?
@@ -223,5 +243,6 @@ export default function SEOArticle() {
         </div>
       </section>
     </div>
+    </>
   );
 }

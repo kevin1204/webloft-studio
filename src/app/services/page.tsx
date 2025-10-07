@@ -1,8 +1,11 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Our Services - Webloft Studio",
-  description: "Professional web development services including web design, Webflow development, SEO optimization, and website maintenance. Get a consultation today.",
+  title: "Web Design Services Toronto | Webflow Development | SEO | Webloft",
+  description: "Professional web design services in Toronto. Custom websites, Webflow development, SEO optimization, and maintenance. Drive business growth with expert web solutions.",
+  alternates: {
+    canonical: 'https://webloftstudio.com/services'
+  }
 };
 
 export default function Services() {
@@ -42,9 +45,14 @@ export default function Services() {
               <p className="text-gray-300 text-lg mb-8">
                 Every design decision is made with your business goals in mind. We focus on user experience, conversion optimization, and mobile-first design to ensure your website not only looks amazing but drives real business results.
               </p>
-              <Link href="/contact" className="btn-primary text-lg px-8 py-4">
-                Start Your Project
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/contact" className="btn-primary text-lg px-8 py-4">
+                  Start Your Project
+                </Link>
+                <Link href="/services/web-design" className="border border-green-500 text-green-500 hover:bg-green-50 dark:hover:bg-green-900/30 px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+                  Learn More
+                </Link>
+              </div>
             </div>
             <div className="bg-gray-800 rounded-lg p-8 border border-gray-700">
               <h3 className="text-xl font-bold text-white mb-6">What You Get:</h3>
@@ -125,9 +133,14 @@ export default function Services() {
               <p className="text-gray-300 text-lg mb-8">
                 Webflow combines the power of custom code with the simplicity of visual editing. You'll have complete control over your content while we handle all the technical complexities behind the scenes.
               </p>
-              <Link href="/contact" className="btn-primary text-lg px-8 py-4">
-                Get Started Today
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/contact" className="btn-primary text-lg px-8 py-4">
+                  Get Started Today
+                </Link>
+                <Link href="/services/webflow-development" className="border border-green-500 text-green-500 hover:bg-green-50 dark:hover:bg-green-900/30 px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+                  Learn More
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -152,9 +165,14 @@ export default function Services() {
               <p className="text-gray-300 text-lg mb-8">
                 Our SEO approach focuses on attracting qualified leads, not just traffic. We optimize for searches that matter to your business and convert browsers into buyers.
               </p>
-              <Link href="/contact" className="btn-primary text-lg px-8 py-4">
-                Boost Your Visibility
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/contact" className="btn-primary text-lg px-8 py-4">
+                  Boost Your Visibility
+                </Link>
+                <Link href="/services/seo-optimization" className="border border-green-500 text-green-500 hover:bg-green-50 dark:hover:bg-green-900/30 px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+                  Learn More
+                </Link>
+              </div>
             </div>
             <div className="bg-gray-800 rounded-lg p-8 border border-gray-700">
               <h3 className="text-xl font-bold text-white mb-6">What You Get:</h3>
@@ -237,9 +255,14 @@ export default function Services() {
               <p className="text-gray-300 text-lg mb-8">
                 Your website is a business investment that needs protection. Our maintenance plans ensure your site stays secure, fast, and working perfectly so you never lose leads or customers.
               </p>
-              <Link href="/contact" className="btn-primary text-lg px-8 py-4">
-                Secure Your Website
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/contact" className="btn-primary text-lg px-8 py-4">
+                  Secure Your Website
+                </Link>
+                <Link href="/services/website-maintenance" className="border border-green-500 text-green-500 hover:bg-green-50 dark:hover:bg-green-900/30 px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+                  Learn More
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -287,7 +310,7 @@ export default function Services() {
           </p>
           <Link
             href="/contact"
-            className="bg-white text-green-500 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg text-lg transition-colors duration-300"
+            className="bg-white text-green-500 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg text-lg transition-colors duration-300 inline-flex items-center justify-center text-center"
           >
             Schedule Your Free Consultation
           </Link>

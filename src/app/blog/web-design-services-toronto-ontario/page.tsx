@@ -1,14 +1,27 @@
 import Link from "next/link";
 import Image from "next/image";
+import BlogPostStructuredData from "@/components/BlogPostStructuredData";
 
 export const metadata = {
   title: "Web Design Services in Toronto, Ontario | Local Website Design Company",
   description: "Professional web design services in Toronto, Ontario. Local web design company helping businesses grow online. Custom websites, SEO, responsive design.",
   keywords: "web design services Toronto, website design company Toronto, local web design agency Toronto, web design Toronto Ontario, custom website design Toronto",
+  alternates: {
+    canonical: 'https://webloftstudio.com/blog/web-design-services-toronto-ontario'
+  }
 };
 
 export default function TorontoWebDesignArticle() {
   return (
+    <>
+      <BlogPostStructuredData
+        title="Web Design Services in Toronto, Ontario | Local Website Design Company"
+        description="Professional web design services in Toronto, Ontario. Local web design company helping businesses grow online. Custom websites, SEO, responsive design."
+        slug="web-design-services-toronto-ontario"
+        date="2025-01-12"
+        readTime="9 min read"
+        category="Local SEO"
+      />
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="pt-20 pb-16 bg-gradient-to-r from-green-50 to-emerald-50">
@@ -322,5 +335,6 @@ export default function TorontoWebDesignArticle() {
         </div>
       </article>
     </div>
+    </>
   );
 }

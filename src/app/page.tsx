@@ -659,6 +659,8 @@ export default function Home() {
                       width={400}
                       height={300}
                       className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 project-card-image"
+                      loading="lazy"
+                      priority={false}
                     />
                     
                     {/* Gradient Overlay */}
@@ -760,8 +762,9 @@ export default function Home() {
                   alt="Marcus Johnson - CEO of TechStart Solutions - Client testimonial for professional web design services"
                   width={60}
                   height={60}
-                    className="w-full h-full object-cover"
+                  className="w-full h-full object-cover"
                   loading="lazy"
+                  priority={false}
                 />
                 </div>
                 <div>
@@ -789,8 +792,9 @@ export default function Home() {
                   alt="Sarah Mitchell - Founder of Bloom Wellness - Client testimonial for custom website design and development"
                   width={60}
                   height={60}
-                    className="w-full h-full object-cover"
+                  className="w-full h-full object-cover"
                   loading="lazy"
+                  priority={false}
                 />
                 </div>
                 <div>
@@ -818,8 +822,9 @@ export default function Home() {
                   alt="David Chen - Owner of Local Home Services - Client testimonial for professional web development services"
                   width={60}
                   height={60}
-                    className="w-full h-full object-cover"
+                  className="w-full h-full object-cover"
                   loading="lazy"
+                  priority={false}
                 />
                 </div>
                 <div>

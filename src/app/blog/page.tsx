@@ -2,9 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata = {
-  title: "Insights & Resources - Webloft Studio",
-  description: "Actionable advice, tips, and insights to grow your business online. Expert web development and digital marketing insights from Webloft Studio.",
+  title: "Web Design Blog Toronto | SEO Tips | Business Growth | Webloft",
+  description: "Expert web design and SEO insights for Toronto businesses. Learn how to grow your business online with actionable tips, tutorials, and digital marketing advice.",
   keywords: "web development blog, business website tips, SEO insights, Webflow tutorials, digital marketing advice",
+  alternates: {
+    canonical: 'https://webloftstudio.com/blog'
+  }
 };
 
 const blogPosts = [
@@ -106,10 +109,12 @@ export default function Blog() {
                 <div className="relative w-full h-48 overflow-hidden">
                   <Image
                     src={post.image}
-                    alt={post.title}
+                    alt={`${post.title} - Professional web design and development insights by Webloft Studio`}
                     width={600}
                     height={300}
                     className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    priority={false}
                   />
                   <div className="absolute top-4 left-4 z-10">
                     <span className="bg-green-600 text-white px-3 py-1 rounded-md text-sm font-medium">
@@ -170,10 +175,12 @@ export default function Blog() {
                 <div className="relative w-full h-40 overflow-hidden">
                   <Image
                     src={post.image}
-                    alt={post.title}
+                    alt={`${post.title} - Professional web design and development insights by Webloft Studio`}
                     width={400}
                     height={200}
                     className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    priority={false}
                   />
                   <div className="absolute top-3 left-3 z-10">
                     <span className="bg-green-600 text-white px-2 py-1 rounded-md text-xs font-medium">

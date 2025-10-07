@@ -6,6 +6,9 @@ export const metadata = {
   title: "Why Webflow is the Best Platform for Small & Medium Businesses | Webloft Studio",
   description: "Discover why Webflow outperforms WordPress, Wix, and Squarespace for growing businesses. Learn about speed, design flexibility, and client autonomy.",
   keywords: "Webflow agency, best web design platform, business website with Webflow, Webflow vs WordPress, small business website platform",
+  alternates: {
+    canonical: 'https://webloftstudio.com/blog/why-webflow-best-platform-small-medium-businesses'
+  }
 };
 
 export default function WebflowArticle() {
@@ -169,10 +172,12 @@ export default function WebflowArticle() {
             <Link href="/blog/real-roi-great-website-investment-not-expense" className="card-enhanced group">
               <Image
                 src="/hero-bg.jpg"
-                alt="Website ROI"
+                alt="Website ROI - Professional website investment and return on investment analysis by Webloft Studio"
                 width={400}
                 height={200}
                 className="w-full h-40 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                priority={false}
               />
               <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                 The Real ROI of a Great Website
@@ -185,10 +190,12 @@ export default function WebflowArticle() {
             <Link href="/blog/5-common-website-mistakes-costing-clients" className="card-enhanced group">
               <Image
                 src="/hero-bg.jpg"
-                alt="Website Mistakes"
+                alt="Website Mistakes - Common web design errors that cost businesses clients and conversions by Webloft Studio"
                 width={400}
                 height={200}
                 className="w-full h-40 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                priority={false}
               />
               <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                 5 Common Website Mistakes
@@ -201,10 +208,12 @@ export default function WebflowArticle() {
             <Link href="/blog/seo-local-seo-secret-getting-found-online" className="card-enhanced group">
               <Image
                 src="/hero-bg.jpg"
-                alt="SEO Tips"
+                alt="SEO Tips - Professional search engine optimization and local SEO strategies by Webloft Studio"
                 width={400}
                 height={200}
                 className="w-full h-40 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                priority={false}
               />
               <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                 SEO: The Secret to Getting Found

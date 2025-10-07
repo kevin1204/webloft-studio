@@ -1,8 +1,8 @@
 import WebDesignPricingGuideForm from "@/components/WebDesignPricingGuideForm";
 
 export const metadata = {
-  title: "Complete Web Design Pricing Guide | 2024 Website Cost Breakdown | Webloft Studio",
-  description: "Get our comprehensive web design pricing guide. Learn exactly what websites cost in 2024, what factors affect pricing, and how to budget for your project.",
+  title: "Web Design Pricing Guide Toronto | 2024 Website Costs | Webloft",
+  description: "Get our comprehensive web design pricing guide for Toronto. Learn exactly what websites cost in 2024, pricing factors, and how to budget for your project.",
   keywords: "web design pricing, website cost, web design cost, website pricing guide, web development pricing",
 };
 

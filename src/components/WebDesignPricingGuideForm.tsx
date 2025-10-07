@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { trackLeadMagnetDownload } from "@/lib/analytics";
 
 export default function WebDesignPricingGuideForm() {
   const [formData, setFormData] = useState({
@@ -20,6 +21,9 @@ export default function WebDesignPricingGuideForm() {
     
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // Track lead magnet download
+    trackLeadMagnetDownload('pricing_guide', formData);
     
     setIsSubmitted(true);
     setIsSubmitting(false);

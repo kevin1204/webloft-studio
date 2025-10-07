@@ -9,6 +9,9 @@ import TestimonialStructuredData from "@/components/TestimonialStructuredData";
 export const metadata: Metadata = {
   title: "Web Design Services in London, Ontario | Custom Website Design | Webloft Studio",
   description: "Professional web design services in London, Ontario. Custom websites, responsive design, SEO optimization. Local web design company serving London and surrounding areas.",
+  alternates: {
+    canonical: 'https://webloftstudio.com/web-design-london-ontario'
+  },
   openGraph: {
     title: "Web Design Services in London, Ontario | Custom Website Design | Webloft Studio",
     description: "Professional web design services in London, Ontario. Custom websites, responsive design, SEO optimization. Local web design company serving London and surrounding areas.",
@@ -109,7 +112,86 @@ export default function WebDesignLondonOntario() {
               "Sarnia, Ontario"
             ],
             "serviceType": "Web Design Services",
-            "priceRange": "$$"
+            "priceRange": "$$",
+            "openingHours": [
+              "Mo-Fr 09:00-17:00",
+              "Sa 10:00-15:00"
+            ],
+            "paymentAccepted": [
+              "Cash",
+              "Credit Card",
+              "Debit Card",
+              "Bank Transfer",
+              "PayPal"
+            ],
+            "currenciesAccepted": "CAD",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Web Design Services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Custom Website Design",
+                    "description": "Professional custom website design for London businesses"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Responsive Web Design",
+                    "description": "Mobile-friendly website design that works on all devices"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "SEO Optimization",
+                    "description": "Search engine optimization services for better Google rankings"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "E-commerce Development",
+                    "description": "Online store development for London businesses"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Webflow Development",
+                    "description": "Professional Webflow website development and customization"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Website Maintenance",
+                    "description": "Ongoing website maintenance and support services"
+                  }
+                }
+              ]
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.8",
+              "reviewCount": "32",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/webloft-studio",
+              "https://twitter.com/webloftstudio",
+              "https://www.facebook.com/webloftstudio",
+              "https://www.instagram.com/webloftstudio"
+            ]
           })
         }}
       />

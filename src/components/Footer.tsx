@@ -17,6 +17,8 @@ export default function Footer() {
                 width={32}
                 height={32}
                 className="footer-logo"
+                loading="lazy"
+                priority={false}
               />
               <span className="text-white font-bold text-xl">Webloft Studio</span>
             </Link>
