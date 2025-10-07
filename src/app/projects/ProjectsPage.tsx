@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 const projects = [
   {
@@ -48,13 +47,6 @@ const projects = [
 ];
 
 export default function ProjectsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  
-  const categories = ["All", ...Array.from(new Set(projects.map(project => project.category)))];
-  
-  const filteredProjects = selectedCategory === "All" 
-    ? projects 
-    : projects.filter(project => project.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -70,32 +62,12 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Filter Section */}
-      <section className="py-8 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  selectedCategory === category
-                    ? 'bg-green-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Projects Grid */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
+            {projects.map((project) => (
               <div key={project.id} className="project-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 group">
                 <div className="project-image-container relative h-64 overflow-hidden">
                   <Image
