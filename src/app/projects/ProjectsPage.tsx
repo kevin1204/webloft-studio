@@ -62,10 +62,10 @@ export default function ProjectsPage() {
       <section className="pt-20 pb-16 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Our <span className="text-green-600">Portfolio</span>
+            Our <span className="text-green-600">Projects</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-            Explore our recent projects and see how we've helped businesses transform their online presence with custom web solutions.
+            Explore our portfolio of successful web development projects. Each website is designed to drive business growth and deliver exceptional user experiences.
           </p>
         </div>
       </section>
