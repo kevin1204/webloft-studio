@@ -24,7 +24,7 @@ export default function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
     ];
     
     let currentPath = '';
-    pathSegments.forEach((segment, index) => {
+    pathSegments.forEach((segment) => {
       currentPath += `/${segment}`;
       
       // Convert segment to readable label
@@ -50,7 +50,7 @@ export default function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
       aria-label="Breadcrumb"
     >
       <ol className="flex items-center space-x-2">
-        {breadcrumbItems.map((item) => (
+        {breadcrumbItems.map((item, index) => (
           <li key={item.href} className="flex items-center">
             {index > 0 && (
               <svg 
