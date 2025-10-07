@@ -2,20 +2,41 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleServices = () => setIsServicesOpen(!isServicesOpen);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
+        setIsServicesOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
     { name: 'Projects', href: '/projects' },
     { name: 'Blog', href: '/blog' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
+  ];
+
+  const servicesItems = [
+    { name: 'Services', href: '/services' },
+    { name: 'Template-Based Websites', href: '/template-based-websites' },
   ];
 
   return (
@@ -46,6 +67,40 @@ export default function Navbar() {
                   {item.name}
                 </Link>
               ))}
+              
+              {/* Services Dropdown */}
+              <div className="relative" ref={servicesRef}>
+                <button
+                  onClick={toggleServices}
+                  className="link-hover text-gray-300 hover:text-green-400 font-medium flex items-center"
+                >
+                  Services
+                  <svg
+                    className={`w-4 h-4 ml-1 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                
+                {isServicesOpen && (
+                  <div className="absolute top-full left-0 mt-2 w-64 bg-gray-900 rounded-lg shadow-lg border border-gray-700 py-2 z-50">
+                    {servicesItems.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="block px-4 py-3 text-gray-300 hover:text-green-400 hover:bg-gray-800 transition-colors"
+                        onClick={() => setIsServicesOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+              
               <Link
                 href="/contact"
                 className="btn-primary-enhanced inline-block"
@@ -95,6 +150,25 @@ export default function Navbar() {
                 {item.name}
               </Link>
             ))}
+            
+            {/* Mobile Services Section */}
+            <div className="py-3 px-4">
+              <div className="text-gray-300 font-medium mb-2">Services</div>
+              <div className="ml-4 space-y-2">
+                {servicesItems.map((item, index) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="link-hover block text-gray-400 hover:text-green-400 font-medium py-2 px-4 rounded-lg hover:bg-gray-800/50 transition-all duration-300"
+                    onClick={toggleMenu}
+                    style={{ animationDelay: `${(navItems.length + index) * 0.1}s` }}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            
             <div className="pt-4 border-t border-gray-700">
               <Link
                 href="/contact"
