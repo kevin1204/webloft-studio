@@ -115,7 +115,9 @@ export default function RoofingProGallery() {
   // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isMobileMenuOpen && !(event.target as Element).closest('nav')) {
+      if (isMobileMenuOpen && 
+          !(event.target as Element).closest('nav') && 
+          !(event.target as Element).closest('[data-mobile-menu]')) {
         setIsMobileMenuOpen(false);
       }
     };
@@ -229,7 +231,7 @@ export default function RoofingProGallery() {
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200 shadow-lg">
+        <div className="md:hidden bg-white border-b border-gray-200 shadow-lg" data-mobile-menu>
           <div className="px-4 py-6 space-y-4">
             {/* Mobile Navigation Links */}
             <div className="space-y-2">
