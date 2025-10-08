@@ -48,7 +48,7 @@ export default function RoofingProDemo() {
 
       {/* Hero Section */}
       <section id="home" className="relative h-screen flex items-center justify-center">
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/80"></div>
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -396,7 +396,7 @@ export default function RoofingProDemo() {
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
                       <div className="h-64 overflow-hidden">
                         <img 
-                          src="https://images.unsplash.com/photo-1581578731548-c6a0c3f2f2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
                           alt="Commercial flat roof installation"
                           className="w-full h-full object-cover"
                           loading="lazy"
