@@ -9,6 +9,9 @@ export default function RoofingProDemo() {
   const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
   const [activeSection, setActiveSection] = useState('home');
   const [countedNumbers, setCountedNumbers] = useState({ years: 0, projects: 0, satisfaction: 0 });
+  const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
@@ -92,6 +95,28 @@ export default function RoofingProDemo() {
       };
     }
   }, [isVisible.home]);
+
+  // Slider functionality
+  const handleSliderMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percentage = (x / rect.width) * 100;
+    setSliderPosition(Math.max(0, Math.min(100, percentage)));
+  };
+
+  const handleSliderStart = () => {
+    setIsDragging(true);
+  };
+
+  const handleSliderEnd = () => {
+    setIsDragging(false);
+  };
+
+  // FAQ toggle functionality
+  const toggleFAQ = (index: number) => {
+    setOpenFAQ(openFAQ === index ? null : index);
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -645,7 +670,7 @@ export default function RoofingProDemo() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className={`text-center group hover-lift transform transition-all duration-500 ${
+            <div className={`text-center group hover-lift transform transition-all duration-500 p-6 rounded-xl ${
               isVisible['why-choose-us'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '200ms' }}>
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600 group-hover:scale-110 transition-all duration-300">
@@ -656,7 +681,7 @@ export default function RoofingProDemo() {
               <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">Licensed & Insured</h3>
               <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Fully licensed contractors with comprehensive insurance coverage for your peace of mind.</p>
             </div>
-            <div className={`text-center group hover-lift transform transition-all duration-500 ${
+            <div className={`text-center group hover-lift transform transition-all duration-500 p-6 rounded-xl ${
               isVisible['why-choose-us'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '400ms' }}>
               <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-600 group-hover:scale-110 transition-all duration-300">
@@ -667,7 +692,7 @@ export default function RoofingProDemo() {
               <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">25+ Years Experience</h3>
               <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Over two decades of expertise in residential and commercial roofing projects.</p>
             </div>
-            <div className={`text-center group hover-lift transform transition-all duration-500 ${
+            <div className={`text-center group hover-lift transform transition-all duration-500 p-6 rounded-xl ${
               isVisible['why-choose-us'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '600ms' }}>
               <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-600 group-hover:scale-110 transition-all duration-300">
@@ -678,7 +703,7 @@ export default function RoofingProDemo() {
               <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">100% Satisfaction</h3>
               <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">We guarantee your complete satisfaction with our workmanship and materials.</p>
             </div>
-            <div className={`text-center group hover-lift transform transition-all duration-500 ${
+            <div className={`text-center group hover-lift transform transition-all duration-500 p-6 rounded-xl ${
               isVisible['why-choose-us'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '800ms' }}>
               <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-600 group-hover:scale-110 transition-all duration-300">
@@ -763,28 +788,28 @@ export default function RoofingProDemo() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className={`text-center group hover-lift transform transition-all duration-700 ${
+            <div className={`text-center group hover-lift transform transition-all duration-700 p-6 rounded-xl ${
               isVisible.process ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '200ms' }}>
               <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold group-hover:scale-110 group-hover:bg-blue-700 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/25">1</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">Free Consultation</h3>
               <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Schedule a free, no-obligation inspection and detailed estimate for your roofing project.</p>
             </div>
-            <div className={`text-center group hover-lift transform transition-all duration-700 ${
+            <div className={`text-center group hover-lift transform transition-all duration-700 p-6 rounded-xl ${
               isVisible.process ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '400ms' }}>
               <div className="bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold group-hover:scale-110 group-hover:bg-green-700 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-green-500/25">2</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Custom Proposal</h3>
               <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Receive a detailed proposal with material options, timeline, and transparent pricing.</p>
             </div>
-            <div className={`text-center group hover-lift transform transition-all duration-700 ${
+            <div className={`text-center group hover-lift transform transition-all duration-700 p-6 rounded-xl ${
               isVisible.process ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '600ms' }}>
               <div className="bg-purple-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold group-hover:scale-110 group-hover:bg-purple-700 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-purple-500/25">3</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">Professional Installation</h3>
               <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Our skilled team performs the work with precision, keeping you informed throughout the process.</p>
             </div>
-            <div className={`text-center group hover-lift transform transition-all duration-700 ${
+            <div className={`text-center group hover-lift transform transition-all duration-700 p-6 rounded-xl ${
               isVisible.process ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '800ms' }}>
               <div className="bg-orange-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold group-hover:scale-110 group-hover:bg-orange-700 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-orange-500/25">4</div>
@@ -798,15 +823,22 @@ export default function RoofingProDemo() {
       {/* Projects/Portfolio Section */}
       <section id="projects" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Recent Projects</h2>
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible.projects ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 relative group">
+              Our Recent Projects
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Showcasing our quality workmanship and attention to detail
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Card 1 - Residential Roof Replacement */}
-            <div className="group cursor-pointer">
+            <div className={`group cursor-pointer transform transition-all duration-700 ${
+              isVisible.projects ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '200ms' }}>
               <div className="relative h-80 w-full perspective-1000">
                 <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
                   {/* Front of card */}
@@ -848,7 +880,9 @@ export default function RoofingProDemo() {
             </div>
 
             {/* Card 2 - Commercial Flat Roof */}
-            <div className="group cursor-pointer">
+            <div className={`group cursor-pointer transform transition-all duration-700 ${
+              isVisible.projects ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '400ms' }}>
               <div className="relative h-80 w-full perspective-1000">
                 <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
                   {/* Front of card */}
@@ -890,7 +924,9 @@ export default function RoofingProDemo() {
             </div>
 
             {/* Card 3 - Metal Roof Installation */}
-            <div className="group cursor-pointer">
+            <div className={`group cursor-pointer transform transition-all duration-700 ${
+              isVisible.projects ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '600ms' }}>
               <div className="relative h-80 w-full perspective-1000">
                 <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
                   {/* Front of card */}
@@ -932,7 +968,9 @@ export default function RoofingProDemo() {
             </div>
 
             {/* Card 4 - Gutter System Installation */}
-            <div className="group cursor-pointer">
+            <div className={`group cursor-pointer transform transition-all duration-700 ${
+              isVisible.projects ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '800ms' }}>
               <div className="relative h-80 w-full perspective-1000">
                 <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
                   {/* Front of card */}
@@ -974,7 +1012,9 @@ export default function RoofingProDemo() {
             </div>
 
             {/* Card 5 - Storm Damage Repair */}
-            <div className="group cursor-pointer">
+            <div className={`group cursor-pointer transform transition-all duration-700 ${
+              isVisible.projects ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '1000ms' }}>
               <div className="relative h-80 w-full perspective-1000">
                 <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
                   {/* Front of card */}
@@ -1016,7 +1056,9 @@ export default function RoofingProDemo() {
             </div>
 
             {/* Card 6 - Tile Roof Restoration */}
-            <div className="group cursor-pointer">
+            <div className={`group cursor-pointer transform transition-all duration-700 ${
+              isVisible.projects ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '1200ms' }}>
               <div className="relative h-80 w-full perspective-1000">
                 <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
                   {/* Front of card */}
@@ -1063,174 +1105,142 @@ export default function RoofingProDemo() {
       {/* Before & After Gallery Section */}
       <section id="gallery" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Before & After Gallery</h2>
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible.gallery ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 relative group">
+              Before & After Gallery
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               See the dramatic transformations we've achieved for our clients. Every project tells a story of quality and craftsmanship.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="grid grid-cols-2">
-                <div className="p-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">Before</h4>
-                  <img 
-                    src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
-                    alt="Before roof replacement"
-                    className="w-full h-32 object-cover rounded"
+          {/* Interactive Slider Gallery */}
+          <div className={`max-w-4xl mx-auto transform transition-all duration-1000 delay-300 ${
+            isVisible.gallery ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <div className="relative">
+                {/* Before Image */}
+                <div className="relative overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+                    alt="Before roof repair"
+                    className="w-full h-96 object-cover"
                     loading="lazy"
                   />
+                  <div className="absolute top-4 left-4 bg-red-600 text-white px-4 py-2 rounded-lg font-semibold">
+                    BEFORE
+                  </div>
                 </div>
-                <div className="p-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">After</h4>
-                  <img 
-                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
-                    alt="After roof replacement"
-                    className="w-full h-32 object-cover rounded"
+                
+                {/* After Image with Slider */}
+                <div 
+                  className="absolute top-0 left-0 w-full h-full overflow-hidden cursor-col-resize"
+                  onMouseMove={handleSliderMove}
+                  onMouseDown={handleSliderStart}
+                  onMouseUp={handleSliderEnd}
+                  onMouseLeave={handleSliderEnd}
+                  style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+                    alt="After roof repair"
+                    className="w-full h-96 object-cover"
                     loading="lazy"
                   />
+                  <div className="absolute top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg font-semibold">
+                    AFTER
+                  </div>
                 </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Residential Transformation</h3>
-                <p className="text-gray-600 text-sm">Complete roof replacement with architectural shingles</p>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="grid grid-cols-2">
-                <div className="p-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">Before</h4>
-                  <img 
-                    src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
-                    alt="Before commercial roof"
-                    className="w-full h-32 object-cover rounded"
-                    loading="lazy"
-                  />
+                
+                {/* Slider Line */}
+                <div 
+                  className="absolute top-0 w-1 h-full bg-white shadow-lg cursor-col-resize z-10"
+                  style={{ left: `${sliderPosition}%` }}
+                >
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
+                    <div className="w-4 h-4 bg-blue-600 rounded-full"></div>
+                  </div>
                 </div>
-                <div className="p-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">After</h4>
-                  <img 
-                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
-                    alt="After commercial roof"
-                    className="w-full h-32 object-cover rounded"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Commercial Upgrade</h3>
-                <p className="text-gray-600 text-sm">EPDM membrane installation for office building</p>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="grid grid-cols-2">
-                <div className="p-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">Before</h4>
-                  <img 
-                    src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
-                    alt="Before metal roof"
-                    className="w-full h-32 object-cover rounded"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">After</h4>
-                  <img 
-                    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
-                    alt="After metal roof"
-                    className="w-full h-32 object-cover rounded"
-                    loading="lazy"
-                  />
+                
+                {/* Instructions */}
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-lg text-sm">
+                  Drag the line to compare before and after
                 </div>
               </div>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Modern Metal Roof</h3>
-                <p className="text-gray-600 text-sm">Standing seam metal roof installation</p>
+              
+              <div className="p-8">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">Residential Roof Transformation</h3>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  Complete roof replacement with premium materials and expert installation. This project showcases our attention to detail and commitment to quality craftsmanship.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section id="faq" className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-            <p className="text-xl text-gray-600">
-              Get answers to common roofing questions from our experts.
-            </p>
-          </div>
-          <div className="space-y-8">
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">How long does a roof replacement take?</h3>
-              <p className="text-gray-600">Most residential roof replacements take 1-3 days, depending on the size and complexity of the project. We'll provide a detailed timeline during your consultation.</p>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Do you work with insurance companies?</h3>
-              <p className="text-gray-600">Yes, we work directly with insurance companies to help you navigate the claims process. We can provide detailed estimates and documentation for your claim.</p>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">What warranties do you offer?</h3>
-              <p className="text-gray-600">We offer comprehensive warranties on both materials and workmanship. Our workmanship warranty ranges from 5-10 years, and material warranties vary by manufacturer.</p>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">How often should I inspect my roof?</h3>
-              <p className="text-gray-600">We recommend professional roof inspections twice a year - once in spring and once in fall. Regular inspections help identify potential issues before they become major problems.</p>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">What's the cost of a new roof?</h3>
-              <p className="text-gray-600">Roof costs vary based on size, materials, and complexity. We provide free, detailed estimates with no obligation. Contact us for a personalized quote.</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Awards & Certifications Section */}
       <section id="awards" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Awards & Certifications</h2>
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible.awards ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 relative group">
+              Awards & Certifications
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Recognized for excellence in roofing services and customer satisfaction.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
+            <div className={`text-center group hover-lift transform transition-all duration-700 p-6 rounded-xl ${
+              isVisible.awards ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '200ms' }}>
+              <div className="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-yellow-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-10 h-10 text-yellow-600 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">A+ BBB Rating</h3>
-              <p className="text-gray-600">Better Business Bureau</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-yellow-600 transition-colors duration-300">A+ BBB Rating</h3>
+              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Better Business Bureau</p>
             </div>
-            <div className="text-center">
-              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+            <div className={`text-center group hover-lift transform transition-all duration-700 p-6 rounded-xl ${
+              isVisible.awards ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '400ms' }}>
+              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-10 h-10 text-blue-600 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">GAF Certified</h3>
-              <p className="text-gray-600">Master Elite Contractor</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">GAF Certified</h3>
+              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Master Elite Contractor</p>
             </div>
-            <div className="text-center">
-              <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+            <div className={`text-center group hover-lift transform transition-all duration-700 p-6 rounded-xl ${
+              isVisible.awards ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '600ms' }}>
+              <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-10 h-10 text-green-600 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">5-Star Reviews</h3>
-              <p className="text-gray-600">Google & Yelp</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">5-Star Reviews</h3>
+              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Google & Yelp</p>
             </div>
-            <div className="text-center">
-              <div className="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+            <div className={`text-center group hover-lift transform transition-all duration-700 p-6 rounded-xl ${
+              isVisible.awards ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '800ms' }}>
+              <div className="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-10 h-10 text-purple-600 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Licensed & Bonded</h3>
-              <p className="text-gray-600">State Certified</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">Licensed & Bonded</h3>
+              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">State Certified</p>
             </div>
           </div>
         </div>
@@ -1239,56 +1249,67 @@ export default function RoofingProDemo() {
       {/* Insurance & Financing Section */}
       <section id="insurance-financing" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Insurance & Financing</h2>
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible['insurance-financing'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 relative group">
+              Insurance & Financing
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We make it easy to protect your investment with flexible payment options and insurance assistance.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`bg-white rounded-lg shadow-lg p-6 group hover-lift transform transition-all duration-700 ${
+              isVisible['insurance-financing'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '200ms' }}>
+              <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Insurance Claims</h3>
-              <p className="text-gray-600 mb-4">We work directly with your insurance company to handle the entire claims process, ensuring you get the coverage you deserve.</p>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Storm damage assessment</li>
-                <li>• Detailed documentation</li>
-                <li>• Direct insurance billing</li>
-                <li>• Claims advocacy</li>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">Insurance Claims</h3>
+              <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">We work directly with your insurance company to handle the entire claims process, ensuring you get the coverage you deserve.</p>
+              <ul className="text-sm text-gray-600 space-y-1 group-hover:text-gray-700 transition-colors duration-300">
+                <li className="group-hover:translate-x-2 transition-transform duration-300">• Storm damage assessment</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-100">• Detailed documentation</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-200">• Direct insurance billing</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-300">• Claims advocacy</li>
               </ul>
             </div>
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <div className="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`bg-white rounded-lg shadow-lg p-6 group hover-lift transform transition-all duration-700 ${
+              isVisible['insurance-financing'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '400ms' }}>
+              <div className="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-6 h-6 text-green-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Flexible Financing</h3>
-              <p className="text-gray-600 mb-4">Multiple financing options available to fit your budget, including low-interest loans and payment plans.</p>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• 0% APR financing available</li>
-                <li>• No payment for 12 months</li>
-                <li>• Quick approval process</li>
-                <li>• Flexible terms</li>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-green-600 transition-colors duration-300">Flexible Financing</h3>
+              <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">Multiple financing options available to fit your budget, including low-interest loans and payment plans.</p>
+              <ul className="text-sm text-gray-600 space-y-1 group-hover:text-gray-700 transition-colors duration-300">
+                <li className="group-hover:translate-x-2 transition-transform duration-300">• 0% APR financing available</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-100">• No payment for 12 months</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-200">• Quick approval process</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-300">• Flexible terms</li>
               </ul>
             </div>
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <div className="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`bg-white rounded-lg shadow-lg p-6 group hover-lift transform transition-all duration-700 ${
+              isVisible['insurance-financing'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '600ms' }}>
+              <div className="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-6 h-6 text-purple-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Warranty Protection</h3>
-              <p className="text-gray-600 mb-4">Comprehensive warranty coverage on both materials and workmanship to protect your investment.</p>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Material warranties up to 50 years</li>
-                <li>• Workmanship warranty 5-10 years</li>
-                <li>• Transferable warranties</li>
-                <li>• 24/7 warranty support</li>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300">Warranty Protection</h3>
+              <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">Comprehensive warranty coverage on both materials and workmanship to protect your investment.</p>
+              <ul className="text-sm text-gray-600 space-y-1 group-hover:text-gray-700 transition-colors duration-300">
+                <li className="group-hover:translate-x-2 transition-transform duration-300">• Material warranties up to 50 years</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-100">• Workmanship warranty 5-10 years</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-200">• Transferable warranties</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-300">• 24/7 warranty support</li>
               </ul>
             </div>
           </div>
@@ -1298,79 +1319,90 @@ export default function RoofingProDemo() {
       {/* Testimonials Section */}
       <section id="testimonials" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible.testimonials ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 relative group">
+              What Our Customers Say
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Don't just take our word for it - hear from our satisfied customers
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gray-50 rounded-lg p-8">
+            <div className={`bg-gray-50 rounded-lg p-8 group hover-lift transform transition-all duration-700 ${
+              isVisible.testimonials ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '200ms' }}>
               <div className="flex items-center mb-4">
-                <div className="flex text-yellow-400">
+                <div className="flex text-yellow-400 group-hover:scale-110 transition-transform duration-300">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg key={i} className="w-5 h-5 group-hover:animate-pulse" fill="currentColor" viewBox="0 0 20 20" style={{ animationDelay: `${i * 100}ms` }}>
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
               </div>
-              <p className="text-gray-600 mb-6 italic">
+              <p className="text-gray-600 mb-6 italic group-hover:text-gray-700 transition-colors duration-300">
                 "RoofingPro did an outstanding job replacing our roof after storm damage. The team was professional, punctual, and the quality of work exceeded our expectations. Highly recommended!"
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold mr-4">
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold mr-4 group-hover:bg-blue-700 group-hover:scale-110 transition-all duration-300">
                   S
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Sarah Mitchell</div>
-                  <div className="text-gray-500 text-sm">Homeowner</div>
+                  <div className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">Sarah Mitchell</div>
+                  <div className="text-gray-500 text-sm group-hover:text-gray-600 transition-colors duration-300">Homeowner</div>
                 </div>
               </div>
             </div>
-            <div className="bg-gray-50 rounded-lg p-8">
+            <div className={`bg-gray-50 rounded-lg p-8 group hover-lift transform transition-all duration-700 ${
+              isVisible.testimonials ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '400ms' }}>
               <div className="flex items-center mb-4">
-                <div className="flex text-yellow-400">
+                <div className="flex text-yellow-400 group-hover:scale-110 transition-transform duration-300">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg key={i} className="w-5 h-5 group-hover:animate-pulse" fill="currentColor" viewBox="0 0 20 20" style={{ animationDelay: `${i * 100}ms` }}>
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
               </div>
-              <p className="text-gray-600 mb-6 italic">
+              <p className="text-gray-600 mb-6 italic group-hover:text-gray-700 transition-colors duration-300">
                 "We've used RoofingPro for multiple commercial properties. Their attention to detail, competitive pricing, and reliable service make them our go-to roofing contractor."
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold mr-4">
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold mr-4 group-hover:bg-blue-700 group-hover:scale-110 transition-all duration-300">
                   M
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Michael Rodriguez</div>
-                  <div className="text-gray-500 text-sm">Property Manager</div>
+                  <div className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">Michael Rodriguez</div>
+                  <div className="text-gray-500 text-sm group-hover:text-gray-600 transition-colors duration-300">Property Manager</div>
                 </div>
               </div>
             </div>
-            <div className="bg-gray-50 rounded-lg p-8">
+            <div className={`bg-gray-50 rounded-lg p-8 group hover-lift transform transition-all duration-700 ${
+              isVisible.testimonials ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '600ms' }}>
               <div className="flex items-center mb-4">
-                <div className="flex text-yellow-400">
+                <div className="flex text-yellow-400 group-hover:scale-110 transition-transform duration-300">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg key={i} className="w-5 h-5 group-hover:animate-pulse" fill="currentColor" viewBox="0 0 20 20" style={{ animationDelay: `${i * 100}ms` }}>
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
               </div>
-              <p className="text-gray-600 mb-6 italic">
+              <p className="text-gray-600 mb-6 italic group-hover:text-gray-700 transition-colors duration-300">
                 "When we had an emergency leak, RoofingPro responded immediately and fixed the problem the same day. Their emergency service is truly exceptional and saved us from major water damage."
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold mr-4">
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold mr-4 group-hover:bg-blue-700 group-hover:scale-110 transition-all duration-300">
                   J
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Jennifer Thompson</div>
-                  <div className="text-gray-500 text-sm">Business Owner</div>
+                  <div className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">Jennifer Thompson</div>
+                  <div className="text-gray-500 text-sm group-hover:text-gray-600 transition-colors duration-300">Business Owner</div>
                 </div>
               </div>
             </div>
@@ -1378,19 +1410,104 @@ export default function RoofingProDemo() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section id="faq" className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible.faq ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 relative group">
+              Frequently Asked Questions
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
+            <p className="text-xl text-gray-600">
+              Get answers to common roofing questions from our experts.
+            </p>
+          </div>
+          <div className="space-y-4">
+            {[
+              {
+                question: "How long does a roof replacement take?",
+                answer: "Most residential roof replacements take 1-3 days, depending on the size and complexity of the project. We'll provide a detailed timeline during your consultation."
+              },
+              {
+                question: "Do you work with insurance companies?",
+                answer: "Yes, we work directly with insurance companies to help you navigate the claims process. We can provide detailed estimates and documentation for your claim."
+              },
+              {
+                question: "What warranties do you offer?",
+                answer: "We offer comprehensive warranties on both materials and workmanship. Our workmanship warranty ranges from 5-10 years, and material warranties vary by manufacturer."
+              },
+              {
+                question: "How often should I inspect my roof?",
+                answer: "We recommend professional roof inspections twice a year - once in spring and once in fall. Regular inspections help identify potential issues before they become major problems."
+              },
+              {
+                question: "What's the cost of a new roof?",
+                answer: "Roof costs vary based on size, materials, and complexity. We provide free, detailed estimates with no obligation. Contact us for a personalized quote."
+              }
+            ].map((faq, index) => (
+              <div 
+                key={index}
+                className={`bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-700 ${
+                  isVisible.faq ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                }`}
+                style={{ transitionDelay: `${200 + (index * 100)}ms` }}
+              >
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition-all duration-300 group"
+                >
+                  <h3 className="text-xl font-semibold text-gray-900 pr-4 group-hover:text-blue-600 transition-colors duration-300">{faq.question}</h3>
+                  <div className={`transform transition-all duration-500 ${openFAQ === index ? 'rotate-180 scale-110' : 'rotate-0 scale-100'}`}>
+                    <svg className="w-6 h-6 text-blue-600 group-hover:text-blue-700 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </button>
+                <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  openFAQ === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                }`}>
+                  <div className="px-6 pb-6">
+                    <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Banner */}
       <section className="py-16 bg-blue-600 text-white">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold mb-4">Ready to Protect Your Property?</h2>
+        <div className={`max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 transform transition-all duration-1000 ${
+          isVisible.cta ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`}>
+          <h2 className="text-4xl font-bold mb-4 group">
+            Ready to Protect Your Property?
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-white rounded-full group-hover:w-24 transition-all duration-300"></div>
+          </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Get a free inspection and quote today. No obligation, just honest advice from roofing experts.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg transition-colors">
-              Schedule Free Inspection
+            <button className="group bg-white text-blue-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-white/25 relative overflow-hidden">
+              <span className="relative z-10 flex items-center justify-center">
+                <svg className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Schedule Free Inspection
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-gray-50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-bold py-4 px-8 rounded-lg text-lg transition-colors">
-              Get Free Quote
+            <button className="group border-2 border-white text-white hover:bg-white hover:text-blue-600 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-white/25 relative overflow-hidden">
+              <span className="relative z-10 flex items-center justify-center">
+                <svg className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                Get Free Quote
+              </span>
+              <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </button>
           </div>
         </div>
@@ -1399,15 +1516,25 @@ export default function RoofingProDemo() {
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Contact Us Today</h2>
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible.contact ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 relative group">
+              Contact Us Today
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Ready to get started? Contact us for a free consultation and quote.
             </p>
           </div>
           <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Get In Touch</h3>
+            <div className={`transform transition-all duration-1000 delay-300 ${
+              isVisible.contact ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
+            }`}>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6 group">
+                Get In Touch
+                <div className="w-12 h-1 bg-blue-600 rounded-full group-hover:w-16 transition-all duration-300"></div>
+              </h3>
               <form className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
@@ -1479,8 +1606,13 @@ export default function RoofingProDemo() {
                 </button>
               </form>
             </div>
-            <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Contact Information</h3>
+            <div className={`transform transition-all duration-1000 delay-500 ${
+              isVisible.contact ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
+            }`}>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6 group">
+                Contact Information
+                <div className="w-12 h-1 bg-blue-600 rounded-full group-hover:w-16 transition-all duration-300"></div>
+              </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
