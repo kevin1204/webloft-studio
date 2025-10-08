@@ -8,8 +8,23 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setIsServicesOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsServicesOpen(false);
+    }, 150); // Small delay to allow moving to dropdown
+  };
 
   const navItems = [
     { name: 'Home', href: '/' },
@@ -57,8 +72,8 @@ export default function Navbar() {
               <div 
                 className="relative" 
                 ref={servicesRef}
-                onMouseEnter={() => setIsServicesOpen(true)}
-                onMouseLeave={() => setIsServicesOpen(false)}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
                 <button
                   className="link-hover text-gray-300 hover:text-green-400 font-medium flex items-center"
@@ -75,7 +90,11 @@ export default function Navbar() {
                 </button>
                 
                 {isServicesOpen && (
-                  <div className="absolute top-full left-0 mt-2 w-64 bg-gray-900 rounded-lg shadow-lg border border-gray-700 py-2 z-50">
+                  <div 
+                    className="absolute top-full left-0 mt-2 w-64 bg-gray-900 rounded-lg shadow-lg border border-gray-700 py-2 z-50"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
                     {servicesItems.map((item) => (
                       <Link
                         key={item.name}
