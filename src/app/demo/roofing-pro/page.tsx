@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 export default function RoofingProDemo() {
   const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
   const [activeSection, setActiveSection] = useState('home');
+  const [countedNumbers, setCountedNumbers] = useState({ years: 0, projects: 0, satisfaction: 0 });
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
@@ -34,6 +35,63 @@ export default function RoofingProDemo() {
       }
     };
   }, []);
+
+  // Counting animation effect
+  useEffect(() => {
+    if (isVisible.home) {
+      const duration = 2000; // 2 seconds
+      const steps = 60; // 60 steps for smooth animation
+      const stepDuration = duration / steps;
+
+      // Years animation (0 to 25)
+      let yearsStep = 0;
+      const yearsInterval = setInterval(() => {
+        yearsStep++;
+        const progress = yearsStep / steps;
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        setCountedNumbers(prev => ({ ...prev, years: Math.floor(25 * easeOutQuart) }));
+        
+        if (yearsStep >= steps) {
+          clearInterval(yearsInterval);
+          setCountedNumbers(prev => ({ ...prev, years: 25 }));
+        }
+      }, stepDuration);
+
+      // Projects animation (0 to 5000)
+      let projectsStep = 0;
+      const projectsInterval = setInterval(() => {
+        projectsStep++;
+        const progress = projectsStep / steps;
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        setCountedNumbers(prev => ({ ...prev, projects: Math.floor(5000 * easeOutQuart) }));
+        
+        if (projectsStep >= steps) {
+          clearInterval(projectsInterval);
+          setCountedNumbers(prev => ({ ...prev, projects: 5000 }));
+        }
+      }, stepDuration);
+
+      // Satisfaction animation (0 to 100)
+      let satisfactionStep = 0;
+      const satisfactionInterval = setInterval(() => {
+        satisfactionStep++;
+        const progress = satisfactionStep / steps;
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        setCountedNumbers(prev => ({ ...prev, satisfaction: Math.floor(100 * easeOutQuart) }));
+        
+        if (satisfactionStep >= steps) {
+          clearInterval(satisfactionInterval);
+          setCountedNumbers(prev => ({ ...prev, satisfaction: 100 }));
+        }
+      }, stepDuration);
+
+      return () => {
+        clearInterval(yearsInterval);
+        clearInterval(projectsInterval);
+        clearInterval(satisfactionInterval);
+      };
+    }
+  }, [isVisible.home]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -237,15 +295,21 @@ export default function RoofingProDemo() {
                 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   <div className="group text-center sm:text-left">
-                    <div className="text-3xl sm:text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300">25+</div>
+                    <div className="text-3xl sm:text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300">
+                      {countedNumbers.years}+
+                    </div>
                     <div className="text-gray-200 group-hover:text-white transition-colors duration-300">Years Experience</div>
                   </div>
                   <div className="group text-center sm:text-left">
-                    <div className="text-3xl sm:text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300">5000+</div>
+                    <div className="text-3xl sm:text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300">
+                      {countedNumbers.projects.toLocaleString()}+
+                    </div>
                     <div className="text-gray-200 group-hover:text-white transition-colors duration-300">Projects Completed</div>
                   </div>
                   <div className="group text-center sm:text-left">
-                    <div className="text-3xl sm:text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300">100%</div>
+                    <div className="text-3xl sm:text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300">
+                      {countedNumbers.satisfaction}%
+                    </div>
                     <div className="text-gray-200 group-hover:text-white transition-colors duration-300">Satisfaction Guaranteed</div>
                   </div>
                 </div>
@@ -267,7 +331,9 @@ export default function RoofingProDemo() {
                   
                   {/* Floating badge */}
                   <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-6 rounded-xl shadow-xl hover-lift animate-float">
-                    <div className="text-2xl font-bold group-hover:scale-110 transition-transform duration-300">25+</div>
+                    <div className="text-2xl font-bold group-hover:scale-110 transition-transform duration-300">
+                      {countedNumbers.years}+
+                    </div>
                     <div className="text-blue-100 text-sm">Years of Excellence</div>
                     <div className="absolute -top-2 -right-2 w-4 h-4 bg-yellow-400 rounded-full animate-pulse"></div>
                   </div>
