@@ -1876,7 +1876,7 @@ export default function RoofingProDemo() {
                     <input
                       type="text"
                       id="firstName"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 placeholder-gray-500"
                       placeholder="John"
                     />
                   </div>
@@ -1885,7 +1885,7 @@ export default function RoofingProDemo() {
                     <input
                       type="text"
                       id="lastName"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 placeholder-gray-500"
                       placeholder="Doe"
                     />
                   </div>
@@ -1895,7 +1895,7 @@ export default function RoofingProDemo() {
                   <input
                     type="email"
                     id="email"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 placeholder-gray-500"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -1904,7 +1904,7 @@ export default function RoofingProDemo() {
                   <input
                     type="tel"
                     id="phone"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 placeholder-gray-500"
                     placeholder="(555) 123-4567"
                   />
                 </div>
@@ -1912,7 +1912,7 @@ export default function RoofingProDemo() {
                   <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">Service Needed</label>
                   <select
                     id="service"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900"
                   >
                     <option>Select a service</option>
                     <option>Roof Installation</option>
@@ -1928,7 +1928,7 @@ export default function RoofingProDemo() {
                   <textarea
                     id="message"
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 placeholder-gray-500"
                     placeholder="Tell us about your project..."
                   ></textarea>
                 </div>
