@@ -1137,11 +1137,7 @@ export default function RoofingProDemo() {
                 
                 {/* After Image with Slider */}
                 <div 
-                  className="absolute top-0 left-0 w-full h-full overflow-hidden cursor-col-resize"
-                  onMouseMove={handleSliderMove}
-                  onMouseDown={handleSliderStart}
-                  onMouseUp={handleSliderEnd}
-                  onMouseLeave={handleSliderEnd}
+                  className="absolute top-0 left-0 w-full h-full overflow-hidden"
                   style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
                 >
                   <img
@@ -1157,9 +1153,25 @@ export default function RoofingProDemo() {
                 
                 {/* Slider Line */}
                 <div 
-                  className="absolute top-0 w-1 h-full bg-white shadow-lg cursor-col-resize z-10"
+                  className="absolute top-0 w-12 h-full cursor-col-resize z-10 -ml-6"
                   style={{ left: `${sliderPosition}%` }}
+                  onMouseMove={handleSliderMove}
+                  onMouseDown={handleSliderStart}
+                  onMouseUp={handleSliderEnd}
+                  onMouseLeave={handleSliderEnd}
+                  onTouchMove={(e) => {
+                    e.preventDefault();
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const x = e.touches[0].clientX - rect.left;
+                    const percentage = (x / rect.width) * 100;
+                    setSliderPosition(Math.max(0, Math.min(100, percentage)));
+                  }}
+                  onTouchStart={() => setIsDragging(true)}
+                  onTouchEnd={() => setIsDragging(false)}
                 >
+                  {/* Visual slider line */}
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-full bg-white shadow-lg"></div>
+                  {/* Draggable handle */}
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
                     <div className="w-4 h-4 bg-blue-600 rounded-full"></div>
                   </div>
@@ -1513,6 +1525,24 @@ export default function RoofingProDemo() {
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className="py-16 bg-gray-900 text-white">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold mb-4">Ready for a New Roof?</h2>
+          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            Don't wait for problems to get worse. Get a free inspection and protect your property today.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors">
+              Schedule Free Inspection
+            </button>
+            <button className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-lg text-lg transition-colors">
+              Get Free Quote
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1747,16 +1777,30 @@ export default function RoofingProDemo() {
       </footer>
 
       {/* Demo Notice */}
-      <div className="fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
-        <div className="flex items-center">
+      <div className="fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-3 rounded-lg shadow-xl max-w-xs z-50">
+        <div className="flex items-center mb-2">
           <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <span className="text-sm">This is a demo template</span>
+          <span className="text-sm font-medium">This is a demo template</span>
         </div>
-        <Link href="/template-based-websites" className="text-xs underline hover:no-underline">
-          View all templates →
-        </Link>
+        <p className="text-xs text-blue-100 mb-3">
+          Like what you see? Get your own professional website!
+        </p>
+        <div className="space-y-2">
+          <Link 
+            href="#contact" 
+            className="block w-full bg-white text-blue-600 hover:bg-gray-100 font-semibold py-2 px-3 rounded text-xs text-center transition-colors duration-200"
+          >
+            Get Your Website →
+          </Link>
+          <Link 
+            href="/template-based-websites" 
+            className="block text-xs text-blue-100 hover:text-white underline hover:no-underline text-center transition-colors duration-200"
+          >
+            View all templates
+          </Link>
+        </div>
       </div>
     </div>
   );
