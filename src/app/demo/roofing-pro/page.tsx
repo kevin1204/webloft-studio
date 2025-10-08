@@ -377,15 +377,13 @@ export default function RoofingProDemo() {
                   {/* Back of card */}
                   <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full relative">
-                      <div className="h-64 overflow-hidden relative">
-                        <img 
-                          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                          alt="Residential roof replacement project"
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-black/70"></div>
-                      </div>
+                      <img 
+                        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                        alt="Residential roof replacement project"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/70"></div>
                       <div className="absolute inset-0 flex items-center justify-center p-6">
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4">Residential Roof Replacement</h3>
@@ -421,15 +419,13 @@ export default function RoofingProDemo() {
                   {/* Back of card */}
                   <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full relative">
-                      <div className="h-64 overflow-hidden relative">
-                        <img 
-                          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                          alt="Commercial flat roof installation"
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-black/70"></div>
-                      </div>
+                      <img 
+                        src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                        alt="Commercial flat roof installation"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/70"></div>
                       <div className="absolute inset-0 flex items-center justify-center p-6">
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4">Commercial Flat Roof</h3>
@@ -465,15 +461,13 @@ export default function RoofingProDemo() {
                   {/* Back of card */}
                   <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full relative">
-                      <div className="h-64 overflow-hidden relative">
-                        <img 
-                          src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                          alt="Metal roof installation project"
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-black/70"></div>
-                      </div>
+                      <img 
+                        src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                        alt="Metal roof installation project"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/70"></div>
                       <div className="absolute inset-0 flex items-center justify-center p-6">
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4">Metal Roof Installation</h3>
@@ -509,15 +503,13 @@ export default function RoofingProDemo() {
                   {/* Back of card */}
                   <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full relative">
-                      <div className="h-64 overflow-hidden relative">
-                        <img 
-                          src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                          alt="Gutter system installation"
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-black/70"></div>
-                      </div>
+                      <img 
+                        src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                        alt="Gutter system installation"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/70"></div>
                       <div className="absolute inset-0 flex items-center justify-center p-6">
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4">Gutter System Installation</h3>
@@ -553,15 +545,13 @@ export default function RoofingProDemo() {
                   {/* Back of card */}
                   <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full relative">
-                      <div className="h-64 overflow-hidden relative">
-                        <img 
-                          src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                          alt="Storm damage repair work"
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-black/70"></div>
-                      </div>
+                      <img 
+                        src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                        alt="Storm damage repair work"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/70"></div>
                       <div className="absolute inset-0 flex items-center justify-center p-6">
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4">Storm Damage Repair</h3>
@@ -597,15 +587,13 @@ export default function RoofingProDemo() {
                   {/* Back of card */}
                   <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full relative">
-                      <div className="h-64 overflow-hidden relative">
-                        <img 
-                          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                          alt="Tile roof restoration work"
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-black/70"></div>
-                      </div>
+                      <img 
+                        src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                        alt="Tile roof restoration work"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/70"></div>
                       <div className="absolute inset-0 flex items-center justify-center p-6">
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4">Tile Roof Restoration</h3>
