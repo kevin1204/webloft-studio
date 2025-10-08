@@ -50,6 +50,16 @@ export default function TemplateBasedWebsites() {
       features: ['SEO Optimized', 'Mobile Responsive', 'Project Gallery', 'Emergency CTA', 'Service Area Map'],
       image: '/PROJECTS/AMIGO CONTRACTING SERVICES.png',
       demoUrl: '/demo/roofing-pro'
+    },
+    {
+      id: 'dental-pro',
+      name: 'Dental Pro',
+      description: 'Modern dental practice website with appointment booking, before/after gallery, and patient testimonials. Designed to build trust and convert visitors into patients.',
+      price: '$1,599',
+      pages: ['Home', 'About', 'Services', 'Team', 'Gallery', 'Testimonials', 'Blog', 'Contact'],
+      features: ['SEO Optimized', 'Mobile Responsive', 'Appointment Booking', 'Before/After Gallery', 'Team Profiles', 'Patient Testimonials'],
+      image: '/PROJECTS/AERIES.png',
+      demoUrl: '/demo/dental-pro'
     }
   ];
 
