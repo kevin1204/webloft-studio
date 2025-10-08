@@ -14,6 +14,7 @@ export default function RoofingProDemo() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({});
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
@@ -122,6 +123,13 @@ export default function RoofingProDemo() {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const toggleCardFlip = (cardIndex: number) => {
+    setFlippedCards(prev => ({
+      ...prev,
+      [cardIndex]: !prev[cardIndex]
+    }));
   };
 
   // Close mobile menu when clicking outside
@@ -871,21 +879,34 @@ export default function RoofingProDemo() {
             <div className={`group cursor-pointer transform transition-all duration-700 ${
               isVisible.projects ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '200ms' }}>
-              <div className="relative h-80 w-full perspective-1000">
-                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+              <div 
+                className="relative h-80 w-full perspective-1000"
+                onClick={() => toggleCardFlip(0)}
+              >
+                <div className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
+                  flippedCards[0] ? 'rotate-y-180' : 'group-hover:rotate-y-180'
+                }`}>
                   {/* Front of card */}
                   <div className="absolute inset-0 w-full h-full backface-hidden">
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
-                      <div className="h-64 overflow-hidden">
+                      <div className="h-64 overflow-hidden relative">
                         <img 
                           src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
                           alt="Residential roof replacement project"
                           className="w-full h-full object-cover"
                           loading="lazy"
                         />
+                        {/* Mobile tap indicator */}
+                        <div className="md:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Tap for details
+                        </div>
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-semibold text-gray-900">Residential Roof Replacement</h3>
+                        {/* Desktop hover indicator */}
+                        <div className="hidden md:block mt-2 text-sm text-gray-500">
+                          Hover for more info
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -903,6 +924,10 @@ export default function RoofingProDemo() {
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4">Residential Roof Replacement</h3>
                           <p className="text-gray-200">Complete asphalt shingle replacement with architectural shingles. Professional installation with premium materials and expert craftsmanship.</p>
+                          {/* Mobile tap to flip back indicator */}
+                          <div className="md:hidden mt-4 text-sm text-blue-300">
+                            Tap to flip back
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -915,21 +940,34 @@ export default function RoofingProDemo() {
             <div className={`group cursor-pointer transform transition-all duration-700 ${
               isVisible.projects ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '400ms' }}>
-              <div className="relative h-80 w-full perspective-1000">
-                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+              <div 
+                className="relative h-80 w-full perspective-1000"
+                onClick={() => toggleCardFlip(1)}
+              >
+                <div className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
+                  flippedCards[1] ? 'rotate-y-180' : 'group-hover:rotate-y-180'
+                }`}>
                   {/* Front of card */}
                   <div className="absolute inset-0 w-full h-full backface-hidden">
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
-                      <div className="h-64 overflow-hidden">
+                      <div className="h-64 overflow-hidden relative">
                         <img 
                           src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
                           alt="Commercial flat roof installation"
                           className="w-full h-full object-cover"
                           loading="lazy"
                         />
+                        {/* Mobile tap indicator */}
+                        <div className="md:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Tap for details
+                        </div>
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-semibold text-gray-900">Commercial Flat Roof</h3>
+                        {/* Desktop hover indicator */}
+                        <div className="hidden md:block mt-2 text-sm text-gray-500">
+                          Hover for more info
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -947,6 +985,10 @@ export default function RoofingProDemo() {
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4">Commercial Flat Roof</h3>
                           <p className="text-gray-200">EPDM membrane installation for office building. Durable, weather-resistant solution for commercial properties.</p>
+                          {/* Mobile tap to flip back indicator */}
+                          <div className="md:hidden mt-4 text-sm text-blue-300">
+                            Tap to flip back
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -959,21 +1001,34 @@ export default function RoofingProDemo() {
             <div className={`group cursor-pointer transform transition-all duration-700 ${
               isVisible.projects ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '600ms' }}>
-              <div className="relative h-80 w-full perspective-1000">
-                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+              <div 
+                className="relative h-80 w-full perspective-1000"
+                onClick={() => toggleCardFlip(2)}
+              >
+                <div className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
+                  flippedCards[2] ? 'rotate-y-180' : 'group-hover:rotate-y-180'
+                }`}>
                   {/* Front of card */}
                   <div className="absolute inset-0 w-full h-full backface-hidden">
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
-                      <div className="h-64 overflow-hidden">
+                      <div className="h-64 overflow-hidden relative">
                         <img 
                           src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
                           alt="Metal roof installation project"
                           className="w-full h-full object-cover"
                           loading="lazy"
                         />
+                        {/* Mobile tap indicator */}
+                        <div className="md:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Tap for details
+                        </div>
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-semibold text-gray-900">Metal Roof Installation</h3>
+                        {/* Desktop hover indicator */}
+                        <div className="hidden md:block mt-2 text-sm text-gray-500">
+                          Hover for more info
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -991,6 +1046,10 @@ export default function RoofingProDemo() {
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4">Metal Roof Installation</h3>
                           <p className="text-gray-200">Standing seam metal roof for modern home. Long-lasting, energy-efficient solution with contemporary appeal.</p>
+                          {/* Mobile tap to flip back indicator */}
+                          <div className="md:hidden mt-4 text-sm text-blue-300">
+                            Tap to flip back
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1003,21 +1062,34 @@ export default function RoofingProDemo() {
             <div className={`group cursor-pointer transform transition-all duration-700 ${
               isVisible.projects ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '800ms' }}>
-              <div className="relative h-80 w-full perspective-1000">
-                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+              <div 
+                className="relative h-80 w-full perspective-1000"
+                onClick={() => toggleCardFlip(3)}
+              >
+                <div className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
+                  flippedCards[3] ? 'rotate-y-180' : 'group-hover:rotate-y-180'
+                }`}>
                   {/* Front of card */}
                   <div className="absolute inset-0 w-full h-full backface-hidden">
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
-                      <div className="h-64 overflow-hidden">
+                      <div className="h-64 overflow-hidden relative">
                         <img 
                           src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
                           alt="Gutter system installation"
                           className="w-full h-full object-cover"
                           loading="lazy"
                         />
+                        {/* Mobile tap indicator */}
+                        <div className="md:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Tap for details
+                        </div>
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-semibold text-gray-900">Gutter System Installation</h3>
+                        {/* Desktop hover indicator */}
+                        <div className="hidden md:block mt-2 text-sm text-gray-500">
+                          Hover for more info
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1035,6 +1107,10 @@ export default function RoofingProDemo() {
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4">Gutter System Installation</h3>
                           <p className="text-gray-200">Seamless aluminum gutters with leaf guards. Complete water management system for your property.</p>
+                          {/* Mobile tap to flip back indicator */}
+                          <div className="md:hidden mt-4 text-sm text-blue-300">
+                            Tap to flip back
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1047,21 +1123,34 @@ export default function RoofingProDemo() {
             <div className={`group cursor-pointer transform transition-all duration-700 ${
               isVisible.projects ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '1000ms' }}>
-              <div className="relative h-80 w-full perspective-1000">
-                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+              <div 
+                className="relative h-80 w-full perspective-1000"
+                onClick={() => toggleCardFlip(4)}
+              >
+                <div className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
+                  flippedCards[4] ? 'rotate-y-180' : 'group-hover:rotate-y-180'
+                }`}>
                   {/* Front of card */}
                   <div className="absolute inset-0 w-full h-full backface-hidden">
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
-                      <div className="h-64 overflow-hidden">
+                      <div className="h-64 overflow-hidden relative">
                         <img 
                           src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
                           alt="Storm damage repair work"
                           className="w-full h-full object-cover"
                           loading="lazy"
                         />
+                        {/* Mobile tap indicator */}
+                        <div className="md:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Tap for details
+                        </div>
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-semibold text-gray-900">Storm Damage Repair</h3>
+                        {/* Desktop hover indicator */}
+                        <div className="hidden md:block mt-2 text-sm text-gray-500">
+                          Hover for more info
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1079,6 +1168,10 @@ export default function RoofingProDemo() {
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4">Storm Damage Repair</h3>
                           <p className="text-gray-200">Emergency repair after severe weather damage. Quick response and professional restoration services.</p>
+                          {/* Mobile tap to flip back indicator */}
+                          <div className="md:hidden mt-4 text-sm text-blue-300">
+                            Tap to flip back
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1091,21 +1184,34 @@ export default function RoofingProDemo() {
             <div className={`group cursor-pointer transform transition-all duration-700 ${
               isVisible.projects ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`} style={{ transitionDelay: '1200ms' }}>
-              <div className="relative h-80 w-full perspective-1000">
-                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+              <div 
+                className="relative h-80 w-full perspective-1000"
+                onClick={() => toggleCardFlip(5)}
+              >
+                <div className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
+                  flippedCards[5] ? 'rotate-y-180' : 'group-hover:rotate-y-180'
+                }`}>
                   {/* Front of card */}
                   <div className="absolute inset-0 w-full h-full backface-hidden">
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
-                      <div className="h-64 overflow-hidden">
+                      <div className="h-64 overflow-hidden relative">
                         <img 
                           src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
                           alt="Tile roof restoration work"
                           className="w-full h-full object-cover"
                           loading="lazy"
                         />
+                        {/* Mobile tap indicator */}
+                        <div className="md:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Tap for details
+                        </div>
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-semibold text-gray-900">Tile Roof Restoration</h3>
+                        {/* Desktop hover indicator */}
+                        <div className="hidden md:block mt-2 text-sm text-gray-500">
+                          Hover for more info
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1123,6 +1229,10 @@ export default function RoofingProDemo() {
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4">Tile Roof Restoration</h3>
                           <p className="text-gray-200">Clay tile roof repair and maintenance. Preserving the beauty and integrity of traditional roofing materials.</p>
+                          {/* Mobile tap to flip back indicator */}
+                          <div className="md:hidden mt-4 text-sm text-blue-300">
+                            Tap to flip back
+                          </div>
                         </div>
                       </div>
                     </div>
