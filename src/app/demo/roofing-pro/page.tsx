@@ -1,14 +1,40 @@
-import Link from "next/link";
+"use client";
 
-export const metadata = {
-  title: "Roofing Pro Template Demo | Professional Roofing Company Website | Webloft Studio",
-  description: "See the Roofing Pro template in action. Perfect for roofing contractors, home improvement services, and construction companies. Professional design that builds trust and drives conversions.",
-  alternates: {
-    canonical: 'https://webloftstudio.com/demo/roofing-pro'
-  }
-};
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+
+// Metadata is handled by the parent layout
 
 export default function RoofingProDemo() {
+  const [isVisible, setIsVisible] = useState({});
+  const [activeSection, setActiveSection] = useState('home');
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(prev => ({ ...prev, [entry.target.id]: true }));
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '-50px' }
+    );
+
+    observerRef.current = observer;
+    
+    const sections = document.querySelectorAll('section[id]');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      if (observerRef.current) {
+        sections.forEach((section) => observerRef.current!.unobserve(section));
+      }
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -22,19 +48,99 @@ export default function RoofingProDemo() {
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-6">
-                <a href="#home" className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-semibold">Home</a>
-                <a href="#about" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
-                <a href="#services" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Services</a>
-                <a href="#why-choose-us" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Why Us</a>
-                <a href="#projects" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-                <a href="#gallery" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
-                <a href="#faq" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">FAQ</a>
-                <a href="#contact" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                <a 
+                  href="#home" 
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                    activeSection === 'home' 
+                      ? 'text-blue-600 bg-blue-50 font-semibold' 
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                  }`}
+                >
+                  Home
+                </a>
+                <a 
+                  href="#about" 
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                    activeSection === 'about' 
+                      ? 'text-blue-600 bg-blue-50 font-semibold' 
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                  }`}
+                >
+                  About
+                </a>
+                <a 
+                  href="#services" 
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                    activeSection === 'services' 
+                      ? 'text-blue-600 bg-blue-50 font-semibold' 
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                  }`}
+                >
+                  Services
+                </a>
+                <a 
+                  href="#why-choose-us" 
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                    activeSection === 'why-choose-us' 
+                      ? 'text-blue-600 bg-blue-50 font-semibold' 
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                  }`}
+                >
+                  Why Us
+                </a>
+                <a 
+                  href="#projects" 
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                    activeSection === 'projects' 
+                      ? 'text-blue-600 bg-blue-50 font-semibold' 
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                  }`}
+                >
+                  Projects
+                </a>
+                <a 
+                  href="#gallery" 
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                    activeSection === 'gallery' 
+                      ? 'text-blue-600 bg-blue-50 font-semibold' 
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                  }`}
+                >
+                  Gallery
+                </a>
+                <a 
+                  href="#faq" 
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                    activeSection === 'faq' 
+                      ? 'text-blue-600 bg-blue-50 font-semibold' 
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                  }`}
+                >
+                  FAQ
+                </a>
+                <a 
+                  href="#contact" 
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                    activeSection === 'contact' 
+                      ? 'text-blue-600 bg-blue-50 font-semibold' 
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                  }`}
+                >
+                  Contact
+                </a>
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <a href="tel:+1-555-ROOF-123" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-sm font-semibold transition-colors">
-                Call Now: (555) ROOF-123
+              <a 
+                href="tel:+1-555-ROOF-123" 
+                className="group bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
+              >
+                <span className="flex items-center">
+                  <svg className="w-4 h-4 mr-2 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  Call Now: (555) ROOF-123
+                </span>
               </a>
             </div>
             <div className="md:hidden">
