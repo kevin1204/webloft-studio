@@ -280,10 +280,8 @@ export default function RoofingProDemo() {
               <a 
                 href="#home" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(false);
-                  document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+                onClick={() => {
+                  setTimeout(() => setIsMobileMenuOpen(false), 100);
                 }}
               >
                 Home
@@ -291,17 +289,17 @@ export default function RoofingProDemo() {
               <Link 
                 href="/demo/roofing-pro/about" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  setTimeout(() => setIsMobileMenuOpen(false), 100);
+                }}
               >
                 About
               </Link>
               <a 
                 href="#services" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(false);
-                  document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                onClick={() => {
+                  setTimeout(() => setIsMobileMenuOpen(false), 100);
                 }}
               >
                 Services
@@ -309,10 +307,8 @@ export default function RoofingProDemo() {
               <a 
                 href="#why-choose-us" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(false);
-                  document.getElementById('why-choose-us')?.scrollIntoView({ behavior: 'smooth' });
+                onClick={() => {
+                  setTimeout(() => setIsMobileMenuOpen(false), 100);
                 }}
               >
                 Why Us
@@ -320,10 +316,8 @@ export default function RoofingProDemo() {
               <a 
                 href="#projects" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(false);
-                  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                onClick={() => {
+                  setTimeout(() => setIsMobileMenuOpen(false), 100);
                 }}
               >
                 Projects
@@ -331,17 +325,17 @@ export default function RoofingProDemo() {
               <Link 
                 href="/demo/roofing-pro/gallery" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  setTimeout(() => setIsMobileMenuOpen(false), 100);
+                }}
               >
                 Gallery
               </Link>
               <a 
                 href="#faq" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(false);
-                  document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+                onClick={() => {
+                  setTimeout(() => setIsMobileMenuOpen(false), 100);
                 }}
               >
                 FAQ
@@ -349,10 +343,8 @@ export default function RoofingProDemo() {
               <a 
                 href="#contact" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(false);
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                onClick={() => {
+                  setTimeout(() => setIsMobileMenuOpen(false), 100);
                 }}
               >
                 Contact

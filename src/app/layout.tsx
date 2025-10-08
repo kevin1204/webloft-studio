@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://webloftstudio.com'),
-  title: "Professional Web Design Services Toronto | Custom Websites | Webloft Studio",
-  description: "Expert web design services in Toronto. Custom websites, responsive design, SEO optimization. Drive business growth with professional web development. Get started today!",
+  title: "Professional Web Design Services | Custom Websites | Webloft Studio",
+  description: "Expert web design services for businesses worldwide. Custom websites, responsive design, SEO optimization. Drive business growth with professional web development. Get started today!",
   icons: {
     icon: [
       { url: '/wflogo.svg', type: 'image/svg+xml' },
