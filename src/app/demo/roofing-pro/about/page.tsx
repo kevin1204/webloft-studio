@@ -1,0 +1,444 @@
+"use client";
+
+import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
+
+export default function RoofingProAbout() {
+  const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible((prev) => ({
+              ...prev,
+              [entry.target.id]: true,
+            }));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll('[id]');
+    elements.forEach((el) => observerRef.current?.observe(el));
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Navigation */}
+      <nav className="bg-white shadow-lg border-b border-gray-200 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            <div className="flex items-center">
+              <Link href="/demo/roofing-pro" className="flex items-center text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors duration-300">
+                <svg className="w-8 h-8 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m0 0l-7 7-7-7m7 7v10a1 1 0 01-1 1h-3" />
+                </svg>
+                RoofingPro
+              </Link>
+            </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <Link href="/demo/roofing-pro" className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300">
+                Home
+              </Link>
+              <Link href="/demo/roofing-pro/about" className="text-blue-600 font-medium">
+                About
+              </Link>
+              <Link href="/demo/roofing-pro#services" className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300">
+                Services
+              </Link>
+              <Link href="/demo/roofing-pro#projects" className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300">
+                Projects
+              </Link>
+              <Link href="/demo/roofing-pro/gallery" className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300">
+                Gallery
+              </Link>
+              <Link href="/demo/roofing-pro#contact" className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                Get Quote
+              </Link>
+            </div>
+            <div className="md:hidden">
+              <button className="text-gray-600 hover:text-blue-600 p-2">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center transform transition-all duration-1000 ${
+            isVisible.hero ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`} id="hero">
+            <h1 className="text-5xl font-bold mb-6">
+              About <span className="text-yellow-400">RoofingPro</span>
+            </h1>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Your trusted roofing partner with over 25 years of excellence in residential and commercial roofing solutions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Company Story Section */}
+      <section id="story" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className={`transform transition-all duration-1000 ${
+              isVisible.story ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
+            }`}>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6 relative group">
+                Our Story
+                <div className="absolute -bottom-2 left-0 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+              </h2>
+              <div className="space-y-4 text-gray-600">
+                <p className="text-lg">
+                  Founded in 1998, RoofingPro began as a small family business with a simple mission: to provide exceptional roofing services that protect what matters most to our customers.
+                </p>
+                <p className="text-lg">
+                  What started as a two-person operation has grown into one of the region's most trusted roofing contractors, serving thousands of satisfied customers across residential and commercial properties.
+                </p>
+                <p className="text-lg">
+                  Our commitment to quality, integrity, and customer satisfaction has never wavered. Every project we undertake reflects our core values and our dedication to excellence.
+                </p>
+              </div>
+            </div>
+            <div className={`transform transition-all duration-1000 ${
+              isVisible.story ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
+            }`} style={{ transitionDelay: '200ms' }}>
+              <div className="relative group">
+                <img
+                  src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                  alt="RoofingPro team at work"
+                  className="w-full h-96 object-cover rounded-lg shadow-xl group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-blue-600/20 group-hover:bg-blue-600/10 transition-colors duration-300 rounded-lg"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Values Section */}
+      <section id="mission" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible.mission ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 relative group">
+              Our Mission & Values
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We are committed to delivering exceptional roofing solutions while maintaining the highest standards of professionalism and integrity.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className={`bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 transform ${
+              isVisible.mission ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '200ms' }}>
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Quality First</h3>
+              <p className="text-gray-600">
+                We use only the finest materials and employ skilled craftsmen to ensure every project meets our exacting standards.
+              </p>
+            </div>
+
+            <div className={`bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 transform ${
+              isVisible.mission ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '400ms' }}>
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Customer Focus</h3>
+              <p className="text-gray-600">
+                Your satisfaction is our priority. We listen to your needs and deliver solutions that exceed expectations.
+              </p>
+            </div>
+
+            <div className={`bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 transform ${
+              isVisible.mission ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '600ms' }}>
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Reliability</h3>
+              <p className="text-gray-600">
+                We show up on time, complete projects on schedule, and stand behind our work with comprehensive warranties.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section id="team" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible.team ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 relative group">
+              Meet Our Team
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our experienced professionals are dedicated to delivering exceptional roofing solutions for your home or business.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className={`text-center transform transition-all duration-700 ${
+              isVisible.team ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '200ms' }}>
+              <div className="relative group mb-6">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                  alt="Mike Johnson - Owner"
+                  className="w-48 h-48 object-cover rounded-full mx-auto shadow-lg group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-blue-600/20 group-hover:bg-blue-600/10 transition-colors duration-300 rounded-full"></div>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Mike Johnson</h3>
+              <p className="text-blue-600 font-semibold mb-2">Owner & Lead Contractor</p>
+              <p className="text-gray-600">
+                25+ years of experience in residential and commercial roofing. Licensed and certified with a passion for quality craftsmanship.
+              </p>
+            </div>
+
+            <div className={`text-center transform transition-all duration-700 ${
+              isVisible.team ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '400ms' }}>
+              <div className="relative group mb-6">
+                <img
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                  alt="Sarah Williams - Project Manager"
+                  className="w-48 h-48 object-cover rounded-full mx-auto shadow-lg group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-blue-600/20 group-hover:bg-blue-600/10 transition-colors duration-300 rounded-full"></div>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Sarah Williams</h3>
+              <p className="text-blue-600 font-semibold mb-2">Project Manager</p>
+              <p className="text-gray-600">
+                Expert in project coordination and customer relations. Ensures every project runs smoothly from start to finish.
+              </p>
+            </div>
+
+            <div className={`text-center transform transition-all duration-700 ${
+              isVisible.team ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '600ms' }}>
+              <div className="relative group mb-6">
+                <img
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                  alt="David Chen - Master Roofer"
+                  className="w-48 h-48 object-cover rounded-full mx-auto shadow-lg group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-blue-600/20 group-hover:bg-blue-600/10 transition-colors duration-300 rounded-full"></div>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">David Chen</h3>
+              <p className="text-blue-600 font-semibold mb-2">Master Roofer</p>
+              <p className="text-gray-600">
+                Specialized in complex roofing systems and emergency repairs. Known for attention to detail and problem-solving skills.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section id="stats" className="py-20 bg-blue-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible.stats ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold mb-4">
+              Our Track Record
+            </h2>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Numbers that speak to our commitment to excellence and customer satisfaction.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className={`text-center transform transition-all duration-700 ${
+              isVisible.stats ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '200ms' }}>
+              <div className="text-5xl font-bold text-yellow-400 mb-2">25+</div>
+              <div className="text-xl font-semibold mb-2">Years Experience</div>
+              <div className="text-blue-100">Serving the community since 1998</div>
+            </div>
+
+            <div className={`text-center transform transition-all duration-700 ${
+              isVisible.stats ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '400ms' }}>
+              <div className="text-5xl font-bold text-yellow-400 mb-2">5000+</div>
+              <div className="text-xl font-semibold mb-2">Projects Completed</div>
+              <div className="text-blue-100">Residential and commercial</div>
+            </div>
+
+            <div className={`text-center transform transition-all duration-700 ${
+              isVisible.stats ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '600ms' }}>
+              <div className="text-5xl font-bold text-yellow-400 mb-2">100%</div>
+              <div className="text-xl font-semibold mb-2">Satisfaction Guaranteed</div>
+              <div className="text-blue-100">Customer satisfaction promise</div>
+            </div>
+
+            <div className={`text-center transform transition-all duration-700 ${
+              isVisible.stats ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '800ms' }}>
+              <div className="text-5xl font-bold text-yellow-400 mb-2">24/7</div>
+              <div className="text-xl font-semibold mb-2">Emergency Service</div>
+              <div className="text-blue-100">Available when you need us</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section id="cta" className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className={`transform transition-all duration-1000 ${
+            isVisible.cta ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Ready to Work With Us?
+            </h2>
+            <p className="text-xl text-gray-600 mb-8">
+              Contact us today for a free consultation and estimate. Let's discuss how we can help protect your property.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/demo/roofing-pro#contact"
+                className="bg-blue-600 text-white hover:bg-blue-700 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              >
+                Get Free Quote
+              </Link>
+              <Link 
+                href="tel:+1234567890"
+                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105"
+              >
+                Call Now
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center mb-4">
+                <svg className="w-8 h-8 mr-2 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m0 0l-7 7-7-7m7 7v10a1 1 0 01-1 1h-3" />
+                </svg>
+                <span className="text-xl font-bold">RoofingPro</span>
+              </div>
+              <p className="text-gray-400 mb-4">
+                Your trusted roofing partner for over 25 years. Quality, reliability, and customer satisfaction guaranteed.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Services</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/demo/roofing-pro#services" className="hover:text-white transition-colors">Residential Roofing</Link></li>
+                <li><Link href="/demo/roofing-pro#services" className="hover:text-white transition-colors">Commercial Roofing</Link></li>
+                <li><Link href="/demo/roofing-pro#services" className="hover:text-white transition-colors">Roof Repairs</Link></li>
+                <li><Link href="/demo/roofing-pro#services" className="hover:text-white transition-colors">Emergency Service</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Company</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/demo/roofing-pro/about" className="hover:text-white transition-colors">About Us</Link></li>
+                <li><Link href="/demo/roofing-pro#projects" className="hover:text-white transition-colors">Our Work</Link></li>
+                <li><Link href="/demo/roofing-pro/gallery" className="hover:text-white transition-colors">Gallery</Link></li>
+                <li><Link href="/demo/roofing-pro#contact" className="hover:text-white transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
+              <div className="space-y-2 text-gray-400">
+                <p>123 Main Street</p>
+                <p>Your City, ST 12345</p>
+                <p>Phone: (555) 123-4567</p>
+                <p>Email: info@roofingpro.com</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2024 RoofingPro. All rights reserved. | Licensed & Insured</p>
+          </div>
+        </div>
+      </footer>
+
+      {/* Demo Notice */}
+      <div className="fixed bottom-4 right-4 bg-blue-600 text-white px-3 py-2 sm:px-4 sm:py-3 rounded-lg shadow-xl max-w-xs sm:max-w-xs z-50">
+        <div className="flex items-center mb-1 sm:mb-2">
+          <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span className="text-xs sm:text-sm font-medium">This is a demo template</span>
+        </div>
+        <p className="text-xs text-blue-100 mb-2 sm:mb-3">
+          Like what you see? Get your own professional website!
+        </p>
+        <div className="space-y-1 sm:space-y-2">
+          <Link 
+            href="https://webloftstudio.com/contact" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-white text-blue-600 hover:bg-gray-100 font-semibold py-1.5 px-2 sm:py-2 sm:px-3 rounded text-xs text-center transition-colors duration-200"
+          >
+            Get Your Website →
+          </Link>
+          <Link 
+            href="/template-based-websites" 
+            className="block text-xs text-blue-100 hover:text-white underline hover:no-underline text-center transition-colors duration-200"
+          >
+            View all templates
+          </Link>
+        </div>
+        <div className="mt-2 sm:mt-3 pt-1 sm:pt-2 border-t border-blue-500/30">
+          <p className="text-xs text-blue-100 text-center">
+            Built by <a 
+              href="https://webloftstudio.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-green-400 hover:text-green-300 font-medium transition-colors duration-200"
+            >
+              Webloft Studio
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}

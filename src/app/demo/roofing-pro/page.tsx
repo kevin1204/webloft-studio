@@ -142,16 +142,12 @@ export default function RoofingProDemo() {
                 >
                   Home
                 </a>
-                <a 
-                  href="#about" 
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                    activeSection === 'about' 
-                      ? 'text-blue-600 bg-blue-50 font-semibold' 
-                      : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
-                  }`}
+                <Link 
+                  href="/demo/roofing-pro/about" 
+                  className="px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 text-gray-600 hover:text-blue-600 hover:bg-gray-50"
                 >
                   About
-                </a>
+                </Link>
                 <a 
                   href="#services" 
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
@@ -182,16 +178,12 @@ export default function RoofingProDemo() {
                 >
                   Projects
                 </a>
-                <a 
-                  href="#gallery" 
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                    activeSection === 'gallery' 
-                      ? 'text-blue-600 bg-blue-50 font-semibold' 
-                      : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
-                  }`}
+                <Link 
+                  href="/demo/roofing-pro/gallery" 
+                  className="px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 text-gray-600 hover:text-blue-600 hover:bg-gray-50"
                 >
                   Gallery
-                </a>
+                </Link>
                 <a 
                   href="#faq" 
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
@@ -369,84 +361,6 @@ export default function RoofingProDemo() {
           </div>
         </div>
 
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className={`transform transition-all duration-1000 ${
-              isVisible.about ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
-            }`}>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6 relative group">
-                About RoofingPro
-                <div className="absolute -bottom-2 left-0 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
-              </h2>
-              <p className="text-xl text-gray-600 mb-6">
-                For over 25 years, RoofingPro has been the trusted name in residential and commercial roofing services. We pride ourselves on delivering exceptional craftsmanship, using only the highest quality materials, and providing outstanding customer service.
-              </p>
-              <p className="text-lg text-gray-600 mb-8">
-                Our team of licensed and insured professionals serves the entire metropolitan area, handling everything from minor repairs to complete roof replacements. We're committed to protecting your most valuable asset - your home or business.
-              </p>
-              <div className="grid grid-cols-2 gap-8">
-                <div className="group hover-lift p-4 rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-lg">
-                  <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors duration-300 group-hover:scale-110">
-                    <svg className="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">Licensed & Insured</h3>
-                  <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Fully licensed contractors with comprehensive insurance coverage</p>
-                </div>
-                <div className="group hover-lift p-4 rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-lg">
-                  <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-600 transition-colors duration-300 group-hover:scale-110">
-                    <svg className="w-8 h-8 text-green-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">24/7 Emergency Service</h3>
-                  <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Round-the-clock availability for urgent roofing issues</p>
-                </div>
-                <div className="group hover-lift p-4 rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-lg">
-                  <div className="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-600 transition-colors duration-300 group-hover:scale-110">
-                    <svg className="w-8 h-8 text-purple-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">Quality Materials</h3>
-                  <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Only premium materials from trusted manufacturers</p>
-                </div>
-                <div className="group hover-lift p-4 rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-lg">
-                  <div className="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-600 transition-colors duration-300 group-hover:scale-110">
-                    <svg className="w-8 h-8 text-orange-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-300">Expert Team</h3>
-                  <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Skilled craftsmen with decades of combined experience</p>
-                </div>
-              </div>
-            </div>
-            <div className={`relative transform transition-all duration-1000 delay-300 ${
-              isVisible.about ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
-            }`}>
-              <div className="relative group">
-                <div 
-                  className="h-96 rounded-lg bg-cover bg-center bg-no-repeat shadow-2xl group-hover:scale-105 transition-transform duration-500"
-                  style={{
-                    backgroundImage: "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
-                  }}
-                ></div>
-                <div className="absolute inset-0 bg-blue-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-6 rounded-lg shadow-xl hover-lift animate-float">
-                <div className="text-3xl font-bold group-hover:scale-110 transition-transform duration-300">25+</div>
-                <div className="text-blue-100">Years of Excellence</div>
-                <div className="absolute -top-2 -right-2 w-4 h-4 bg-yellow-400 rounded-full animate-pulse"></div>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Services Section */}
