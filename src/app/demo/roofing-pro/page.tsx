@@ -1121,7 +1121,22 @@ export default function RoofingProDemo() {
             isVisible.gallery ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
             <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-              <div className="relative">
+              <div 
+                className="relative cursor-col-resize"
+                onMouseMove={handleSliderMove}
+                onMouseDown={handleSliderStart}
+                onMouseUp={handleSliderEnd}
+                onMouseLeave={handleSliderEnd}
+                onTouchMove={(e) => {
+                  e.preventDefault();
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const x = e.touches[0].clientX - rect.left;
+                  const percentage = (x / rect.width) * 100;
+                  setSliderPosition(Math.max(0, Math.min(100, percentage)));
+                }}
+                onTouchStart={() => setIsDragging(true)}
+                onTouchEnd={() => setIsDragging(false)}
+              >
                 {/* Before Image */}
                 <div className="relative overflow-hidden">
                   <img
@@ -1153,33 +1168,20 @@ export default function RoofingProDemo() {
                 
                 {/* Slider Line */}
                 <div 
-                  className="absolute top-0 w-12 h-full cursor-col-resize z-10 -ml-6"
+                  className="absolute top-0 w-20 h-full z-10 -ml-10 pointer-events-none"
                   style={{ left: `${sliderPosition}%` }}
-                  onMouseMove={handleSliderMove}
-                  onMouseDown={handleSliderStart}
-                  onMouseUp={handleSliderEnd}
-                  onMouseLeave={handleSliderEnd}
-                  onTouchMove={(e) => {
-                    e.preventDefault();
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    const x = e.touches[0].clientX - rect.left;
-                    const percentage = (x / rect.width) * 100;
-                    setSliderPosition(Math.max(0, Math.min(100, percentage)));
-                  }}
-                  onTouchStart={() => setIsDragging(true)}
-                  onTouchEnd={() => setIsDragging(false)}
                 >
                   {/* Visual slider line */}
                   <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-full bg-white shadow-lg"></div>
                   {/* Draggable handle */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
-                    <div className="w-4 h-4 bg-blue-600 rounded-full"></div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center pointer-events-auto cursor-col-resize hover:scale-110 transition-transform duration-200">
+                    <div className="w-6 h-6 bg-blue-600 rounded-full"></div>
                   </div>
                 </div>
                 
                 {/* Instructions */}
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-lg text-sm">
-                  Drag the line to compare before and after
+                  Drag anywhere to compare before and after
                 </div>
               </div>
               
@@ -1491,7 +1493,7 @@ export default function RoofingProDemo() {
       </section>
 
       {/* CTA Banner */}
-      <section className="py-16 bg-blue-600 text-white">
+      <section id="cta" className="py-16 bg-blue-600 text-white">
         <div className={`max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 transform transition-all duration-1000 ${
           isVisible.cta ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
