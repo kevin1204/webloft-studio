@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 // Metadata is handled by the parent layout
 
 export default function RoofingProDemo() {
-  const [isVisible, setIsVisible] = useState({});
+  const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
   const [activeSection, setActiveSection] = useState('home');
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -158,39 +158,110 @@ export default function RoofingProDemo() {
       <section id="home" className="relative h-screen flex items-center justify-center">
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/80"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105 hover:scale-110 transition-transform duration-[20s] ease-out"
           style={{
             backgroundImage: "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
           }}
         ></div>
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+        
+        {/* Floating particles effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[
+            { left: 12, top: 29, delay: 0.5, duration: 2.5 },
+            { left: 85, top: 15, delay: 1.2, duration: 3.1 },
+            { left: 45, top: 78, delay: 0.8, duration: 2.8 },
+            { left: 67, top: 42, delay: 1.5, duration: 3.3 },
+            { left: 23, top: 65, delay: 0.3, duration: 2.2 },
+            { left: 91, top: 88, delay: 2.1, duration: 3.7 },
+            { left: 34, top: 12, delay: 0.7, duration: 2.9 },
+            { left: 78, top: 56, delay: 1.8, duration: 3.4 },
+            { left: 56, top: 91, delay: 0.4, duration: 2.6 },
+            { left: 89, top: 33, delay: 1.9, duration: 3.2 },
+            { left: 15, top: 47, delay: 0.6, duration: 2.4 },
+            { left: 72, top: 74, delay: 1.3, duration: 3.0 },
+            { left: 38, top: 19, delay: 0.9, duration: 2.7 },
+            { left: 94, top: 61, delay: 2.0, duration: 3.5 },
+            { left: 26, top: 83, delay: 0.2, duration: 2.1 },
+            { left: 63, top: 37, delay: 1.6, duration: 3.6 },
+            { left: 49, top: 95, delay: 0.1, duration: 2.3 },
+            { left: 81, top: 8, delay: 1.7, duration: 3.8 },
+            { left: 17, top: 72, delay: 0.5, duration: 2.8 },
+            { left: 76, top: 25, delay: 1.4, duration: 3.1 }
+          ].map((particle, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"
+              style={{
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
+                animationDelay: `${particle.delay}s`,
+                animationDuration: `${particle.duration}s`
+              }}
+            />
+          ))}
+        </div>
+        <div className={`relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 transform transition-all duration-1000 ${
+          isVisible.home ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`}>
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Professional <span className="text-blue-400">Roofing Services</span> You Can Trust
+            Professional <span className="text-blue-400 relative inline-block">
+              <span className="relative z-10">Roofing Services</span>
+              <div className="absolute -inset-1 bg-blue-400/20 blur-lg"></div>
+            </span> You Can Trust
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-gray-200">
+          <p className={`text-xl md:text-2xl mb-8 text-gray-200 transition-all duration-1000 delay-300 ${
+            isVisible.home ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
             Over 25 years of experience delivering quality roofing solutions. Licensed, insured, and committed to excellence in every project.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors shadow-lg">
-              Request Free Quote
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-500 ${
+            isVisible.home ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <button className="group bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 relative overflow-hidden">
+              <span className="relative z-10 flex items-center justify-center">
+                <svg className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Request Free Quote
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-lg text-lg transition-colors">
-              View Our Work
+            
+            <button className="group border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-white/25 relative overflow-hidden">
+              <span className="relative z-10 flex items-center justify-center">
+                <svg className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                View Our Work
+              </span>
+              <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </button>
           </div>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-blue-400 mb-2">25+</div>
-              <div className="text-gray-200">Years Experience</div>
+          
+          <div className={`mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center transition-all duration-1000 delay-700 ${
+            isVisible.home ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <div className="group">
+              <div className="text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300">25+</div>
+              <div className="text-gray-200 group-hover:text-white transition-colors duration-300">Years Experience</div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-blue-400 mb-2">5000+</div>
-              <div className="text-gray-200">Projects Completed</div>
+            <div className="group">
+              <div className="text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300">5000+</div>
+              <div className="text-gray-200 group-hover:text-white transition-colors duration-300">Projects Completed</div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-blue-400 mb-2">100%</div>
-              <div className="text-gray-200">Satisfaction Guaranteed</div>
+            <div className="group">
+              <div className="text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300">100%</div>
+              <div className="text-gray-200 group-hover:text-white transition-colors duration-300">Satisfaction Guaranteed</div>
             </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
@@ -199,8 +270,13 @@ export default function RoofingProDemo() {
       <section id="about" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">About RoofingPro</h2>
+            <div className={`transform transition-all duration-1000 ${
+              isVisible.about ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
+            }`}>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6 relative group">
+                About RoofingPro
+                <div className="absolute -bottom-2 left-0 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+              </h2>
               <p className="text-xl text-gray-600 mb-6">
                 For over 25 years, RoofingPro has been the trusted name in residential and commercial roofing services. We pride ourselves on delivering exceptional craftsmanship, using only the highest quality materials, and providing outstanding customer service.
               </p>
@@ -208,54 +284,60 @@ export default function RoofingProDemo() {
                 Our team of licensed and insured professionals serves the entire metropolitan area, handling everything from minor repairs to complete roof replacements. We're committed to protecting your most valuable asset - your home or business.
               </p>
               <div className="grid grid-cols-2 gap-8">
-                <div>
-                  <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="group hover-lift p-4 rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-lg">
+                  <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors duration-300 group-hover:scale-110">
+                    <svg className="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Licensed & Insured</h3>
-                  <p className="text-gray-600">Fully licensed contractors with comprehensive insurance coverage</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">Licensed & Insured</h3>
+                  <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Fully licensed contractors with comprehensive insurance coverage</p>
                 </div>
-                <div>
-                  <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="group hover-lift p-4 rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-lg">
+                  <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-600 transition-colors duration-300 group-hover:scale-110">
+                    <svg className="w-8 h-8 text-green-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">24/7 Emergency Service</h3>
-                  <p className="text-gray-600">Round-the-clock availability for urgent roofing issues</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">24/7 Emergency Service</h3>
+                  <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Round-the-clock availability for urgent roofing issues</p>
                 </div>
-                <div>
-                  <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="group hover-lift p-4 rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-lg">
+                  <div className="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-600 transition-colors duration-300 group-hover:scale-110">
+                    <svg className="w-8 h-8 text-purple-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Quality Materials</h3>
-                  <p className="text-gray-600">Only premium materials from trusted manufacturers</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">Quality Materials</h3>
+                  <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Only premium materials from trusted manufacturers</p>
                 </div>
-                <div>
-                  <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="group hover-lift p-4 rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-lg">
+                  <div className="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-600 transition-colors duration-300 group-hover:scale-110">
+                    <svg className="w-8 h-8 text-orange-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Expert Team</h3>
-                  <p className="text-gray-600">Skilled craftsmen with decades of combined experience</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-300">Expert Team</h3>
+                  <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Skilled craftsmen with decades of combined experience</p>
                 </div>
               </div>
             </div>
-            <div className="relative">
-              <div 
-                className="h-96 rounded-lg bg-cover bg-center bg-no-repeat shadow-2xl"
-                style={{
-                  backgroundImage: "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
-                }}
-              ></div>
-              <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-6 rounded-lg shadow-lg">
-                <div className="text-3xl font-bold">25+</div>
+            <div className={`relative transform transition-all duration-1000 delay-300 ${
+              isVisible.about ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
+            }`}>
+              <div className="relative group">
+                <div 
+                  className="h-96 rounded-lg bg-cover bg-center bg-no-repeat shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                  style={{
+                    backgroundImage: "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
+                  }}
+                ></div>
+                <div className="absolute inset-0 bg-blue-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+              <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-6 rounded-lg shadow-xl hover-lift animate-float">
+                <div className="text-3xl font-bold group-hover:scale-110 transition-transform duration-300">25+</div>
                 <div className="text-blue-100">Years of Excellence</div>
+                <div className="absolute -top-2 -right-2 w-4 h-4 bg-yellow-400 rounded-full animate-pulse"></div>
               </div>
             </div>
           </div>
