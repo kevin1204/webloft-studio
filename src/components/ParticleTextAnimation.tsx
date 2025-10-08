@@ -251,7 +251,7 @@ export default function ParticleTextAnimation() {
   const isAnimatingRef = useRef(false);
   const lastMouseStateRef = useRef<MouseState>({ x: 0, y: 0, radius: 120, active: false });
   const lastFrameTimeRef = useRef(0);
-  const targetFPS = 30; // Limit to 30 FPS instead of 60
+  const targetFPS = 60; // Limit to 30 FPS instead of 60
   const isVisibleRef = useRef(true);
 
   // Simple performance optimization: only animate when needed

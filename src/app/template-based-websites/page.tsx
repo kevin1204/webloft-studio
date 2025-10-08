@@ -40,6 +40,16 @@ export default function TemplateBasedWebsites() {
       features: ['SEO Optimized', 'Mobile Responsive', 'Gallery Showcase', 'Client Testimonials'],
       image: '/PROJECTS/LILAHART.png',
       demoUrl: '/demo/creative-studio'
+    },
+    {
+      id: 'roofing-pro',
+      name: 'Roofing Pro',
+      description: 'Perfect for roofing contractors, home improvement services, and construction companies. Professional design that builds trust and drives conversions.',
+      price: '$1,499',
+      pages: ['Home', 'About', 'Services', 'Projects', 'Testimonials', 'Contact'],
+      features: ['SEO Optimized', 'Mobile Responsive', 'Project Gallery', 'Emergency CTA', 'Service Area Map'],
+      image: '/PROJECTS/AMIGO CONTRACTING SERVICES.png',
+      demoUrl: '/demo/roofing-pro'
     }
   ];
 
