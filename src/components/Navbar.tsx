@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,21 +10,6 @@ export default function Navbar() {
   const servicesRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const toggleServices = () => setIsServicesOpen(!isServicesOpen);
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
-        setIsServicesOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
   const navItems = [
     { name: 'Home', href: '/' },
@@ -69,9 +54,13 @@ export default function Navbar() {
               ))}
               
               {/* Services Dropdown */}
-              <div className="relative" ref={servicesRef}>
+              <div 
+                className="relative" 
+                ref={servicesRef}
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
+              >
                 <button
-                  onClick={toggleServices}
                   className="link-hover text-gray-300 hover:text-green-400 font-medium flex items-center"
                 >
                   Services
@@ -92,7 +81,6 @@ export default function Navbar() {
                         key={item.name}
                         href={item.href}
                         className="block px-4 py-3 text-gray-300 hover:text-green-400 hover:bg-gray-800 transition-colors"
-                        onClick={() => setIsServicesOpen(false)}
                       >
                         {item.name}
                       </Link>
