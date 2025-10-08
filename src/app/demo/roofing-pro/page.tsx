@@ -135,7 +135,9 @@ export default function RoofingProDemo() {
   // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isMobileMenuOpen && !(event.target as Element).closest('nav')) {
+      if (isMobileMenuOpen && 
+          !(event.target as Element).closest('nav') && 
+          !(event.target as Element).closest('[data-mobile-menu]')) {
         setIsMobileMenuOpen(false);
       }
     };
@@ -273,79 +275,63 @@ export default function RoofingProDemo() {
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200 shadow-lg">
+        <div className="md:hidden bg-white border-b border-gray-200 shadow-lg" data-mobile-menu>
           <div className="px-4 py-6 space-y-4">
             {/* Mobile Navigation Links */}
             <div className="space-y-2">
               <a 
                 href="#home" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => {
-                  setTimeout(() => setIsMobileMenuOpen(false), 100);
-                }}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
               </a>
               <Link 
                 href="/demo/roofing-pro/about" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => {
-                  setTimeout(() => setIsMobileMenuOpen(false), 100);
-                }}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 About
               </Link>
               <a 
                 href="#services" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => {
-                  setTimeout(() => setIsMobileMenuOpen(false), 100);
-                }}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Services
               </a>
               <a 
                 href="#why-choose-us" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => {
-                  setTimeout(() => setIsMobileMenuOpen(false), 100);
-                }}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Why Us
               </a>
               <a 
                 href="#projects" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => {
-                  setTimeout(() => setIsMobileMenuOpen(false), 100);
-                }}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Projects
               </a>
               <Link 
                 href="/demo/roofing-pro/gallery" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => {
-                  setTimeout(() => setIsMobileMenuOpen(false), 100);
-                }}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Gallery
               </Link>
               <a 
                 href="#faq" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => {
-                  setTimeout(() => setIsMobileMenuOpen(false), 100);
-                }}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 FAQ
               </a>
               <a 
                 href="#contact" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => {
-                  setTimeout(() => setIsMobileMenuOpen(false), 100);
-                }}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
               </a>
