@@ -142,7 +142,7 @@ export default function RoofingProGallery() {
                 <span className="text-blue-600">Roofing</span>Pro
               </Link>
             </div>
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <div className="ml-10 flex items-baseline space-x-6">
                 <Link 
                   href="/demo/roofing-pro" 
@@ -195,7 +195,7 @@ export default function RoofingProGallery() {
               </div>
             </div>
             {/* Desktop CTA Button */}
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden sm:flex items-center space-x-4">
               <a 
                 href="tel:+1-555-ROOF-123" 
                 className="group bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
@@ -210,7 +210,7 @@ export default function RoofingProGallery() {
             </div>
             
             {/* Mobile Menu Button */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <button 
                 onClick={toggleMobileMenu}
                 className="text-gray-600 hover:text-blue-600 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
@@ -231,7 +231,7 @@ export default function RoofingProGallery() {
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200 shadow-lg" data-mobile-menu>
+        <div className="lg:hidden bg-white border-b border-gray-200 shadow-lg" data-mobile-menu>
           <div className="px-4 py-6 space-y-4">
             {/* Mobile Navigation Links */}
             <div className="space-y-2">
@@ -406,19 +406,11 @@ export default function RoofingProGallery() {
             }
           }}
         >
-          {/* Header with close button */}
-          <div className="flex justify-between items-center p-4 sm:p-6">
-            <h2 className="text-white text-lg sm:text-xl font-semibold">
+          {/* Header */}
+          <div className="flex justify-center items-center p-4 sm:p-6">
+            <h2 className="text-white text-lg sm:text-xl font-semibold text-center">
               {galleryImages[selectedImage].title}
             </h2>
-            <button
-              onClick={closeImage}
-              className="bg-white/20 hover:bg-white/30 text-white rounded-full p-3 sm:p-4 transition-all duration-300 hover:scale-110 shadow-lg"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
           </div>
 
           {/* Main image area */}

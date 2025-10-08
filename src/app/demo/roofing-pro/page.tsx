@@ -162,7 +162,7 @@ export default function RoofingProDemo() {
                 <span className="text-blue-600">Roofing</span>Pro
               </div>
             </div>
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <div className="ml-10 flex items-baseline space-x-6">
                 <a 
                   href="#home" 
@@ -239,7 +239,7 @@ export default function RoofingProDemo() {
               </div>
             </div>
             {/* Desktop CTA Button */}
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden sm:flex items-center space-x-4">
               <a 
                 href="tel:+1-555-ROOF-123" 
                 className="group bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
@@ -254,7 +254,7 @@ export default function RoofingProDemo() {
             </div>
             
             {/* Mobile Menu Button */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <button 
                 onClick={toggleMobileMenu}
                 className="text-gray-600 hover:text-blue-600 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
@@ -275,7 +275,7 @@ export default function RoofingProDemo() {
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200 shadow-lg" data-mobile-menu>
+        <div className="lg:hidden bg-white border-b border-gray-200 shadow-lg" data-mobile-menu>
           <div className="px-4 py-6 space-y-4">
             {/* Mobile Navigation Links */}
             <div className="space-y-2">
@@ -912,7 +912,7 @@ export default function RoofingProDemo() {
                           loading="lazy"
                         />
                         {/* Mobile tap indicator */}
-                        <div className="md:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                        <div className="lg:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
                           Tap for details
                         </div>
                       </div>
@@ -940,7 +940,7 @@ export default function RoofingProDemo() {
                           <h3 className="text-xl font-semibold mb-4">Residential Roof Replacement</h3>
                           <p className="text-gray-200">Complete asphalt shingle replacement with architectural shingles. Professional installation with premium materials and expert craftsmanship.</p>
                           {/* Mobile tap to flip back indicator */}
-                          <div className="md:hidden mt-4 text-sm text-blue-300">
+                          <div className="lg:hidden mt-4 text-sm text-blue-300">
                             Tap to flip back
                           </div>
                         </div>
@@ -979,7 +979,7 @@ export default function RoofingProDemo() {
                           loading="lazy"
                         />
                         {/* Mobile tap indicator */}
-                        <div className="md:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                        <div className="lg:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
                           Tap for details
                         </div>
                       </div>
@@ -1007,7 +1007,7 @@ export default function RoofingProDemo() {
                           <h3 className="text-xl font-semibold mb-4">Commercial Flat Roof</h3>
                           <p className="text-gray-200">EPDM membrane installation for office building. Durable, weather-resistant solution for commercial properties.</p>
                           {/* Mobile tap to flip back indicator */}
-                          <div className="md:hidden mt-4 text-sm text-blue-300">
+                          <div className="lg:hidden mt-4 text-sm text-blue-300">
                             Tap to flip back
                           </div>
                         </div>
@@ -1046,7 +1046,7 @@ export default function RoofingProDemo() {
                           loading="lazy"
                         />
                         {/* Mobile tap indicator */}
-                        <div className="md:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                        <div className="lg:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
                           Tap for details
                         </div>
                       </div>
@@ -1074,7 +1074,7 @@ export default function RoofingProDemo() {
                           <h3 className="text-xl font-semibold mb-4">Metal Roof Installation</h3>
                           <p className="text-gray-200">Standing seam metal roof for modern home. Long-lasting, energy-efficient solution with contemporary appeal.</p>
                           {/* Mobile tap to flip back indicator */}
-                          <div className="md:hidden mt-4 text-sm text-blue-300">
+                          <div className="lg:hidden mt-4 text-sm text-blue-300">
                             Tap to flip back
                           </div>
                         </div>
@@ -1113,7 +1113,7 @@ export default function RoofingProDemo() {
                           loading="lazy"
                         />
                         {/* Mobile tap indicator */}
-                        <div className="md:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                        <div className="lg:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
                           Tap for details
                         </div>
                       </div>
@@ -1141,7 +1141,7 @@ export default function RoofingProDemo() {
                           <h3 className="text-xl font-semibold mb-4">Gutter System Installation</h3>
                           <p className="text-gray-200">Seamless aluminum gutters with leaf guards. Complete water management system for your property.</p>
                           {/* Mobile tap to flip back indicator */}
-                          <div className="md:hidden mt-4 text-sm text-blue-300">
+                          <div className="lg:hidden mt-4 text-sm text-blue-300">
                             Tap to flip back
                           </div>
                         </div>
@@ -1180,7 +1180,7 @@ export default function RoofingProDemo() {
                           loading="lazy"
                         />
                         {/* Mobile tap indicator */}
-                        <div className="md:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                        <div className="lg:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
                           Tap for details
                         </div>
                       </div>
@@ -1208,7 +1208,7 @@ export default function RoofingProDemo() {
                           <h3 className="text-xl font-semibold mb-4">Storm Damage Repair</h3>
                           <p className="text-gray-200">Emergency repair after severe weather damage. Quick response and professional restoration services.</p>
                           {/* Mobile tap to flip back indicator */}
-                          <div className="md:hidden mt-4 text-sm text-blue-300">
+                          <div className="lg:hidden mt-4 text-sm text-blue-300">
                             Tap to flip back
                           </div>
                         </div>
@@ -1247,7 +1247,7 @@ export default function RoofingProDemo() {
                           loading="lazy"
                         />
                         {/* Mobile tap indicator */}
-                        <div className="md:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                        <div className="lg:hidden absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
                           Tap for details
                         </div>
                       </div>
@@ -1275,7 +1275,7 @@ export default function RoofingProDemo() {
                           <h3 className="text-xl font-semibold mb-4">Tile Roof Restoration</h3>
                           <p className="text-gray-200">Clay tile roof repair and maintenance. Preserving the beauty and integrity of traditional roofing materials.</p>
                           {/* Mobile tap to flip back indicator */}
-                          <div className="md:hidden mt-4 text-sm text-blue-300">
+                          <div className="lg:hidden mt-4 text-sm text-blue-300">
                             Tap to flip back
                           </div>
                         </div>

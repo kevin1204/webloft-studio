@@ -67,7 +67,7 @@ export default function RoofingProAbout() {
                 <span className="text-blue-600">Roofing</span>Pro
               </Link>
             </div>
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <div className="ml-10 flex items-baseline space-x-6">
                 <Link 
                   href="/demo/roofing-pro" 
@@ -120,7 +120,7 @@ export default function RoofingProAbout() {
               </div>
             </div>
             {/* Desktop CTA Button */}
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden sm:flex items-center space-x-4">
               <a 
                 href="tel:+1-555-ROOF-123" 
                 className="group bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
@@ -135,7 +135,7 @@ export default function RoofingProAbout() {
             </div>
             
             {/* Mobile Menu Button */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <button 
                 onClick={toggleMobileMenu}
                 className="text-gray-600 hover:text-blue-600 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
@@ -156,7 +156,7 @@ export default function RoofingProAbout() {
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200 shadow-lg" data-mobile-menu>
+        <div className="lg:hidden bg-white border-b border-gray-200 shadow-lg" data-mobile-menu>
           <div className="px-4 py-6 space-y-4">
             {/* Mobile Navigation Links */}
             <div className="space-y-2">
