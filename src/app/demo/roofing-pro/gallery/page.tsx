@@ -398,7 +398,14 @@ export default function RoofingProGallery() {
 
       {/* Image Popup Modal */}
       {selectedImage !== null && (
-        <div className="fixed inset-0 bg-black/95 z-50 flex flex-col">
+        <div 
+          className="fixed inset-0 bg-black/95 z-50 flex flex-col"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              closeImage();
+            }
+          }}
+        >
           {/* Header with close button */}
           <div className="flex justify-between items-center p-4 sm:p-6">
             <h2 className="text-white text-lg sm:text-xl font-semibold">
@@ -406,7 +413,7 @@ export default function RoofingProGallery() {
             </h2>
             <button
               onClick={closeImage}
-              className="bg-white/10 hover:bg-white/20 text-white rounded-full p-2 sm:p-3 transition-all duration-300 hover:scale-110"
+              className="bg-white/20 hover:bg-white/30 text-white rounded-full p-3 sm:p-4 transition-all duration-300 hover:scale-110 shadow-lg"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -421,6 +428,16 @@ export default function RoofingProGallery() {
               alt={galleryImages[selectedImage].alt}
               className="max-w-full max-h-full object-contain rounded-lg"
             />
+            
+            {/* Close button in image area */}
+            <button
+              onClick={closeImage}
+              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 sm:p-3 transition-all duration-300 hover:scale-110 z-10"
+            >
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
             
             {/* Navigation arrows */}
             <button
