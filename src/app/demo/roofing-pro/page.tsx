@@ -347,36 +347,43 @@ export default function RoofingProDemo() {
       {/* Services Section */}
       <section id="services" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Roofing Services</h2>
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible.services ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 relative group">
+              Our Roofing Services
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Comprehensive roofing solutions for residential and commercial properties
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`group bg-white border border-gray-200 rounded-lg p-8 hover:shadow-xl transition-all duration-300 hover-lift hover-glow transform ${
+              isVisible.services ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`}>
+              <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Roof Installation</h3>
-              <p className="text-gray-600 mb-6">Complete roof replacement and new construction roofing with premium materials and expert installation.</p>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">Roof Installation</h3>
+              <p className="text-gray-600 mb-6 group-hover:text-gray-700 transition-colors duration-300">Complete roof replacement and new construction roofing with premium materials and expert installation.</p>
+              <ul className="space-y-2 text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300">
+                  <svg className="w-4 h-4 text-blue-500 mr-2 group-hover:text-blue-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Asphalt Shingles
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300 delay-100">
+                  <svg className="w-4 h-4 text-blue-500 mr-2 group-hover:text-blue-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Metal Roofing
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300 delay-200">
+                  <svg className="w-4 h-4 text-blue-500 mr-2 group-hover:text-blue-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Tile & Slate
