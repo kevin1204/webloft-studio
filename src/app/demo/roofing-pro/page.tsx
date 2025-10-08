@@ -21,12 +21,14 @@ export default function RoofingProDemo() {
               </div>
             </div>
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
+              <div className="ml-10 flex items-baseline space-x-6">
                 <a href="#home" className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-semibold">Home</a>
                 <a href="#about" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
                 <a href="#services" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                <a href="#why-choose-us" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Why Us</a>
                 <a href="#projects" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-                <a href="#testimonials" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Testimonials</a>
+                <a href="#gallery" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
+                <a href="#faq" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">FAQ</a>
                 <a href="#contact" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
               </div>
             </div>
@@ -344,6 +346,134 @@ export default function RoofingProDemo() {
         </div>
       </section>
 
+      {/* Why Choose Us Section */}
+      <section id="why-choose-us" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose RoofingPro?</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We're not just another roofing company. Here's what sets us apart from the competition.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Licensed & Insured</h3>
+              <p className="text-gray-600">Fully licensed contractors with comprehensive insurance coverage for your peace of mind.</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">25+ Years Experience</h3>
+              <p className="text-gray-600">Over two decades of expertise in residential and commercial roofing projects.</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">100% Satisfaction</h3>
+              <p className="text-gray-600">We guarantee your complete satisfaction with our workmanship and materials.</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Premium Materials</h3>
+              <p className="text-gray-600">We use only the highest quality materials from trusted manufacturers.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Service Areas Section */}
+      <section id="service-areas" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Service Areas</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We proudly serve the greater metropolitan area and surrounding communities with professional roofing services.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Primary Service Area</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li>• Downtown Metro</li>
+                <li>• Westside District</li>
+                <li>• Eastside Heights</li>
+                <li>• Northside Valley</li>
+                <li>• Southside Hills</li>
+              </ul>
+            </div>
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Extended Coverage</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li>• Suburban Communities</li>
+                <li>• Rural Areas (30-mile radius)</li>
+                <li>• Commercial Districts</li>
+                <li>• Industrial Zones</li>
+                <li>• Residential Neighborhoods</li>
+              </ul>
+            </div>
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Emergency Service</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li>• 24/7 Emergency Response</li>
+                <li>• Storm Damage Assessment</li>
+                <li>• Same-Day Repairs</li>
+                <li>• Temporary Tarping</li>
+                <li>• Insurance Claim Assistance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section id="process" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Process</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              From initial consultation to final inspection, we follow a proven process that ensures quality results every time.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Free Consultation</h3>
+              <p className="text-gray-600">Schedule a free, no-obligation inspection and detailed estimate for your roofing project.</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Custom Proposal</h3>
+              <p className="text-gray-600">Receive a detailed proposal with material options, timeline, and transparent pricing.</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Professional Installation</h3>
+              <p className="text-gray-600">Our skilled team performs the work with precision, keeping you informed throughout the process.</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">4</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Final Inspection</h3>
+              <p className="text-gray-600">Complete quality inspection and cleanup, with warranty documentation and maintenance tips.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Projects/Portfolio Section */}
       <section id="projects" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -604,6 +734,241 @@ export default function RoofingProDemo() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Before & After Gallery Section */}
+      <section id="gallery" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Before & After Gallery</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              See the dramatic transformations we've achieved for our clients. Every project tells a story of quality and craftsmanship.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="grid grid-cols-2">
+                <div className="p-4">
+                  <h4 className="font-semibold text-gray-900 mb-2">Before</h4>
+                  <img 
+                    src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                    alt="Before roof replacement"
+                    className="w-full h-32 object-cover rounded"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-4">
+                  <h4 className="font-semibold text-gray-900 mb-2">After</h4>
+                  <img 
+                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                    alt="After roof replacement"
+                    className="w-full h-32 object-cover rounded"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Residential Transformation</h3>
+                <p className="text-gray-600 text-sm">Complete roof replacement with architectural shingles</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="grid grid-cols-2">
+                <div className="p-4">
+                  <h4 className="font-semibold text-gray-900 mb-2">Before</h4>
+                  <img 
+                    src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                    alt="Before commercial roof"
+                    className="w-full h-32 object-cover rounded"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-4">
+                  <h4 className="font-semibold text-gray-900 mb-2">After</h4>
+                  <img 
+                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                    alt="After commercial roof"
+                    className="w-full h-32 object-cover rounded"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Commercial Upgrade</h3>
+                <p className="text-gray-600 text-sm">EPDM membrane installation for office building</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="grid grid-cols-2">
+                <div className="p-4">
+                  <h4 className="font-semibold text-gray-900 mb-2">Before</h4>
+                  <img 
+                    src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                    alt="Before metal roof"
+                    className="w-full h-32 object-cover rounded"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-4">
+                  <h4 className="font-semibold text-gray-900 mb-2">After</h4>
+                  <img 
+                    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                    alt="After metal roof"
+                    className="w-full h-32 object-cover rounded"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Modern Metal Roof</h3>
+                <p className="text-gray-600 text-sm">Standing seam metal roof installation</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+            <p className="text-xl text-gray-600">
+              Get answers to common roofing questions from our experts.
+            </p>
+          </div>
+          <div className="space-y-8">
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How long does a roof replacement take?</h3>
+              <p className="text-gray-600">Most residential roof replacements take 1-3 days, depending on the size and complexity of the project. We'll provide a detailed timeline during your consultation.</p>
+            </div>
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Do you work with insurance companies?</h3>
+              <p className="text-gray-600">Yes, we work directly with insurance companies to help you navigate the claims process. We can provide detailed estimates and documentation for your claim.</p>
+            </div>
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What warranties do you offer?</h3>
+              <p className="text-gray-600">We offer comprehensive warranties on both materials and workmanship. Our workmanship warranty ranges from 5-10 years, and material warranties vary by manufacturer.</p>
+            </div>
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">How often should I inspect my roof?</h3>
+              <p className="text-gray-600">We recommend professional roof inspections twice a year - once in spring and once in fall. Regular inspections help identify potential issues before they become major problems.</p>
+            </div>
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">What's the cost of a new roof?</h3>
+              <p className="text-gray-600">Roof costs vary based on size, materials, and complexity. We provide free, detailed estimates with no obligation. Contact us for a personalized quote.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Awards & Certifications Section */}
+      <section id="awards" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Awards & Certifications</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Recognized for excellence in roofing services and customer satisfaction.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-10 h-10 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">A+ BBB Rating</h3>
+              <p className="text-gray-600">Better Business Bureau</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">GAF Certified</h3>
+              <p className="text-gray-600">Master Elite Contractor</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-10 h-10 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">5-Star Reviews</h3>
+              <p className="text-gray-600">Google & Yelp</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-10 h-10 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Licensed & Bonded</h3>
+              <p className="text-gray-600">State Certified</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Insurance & Financing Section */}
+      <section id="insurance-financing" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Insurance & Financing</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We make it easy to protect your investment with flexible payment options and insurance assistance.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Insurance Claims</h3>
+              <p className="text-gray-600 mb-4">We work directly with your insurance company to handle the entire claims process, ensuring you get the coverage you deserve.</p>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• Storm damage assessment</li>
+                <li>• Detailed documentation</li>
+                <li>• Direct insurance billing</li>
+                <li>• Claims advocacy</li>
+              </ul>
+            </div>
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Flexible Financing</h3>
+              <p className="text-gray-600 mb-4">Multiple financing options available to fit your budget, including low-interest loans and payment plans.</p>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• 0% APR financing available</li>
+                <li>• No payment for 12 months</li>
+                <li>• Quick approval process</li>
+                <li>• Flexible terms</li>
+              </ul>
+            </div>
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Warranty Protection</h3>
+              <p className="text-gray-600 mb-4">Comprehensive warranty coverage on both materials and workmanship to protect your investment.</p>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• Material warranties up to 50 years</li>
+                <li>• Workmanship warranty 5-10 years</li>
+                <li>• Transferable warranties</li>
+                <li>• 24/7 warranty support</li>
+              </ul>
             </div>
           </div>
         </div>
