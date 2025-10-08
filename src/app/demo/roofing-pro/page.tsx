@@ -280,7 +280,11 @@ export default function RoofingProDemo() {
               <a 
                 href="#home" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 Home
               </a>
@@ -294,14 +298,33 @@ export default function RoofingProDemo() {
               <a 
                 href="#services" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 Services
               </a>
               <a 
+                href="#why-choose-us" 
+                className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('why-choose-us')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Why Us
+              </a>
+              <a 
                 href="#projects" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 Projects
               </a>
@@ -315,14 +338,22 @@ export default function RoofingProDemo() {
               <a 
                 href="#faq" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 FAQ
               </a>
               <a 
                 href="#contact" 
                 className="block px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 Contact
               </a>
@@ -881,7 +912,13 @@ export default function RoofingProDemo() {
             }`} style={{ transitionDelay: '200ms' }}>
               <div 
                 className="relative h-80 w-full perspective-1000"
-                onClick={() => toggleCardFlip(0)}
+                onClick={(e) => {
+                  // Only handle click on mobile devices
+                  if (window.innerWidth < 768) {
+                    e.preventDefault();
+                    toggleCardFlip(0);
+                  }
+                }}
               >
                 <div className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
                   flippedCards[0] ? 'rotate-y-180' : 'group-hover:rotate-y-180'
@@ -942,7 +979,13 @@ export default function RoofingProDemo() {
             }`} style={{ transitionDelay: '400ms' }}>
               <div 
                 className="relative h-80 w-full perspective-1000"
-                onClick={() => toggleCardFlip(1)}
+                onClick={(e) => {
+                  // Only handle click on mobile devices
+                  if (window.innerWidth < 768) {
+                    e.preventDefault();
+                    toggleCardFlip(1);
+                  }
+                }}
               >
                 <div className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
                   flippedCards[1] ? 'rotate-y-180' : 'group-hover:rotate-y-180'
@@ -1003,7 +1046,13 @@ export default function RoofingProDemo() {
             }`} style={{ transitionDelay: '600ms' }}>
               <div 
                 className="relative h-80 w-full perspective-1000"
-                onClick={() => toggleCardFlip(2)}
+                onClick={(e) => {
+                  // Only handle click on mobile devices
+                  if (window.innerWidth < 768) {
+                    e.preventDefault();
+                    toggleCardFlip(2);
+                  }
+                }}
               >
                 <div className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
                   flippedCards[2] ? 'rotate-y-180' : 'group-hover:rotate-y-180'
@@ -1064,7 +1113,13 @@ export default function RoofingProDemo() {
             }`} style={{ transitionDelay: '800ms' }}>
               <div 
                 className="relative h-80 w-full perspective-1000"
-                onClick={() => toggleCardFlip(3)}
+                onClick={(e) => {
+                  // Only handle click on mobile devices
+                  if (window.innerWidth < 768) {
+                    e.preventDefault();
+                    toggleCardFlip(3);
+                  }
+                }}
               >
                 <div className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
                   flippedCards[3] ? 'rotate-y-180' : 'group-hover:rotate-y-180'
@@ -1125,7 +1180,13 @@ export default function RoofingProDemo() {
             }`} style={{ transitionDelay: '1000ms' }}>
               <div 
                 className="relative h-80 w-full perspective-1000"
-                onClick={() => toggleCardFlip(4)}
+                onClick={(e) => {
+                  // Only handle click on mobile devices
+                  if (window.innerWidth < 768) {
+                    e.preventDefault();
+                    toggleCardFlip(4);
+                  }
+                }}
               >
                 <div className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
                   flippedCards[4] ? 'rotate-y-180' : 'group-hover:rotate-y-180'
@@ -1186,7 +1247,13 @@ export default function RoofingProDemo() {
             }`} style={{ transitionDelay: '1200ms' }}>
               <div 
                 className="relative h-80 w-full perspective-1000"
-                onClick={() => toggleCardFlip(5)}
+                onClick={(e) => {
+                  // Only handle click on mobile devices
+                  if (window.innerWidth < 768) {
+                    e.preventDefault();
+                    toggleCardFlip(5);
+                  }
+                }}
               >
                 <div className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
                   flippedCards[5] ? 'rotate-y-180' : 'group-hover:rotate-y-180'
