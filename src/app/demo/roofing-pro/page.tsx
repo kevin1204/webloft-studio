@@ -390,147 +390,157 @@ export default function RoofingProDemo() {
                 </li>
               </ul>
             </div>
-            <div className="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`group bg-white border border-gray-200 rounded-lg p-8 hover:shadow-xl transition-all duration-300 hover-lift hover-glow transform ${
+              isVisible.services ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '200ms' }}>
+              <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-6 group-hover:bg-green-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-8 h-8 text-green-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Roof Repair & Maintenance</h3>
-              <p className="text-gray-600 mb-6">Expert repair services and preventive maintenance to extend your roof's lifespan and protect your property.</p>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">Roof Repair & Maintenance</h3>
+              <p className="text-gray-600 mb-6 group-hover:text-gray-700 transition-colors duration-300">Expert repair services and preventive maintenance to extend your roof's lifespan and protect your property.</p>
+              <ul className="space-y-2 text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300">
+                  <svg className="w-4 h-4 text-green-500 mr-2 group-hover:text-green-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Leak Repairs
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300 delay-100">
+                  <svg className="w-4 h-4 text-green-500 mr-2 group-hover:text-green-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Shingle Replacement
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300 delay-200">
+                  <svg className="w-4 h-4 text-green-500 mr-2 group-hover:text-green-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Storm Damage
                 </li>
               </ul>
             </div>
-            <div className="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`group bg-white border border-gray-200 rounded-lg p-8 hover:shadow-xl transition-all duration-300 hover-lift hover-glow transform ${
+              isVisible.services ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '400ms' }}>
+              <div className="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-8 h-8 text-purple-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Flat Roofing</h3>
-              <p className="text-gray-600 mb-6">Specialized flat roof solutions for commercial buildings and modern residential properties.</p>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors duration-300">Flat Roofing</h3>
+              <p className="text-gray-600 mb-6 group-hover:text-gray-700 transition-colors duration-300">Specialized flat roof solutions for commercial buildings and modern residential properties.</p>
+              <ul className="space-y-2 text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300">
+                  <svg className="w-4 h-4 text-purple-500 mr-2 group-hover:text-purple-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   EPDM Rubber
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300 delay-100">
+                  <svg className="w-4 h-4 text-purple-500 mr-2 group-hover:text-purple-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   TPO Membrane
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300 delay-200">
+                  <svg className="w-4 h-4 text-purple-500 mr-2 group-hover:text-purple-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Modified Bitumen
                 </li>
               </ul>
             </div>
-            <div className="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`group bg-white border border-gray-200 rounded-lg p-8 hover:shadow-xl transition-all duration-300 hover-lift hover-glow transform ${
+              isVisible.services ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '600ms' }}>
+              <div className="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center mb-6 group-hover:bg-orange-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-8 h-8 text-orange-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Gutter Installation & Cleaning</h3>
-              <p className="text-gray-600 mb-6">Complete gutter solutions including installation, repair, and maintenance to protect your property from water damage.</p>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4 group-hover:text-orange-600 transition-colors duration-300">Gutter Installation & Cleaning</h3>
+              <p className="text-gray-600 mb-6 group-hover:text-gray-700 transition-colors duration-300">Complete gutter solutions including installation, repair, and maintenance to protect your property from water damage.</p>
+              <ul className="space-y-2 text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300">
+                  <svg className="w-4 h-4 text-orange-500 mr-2 group-hover:text-orange-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Seamless Gutters
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300 delay-100">
+                  <svg className="w-4 h-4 text-orange-500 mr-2 group-hover:text-orange-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Gutter Guards
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300 delay-200">
+                  <svg className="w-4 h-4 text-orange-500 mr-2 group-hover:text-orange-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Downspout Repair
                 </li>
               </ul>
             </div>
-            <div className="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`group bg-white border border-gray-200 rounded-lg p-8 hover:shadow-xl transition-all duration-300 hover-lift hover-glow transform ${
+              isVisible.services ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '800ms' }}>
+              <div className="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6 group-hover:bg-red-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-8 h-8 text-red-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Emergency Leak Repair</h3>
-              <p className="text-gray-600 mb-6">24/7 emergency response for urgent roofing issues to minimize damage and protect your property.</p>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4 group-hover:text-red-600 transition-colors duration-300">Emergency Leak Repair</h3>
+              <p className="text-gray-600 mb-6 group-hover:text-gray-700 transition-colors duration-300">24/7 emergency response for urgent roofing issues to minimize damage and protect your property.</p>
+              <ul className="space-y-2 text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300">
+                  <svg className="w-4 h-4 text-red-500 mr-2 group-hover:text-red-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Same-Day Response
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300 delay-100">
+                  <svg className="w-4 h-4 text-red-500 mr-2 group-hover:text-red-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Temporary Patching
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300 delay-200">
+                  <svg className="w-4 h-4 text-red-500 mr-2 group-hover:text-red-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Permanent Solutions
                 </li>
               </ul>
             </div>
-            <div className="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`group bg-white border border-gray-200 rounded-lg p-8 hover:shadow-xl transition-all duration-300 hover-lift hover-glow transform ${
+              isVisible.services ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '1000ms' }}>
+              <div className="w-16 h-16 bg-teal-100 rounded-lg flex items-center justify-center mb-6 group-hover:bg-teal-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-8 h-8 text-teal-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Shingle Replacement</h3>
-              <p className="text-gray-600 mb-6">Professional shingle replacement services using high-quality materials and expert installation techniques.</p>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4 group-hover:text-teal-600 transition-colors duration-300">Shingle Replacement</h3>
+              <p className="text-gray-600 mb-6 group-hover:text-gray-700 transition-colors duration-300">Professional shingle replacement services using high-quality materials and expert installation techniques.</p>
+              <ul className="space-y-2 text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300">
+                  <svg className="w-4 h-4 text-teal-500 mr-2 group-hover:text-teal-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Architectural Shingles
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300 delay-100">
+                  <svg className="w-4 h-4 text-teal-500 mr-2 group-hover:text-teal-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   3-Tab Shingles
                 </li>
-                <li className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li className="flex items-center group-hover:translate-x-2 transition-transform duration-300 delay-200">
+                  <svg className="w-4 h-4 text-teal-500 mr-2 group-hover:text-teal-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Designer Shingles
@@ -544,48 +554,61 @@ export default function RoofingProDemo() {
       {/* Why Choose Us Section */}
       <section id="why-choose-us" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose RoofingPro?</h2>
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible['why-choose-us'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 relative group">
+              Why Choose RoofingPro?
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We're not just another roofing company. Here's what sets us apart from the competition.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`text-center group hover-lift transform transition-all duration-500 ${
+              isVisible['why-choose-us'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '200ms' }}>
+              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Licensed & Insured</h3>
-              <p className="text-gray-600">Fully licensed contractors with comprehensive insurance coverage for your peace of mind.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">Licensed & Insured</h3>
+              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Fully licensed contractors with comprehensive insurance coverage for your peace of mind.</p>
             </div>
-            <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`text-center group hover-lift transform transition-all duration-500 ${
+              isVisible['why-choose-us'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '400ms' }}>
+              <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-8 h-8 text-green-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">25+ Years Experience</h3>
-              <p className="text-gray-600">Over two decades of expertise in residential and commercial roofing projects.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">25+ Years Experience</h3>
+              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Over two decades of expertise in residential and commercial roofing projects.</p>
             </div>
-            <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`text-center group hover-lift transform transition-all duration-500 ${
+              isVisible['why-choose-us'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '600ms' }}>
+              <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-8 h-8 text-purple-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">100% Satisfaction</h3>
-              <p className="text-gray-600">We guarantee your complete satisfaction with our workmanship and materials.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">100% Satisfaction</h3>
+              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">We guarantee your complete satisfaction with our workmanship and materials.</p>
             </div>
-            <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`text-center group hover-lift transform transition-all duration-500 ${
+              isVisible['why-choose-us'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '800ms' }}>
+              <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-600 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-8 h-8 text-orange-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Premium Materials</h3>
-              <p className="text-gray-600">We use only the highest quality materials from trusted manufacturers.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-300">Premium Materials</h3>
+              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">We use only the highest quality materials from trusted manufacturers.</p>
             </div>
           </div>
         </div>
@@ -594,41 +617,52 @@ export default function RoofingProDemo() {
       {/* Service Areas Section */}
       <section id="service-areas" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Service Areas</h2>
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible['service-areas'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 relative group">
+              Service Areas
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We proudly serve the greater metropolitan area and surrounding communities with professional roofing services.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Primary Service Area</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li>• Downtown Metro</li>
-                <li>• Westside District</li>
-                <li>• Eastside Heights</li>
-                <li>• Northside Valley</li>
-                <li>• Southside Hills</li>
+            <div className={`group bg-white rounded-lg shadow-lg p-6 hover:shadow-xl hover-lift transform transition-all duration-500 ${
+              isVisible['service-areas'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '200ms' }}>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">Primary Service Area</h3>
+              <ul className="space-y-2 text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                <li className="group-hover:translate-x-2 transition-transform duration-300">• Downtown Metro</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-100">• Westside District</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-200">• Eastside Heights</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-300">• Northside Valley</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-400">• Southside Hills</li>
               </ul>
             </div>
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Extended Coverage</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li>• Suburban Communities</li>
-                <li>• Rural Areas (30-mile radius)</li>
-                <li>• Commercial Districts</li>
-                <li>• Industrial Zones</li>
-                <li>• Residential Neighborhoods</li>
+            <div className={`group bg-white rounded-lg shadow-lg p-6 hover:shadow-xl hover-lift transform transition-all duration-500 ${
+              isVisible['service-areas'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '400ms' }}>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">Extended Coverage</h3>
+              <ul className="space-y-2 text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                <li className="group-hover:translate-x-2 transition-transform duration-300">• Suburban Communities</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-100">• Rural Areas (30-mile radius)</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-200">• Commercial Districts</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-300">• Industrial Zones</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-400">• Residential Neighborhoods</li>
               </ul>
             </div>
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Emergency Service</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li>• 24/7 Emergency Response</li>
-                <li>• Storm Damage Assessment</li>
-                <li>• Same-Day Repairs</li>
-                <li>• Temporary Tarping</li>
-                <li>• Insurance Claim Assistance</li>
+            <div className={`group bg-white rounded-lg shadow-lg p-6 hover:shadow-xl hover-lift transform transition-all duration-500 ${
+              isVisible['service-areas'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '600ms' }}>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 group-hover:text-red-600 transition-colors duration-300">Emergency Service</h3>
+              <ul className="space-y-2 text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                <li className="group-hover:translate-x-2 transition-transform duration-300">• 24/7 Emergency Response</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-100">• Storm Damage Assessment</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-200">• Same-Day Repairs</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-300">• Temporary Tarping</li>
+                <li className="group-hover:translate-x-2 transition-transform duration-300 delay-400">• Insurance Claim Assistance</li>
               </ul>
             </div>
           </div>
@@ -638,32 +672,45 @@ export default function RoofingProDemo() {
       {/* Process Section */}
       <section id="process" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Process</h2>
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible.process ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 relative group">
+              Our Process
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               From initial consultation to final inspection, we follow a proven process that ensures quality results every time.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Free Consultation</h3>
-              <p className="text-gray-600">Schedule a free, no-obligation inspection and detailed estimate for your roofing project.</p>
+            <div className={`text-center group hover-lift transform transition-all duration-700 ${
+              isVisible.process ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '200ms' }}>
+              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold group-hover:scale-110 group-hover:bg-blue-700 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/25">1</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">Free Consultation</h3>
+              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Schedule a free, no-obligation inspection and detailed estimate for your roofing project.</p>
             </div>
-            <div className="text-center">
-              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Custom Proposal</h3>
-              <p className="text-gray-600">Receive a detailed proposal with material options, timeline, and transparent pricing.</p>
+            <div className={`text-center group hover-lift transform transition-all duration-700 ${
+              isVisible.process ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '400ms' }}>
+              <div className="bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold group-hover:scale-110 group-hover:bg-green-700 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-green-500/25">2</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Custom Proposal</h3>
+              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Receive a detailed proposal with material options, timeline, and transparent pricing.</p>
             </div>
-            <div className="text-center">
-              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Professional Installation</h3>
-              <p className="text-gray-600">Our skilled team performs the work with precision, keeping you informed throughout the process.</p>
+            <div className={`text-center group hover-lift transform transition-all duration-700 ${
+              isVisible.process ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '600ms' }}>
+              <div className="bg-purple-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold group-hover:scale-110 group-hover:bg-purple-700 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-purple-500/25">3</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">Professional Installation</h3>
+              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Our skilled team performs the work with precision, keeping you informed throughout the process.</p>
             </div>
-            <div className="text-center">
-              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">4</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Final Inspection</h3>
-              <p className="text-gray-600">Complete quality inspection and cleanup, with warranty documentation and maintenance tips.</p>
+            <div className={`text-center group hover-lift transform transition-all duration-700 ${
+              isVisible.process ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`} style={{ transitionDelay: '800ms' }}>
+              <div className="bg-orange-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold group-hover:scale-110 group-hover:bg-orange-700 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-orange-500/25">4</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-300">Final Inspection</h3>
+              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">Complete quality inspection and cleanup, with warranty documentation and maintenance tips.</p>
             </div>
           </div>
         </div>
