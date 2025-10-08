@@ -1212,61 +1212,17 @@ export default function RoofingProDemo() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {[
-              {
-                src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                alt: "Residential Roof Installation",
-                title: "Residential Installation"
-              },
-              {
-                src: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                alt: "Commercial Roof Repair",
-                title: "Commercial Repair"
-              },
-              {
-                src: "https://images.unsplash.com/photo-1560790671-b76ca6097803?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                alt: "Metal Roof Installation",
-                title: "Metal Roofing"
-              },
-              {
-                src: "https://images.unsplash.com/photo-1582719471313-ad779571171f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                alt: "Flat Roof Installation",
-                title: "Flat Roof System"
-              },
-              {
-                src: "https://images.unsplash.com/photo-1560493676-04071c5f467f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                alt: "Storm Damage Repair",
-                title: "Storm Damage Repair"
-              },
-              {
-                src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                alt: "Gutter Installation",
-                title: "Gutter System"
-              },
-              {
-                src: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                alt: "Roof Inspection",
-                title: "Professional Inspection"
-              },
-              {
-                src: "https://images.unsplash.com/photo-1560790671-b76ca6097803?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                alt: "Roof Maintenance",
-                title: "Maintenance Service"
-              }
-            ].map((image, index) => (
-              <div
-                key={index}
-                className={`group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-700 hover:scale-105 hover:shadow-2xl ${
-                  isVisible.gallery ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-                onClick={() => setSelectedImage(image.src)}
-              >
-                <div className="aspect-square relative">
+          {/* Mosaic Gallery Layout */}
+          <div className={`transform transition-all duration-1000 ${
+            isVisible.gallery ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+              {/* Large featured image */}
+              <div className="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-700 hover:scale-105 hover:shadow-2xl">
+                <div className="aspect-square md:aspect-[4/3] relative">
                   <img
-                    src={image.src}
-                    alt={image.alt}
+                    src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Featured Roofing Project"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"
                   />
@@ -1275,15 +1231,116 @@ export default function RoofingProDemo() {
                       <svg className="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                       </svg>
-                      <p className="text-sm font-medium">Click to expand</p>
+                      <p className="text-sm font-medium">View Gallery</p>
                     </div>
                   </div>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                  <h3 className="text-white font-semibold text-sm">{image.title}</h3>
+                  <h3 className="text-white font-semibold text-lg">Residential Installation</h3>
                 </div>
               </div>
-            ))}
+              
+              {/* Smaller images */}
+              <div className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-700 hover:scale-105 hover:shadow-2xl">
+                <div className="aspect-square relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Commercial Roof Repair"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center">
+                      <svg className="w-8 h-8 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2">
+                  <h3 className="text-white font-semibold text-sm">Commercial Repair</h3>
+                </div>
+              </div>
+              
+              <div className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-700 hover:scale-105 hover:shadow-2xl">
+                <div className="aspect-square relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1560790671-b76ca6097803?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Metal Roof Installation"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center">
+                      <svg className="w-8 h-8 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2">
+                  <h3 className="text-white font-semibold text-sm">Metal Roofing</h3>
+                </div>
+              </div>
+              
+              <div className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-700 hover:scale-105 hover:shadow-2xl">
+                <div className="aspect-square relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1582719471313-ad779571171f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Flat Roof Installation"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center">
+                      <svg className="w-8 h-8 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2">
+                  <h3 className="text-white font-semibold text-sm">Flat Roof System</h3>
+                </div>
+              </div>
+              
+              <div className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-700 hover:scale-105 hover:shadow-2xl">
+                <div className="aspect-square relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1560493676-04071c5f467f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Storm Damage Repair"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center">
+                      <svg className="w-8 h-8 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2">
+                  <h3 className="text-white font-semibold text-sm">Storm Damage</h3>
+                </div>
+              </div>
+            </div>
+            
+            {/* View Gallery Button */}
+            <div className="text-center">
+              <Link 
+                href="/demo/roofing-pro/gallery"
+                className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 group"
+              >
+                <svg className="w-6 h-6 mr-2 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                View Full Gallery
+                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
