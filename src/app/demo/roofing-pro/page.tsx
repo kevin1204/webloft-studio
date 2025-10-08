@@ -354,159 +354,200 @@ export default function RoofingProDemo() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group cursor-pointer bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="relative overflow-hidden h-64">
-                <img 
-                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                  alt="Residential roof replacement project"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-end">
-                  <div className="p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-xl font-semibold mb-2">Residential Roof Replacement</h3>
-                    <p className="text-sm text-gray-200">Complete asphalt shingle replacement with architectural shingles</p>
+            {/* Card 1 - Residential Roof Replacement */}
+            <div className="group cursor-pointer">
+              <div className="relative h-80 w-full perspective-1000">
+                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                  {/* Front of card */}
+                  <div className="absolute inset-0 w-full h-full backface-hidden">
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                      <div className="h-64 overflow-hidden">
+                        <img 
+                          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Residential roof replacement project"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-semibold text-gray-900">Residential Roof Replacement</h3>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Residential Roof Replacement</h3>
-                <p className="text-gray-600 mb-4">Complete asphalt shingle replacement with architectural shingles</p>
-                <div className="flex items-center text-blue-600 font-medium">
-                  <span>View Project</span>
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  {/* Back of card */}
+                  <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
+                    <div className="bg-blue-600 rounded-lg shadow-lg h-full flex items-center justify-center p-6">
+                      <div className="text-center text-white">
+                        <h3 className="text-xl font-semibold mb-4">Residential Roof Replacement</h3>
+                        <p className="text-blue-100">Complete asphalt shingle replacement with architectural shingles. Professional installation with premium materials and expert craftsmanship.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="group cursor-pointer bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="relative overflow-hidden h-64">
-                <img 
-                  src="https://images.unsplash.com/photo-1581578731548-c6a0c3f2f2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                  alt="Commercial flat roof installation"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-end">
-                  <div className="p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-xl font-semibold mb-2">Commercial Flat Roof</h3>
-                    <p className="text-sm text-gray-200">EPDM membrane installation for office building</p>
+
+            {/* Card 2 - Commercial Flat Roof */}
+            <div className="group cursor-pointer">
+              <div className="relative h-80 w-full perspective-1000">
+                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                  {/* Front of card */}
+                  <div className="absolute inset-0 w-full h-full backface-hidden">
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                      <div className="h-64 overflow-hidden">
+                        <img 
+                          src="https://images.unsplash.com/photo-1581578731548-c6a0c3f2f2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Commercial flat roof installation"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-semibold text-gray-900">Commercial Flat Roof</h3>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Commercial Flat Roof</h3>
-                <p className="text-gray-600 mb-4">EPDM membrane installation for office building</p>
-                <div className="flex items-center text-blue-600 font-medium">
-                  <span>View Project</span>
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  {/* Back of card */}
+                  <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
+                    <div className="bg-blue-600 rounded-lg shadow-lg h-full flex items-center justify-center p-6">
+                      <div className="text-center text-white">
+                        <h3 className="text-xl font-semibold mb-4">Commercial Flat Roof</h3>
+                        <p className="text-blue-100">EPDM membrane installation for office building. Durable, weather-resistant solution for commercial properties.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="group cursor-pointer bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="relative overflow-hidden h-64">
-                <img 
-                  src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                  alt="Metal roof installation project"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-end">
-                  <div className="p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-xl font-semibold mb-2">Metal Roof Installation</h3>
-                    <p className="text-sm text-gray-200">Standing seam metal roof for modern home</p>
+
+            {/* Card 3 - Metal Roof Installation */}
+            <div className="group cursor-pointer">
+              <div className="relative h-80 w-full perspective-1000">
+                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                  {/* Front of card */}
+                  <div className="absolute inset-0 w-full h-full backface-hidden">
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                      <div className="h-64 overflow-hidden">
+                        <img 
+                          src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Metal roof installation project"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-semibold text-gray-900">Metal Roof Installation</h3>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Metal Roof Installation</h3>
-                <p className="text-gray-600 mb-4">Standing seam metal roof for modern home</p>
-                <div className="flex items-center text-blue-600 font-medium">
-                  <span>View Project</span>
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  {/* Back of card */}
+                  <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
+                    <div className="bg-blue-600 rounded-lg shadow-lg h-full flex items-center justify-center p-6">
+                      <div className="text-center text-white">
+                        <h3 className="text-xl font-semibold mb-4">Metal Roof Installation</h3>
+                        <p className="text-blue-100">Standing seam metal roof for modern home. Long-lasting, energy-efficient solution with contemporary appeal.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="group cursor-pointer bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="relative overflow-hidden h-64">
-                <img 
-                  src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                  alt="Gutter system installation"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-end">
-                  <div className="p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-xl font-semibold mb-2">Gutter System Installation</h3>
-                    <p className="text-sm text-gray-200">Seamless aluminum gutters with leaf guards</p>
+
+            {/* Card 4 - Gutter System Installation */}
+            <div className="group cursor-pointer">
+              <div className="relative h-80 w-full perspective-1000">
+                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                  {/* Front of card */}
+                  <div className="absolute inset-0 w-full h-full backface-hidden">
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                      <div className="h-64 overflow-hidden">
+                        <img 
+                          src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Gutter system installation"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-semibold text-gray-900">Gutter System Installation</h3>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Gutter System Installation</h3>
-                <p className="text-gray-600 mb-4">Seamless aluminum gutters with leaf guards</p>
-                <div className="flex items-center text-blue-600 font-medium">
-                  <span>View Project</span>
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  {/* Back of card */}
+                  <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
+                    <div className="bg-blue-600 rounded-lg shadow-lg h-full flex items-center justify-center p-6">
+                      <div className="text-center text-white">
+                        <h3 className="text-xl font-semibold mb-4">Gutter System Installation</h3>
+                        <p className="text-blue-100">Seamless aluminum gutters with leaf guards. Complete water management system for your property.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="group cursor-pointer bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="relative overflow-hidden h-64">
-                <img 
-                  src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                  alt="Storm damage repair work"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-end">
-                  <div className="p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-xl font-semibold mb-2">Storm Damage Repair</h3>
-                    <p className="text-sm text-gray-200">Emergency repair after severe weather damage</p>
+
+            {/* Card 5 - Storm Damage Repair */}
+            <div className="group cursor-pointer">
+              <div className="relative h-80 w-full perspective-1000">
+                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                  {/* Front of card */}
+                  <div className="absolute inset-0 w-full h-full backface-hidden">
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                      <div className="h-64 overflow-hidden">
+                        <img 
+                          src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Storm damage repair work"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-semibold text-gray-900">Storm Damage Repair</h3>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Storm Damage Repair</h3>
-                <p className="text-gray-600 mb-4">Emergency repair after severe weather damage</p>
-                <div className="flex items-center text-blue-600 font-medium">
-                  <span>View Project</span>
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  {/* Back of card */}
+                  <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
+                    <div className="bg-blue-600 rounded-lg shadow-lg h-full flex items-center justify-center p-6">
+                      <div className="text-center text-white">
+                        <h3 className="text-xl font-semibold mb-4">Storm Damage Repair</h3>
+                        <p className="text-blue-100">Emergency repair after severe weather damage. Quick response and professional restoration services.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="group cursor-pointer bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="relative overflow-hidden h-64">
-                <img 
-                  src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                  alt="Tile roof restoration work"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-end">
-                  <div className="p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-xl font-semibold mb-2">Tile Roof Restoration</h3>
-                    <p className="text-sm text-gray-200">Clay tile roof repair and maintenance</p>
+
+            {/* Card 6 - Tile Roof Restoration */}
+            <div className="group cursor-pointer">
+              <div className="relative h-80 w-full perspective-1000">
+                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                  {/* Front of card */}
+                  <div className="absolute inset-0 w-full h-full backface-hidden">
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                      <div className="h-64 overflow-hidden">
+                        <img 
+                          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Tile roof restoration work"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-semibold text-gray-900">Tile Roof Restoration</h3>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Tile Roof Restoration</h3>
-                <p className="text-gray-600 mb-4">Clay tile roof repair and maintenance</p>
-                <div className="flex items-center text-blue-600 font-medium">
-                  <span>View Project</span>
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  {/* Back of card */}
+                  <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
+                    <div className="bg-blue-600 rounded-lg shadow-lg h-full flex items-center justify-center p-6">
+                      <div className="text-center text-white">
+                        <h3 className="text-xl font-semibold mb-4">Tile Roof Restoration</h3>
+                        <p className="text-blue-100">Clay tile roof repair and maintenance. Preserving the beauty and integrity of traditional roofing materials.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
