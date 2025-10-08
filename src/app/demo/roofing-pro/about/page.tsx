@@ -266,6 +266,178 @@ export default function RoofingProAbout() {
         </div>
       </section>
 
+      {/* Certifications Banner */}
+      <section id="certifications" className="py-16 bg-gray-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-12 transform transition-all duration-1000 ${
+            isVisible.certifications ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 relative group">
+              Our Certifications & Accreditations
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Licensed, certified, and committed to the highest standards of roofing excellence.
+            </p>
+          </div>
+
+          {/* Scrolling Certifications */}
+          <div className="relative">
+            <div className="flex animate-scroll space-x-12">
+              {/* First set of certifications */}
+              <div className="flex space-x-12 flex-shrink-0">
+                <div className="flex items-center justify-center bg-white rounded-lg shadow-md px-8 py-6 min-w-[200px] hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-sm">Licensed Contractor</h3>
+                    <p className="text-xs text-gray-600">State License #12345</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center bg-white rounded-lg shadow-md px-8 py-6 min-w-[200px] hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-sm">Fully Insured</h3>
+                    <p className="text-xs text-gray-600">General Liability</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center bg-white rounded-lg shadow-md px-8 py-6 min-w-[200px] hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-sm">BBB A+ Rating</h3>
+                    <p className="text-xs text-gray-600">Better Business Bureau</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center bg-white rounded-lg shadow-md px-8 py-6 min-w-[200px] hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-sm">GAF Certified</h3>
+                    <p className="text-xs text-gray-600">Master Elite Contractor</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center bg-white rounded-lg shadow-md px-8 py-6 min-w-[200px] hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-sm">OSHA Certified</h3>
+                    <p className="text-xs text-gray-600">Safety Standards</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center bg-white rounded-lg shadow-md px-8 py-6 min-w-[200px] hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-sm">25+ Years</h3>
+                    <p className="text-xs text-gray-600">Industry Experience</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Duplicate set for seamless loop */}
+              <div className="flex space-x-12 flex-shrink-0">
+                <div className="flex items-center justify-center bg-white rounded-lg shadow-md px-8 py-6 min-w-[200px] hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-sm">Licensed Contractor</h3>
+                    <p className="text-xs text-gray-600">State License #12345</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center bg-white rounded-lg shadow-md px-8 py-6 min-w-[200px] hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-sm">Fully Insured</h3>
+                    <p className="text-xs text-gray-600">General Liability</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center bg-white rounded-lg shadow-md px-8 py-6 min-w-[200px] hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-sm">BBB A+ Rating</h3>
+                    <p className="text-xs text-gray-600">Better Business Bureau</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center bg-white rounded-lg shadow-md px-8 py-6 min-w-[200px] hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-sm">GAF Certified</h3>
+                    <p className="text-xs text-gray-600">Master Elite Contractor</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center bg-white rounded-lg shadow-md px-8 py-6 min-w-[200px] hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-sm">OSHA Certified</h3>
+                    <p className="text-xs text-gray-600">Safety Standards</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center bg-white rounded-lg shadow-md px-8 py-6 min-w-[200px] hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-sm">25+ Years</h3>
+                    <p className="text-xs text-gray-600">Industry Experience</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Statistics Section */}
       <section id="stats" className="py-20 bg-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
