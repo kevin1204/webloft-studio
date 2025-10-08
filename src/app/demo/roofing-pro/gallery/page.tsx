@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 export default function RoofingProGallery() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const galleryImages = [
@@ -72,32 +71,42 @@ export default function RoofingProGallery() {
   ];
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+    if (selectedImage !== null) {
+      setSelectedImage((selectedImage + 1) % galleryImages.length);
+    }
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+    if (selectedImage !== null) {
+      setSelectedImage(selectedImage === 0 ? galleryImages.length - 1 : selectedImage - 1);
+    }
   };
 
-  const goToImage = (index: number) => {
-    setCurrentImageIndex(index);
+  const openImage = (index: number) => {
+    setSelectedImage(index);
+  };
+
+  const closeImage = () => {
+    setSelectedImage(null);
   };
 
   // Keyboard navigation
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') {
-        prevImage();
-      } else if (e.key === 'ArrowRight') {
-        nextImage();
-      } else if (e.key === 'Escape') {
-        setIsFullscreen(false);
+      if (selectedImage !== null) {
+        if (e.key === 'ArrowLeft') {
+          prevImage();
+        } else if (e.key === 'ArrowRight') {
+          nextImage();
+        } else if (e.key === 'Escape') {
+          closeImage();
+        }
       }
     };
 
     document.addEventListener('keydown', handleKeyPress);
     return () => document.removeEventListener('keydown', handleKeyPress);
-  }, [nextImage, prevImage]);
+  }, [selectedImage, nextImage, prevImage]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -310,103 +319,50 @@ export default function RoofingProGallery() {
       )}
 
       {/* Gallery Header */}
-      <div className="bg-gray-50 py-12">
+      <div className="bg-gray-50 py-8 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Work Gallery</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Our Work Gallery</h1>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
             Explore our portfolio of completed roofing projects and see the quality of our workmanship.
           </p>
         </div>
       </div>
 
-      {/* Main Gallery */}
-      <div className="py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Main Image Display */}
-          <div className="relative bg-gray-900 rounded-2xl overflow-hidden shadow-2xl mb-8">
-            <div className="aspect-[16/10] relative">
-              <img
-                src={galleryImages[currentImageIndex].src}
-                alt={galleryImages[currentImageIndex].alt}
-                className="w-full h-full object-cover cursor-pointer transition-transform duration-300 hover:scale-105"
-                onClick={() => setIsFullscreen(true)}
-              />
-              
-              {/* Navigation Arrows */}
-              <button
-                onClick={prevImage}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              
-              <button
-                onClick={nextImage}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-
-              {/* Image Counter */}
-              <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
-                {currentImageIndex + 1} / {galleryImages.length}
-              </div>
-
-              {/* Fullscreen Button */}
-              <button
-                onClick={() => setIsFullscreen(true)}
-                className="absolute bottom-4 right-4 bg-black/70 hover:bg-black/90 text-white rounded-full p-3 transition-all duration-300 hover:scale-110"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Image Info */}
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
-              {galleryImages[currentImageIndex].title}
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              {galleryImages[currentImageIndex].description}
-            </p>
-          </div>
-
-          {/* Thumbnail Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-10 gap-4">
+      {/* Mobile-First Gallery Grid */}
+      <div className="py-8 sm:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Responsive Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
             {galleryImages.map((image, index) => (
-              <button
+              <div
                 key={index}
-                onClick={() => goToImage(index)}
-                className={`relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-105 ${
-                  index === currentImageIndex 
-                    ? 'ring-4 ring-blue-500 scale-105' 
-                    : 'hover:ring-2 hover:ring-blue-300'
-                }`}
+                className="group relative aspect-square rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                onClick={() => openImage(index)}
               >
-                <div className="aspect-square">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {index === currentImageIndex && (
-                  <div className="absolute inset-0 bg-blue-500/20 flex items-center justify-center">
-                    <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+                
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="bg-white/90 text-gray-900 rounded-full p-2">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                       </svg>
                     </div>
                   </div>
-                )}
-              </button>
+                </div>
+                
+                {/* Image title */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2 sm:p-3">
+                  <h3 className="text-white text-xs sm:text-sm font-semibold truncate">
+                    {image.title}
+                  </h3>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -438,65 +394,78 @@ export default function RoofingProGallery() {
         </div>
       </div>
 
-      {/* Fullscreen Modal */}
-      {isFullscreen && (
-        <div 
-          className="fixed inset-0 bg-black z-50 flex items-center justify-center p-4"
-          onClick={() => setIsFullscreen(false)}
-        >
-          <div className="relative max-w-7xl max-h-full">
-            <img
-              src={galleryImages[currentImageIndex].src}
-              alt={galleryImages[currentImageIndex].alt}
-              className="max-w-full max-h-full object-contain rounded-lg"
-            />
-            
-            {/* Close Button */}
+      {/* Image Popup Modal */}
+      {selectedImage !== null && (
+        <div className="fixed inset-0 bg-black/95 z-50 flex flex-col">
+          {/* Header with close button */}
+          <div className="flex justify-between items-center p-4 sm:p-6">
+            <h2 className="text-white text-lg sm:text-xl font-semibold">
+              {galleryImages[selectedImage].title}
+            </h2>
             <button
-              onClick={() => setIsFullscreen(false)}
-              className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white rounded-full p-3 transition-colors duration-200"
+              onClick={closeImage}
+              className="bg-white/10 hover:bg-white/20 text-white rounded-full p-2 sm:p-3 transition-all duration-300 hover:scale-110"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
+          </div>
 
-            {/* Navigation in Fullscreen */}
+          {/* Main image area */}
+          <div className="flex-1 flex items-center justify-center p-4 relative">
+            <img
+              src={galleryImages[selectedImage].src}
+              alt={galleryImages[selectedImage].alt}
+              className="max-w-full max-h-full object-contain rounded-lg"
+            />
+            
+            {/* Navigation arrows */}
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                prevImage();
-              }}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white rounded-full p-3 transition-colors duration-200"
+              onClick={prevImage}
+              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 sm:p-3 transition-all duration-300 hover:scale-110"
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                nextImage();
-              }}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white rounded-full p-3 transition-colors duration-200"
+              onClick={nextImage}
+              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 sm:p-3 transition-all duration-300 hover:scale-110"
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
+          </div>
 
-            {/* Image Info in Fullscreen */}
-            <div className="absolute bottom-4 left-4 right-4 bg-black/70 text-white p-4 rounded-lg">
-              <h3 className="text-xl font-bold mb-2">
-                {galleryImages[currentImageIndex].title}
-              </h3>
-              <p className="text-gray-200">
-                {galleryImages[currentImageIndex].description}
-              </p>
-              <div className="mt-2 text-sm text-gray-300">
-                {currentImageIndex + 1} / {galleryImages.length}
-              </div>
+          {/* Image description */}
+          <div className="p-4 sm:p-6 text-center">
+            <p className="text-white/90 text-sm sm:text-base max-w-2xl mx-auto">
+              {galleryImages[selectedImage].description}
+            </p>
+          </div>
+
+          {/* Thumbnail strip */}
+          <div className="p-4 sm:p-6">
+            <div className="flex overflow-x-auto space-x-2 sm:space-x-3 pb-2">
+              {galleryImages.map((image, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedImage(index)}
+                  className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden transition-all duration-300 ${
+                    index === selectedImage 
+                      ? 'ring-2 ring-blue-400 scale-105' 
+                      : 'hover:scale-105 opacity-70 hover:opacity-100'
+                  }`}
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
             </div>
           </div>
         </div>
