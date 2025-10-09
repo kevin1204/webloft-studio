@@ -60,6 +60,17 @@ export default function TemplateBasedWebsites() {
       features: ['SEO Optimized', 'Mobile Responsive', 'Appointment Booking', 'Before/After Gallery', 'Team Profiles', 'Patient Testimonials'],
       image: '/PROJECTS/AERIES.png',
       demoUrl: '/demo/dental-pro'
+    },
+    {
+      id: 'smile-pro',
+      name: 'Smile Pro',
+      description: 'Premium dental clinic website with floating animations, interactive hero section, and modern aqua-to-white gradient design. Perfect for high-end dental practices.',
+      price: '$2,999',
+      pages: ['Home', 'Services', 'About', 'Team', 'Testimonials', 'Blog', 'Contact'],
+      features: ['Floating Animations', 'Interactive Hero', 'Service Icons Bar', 'Specialist Profiles', 'Blog Integration', 'Discount Plans', 'Modern Design'],
+      image: '/PROJECTS/FLOWGA.png',
+      demoUrl: '/demo/smile-pro',
+      isNew: true
     }
   ];
 

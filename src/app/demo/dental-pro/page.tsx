@@ -256,8 +256,8 @@ export default function DentalProDemo() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0">
+      <section id="home" className="relative min-h-screen flex items-center overflow-hidden isolate">
+        <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
             alt="Professional dental care"
@@ -283,13 +283,13 @@ export default function DentalProDemo() {
                   Experience modern dental care with our experienced team. We're committed to providing exceptional treatment in a comfortable, state-of-the-art environment.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <Link href="#booking" className="group bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 relative overflow-hidden">
                     <span className="relative z-10 flex items-center justify-center">
                       <svg className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
-                      Book Appointment
+                      Book Free Consultation
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                   </Link>
@@ -303,6 +303,16 @@ export default function DentalProDemo() {
                     </span>
                     <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                   </Link>
+                </div>
+                
+                {/* Urgency Element */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 mb-8 border border-white/20">
+                  <div className="flex items-center justify-center text-white">
+                    <svg className="w-5 h-5 text-yellow-400 mr-2 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                    </svg>
+                    <span className="font-semibold">⚡ Limited Time: Free Consultation + X-Ray ($150 Value)</span>
+                  </div>
                 </div>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -357,8 +367,9 @@ export default function DentalProDemo() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="about" className="relative py-20 bg-gray-50 z-10">
+        <div className="absolute inset-0 bg-gray-50"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className={`transform transition-all duration-1000 ${
               isVisible.about ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
@@ -370,9 +381,35 @@ export default function DentalProDemo() {
               <p className="text-xl text-gray-600 mb-6">
                 For over 15 years, DentalPro has been the trusted name in comprehensive dental care. We pride ourselves on delivering exceptional treatment using the latest technology and techniques, all while ensuring our patients feel comfortable and cared for.
               </p>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="text-lg text-gray-600 mb-6">
                 Our state-of-the-art facility is equipped with modern equipment, and our experienced team is dedicated to providing personalized care that meets your unique dental needs. We believe that everyone deserves a healthy, beautiful smile.
               </p>
+              
+              {/* Risk Reduction Messaging */}
+              <div className="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm text-green-700">
+                      <strong>100% Satisfaction Guarantee:</strong> If you're not completely satisfied with your treatment, we'll make it right or provide a full refund.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* CTA in About Section */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="#booking" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg text-center">
+                  Schedule Your Free Consultation
+                </Link>
+                <Link href="#services" className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105 text-center">
+                  View Our Services
+                </Link>
+              </div>
               <div className="grid grid-cols-2 gap-8">
                 <div className="group hover-lift p-4 rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-lg">
                   <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors duration-300 group-hover:scale-110">
@@ -475,12 +512,52 @@ export default function DentalProDemo() {
                 <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
                   {service.description}
                 </p>
-                <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300 group-hover:scale-105 transform">
-                  Learn More
-                </button>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <Link 
+                    href="#booking" 
+                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 hover:scale-105 text-center text-sm"
+                  >
+                    Book Now
+                  </Link>
+                  <Link 
+                    href="#contact" 
+                    className="flex-1 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 hover:scale-105 text-center text-sm"
+                  >
+                    Learn More
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Services CTA Section */}
+      <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-4">
+            Ready to Transform Your Smile?
+          </h2>
+          <p className="text-xl text-blue-100 mb-8">
+            Join thousands of satisfied patients who trust DentalPro for their dental care needs.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href="#booking" 
+              className="bg-white text-blue-600 hover:bg-blue-50 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            >
+              Book Free Consultation
+            </Link>
+            <Link 
+              href="tel:+1234567890" 
+              className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105"
+            >
+              Call (123) 456-7890
+            </Link>
+          </div>
+          <p className="text-sm text-blue-200 mt-4">
+            ⚡ Same-day appointments available • No insurance required • 100% satisfaction guarantee
+          </p>
         </div>
       </section>
 
@@ -595,9 +672,32 @@ export default function DentalProDemo() {
               What Our Patients Say
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
               Real stories from our satisfied patients
             </p>
+            
+            {/* Social Proof Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+              <div className="text-center">
+                <div className="text-4xl font-bold text-blue-600 mb-2">4.9/5</div>
+                <div className="text-gray-600">Average Rating</div>
+                <div className="flex justify-center mt-2">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-blue-600 mb-2">5000+</div>
+                <div className="text-gray-600">Happy Patients</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-blue-600 mb-2">98%</div>
+                <div className="text-gray-600">Would Recommend</div>
+              </div>
+            </div>
           </div>
           <div className="relative max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
@@ -644,9 +744,41 @@ export default function DentalProDemo() {
             <h2 className="text-4xl font-bold text-white mb-4">
               Book Your Appointment
             </h2>
-            <p className="text-xl text-blue-100">
+            <p className="text-xl text-blue-100 mb-6">
               Schedule your visit with our experienced dental team
             </p>
+            
+            {/* Urgency Banner */}
+            <div className="bg-yellow-400 text-blue-900 rounded-lg p-4 max-w-2xl mx-auto mb-6">
+              <div className="flex items-center justify-center">
+                <svg className="w-6 h-6 mr-2 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                </svg>
+                <span className="font-bold text-lg">⚡ LIMITED TIME: Free Consultation + X-Ray ($150 Value) - Book Today!</span>
+              </div>
+            </div>
+            
+            {/* Value Props */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto text-white">
+              <div className="flex items-center justify-center">
+                <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-sm">100% Satisfaction Guarantee</span>
+              </div>
+              <div className="flex items-center justify-center">
+                <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-sm">Same-Day Appointments Available</span>
+              </div>
+              <div className="flex items-center justify-center">
+                <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-sm">No Insurance Required</span>
+              </div>
+            </div>
           </div>
           
           {isBookingSubmitted ? (
@@ -948,6 +1080,106 @@ export default function DentalProDemo() {
                   <p className="text-sm">Interactive map would be embedded here</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold mb-6">
+            Don't Wait - Your Perfect Smile Awaits!
+          </h2>
+          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            Join over 5,000 satisfied patients who have transformed their smiles with DentalPro. 
+            Book your free consultation today and take the first step towards the confident smile you deserve.
+          </p>
+          
+          {/* Social Proof */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-400 mb-2">15+</div>
+              <div className="text-gray-300">Years Experience</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-400 mb-2">5000+</div>
+              <div className="text-gray-300">Happy Patients</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-400 mb-2">4.9/5</div>
+              <div className="text-gray-300">Average Rating</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-400 mb-2">98%</div>
+              <div className="text-gray-300">Would Recommend</div>
+            </div>
+          </div>
+          
+          {/* Urgency Element */}
+          <div className="bg-red-600 text-white rounded-lg p-6 max-w-2xl mx-auto mb-8">
+            <div className="flex items-center justify-center mb-4">
+              <svg className="w-8 h-8 mr-3 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+              </svg>
+              <span className="text-2xl font-bold">⚡ LIMITED TIME OFFER</span>
+            </div>
+            <p className="text-lg mb-4">
+              Free Consultation + Digital X-Ray ($150 Value) - Expires This Month!
+            </p>
+            <p className="text-sm text-red-100">
+              *Only 12 spots remaining this month. Book now to secure your free consultation.
+            </p>
+          </div>
+          
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Link 
+              href="#booking" 
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 relative overflow-hidden group"
+            >
+              <span className="relative z-10 flex items-center justify-center">
+                <svg className="w-6 h-6 mr-3 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Book Free Consultation Now
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+            </Link>
+            
+            <Link 
+              href="tel:+1234567890" 
+              className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-lg text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-white/25 relative overflow-hidden group"
+            >
+              <span className="relative z-10 flex items-center justify-center">
+                <svg className="w-6 h-6 mr-3 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                Call (123) 456-7890
+              </span>
+              <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+            </Link>
+          </div>
+          
+          {/* Risk Reduction */}
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-300">
+            <div className="flex items-center justify-center">
+              <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              100% Satisfaction Guarantee
+            </div>
+            <div className="flex items-center justify-center">
+              <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              No Insurance Required
+            </div>
+            <div className="flex items-center justify-center">
+              <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              Flexible Payment Options
             </div>
           </div>
         </div>
