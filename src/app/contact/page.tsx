@@ -360,8 +360,8 @@ export default function Contact() {
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Email</h3>
                     <p className="text-gray-600 dark:text-gray-300">
-                      <a href="mailto:infowebloftstudio@gmail.com" className="link-hover">
-                        infowebloftstudio@gmail.com
+                      <a href="mailto:info@webloftstudio.com" className="link-hover">
+                        info@webloftstudio.com
                       </a>
                     </p>
                     <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">

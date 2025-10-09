@@ -141,10 +141,10 @@ export default function TermsOfService() {
             </p>
             <div className="bg-gray-50 p-6 rounded-lg">
               <p className="text-gray-700 mb-2">
-                <strong>Email:</strong> infowebloftstudio@gmail.com
+                <strong>Email:</strong> info@webloftstudio.com
               </p>
               <p className="text-gray-700 mb-2">
-                <strong>Email:</strong> infowebloftstudio@gmail.com
+                <strong>Email:</strong> info@webloftstudio.com
               </p>
               <p className="text-gray-700">
                 <strong>Website:</strong> webloftstudio.com

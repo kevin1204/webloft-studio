@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
     // Email 1: Notification to you (business owner) with reply-to header
     const notificationEmail = {
       from: 'info@webloftstudio.com',
-      to: ['kevin.ortega2011@gmail.com', 'infowebloftstudio@gmail.com'],
+      to: ['kevin.ortega2011@gmail.com', 'info@webloftstudio.com'],
       reply_to: email, // This makes replies go directly to the user
       subject: `New Contact Form Submission from ${name}`,
       html: `

@@ -9,7 +9,7 @@ export default function StructuredData() {
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "email": "infowebloftstudio@gmail.com",
+      "email": "info@webloftstudio.com",
       "availableLanguage": "English"
     },
     "address": {

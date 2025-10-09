@@ -63,7 +63,7 @@ export default function Home() {
               "name": "Webloft Studio",
               "description": "Professional web design services serving businesses across North America",
               "url": "https://webloftstudio.com",
-              "email": "infowebloftstudio@gmail.com",
+              "email": "info@webloftstudio.com",
               "address": {
                 "@type": "PostalAddress",
                 "addressCountry": "CA"

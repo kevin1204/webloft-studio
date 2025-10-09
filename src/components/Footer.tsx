@@ -78,8 +78,8 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4">Contact Info</h3>
             <ul className="space-y-3">
               <li>
-                <a href="mailto:infowebloftstudio@gmail.com" className="text-gray-400 hover:text-green-400 transition-colors">
-                  infowebloftstudio@gmail.com
+                <a href="mailto:info@webloftstudio.com" className="text-gray-400 hover:text-green-400 transition-colors">
+                  info@webloftstudio.com
                 </a>
               </li>
               <li><span className="text-gray-400">Response within 24 hours</span></li>
