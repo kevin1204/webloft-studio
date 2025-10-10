@@ -1,55 +1,102 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 
-export const metadata = {
-  title: "About Webloft Studio | Toronto Web Design Company | Our Story",
-  description: "Meet Webloft Studio, Toronto's premier web design company. Learn about our mission to help small businesses succeed online with custom websites and digital solutions.",
-  alternates: {
-    canonical: 'https://webloftstudio.com/about'
-  }
+// Custom hook for intersection observer animations
+const useIntersectionObserver = (threshold = 0.2) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold }
+    );
+
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [threshold]);
+
+  return [ref, isVisible] as const;
 };
 
 export default function About() {
+  const [heroRef, heroVisible] = useIntersectionObserver(0.3);
+  const [missionRef, missionVisible] = useIntersectionObserver(0.2);
+  const [principlesRef, principlesVisible] = useIntersectionObserver(0.2);
+  const [storyRef, storyVisible] = useIntersectionObserver(0.2);
+  const [processRef, processVisible] = useIntersectionObserver(0.2);
+  const [industriesRef, industriesVisible] = useIntersectionObserver(0.2);
+  const [founderRef, founderVisible] = useIntersectionObserver(0.2);
+  const [ctaRef, ctaVisible] = useIntersectionObserver(0.3);
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="pt-20 pb-16 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white dark:text-white mb-6">
-            About Webloft Studio
+      <section ref={heroRef} className="pt-20 pb-16 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
+        {/* Floating background elements */}
+        <div className="absolute inset-0 opacity-10 dark:opacity-5">
+          <div className="absolute top-10 left-10 w-20 h-20 bg-green-400 rounded-full blur-xl animate-float"></div>
+          <div className="absolute top-20 right-20 w-32 h-32 bg-emerald-500 rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-10 left-1/4 w-24 h-24 bg-green-300 rounded-full blur-xl animate-float" style={{animationDelay: '2s'}}></div>
+        </div>
+        
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h1 className={`text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-all duration-1000 ${heroVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
+            About 
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600"> Webloft Studio</span>
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 dark:text-gray-300 leading-relaxed">
+          <p className={`text-xl text-gray-600 dark:text-gray-300 leading-relaxed transition-all duration-1000 delay-200 ${heroVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
             We're on a mission to help small and medium businesses thrive online with websites that actually drive business growth.
           </p>
         </div>
       </section>
 
       {/* Mission Section */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section ref={missionRef} className="py-20 relative overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-gradient-to-r from-green-400/20 to-emerald-600/20 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-gradient-to-l from-blue-400/20 to-indigo-600/20 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+        </div>
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white dark:text-white mb-6">
+            <div className={`transition-all duration-1000 ${missionVisible ? 'animate-fade-in-left' : 'opacity-0 translate-x-8'}`}>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
                 Our Mission
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300  mb-6 leading-relaxed">
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                 We believe every business deserves a website that works as hard as they do. Too many small business owners are stuck with outdated, slow websites that don't generate leads or reflect their professional expertise.
               </p>
-              <p className="text-lg text-gray-600 dark:text-gray-300  mb-6 leading-relaxed">
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                 That's where we come in. We combine modern design, cutting-edge technology, and proven marketing strategies to create websites that don't just look good—they deliver measurable business results.
               </p>
               <p className="text-lg font-semibold text-green-600 dark:text-green-400">
                 Your success is our success. When your website drives more leads, converts more customers, and grows your business, we've done our job right.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-green-100 to-emerald-200 dark:from-green-800 dark:to-emerald-900 p-8 rounded-xl">
+            <div className={`bg-gradient-to-br from-green-100 to-emerald-200 dark:from-green-800 dark:to-emerald-900 p-8 rounded-xl transition-all duration-1000 delay-200 ${missionVisible ? 'animate-fade-in-right' : 'opacity-0 translate-x-8'}`}>
               <div className="text-center">
-                <div className="w-20 h-20 bg-green-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-green-500 rounded-lg flex items-center justify-center mx-auto mb-6 transform hover:scale-110 transition-transform duration-300">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white  mb-4">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                   Business-First Approach
                 </h3>
                 <p className="text-gray-700 dark:text-gray-200">
@@ -62,56 +109,62 @@ export default function About() {
       </section>
 
       {/* What Drives Us Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section ref={principlesRef} className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div className="absolute top-1/4 left-10 w-32 h-32 bg-green-400 rounded-full blur-2xl animate-float"></div>
+          <div className="absolute bottom-1/4 right-10 w-40 h-40 bg-emerald-500 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white  mb-4">
+            <h2 className={`text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 transition-all duration-1000 ${principlesVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
               What Drives Us
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300  max-w-3xl mx-auto">
+            <p className={`text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-all duration-1000 delay-200 ${principlesVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
               These core principles guide everything we do and every decision we make for your project.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center mx-auto mb-6">
+            <div className={`bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg text-center transition-all duration-1000 transform hover:-translate-y-2 hover:shadow-xl ${principlesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{animationDelay: '0.1s'}}>
+              <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center mx-auto mb-6 transform hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white  mb-4">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                 ✅ Results Over Pretty Pictures
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 ">
+              <p className="text-gray-600 dark:text-gray-300">
                 We prioritize conversions and business growth over awards. Beautiful design means nothing if it doesn't generate leads and sales.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-lg flex items-center justify-center mx-auto mb-6">
+            <div className={`bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg text-center transition-all duration-1000 transform hover:-translate-y-2 hover:shadow-xl ${principlesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{animationDelay: '0.2s'}}>
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-lg flex items-center justify-center mx-auto mb-6 transform hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white  mb-4">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                 ✅ Simplicity in Complexity
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 ">
+              <p className="text-gray-600 dark:text-gray-300">
                 Making advanced technology accessible to everyone. You shouldn't need to become a tech expert to have a website that works.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-lg flex items-center justify-center mx-auto mb-6">
+            <div className={`bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg text-center transition-all duration-1000 transform hover:-translate-y-2 hover:shadow-xl ${principlesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{animationDelay: '0.3s'}}>
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-lg flex items-center justify-center mx-auto mb-6 transform hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white  mb-4">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                 ✅ Long-term Partnerships
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 ">
+              <p className="text-gray-600 dark:text-gray-300">
                 Building relationships that grow with your business. We're here for the long haul, not just the initial launch.
               </p>
             </div>
@@ -120,13 +173,19 @@ export default function About() {
       </section>
 
       {/* Our Story Section */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white  mb-8 text-center">
+      <section ref={storyRef} className="py-20 relative overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div className="absolute top-1/3 left-0 w-64 h-64 bg-gradient-to-r from-green-400/20 to-emerald-600/20 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-1/3 right-0 w-48 h-48 bg-gradient-to-l from-blue-400/20 to-indigo-600/20 rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
+        </div>
+        
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <h2 className={`text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center transition-all duration-1000 ${storyVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
             Why We Started Webloft Studio
           </h2>
 
-          <div className="prose prose-lg max-w-none text-gray-600 dark:text-gray-300  space-y-6">
+          <div className={`prose prose-lg max-w-none text-gray-600 dark:text-gray-300 space-y-6 transition-all duration-1000 delay-200 ${storyVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
             <p className="text-lg leading-relaxed">
               After working with dozens of small and medium businesses, we noticed a common problem: most business owners were frustrated with their websites. They had invested thousands of dollars in sites that looked okay but didn't generate leads, were impossible to update, and didn't grow with their business.
             </p>
@@ -135,7 +194,7 @@ export default function About() {
               The web development industry was failing these businesses. Agencies focused more on flashy designs than business results. Freelancers disappeared after launch. And business owners were left with expensive digital assets that didn't deliver value.
             </p>
 
-            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl my-8">
+            <div className={`bg-green-50 dark:bg-green-900/20 p-6 rounded-xl my-8 border border-green-200 dark:border-green-700 transition-all duration-1000 delay-400 transform hover:scale-105 ${storyVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
               <p className="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">
                 We founded Webloft Studio to change this.
               </p>
@@ -152,75 +211,84 @@ export default function About() {
       </section>
 
       {/* How We Work Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section ref={processRef} className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div className="absolute top-1/4 left-10 w-40 h-40 bg-green-400 rounded-full blur-2xl animate-float"></div>
+          <div className="absolute bottom-1/4 right-10 w-32 h-32 bg-emerald-500 rounded-full blur-xl animate-float" style={{animationDelay: '1s'}}></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white  mb-4">
+            <h2 className={`text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 transition-all duration-1000 ${processVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
               How We Work With You
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300  max-w-3xl mx-auto">
+            <p className={`text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-all duration-1000 delay-200 ${processVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
               Our process is designed around your business needs, not our convenience. Here's exactly what you can expect when working with us.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* Left Column - Process Steps */}
-            <div className="space-y-8">
-              <div className="flex items-start">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+            <div className="space-y-8 relative">
+              {/* Connecting line */}
+              <div className={`absolute left-5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-green-400 to-emerald-600 transition-all duration-2000 ${processVisible ? 'opacity-100' : 'opacity-0'}`}></div>
+              
+              <div className={`flex items-start transition-all duration-1000 ${processVisible ? 'animate-fade-in-left' : 'opacity-0 translate-x-8'}`} style={{animationDelay: '0.1s'}}>
+                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 transform hover:scale-110 transition-transform duration-300 shadow-lg">
                   <span className="text-white font-bold">1</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white  mb-3">Business Deep Dive</h3>
-                  <p className="text-gray-600 dark:text-gray-300 ">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Business Deep Dive</h3>
+                  <p className="text-gray-600 dark:text-gray-300">
                     We start by understanding your business inside and out. Who are your customers? What makes them buy? What are your biggest challenges? This isn't about web design yet—it's about business strategy.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+              <div className={`flex items-start transition-all duration-1000 ${processVisible ? 'animate-fade-in-left' : 'opacity-0 translate-x-8'}`} style={{animationDelay: '0.2s'}}>
+                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 transform hover:scale-110 transition-transform duration-300 shadow-lg">
                   <span className="text-white font-bold">2</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white  mb-3">Competitive Analysis</h3>
-                  <p className="text-gray-600 dark:text-gray-300 ">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Competitive Analysis</h3>
+                  <p className="text-gray-600 dark:text-gray-300">
                     We analyze what's working (and what isn't) in your industry. What are your competitors doing right? Where are the gaps? How can we position you to win more business?
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+              <div className={`flex items-start transition-all duration-1000 ${processVisible ? 'animate-fade-in-left' : 'opacity-0 translate-x-8'}`} style={{animationDelay: '0.3s'}}>
+                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 transform hover:scale-110 transition-transform duration-300 shadow-lg">
                   <span className="text-white font-bold">3</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white  mb-3">Strategic Planning</h3>
-                  <p className="text-gray-600 dark:text-gray-300 ">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Strategic Planning</h3>
+                  <p className="text-gray-600 dark:text-gray-300">
                     Based on our research, we create a comprehensive strategy. This includes site structure, key messaging, conversion points, and a roadmap for long-term growth.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+              <div className={`flex items-start transition-all duration-1000 ${processVisible ? 'animate-fade-in-left' : 'opacity-0 translate-x-8'}`} style={{animationDelay: '0.4s'}}>
+                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 transform hover:scale-110 transition-transform duration-300 shadow-lg">
                   <span className="text-white font-bold">4</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white  mb-3">Design & Development</h3>
-                  <p className="text-gray-600 dark:text-gray-300 ">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Design & Development</h3>
+                  <p className="text-gray-600 dark:text-gray-300">
                     Now we bring the strategy to life. Every design element serves a purpose. Every page is optimized for conversions. We keep you involved throughout the process with regular updates and feedback sessions.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+              <div className={`flex items-start transition-all duration-1000 ${processVisible ? 'animate-fade-in-left' : 'opacity-0 translate-x-8'}`} style={{animationDelay: '0.5s'}}>
+                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 transform hover:scale-110 transition-transform duration-300 shadow-lg">
                   <span className="text-white font-bold">5</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white  mb-3">Launch & Optimization</h3>
-                  <p className="text-gray-600 dark:text-gray-300 ">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Launch & Optimization</h3>
+                  <p className="text-gray-600 dark:text-gray-300">
                     Launch is just the beginning. We monitor performance, gather data, and continuously optimize your site for better results. Your website evolves as your business grows.
                   </p>
                 </div>
@@ -229,35 +297,35 @@ export default function About() {
 
             {/* Right Column - What Makes Us Different */}
             <div className="space-y-6">
-              <div className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white  mb-3">Business-First Mindset</h3>
-                <p className="text-gray-600 dark:text-gray-300 ">
+              <div className={`bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg transition-all duration-1000 transform hover:-translate-y-1 hover:shadow-xl ${processVisible ? 'animate-fade-in-right' : 'opacity-0 translate-x-8'}`} style={{animationDelay: '0.1s'}}>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Business-First Mindset</h3>
+                <p className="text-gray-600 dark:text-gray-300">
                   We don't just ask what you want your website to look like. We ask what you want your website to accomplish for your business.
                 </p>
               </div>
 
-              <div className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white  mb-3">Data-Driven Decisions</h3>
-                <p className="text-gray-600 dark:text-gray-300 ">
+              <div className={`bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg transition-all duration-1000 transform hover:-translate-y-1 hover:shadow-xl ${processVisible ? 'animate-fade-in-right' : 'opacity-0 translate-x-8'}`} style={{animationDelay: '0.2s'}}>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Data-Driven Decisions</h3>
+                <p className="text-gray-600 dark:text-gray-300">
                   Every recommendation we make is backed by research, industry best practices, and real performance data from similar businesses.
                 </p>
               </div>
 
-              <div className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white  mb-3">Clear Communication</h3>
-                <p className="text-gray-600 dark:text-gray-300 ">
+              <div className={`bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg transition-all duration-1000 transform hover:-translate-y-1 hover:shadow-xl ${processVisible ? 'animate-fade-in-right' : 'opacity-0 translate-x-8'}`} style={{animationDelay: '0.3s'}}>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Clear Communication</h3>
+                <p className="text-gray-600 dark:text-gray-300">
                   No tech jargon or confusing explanations. We explain everything in plain English and keep you informed every step of the way.
                 </p>
               </div>
 
-              <div className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white  mb-3">Ongoing Partnership</h3>
-                <p className="text-gray-600 dark:text-gray-300 ">
+              <div className={`bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg transition-all duration-1000 transform hover:-translate-y-1 hover:shadow-xl ${processVisible ? 'animate-fade-in-right' : 'opacity-0 translate-x-8'}`} style={{animationDelay: '0.4s'}}>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Ongoing Partnership</h3>
+                <p className="text-gray-600 dark:text-gray-300">
                   We don't disappear after launch. Your success is our success, and we're committed to helping your website perform better over time.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20 p-6 rounded-xl border border-green-200 dark:border-green-700">
+              <div className={`bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20 p-6 rounded-xl border border-green-200 dark:border-green-700 transition-all duration-1000 transform hover:scale-105 ${processVisible ? 'animate-fade-in-right' : 'opacity-0 translate-x-8'}`} style={{animationDelay: '0.5s'}}>
                 <h3 className="text-lg font-bold text-green-800 dark:text-green-200 mb-3">Our Promise</h3>
                 <p className="text-green-700 dark:text-green-300">
                   If your website doesn't generate more leads and help grow your business within 90 days, we'll work with you until it does—at no additional cost.
@@ -269,13 +337,19 @@ export default function About() {
       </section>
 
       {/* Industries We Serve */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section ref={industriesRef} className="py-20 relative overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div className="absolute top-1/4 left-0 w-64 h-64 bg-gradient-to-r from-green-400/20 to-emerald-600/20 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-1/4 right-0 w-48 h-48 bg-gradient-to-l from-blue-400/20 to-indigo-600/20 rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white  mb-4">
+            <h2 className={`text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 transition-all duration-1000 ${industriesVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
               Industries We Specialize In
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300  max-w-3xl mx-auto">
+            <p className={`text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-all duration-1000 delay-200 ${industriesVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
               We work with businesses across North America and Europe, with particular expertise in these sectors where we understand the unique challenges and opportunities.
             </p>
           </div>
@@ -289,10 +363,10 @@ export default function About() {
               { name: "Hospitality & Tourism", icon: "🏨", desc: "Booking and reservation systems for hotels and travel services" },
               { name: "Professional Services", icon: "💼", desc: "Trust-building sites for consultants and service professionals" }
             ].map((industry, index) => (
-              <div key={index} className="bg-gray-50 dark:bg-gray-800  p-6 rounded-xl hover:shadow-lg transition-shadow">
-                <div className="text-4xl mb-4 text-center">{industry.icon}</div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white  mb-2 text-center">{industry.name}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300  text-center">{industry.desc}</p>
+              <div key={index} className={`bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:bg-white dark:hover:bg-gray-700 ${industriesVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`} style={{animationDelay: `${index * 0.1}s`}}>
+                <div className="text-4xl mb-4 text-center transform hover:scale-110 transition-transform duration-300">{industry.icon}</div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 text-center">{industry.name}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 text-center">{industry.desc}</p>
               </div>
             ))}
           </div>

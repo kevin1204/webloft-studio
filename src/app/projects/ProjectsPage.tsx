@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const projects = [
   {
@@ -69,8 +69,38 @@ const projects = [
 
 const categories = ["All", "Construction", "Business", "Wellness", "Events", "Portfolio"];
 
+// Custom hook for intersection observer animations
+const useIntersectionObserver = (threshold = 0.4) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [threshold]);
+
+  return [ref, isVisible];
+};
+
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [allProjectsRef, allProjectsVisible] = useIntersectionObserver(0.3);
 
   const filteredProjects = selectedCategory === "All" 
     ? projects 
@@ -251,33 +281,33 @@ export default function Projects() {
       </section>
 
       {/* All Projects */}
-      <section className="py-24 bg-white dark:bg-gray-900 relative overflow-hidden">
+      <section ref={allProjectsRef} className="py-24 bg-white dark:bg-gray-900 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-5 dark:opacity-10">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-indigo-600/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-gradient-to-l from-purple-400/20 to-pink-600/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-indigo-600/20 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-gradient-to-l from-purple-400/20 to-pink-600/20 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-8 relative z-10">
           <div className="text-center mb-20">
-            <div className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-700 dark:text-blue-300 text-sm font-medium mb-6 animate-fade-in-up">
+            <div className={`inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-700 dark:text-blue-300 text-sm font-medium mb-6 transition-all duration-1000 ${allProjectsVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
               </svg>
               Complete Portfolio
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 animate-fade-in-up stagger-1">
+            <h2 className={`text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-all duration-1000 delay-200 ${allProjectsVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
               All 
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600"> Projects</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in-up stagger-2">
+            <p className={`text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-400 ${allProjectsVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
               Explore our complete portfolio of successful web development projects across various industries and technologies.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
-              <div key={project.id} className="group relative">
+              <div key={project.id} className={`group relative transition-all duration-1000 ${allProjectsVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`} style={{animationDelay: `${index * 0.15}s`}}>
                 {/* Card Background Glow */}
                 <div className={`absolute inset-0 rounded-3xl blur-lg opacity-0 group-hover:opacity-20 transition-all duration-700 ${
                   project.category === 'Construction' ? 'bg-gradient-to-r from-green-400 to-emerald-600' :
@@ -288,7 +318,7 @@ export default function Projects() {
                 }`}></div>
                 
                 {/* Main Card */}
-                <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-102 animate-fade-in-up overflow-hidden" style={{animationDelay: `${index * 0.1}s`}}>
+                <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-102 overflow-hidden">
                   {/* Image Container */}
                   <div className="relative overflow-hidden rounded-t-3xl h-48 project-image-container">
                     <Image

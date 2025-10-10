@@ -32,6 +32,11 @@ export default function Contact() {
 
   const [formStatus, setFormStatus] = useState<FormStatus>({ type: null, message: '' });
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setExpandedFAQ(expandedFAQ === index ? null : index);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -154,9 +159,9 @@ export default function Contact() {
       {/* Contact Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-3 gap-12">
             {/* Contact Form */}
-            <div className="animate-fade-in-left">
+            <div className="lg:col-span-2 animate-fade-in-left">
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
                 Get Your Free Consultation
               </h2>
@@ -204,7 +209,7 @@ export default function Contact() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white transition-colors ${
                         fieldErrors.name 
                           ? 'border-red-300 dark:border-red-600' 
                           : 'border-gray-300 dark:border-gray-600'
@@ -225,7 +230,7 @@ export default function Contact() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white transition-colors ${
                         fieldErrors.email 
                           ? 'border-red-300 dark:border-red-600' 
                           : 'border-gray-300 dark:border-gray-600'
@@ -248,7 +253,7 @@ export default function Contact() {
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition-colors"
                     placeholder="Your company name"
                   />
                 </div>
@@ -263,7 +268,7 @@ export default function Contact() {
                       name="projectType"
                       value={formData.projectType}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white transition-colors ${
                         fieldErrors.projectType 
                           ? 'border-red-300 dark:border-red-600' 
                           : 'border-gray-300 dark:border-gray-600'
@@ -290,7 +295,7 @@ export default function Contact() {
                       name="budget"
                       value={formData.budget}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition-colors"
                     >
                       <option value="">Select budget range</option>
                       <option value="under-3k">Under $3,000</option>
@@ -312,7 +317,7 @@ export default function Contact() {
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors resize-none ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white transition-colors resize-none ${
                       fieldErrors.message 
                         ? 'border-red-300 dark:border-red-600' 
                         : 'border-gray-300 dark:border-gray-600'
@@ -448,7 +453,7 @@ export default function Contact() {
             </p>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-4">
             {[
               {
                 question: "How long does it take to build a website?",
@@ -471,13 +476,34 @@ export default function Contact() {
                 answer: "We include 30 days of post-launch support for any adjustments or minor changes. After that, we offer flexible hourly support or ongoing maintenance packages."
               }
             ].map((faq, index) => (
-              <div key={index} className="bg-white dark:bg-gray-700 p-8 rounded-xl">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                  {faq.question}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {faq.answer}
-                </p>
+              <div 
+                key={index} 
+                className="bg-white dark:bg-gray-700 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+              >
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200"
+                >
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+                    {faq.question}
+                  </h3>
+                  <div className={`transform transition-transform duration-300 flex-shrink-0 ${
+                    expandedFAQ === index ? 'rotate-180' : 'rotate-0'
+                  }`}>
+                    <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </button>
+                <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                  expandedFAQ === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                }`}>
+                  <div className="px-6 pb-6">
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
