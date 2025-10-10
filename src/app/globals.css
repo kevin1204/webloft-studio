@@ -574,6 +574,17 @@ section[class*="h-screen"] {
 }
 
 /* Enhanced animations for redesigned sections */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes slideInFromBottom {
   from {
     opacity: 0;
@@ -839,6 +850,11 @@ section[class*="h-screen"] {
   border-radius: 1.5rem 1.5rem 0 0;
   overflow: hidden;
   position: relative;
+  min-height: 256px; /* h-64 equivalent */
+  background-color: #f3f4f6; /* Fallback color */
+  contain: layout style paint;
+  isolation: isolate;
+  will-change: transform;
 }
 
 .project-image-container img {
@@ -852,6 +868,18 @@ section[class*="h-screen"] {
   object-fit: cover;
   border-radius: 1.5rem 1.5rem 0 0;
   transform-origin: center;
+  transition: transform 0.7s ease, opacity 0.3s ease;
+  will-change: transform;
+  contain: layout style paint;
+  isolation: isolate;
+}
+
+.project-card-image[data-loaded="false"] {
+  opacity: 0;
+}
+
+.project-card-image[data-loaded="true"] {
+  opacity: 1;
 }
 
 /* Desktop-specific hover fixes */
@@ -1164,4 +1192,18 @@ section[class*="h-screen"] {
 
 .animate-fade-in-right {
   animation: fade-in-right 0.8s ease-out forwards;
+}
+
+/* Featured Projects Section Optimization */
+.featured-projects-grid {
+  contain: layout style paint;
+  isolation: isolate;
+}
+
+.featured-project-card {
+  contain: layout style paint;
+  isolation: isolate;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }

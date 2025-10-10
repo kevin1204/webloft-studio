@@ -69,38 +69,39 @@ const projects = [
 
 const categories = ["All", "Construction", "Business", "Wellness", "Events", "Portfolio"];
 
-// Custom hook for intersection observer animations
-const useIntersectionObserver = (threshold = 0.4) => {
+// Simple intersection observer hook - triggers only once
+const useIntersectionObserver = (threshold = 0.2) => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !isVisible) {
           setIsVisible(true);
         }
       },
       { threshold }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
-  }, [threshold]);
+  }, [threshold, isVisible]);
 
-  return [ref, isVisible];
+  return [ref, isVisible] as const;
 };
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [allProjectsRef, allProjectsVisible] = useIntersectionObserver(0.3);
+  const [allProjectsRef, allProjectsVisible] = useIntersectionObserver(0.2);
 
   const filteredProjects = selectedCategory === "All" 
     ? projects 
@@ -127,7 +128,7 @@ export default function Projects() {
       <section className="py-12 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
@@ -170,22 +171,35 @@ export default function Projects() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 mb-16">
+          <div className="grid lg:grid-cols-2 gap-8 mb-16 featured-projects-grid">
             {projects.filter(project => project.featured).map((project, index) => (
-              <div key={project.id} className="group relative">
+              <div key={project.id} className="group relative featured-project-card">
                 {/* Card Background Glow */}
                 <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-600 rounded-3xl blur-lg opacity-0 group-hover:opacity-20 transition-all duration-700"></div>
                 
                 {/* Main Card */}
-                <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-102 animate-fade-in-up overflow-hidden" style={{animationDelay: `${index * 0.2}s`}}>
+                <div 
+                  className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-102 overflow-hidden" 
+                  style={{
+                    animationDelay: `${index * 0.1}s`,
+                    animation: 'fadeInUp 0.8s ease-out forwards',
+                    opacity: 0,
+                    transform: 'translateY(20px)',
+                    willChange: 'transform, opacity'
+                  }}
+                >
                   {/* Image Container */}
-                  <div className="relative overflow-hidden rounded-t-3xl h-64 project-image-container">
+                  <div className="relative overflow-hidden rounded-t-3xl h-64 project-image-container" style={{contain: 'layout'}}>
                     <Image
                       src={project.image}
                       alt={`${project.title} - Professional web design project by Webloft Studio showcasing ${project.category.toLowerCase()} website development and custom design solutions`}
                       width={600}
                       height={400}
                       className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 project-card-image"
+                      priority={project.featured}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                      style={{willChange: 'transform'}}
                     />
                     
                     {/* Gradient Overlay */}
@@ -290,24 +304,24 @@ export default function Projects() {
 
         <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-8 relative z-10">
           <div className="text-center mb-20">
-            <div className={`inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-700 dark:text-blue-300 text-sm font-medium mb-6 transition-all duration-1000 ${allProjectsVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
+            <div className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-700 dark:text-blue-300 text-sm font-medium mb-6">
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
               </svg>
               Complete Portfolio
             </div>
-            <h2 className={`text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-all duration-1000 delay-200 ${allProjectsVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               All 
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600"> Projects</span>
             </h2>
-            <p className={`text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-400 ${allProjectsVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-4'}`}>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
               Explore our complete portfolio of successful web development projects across various industries and technologies.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
-              <div key={project.id} className={`group relative transition-all duration-1000 ${allProjectsVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`} style={{animationDelay: `${index * 0.15}s`}}>
+              <div key={project.id} className={`group relative transition-all duration-700 ${allProjectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{transitionDelay: allProjectsVisible ? `${index * 0.1}s` : '0ms'}}>
                 {/* Card Background Glow */}
                 <div className={`absolute inset-0 rounded-3xl blur-lg opacity-0 group-hover:opacity-20 transition-all duration-700 ${
                   project.category === 'Construction' ? 'bg-gradient-to-r from-green-400 to-emerald-600' :
@@ -327,6 +341,8 @@ export default function Projects() {
                       width={400}
                       height={300}
                       className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 project-card-image"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                     />
                     
                     {/* Gradient Overlay */}
