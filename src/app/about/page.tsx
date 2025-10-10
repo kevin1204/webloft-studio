@@ -41,8 +41,6 @@ export default function About() {
   const [storyRef, storyVisible] = useIntersectionObserver(0.2);
   const [processRef, processVisible] = useIntersectionObserver(0.2);
   const [industriesRef, industriesVisible] = useIntersectionObserver(0.2);
-  const [founderRef, founderVisible] = useIntersectionObserver(0.2);
-  const [ctaRef, ctaVisible] = useIntersectionObserver(0.3);
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
@@ -446,6 +444,24 @@ export default function About() {
                     <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
                     <span className="text-sm font-medium text-gray-700 dark:text-gray-300">AI & Automation Enthusiast</span>
                   </div>
+                </div>
+
+                {/* Personal Website Link */}
+                <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    Want to learn more about my background and experience?
+                  </p>
+                  <a 
+                    href="https://kevinortega.me" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    Visit My Personal Website
+                  </a>
                 </div>
               </div>
             </div>

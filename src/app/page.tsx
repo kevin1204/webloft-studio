@@ -301,7 +301,15 @@ export default function Home() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                   </svg>
                     </div>
-                    <span className="text-gray-700 dark:text-gray-300 font-medium">2-4 week typical delivery</span>
+                    <span className="text-gray-700 dark:text-gray-300 font-medium">Template sites: live in one week</span>
+                  </div>
+                  <div className="flex items-center hover:scale-105 transition-transform duration-300">
+                    <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 hover:scale-110 transition-transform duration-300">
+                      <svg className="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
+                    </div>
+                    <span className="text-gray-700 dark:text-gray-300 font-medium">Custom sites: 2-4 week delivery</span>
                   </div>
                   <div className="flex items-center hover:scale-105 transition-transform duration-300">
                     <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 hover:scale-110 transition-transform duration-300">
@@ -366,6 +374,123 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Your Business Needs a Website Section */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-green-400/20 to-emerald-600/20"></div>
+          <div className="absolute top-20 left-10 w-32 h-32 bg-green-400 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-emerald-500 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-8 relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 bg-green-100 dark:bg-green-900/30 rounded-full text-green-700 dark:text-green-300 text-sm font-medium mb-6 animate-fade-in-up">
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Essential for Modern Business
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 animate-fade-in-up stagger-1">
+              Why Every Business Needs a 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600"> Professional Website</span>
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in-up stagger-2">
+              Your website is more than a digital brochure—it's your 24/7 salesperson, trust-builder, and competitive advantage. 
+              Here's why having a professional online presence is essential for business success.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {/* Build Instant Credibility Card */}
+            <div className="group relative flex flex-col">
+              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 animate-fade-in-up stagger-1 flex flex-col h-full">
+                <div className="mb-6 flex flex-col flex-grow">
+                  <div className="w-12 h-1 bg-gradient-to-r from-green-400 to-emerald-600 rounded-full mb-4"></div>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 transition-colors duration-300 pr-4">Build Instant Credibility</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
+                    75% of consumers judge a company's credibility based on website design. A professional website instantly builds trust and positions you as a legitimate, established business.
+                  </p>
+                </div>
+                <div className="mt-auto">
+                  <div className="text-3xl font-bold text-green-600 mb-2">75%</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">judge credibility by design</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Digital Business Card Card */}
+            <div className="group relative flex flex-col">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 animate-fade-in-up stagger-2 flex flex-col h-full">
+                <div className="mb-6 flex flex-col flex-grow">
+                  <div className="w-12 h-1 bg-gradient-to-r from-blue-400 to-indigo-600 rounded-full mb-4"></div>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 transition-colors duration-300 pr-4">Your Digital Business Card</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
+                    Available 24/7 when you're not. Your website is often the first impression customers have of your business, showcasing your expertise and services around the clock.
+                  </p>
+                </div>
+                <div className="mt-auto">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">always available</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Strong Online Presence Card */}
+            <div className="group relative flex flex-col">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 animate-fade-in-up stagger-3 flex flex-col h-full">
+                <div className="mb-6 flex flex-col flex-grow">
+                  <div className="w-12 h-1 bg-gradient-to-r from-purple-400 to-pink-600 rounded-full mb-4"></div>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 transition-colors duration-300 pr-4">Control Your Brand</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
+                    Establish a strong online presence and control your brand narrative. Outrank competitors in search results and ensure customers find you first when they're looking for your services.
+                  </p>
+                </div>
+                <div className="mt-auto">
+                  <div className="text-3xl font-bold text-purple-600 mb-2">#1</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">search ranking goal</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Generate Leads Card */}
+            <div className="group relative flex flex-col">
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 animate-fade-in-up stagger-4 flex flex-col h-full">
+                <div className="mb-6 flex flex-col flex-grow">
+                  <div className="w-12 h-1 bg-gradient-to-r from-orange-400 to-red-600 rounded-full mb-4"></div>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-orange-600 transition-colors duration-300 pr-4">Generate Leads Automatically</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
+                    Turn visitors into customers with strategic design and conversion optimization. Capture inquiries automatically and grow your business while you focus on what you do best.
+                  </p>
+                </div>
+                <div className="mt-auto">
+                  <div className="text-3xl font-bold text-orange-600 mb-2">∞</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">lead potential</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-16">
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+              Don't let your competitors dominate the online space. A professional website is not an expense—it's an investment in your business's future success.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact" className="btn-primary-enhanced text-lg px-8 py-4">
+                Get Your Professional Website
+              </Link>
+              <Link href="/template-based-websites" className="btn-secondary-enhanced text-lg px-8 py-4">
+                Launch in One Week
+              </Link>
             </div>
           </div>
         </div>

@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { trackServicePageVisit } from "@/lib/analytics";
 
-export default function WebDesignServices() {
+export default function WebsiteRedesignServices() {
   useEffect(() => {
-    trackServicePageVisit('web_design', 'general');
+    trackServicePageVisit('website_redesign', 'general');
   }, []);
   return (
     <>
@@ -17,38 +17,38 @@ export default function WebDesignServices() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "Custom Web Design Services Toronto | Professional Website Design | Webloft Studio",
-            "description": "Professional custom web design services in Toronto. Bespoke, conversion-focused websites built for speed, SEO, and clarity. Get a website that stands out and drives business growth.",
+            "name": "Website Redesign Services Toronto | Professional Website Redesign | Webloft Studio",
+            "description": "Professional website redesign services in Toronto. Modernize your outdated website with improved UI/UX, better conversions, and enhanced Core Web Vitals. Transform your online presence.",
             "provider": {
               "@type": "Organization",
               "name": "Webloft Studio",
               "url": "https://webloftstudio.com"
             },
-            "serviceType": "Web Design",
+            "serviceType": "Website Redesign",
             "areaServed": "Canada",
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
-              "name": "Web Design Services",
+              "name": "Website Redesign Services",
               "itemListElement": [
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Custom Website Design"
+                    "name": "UI/UX Modernization"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Responsive Web Design"
+                    "name": "Performance Optimization"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "E-commerce Development"
+                    "name": "SEO-Safe Migration"
                   }
                 }
               ]
@@ -63,10 +63,10 @@ export default function WebDesignServices() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                Custom Web Design for <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600">Brands That Stand Out</span>
+                Website Redesign for <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600">Modern Brands</span>
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-                Bespoke, conversion-focused websites built for speed, SEO, and clarity. We create unique digital experiences that reflect your brand and drive business growth.
+                Transform your outdated website into a conversion-focused, modern platform that drives results and reflects your brand's true potential.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact" className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl">
@@ -87,13 +87,13 @@ export default function WebDesignServices() {
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Why This Matters</h2>
               <div className="max-w-4xl mx-auto">
                 <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-                  Your website is often the first impression customers have of your business. A poorly designed website can drive potential customers away, while a well-designed one builds trust, showcases your expertise, and converts visitors into customers.
+                  Your current website might be holding you back. Outdated designs, slow loading times, and poor mobile experience can cost you customers and damage your brand reputation. Studies show that 75% of users judge a company's credibility based on their website design.
                 </p>
                 <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-                  Custom web design goes beyond templates to create a unique digital experience that reflects your brand personality and values. We focus on user experience, conversion optimization, and technical excellence to ensure your website not only looks great but also performs exceptionally.
+                  A strategic website redesign addresses these issues head-on. We modernize your UI/UX, boost performance, and create clear conversion paths that turn visitors into customers. The result? Higher engagement, better search rankings, and increased revenue.
                 </p>
                 <p className="text-lg text-gray-600 dark:text-gray-300">
-                  Our custom designs typically see 40-60% improvements in user engagement and 30-50% increases in conversion rates compared to template-based websites, giving you a significant competitive advantage.
+                  Our redesigns typically see 40-60% improvements in conversion rates and 50% faster loading times, giving you a competitive edge in today's digital marketplace.
                 </p>
               </div>
             </div>
@@ -113,8 +113,26 @@ export default function WebDesignServices() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Tailored UI/UX Design</h3>
-                <p className="text-gray-600 dark:text-gray-300">Custom interface design that reflects your brand and provides an intuitive user experience tailored to your audience.</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Modern UI/UX Design</h3>
+                <p className="text-gray-600 dark:text-gray-300">Fresh, intuitive interface that reflects current design trends and improves user experience across all devices.</p>
+              </div>
+              <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Performance Boost</h3>
+                <p className="text-gray-600 dark:text-gray-300">Optimized code, images, and structure for lightning-fast loading times and better Core Web Vitals scores.</p>
+              </div>
+              <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">SEO-Safe Migration</h3>
+                <p className="text-gray-600 dark:text-gray-300">Preserve your search rankings with proper redirects, URL structure, and technical SEO implementation.</p>
               </div>
               <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
@@ -123,25 +141,7 @@ export default function WebDesignServices() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Mobile-First Approach</h3>
-                <p className="text-gray-600 dark:text-gray-300">Responsive design that looks and works perfectly on all devices, with mobile performance prioritized for better user experience.</p>
-              </div>
-              <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Fast & Accessible</h3>
-                <p className="text-gray-600 dark:text-gray-300">Lightning-fast loading times and accessibility compliance to ensure your website works for all users and search engines.</p>
-              </div>
-              <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Integrated Tools</h3>
-                <p className="text-gray-600 dark:text-gray-300">Seamless integration with booking systems, CRM, analytics, and other tools your business needs to operate efficiently.</p>
+                <p className="text-gray-600 dark:text-gray-300">Responsive design that looks and works perfectly on all devices, with mobile performance prioritized.</p>
               </div>
               <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
@@ -150,7 +150,7 @@ export default function WebDesignServices() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Conversion Optimization</h3>
-                <p className="text-gray-600 dark:text-gray-300">Strategic design elements and user flow optimization to maximize visitor-to-customer conversion rates.</p>
+                <p className="text-gray-600 dark:text-gray-300">Clear call-to-actions, improved user flow, and strategic placement to maximize visitor-to-customer conversion.</p>
               </div>
               <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
@@ -159,7 +159,7 @@ export default function WebDesignServices() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Brand Alignment</h3>
-                <p className="text-gray-600 dark:text-gray-300">Visual design that authentically represents your brand and creates emotional connections with your target audience.</p>
+                <p className="text-gray-600 dark:text-gray-300">Visual design that authentically represents your brand and creates emotional connections with your audience.</p>
               </div>
             </div>
           </div>
@@ -169,36 +169,36 @@ export default function WebDesignServices() {
         <section className="py-16 bg-white dark:bg-gray-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Our Design Process</h2>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Our Redesign Process</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-xl">1</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Discovery & Strategy</h3>
-                <p className="text-gray-600 dark:text-gray-300">We analyze your business, goals, and target audience to create a comprehensive design strategy.</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Discovery & Analysis</h3>
+                <p className="text-gray-600 dark:text-gray-300">We analyze your current site, identify pain points, and understand your business goals and target audience.</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-xl">2</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Design & Prototyping</h3>
-                <p className="text-gray-600 dark:text-gray-300">We create custom designs and interactive prototypes that bring your vision to life.</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Strategy & Planning</h3>
+                <p className="text-gray-600 dark:text-gray-300">We create a comprehensive redesign strategy, including information architecture and user experience improvements.</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-xl">3</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Development & Testing</h3>
-                <p className="text-gray-600 dark:text-gray-300">We build your website with clean code and thoroughly test all functionality across devices.</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Design & Development</h3>
+                <p className="text-gray-600 dark:text-gray-300">We create modern designs and develop the new site with optimized performance and SEO considerations.</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-xl">4</span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Launch & Optimization</h3>
-                <p className="text-gray-600 dark:text-gray-300">We launch your website and provide ongoing optimization to ensure peak performance.</p>
+                <p className="text-gray-600 dark:text-gray-300">We handle the migration, launch the new site, and monitor performance to ensure everything works perfectly.</p>
               </div>
             </div>
           </div>
@@ -207,8 +207,8 @@ export default function WebDesignServices() {
         {/* Final CTA */}
         <section className="py-16 bg-gradient-to-r from-green-500 to-emerald-600">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-white mb-6">Ready to Create a Website That Stands Out?</h2>
-            <p className="text-xl text-green-100 mb-8">Let's design a custom website that reflects your brand and drives real business results.</p>
+            <h2 className="text-3xl font-bold text-white mb-6">Ready to Transform Your Website?</h2>
+            <p className="text-xl text-green-100 mb-8">Let's create a modern, conversion-focused website that drives real business results.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="bg-white text-green-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl">
                 Book a Free Consultation

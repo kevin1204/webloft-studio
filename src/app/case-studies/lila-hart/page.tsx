@@ -80,19 +80,16 @@ export default function LilaHartCaseStudyPage() {
     projectDuration: "3 weeks",
     projectImages: [
       {
-        src: "/PROJECTS/LILAHART.png",
-        alt: "Lila Hart portfolio homepage",
-        caption: "Elegant homepage design showcasing creative work with smooth animations"
+        src: "/projects/gallery/lilahart3-min.png",
+        alt: "Lila Hart portfolio homepage"
       },
       {
-        src: "/PROJECTS/LILAHART.png",
-        alt: "Portfolio gallery and project showcases",
-        caption: "Comprehensive portfolio gallery with project details and case studies"
+        src: "/projects/gallery/lilahart4-min.png",
+        alt: "Portfolio gallery and project showcases"
       },
       {
-        src: "/PROJECTS/LILAHART.png",
-        alt: "Mobile-responsive creative portfolio",
-        caption: "Perfect mobile experience for viewing creative work on-the-go"
+        src: "/projects/gallery/lilahart5-min.png",
+        alt: "Mobile-responsive creative portfolio"
       }
     ],
     ctaText: "Start Your Project",

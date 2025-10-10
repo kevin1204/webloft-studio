@@ -132,9 +132,14 @@ export default function Services() {
                 </li>
               </ul>
               
-              <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block mt-auto">
-                Start Your Project
-              </Link>
+              <div className="flex flex-col gap-3 mt-auto">
+                <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block">
+                  Start Your Project
+                </Link>
+                <Link href="/services/web-design" className="w-full border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-center block">
+                  View More
+                </Link>
+              </div>
             </div>
 
             {/* Website Redesign */}
@@ -174,9 +179,14 @@ export default function Services() {
                 </li>
               </ul>
               
-              <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block mt-auto">
-                Get Quote
-              </Link>
+              <div className="flex flex-col gap-3 mt-auto">
+                <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block">
+                  Get Quote
+                </Link>
+                <Link href="/services/website-redesign" className="w-full border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-center block">
+                  View More
+                </Link>
+              </div>
             </div>
 
             {/* Webflow Development */}
@@ -185,7 +195,7 @@ export default function Services() {
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                 </svg>
-              </div>
+          </div>
               <h3 className="text-2xl font-bold text-white mb-4">Webflow Development</h3>
               <p className="text-gray-300 mb-6">Fast, scalable websites built on Webflow's powerful platform with custom functionality.</p>
               
@@ -216,9 +226,14 @@ export default function Services() {
                 </li>
               </ul>
               
-              <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block mt-auto">
-                Start Building
+              <div className="flex flex-col gap-3 mt-auto">
+                <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block">
+                  Start Building
                 </Link>
+                <Link href="/services/webflow-development" className="w-full border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-center block">
+                  View More
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -280,9 +295,14 @@ export default function Services() {
                 </li>
               </ul>
               
-              <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block mt-auto">
-                Boost Visibility
-              </Link>
+              <div className="flex flex-col gap-3 mt-auto">
+                <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block">
+                  Boost Visibility
+                </Link>
+                <Link href="/services/seo-optimization" className="w-full border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-center block">
+                  View More
+                </Link>
+              </div>
             </div>
 
             {/* Conversion Rate Optimization */}
@@ -322,9 +342,14 @@ export default function Services() {
                 </li>
               </ul>
               
-              <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block mt-auto">
-                Optimize Now
-              </Link>
+              <div className="flex flex-col gap-3 mt-auto">
+                <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block">
+                  Optimize Now
+                </Link>
+                <Link href="/services/conversion-rate-optimization" className="w-full border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-center block">
+                  View More
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -386,9 +411,14 @@ export default function Services() {
                 </li>
               </ul>
               
-              <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block mt-auto">
-                Secure Website
-              </Link>
+              <div className="flex flex-col gap-3 mt-auto">
+                <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block">
+                  Secure Website
+                </Link>
+                <Link href="/services/website-maintenance" className="w-full border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-center block">
+                  View More
+                </Link>
+              </div>
             </div>
 
             {/* Hosting & Security Setup */}
@@ -422,15 +452,20 @@ export default function Services() {
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
                   <span className="text-gray-300 text-sm">Security monitoring setup</span>
-                </li>
-              </ul>
+                    </li>
+                </ul>
               
-              <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block mt-auto">
-                Setup Hosting
-              </Link>
+              <div className="flex flex-col gap-3 mt-auto">
+                <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block">
+                  Setup Hosting
+                </Link>
+                <Link href="/services/hosting-security-setup" className="w-full border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-center block">
+                  View More
+                </Link>
+              </div>
             </div>
 
             {/* Analytics & Monthly Reports */}
@@ -470,9 +505,14 @@ export default function Services() {
                 </li>
               </ul>
               
-              <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block mt-auto">
-                Track Performance
-              </Link>
+              <div className="flex flex-col gap-3 mt-auto">
+                <Link href="/contact" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block">
+                  Track Performance
+                </Link>
+                <Link href="/services/analytics-monthly-reports" className="w-full border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 text-center block">
+                  View More
+                </Link>
+              </div>
             </div>
           </div>
         </div>

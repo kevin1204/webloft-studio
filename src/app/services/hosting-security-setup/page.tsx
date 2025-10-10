@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { trackServicePageVisit } from "@/lib/analytics";
 
-export default function WebDesignServices() {
+export default function HostingSecuritySetupServices() {
   useEffect(() => {
-    trackServicePageVisit('web_design', 'general');
+    trackServicePageVisit('hosting_security_setup', 'general');
   }, []);
   return (
     <>
@@ -17,38 +17,38 @@ export default function WebDesignServices() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "Custom Web Design Services Toronto | Professional Website Design | Webloft Studio",
-            "description": "Professional custom web design services in Toronto. Bespoke, conversion-focused websites built for speed, SEO, and clarity. Get a website that stands out and drives business growth.",
+            "name": "Hosting & Security Setup Services Toronto | Website Hosting Setup | Webloft Studio",
+            "description": "Professional hosting and security setup services in Toronto. We configure hosting on third-party platforms like Webflow, Netlify, and Vercel. Setup only - no infrastructure hosting.",
             "provider": {
               "@type": "Organization",
               "name": "Webloft Studio",
               "url": "https://webloftstudio.com"
             },
-            "serviceType": "Web Design",
+            "serviceType": "Hosting Configuration",
             "areaServed": "Canada",
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
-              "name": "Web Design Services",
+              "name": "Hosting Setup Services",
               "itemListElement": [
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Custom Website Design"
+                    "name": "Domain Configuration"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Responsive Web Design"
+                    "name": "SSL Certificate Setup"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "E-commerce Development"
+                    "name": "Security Hardening"
                   }
                 }
               ]
@@ -63,18 +63,31 @@ export default function WebDesignServices() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                Custom Web Design for <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600">Brands That Stand Out</span>
+                Hosting & Security Setup for <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600">Peace of Mind</span>
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-                Bespoke, conversion-focused websites built for speed, SEO, and clarity. We create unique digital experiences that reflect your brand and drive business growth.
+                Professional hosting configuration and security setup on trusted third-party platforms. We configure everything so you can focus on your business.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact" className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl">
                   Book a Free Consultation
                 </Link>
-                <Link href="/projects" className="border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
-                  See Portfolio
+                <Link href="/services" className="border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
+                  View All Services
                 </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Important Note */}
+        <section className="py-8 bg-blue-50 dark:bg-blue-900/20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <div className="bg-blue-100 dark:bg-blue-800 p-4 rounded-lg">
+                <p className="text-blue-800 dark:text-blue-200 font-medium">
+                  <strong>Important:</strong> We configure hosting and security on third-party platforms (Webflow, Netlify, Vercel, etc.). We do not provide hosting infrastructure ourselves.
+                </p>
               </div>
             </div>
           </div>
@@ -87,13 +100,13 @@ export default function WebDesignServices() {
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Why This Matters</h2>
               <div className="max-w-4xl mx-auto">
                 <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-                  Your website is often the first impression customers have of your business. A poorly designed website can drive potential customers away, while a well-designed one builds trust, showcases your expertise, and converts visitors into customers.
+                  Setting up hosting and security properly is crucial for your website's performance, reliability, and protection. Poor configuration can lead to slow loading times, security vulnerabilities, and even complete website downtime. Many businesses struggle with technical hosting setup, DNS configuration, and security implementation.
                 </p>
                 <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-                  Custom web design goes beyond templates to create a unique digital experience that reflects your brand personality and values. We focus on user experience, conversion optimization, and technical excellence to ensure your website not only looks great but also performs exceptionally.
+                  Our hosting and security setup service handles all the technical complexity for you. We configure your website on reliable third-party platforms, implement security best practices, and ensure everything works seamlessly. You get enterprise-level setup without the technical headaches.
                 </p>
                 <p className="text-lg text-gray-600 dark:text-gray-300">
-                  Our custom designs typically see 40-60% improvements in user engagement and 30-50% increases in conversion rates compared to template-based websites, giving you a significant competitive advantage.
+                  With proper hosting configuration, your website will load faster, stay secure, and maintain high uptime. This foundation is essential for SEO performance, user experience, and business credibility.
                 </p>
               </div>
             </div>
@@ -110,29 +123,47 @@ export default function WebDesignServices() {
               <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Tailored UI/UX Design</h3>
-                <p className="text-gray-600 dark:text-gray-300">Custom interface design that reflects your brand and provides an intuitive user experience tailored to your audience.</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Domain Configuration</h3>
+                <p className="text-gray-600 dark:text-gray-300">Proper DNS setup, domain connection, and subdomain configuration for seamless website access and email functionality.</p>
               </div>
               <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Mobile-First Approach</h3>
-                <p className="text-gray-600 dark:text-gray-300">Responsive design that looks and works perfectly on all devices, with mobile performance prioritized for better user experience.</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">SSL Certificate Setup</h3>
+                <p className="text-gray-600 dark:text-gray-300">Automatic SSL certificate installation and configuration for secure HTTPS connections and improved SEO rankings.</p>
               </div>
               <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Fast & Accessible</h3>
-                <p className="text-gray-600 dark:text-gray-300">Lightning-fast loading times and accessibility compliance to ensure your website works for all users and search engines.</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Security Hardening</h3>
+                <p className="text-gray-600 dark:text-gray-300">Implementation of security headers, access controls, and best practices to protect your website from common threats.</p>
+              </div>
+              <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">CDN & Performance</h3>
+                <p className="text-gray-600 dark:text-gray-300">Content Delivery Network setup and performance optimization for faster loading times and better user experience.</p>
+              </div>
+              <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Redirects & URLs</h3>
+                <p className="text-gray-600 dark:text-gray-300">Proper URL structure, redirect rules, and canonical URL setup for SEO optimization and user experience.</p>
               </div>
               <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
@@ -140,26 +171,8 @@ export default function WebDesignServices() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Integrated Tools</h3>
-                <p className="text-gray-600 dark:text-gray-300">Seamless integration with booking systems, CRM, analytics, and other tools your business needs to operate efficiently.</p>
-              </div>
-              <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Conversion Optimization</h3>
-                <p className="text-gray-600 dark:text-gray-300">Strategic design elements and user flow optimization to maximize visitor-to-customer conversion rates.</p>
-              </div>
-              <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Brand Alignment</h3>
-                <p className="text-gray-600 dark:text-gray-300">Visual design that authentically represents your brand and creates emotional connections with your target audience.</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Backup Strategy</h3>
+                <p className="text-gray-600 dark:text-gray-300">Automated backup configuration and recovery procedures to protect your website data and ensure business continuity.</p>
               </div>
             </div>
           </div>
@@ -169,36 +182,36 @@ export default function WebDesignServices() {
         <section className="py-16 bg-white dark:bg-gray-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Our Design Process</h2>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Our Setup Process</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-xl">1</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Discovery & Strategy</h3>
-                <p className="text-gray-600 dark:text-gray-300">We analyze your business, goals, and target audience to create a comprehensive design strategy.</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Platform Selection</h3>
+                <p className="text-gray-600 dark:text-gray-300">We recommend the best hosting platform for your needs (Webflow, Netlify, Vercel) based on your website requirements.</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-xl">2</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Design & Prototyping</h3>
-                <p className="text-gray-600 dark:text-gray-300">We create custom designs and interactive prototypes that bring your vision to life.</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Configuration Setup</h3>
+                <p className="text-gray-600 dark:text-gray-300">We configure DNS, SSL certificates, security settings, and performance optimizations on your chosen platform.</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-xl">3</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Development & Testing</h3>
-                <p className="text-gray-600 dark:text-gray-300">We build your website with clean code and thoroughly test all functionality across devices.</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Testing & Validation</h3>
+                <p className="text-gray-600 dark:text-gray-300">We thoroughly test all configurations, security settings, and performance optimizations to ensure everything works perfectly.</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-xl">4</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Launch & Optimization</h3>
-                <p className="text-gray-600 dark:text-gray-300">We launch your website and provide ongoing optimization to ensure peak performance.</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Documentation & Training</h3>
+                <p className="text-gray-600 dark:text-gray-300">We provide documentation and training on how to manage your hosting settings and maintain security best practices.</p>
               </div>
             </div>
           </div>
@@ -207,8 +220,8 @@ export default function WebDesignServices() {
         {/* Final CTA */}
         <section className="py-16 bg-gradient-to-r from-green-500 to-emerald-600">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-white mb-6">Ready to Create a Website That Stands Out?</h2>
-            <p className="text-xl text-green-100 mb-8">Let's design a custom website that reflects your brand and drives real business results.</p>
+            <h2 className="text-3xl font-bold text-white mb-6">Ready for Professional Hosting Setup?</h2>
+            <p className="text-xl text-green-100 mb-8">Let us handle the technical complexity so you can focus on your business.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="bg-white text-green-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl">
                 Book a Free Consultation

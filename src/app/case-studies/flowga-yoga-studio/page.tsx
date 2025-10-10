@@ -81,19 +81,12 @@ export default function FlowgaCaseStudyPage() {
     projectDuration: "4 weeks",
     projectImages: [
       {
-        src: "/PROJECTS/FLOWGA.png",
-        alt: "Flowga Yoga Studio homepage design",
-        caption: "Clean, modern homepage design with clear call-to-action and calming aesthetic"
+        src: "/projects/gallery/flowga-1-min.png",
+        alt: "Flowga Yoga Studio homepage design"
       },
       {
-        src: "/PROJECTS/FLOWGA.png",
-        alt: "Mobile responsive design for yoga classes",
-        caption: "Perfect mobile experience for on-the-go class bookings"
-      },
-      {
-        src: "/PROJECTS/FLOWGA.png",
-        alt: "Online booking system interface",
-        caption: "Intuitive booking system with real-time class availability and scheduling"
+        src: "/projects/gallery/flowga-2-min.png",
+        alt: "Mobile responsive design for yoga classes"
       }
     ],
     ctaText: "Start Your Project",

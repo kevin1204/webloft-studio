@@ -80,19 +80,16 @@ export default function AmigoCaseStudyPage() {
     projectDuration: "3 weeks",
     projectImages: [
       {
-        src: "/PROJECTS/AMIGO CONTRACTING SERVICES.png",
-        alt: "Amigo Contracting Services homepage design",
-        caption: "Professional homepage design showcasing construction services and lead capture"
+        src: "/projects/gallery/amigo-contracting-1-min.png",
+        alt: "Amigo Contracting Services homepage design"
       },
       {
-        src: "/PROJECTS/AMIGO CONTRACTING SERVICES.png",
-        alt: "Mobile responsive construction website",
-        caption: "Perfect mobile experience for on-the-go construction inquiries"
+        src: "/projects/gallery/amigo-contracting-2-min.png",
+        alt: "Mobile responsive construction website"
       },
       {
-        src: "/PROJECTS/AMIGO CONTRACTING SERVICES.png",
-        alt: "Service pages and project gallery",
-        caption: "Comprehensive service pages with project showcases and testimonials"
+        src: "/projects/gallery/amigo-contracting-3-min.png",
+        alt: "Service pages and project gallery"
       }
     ],
     ctaText: "Start Your Project",

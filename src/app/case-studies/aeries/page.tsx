@@ -80,19 +80,16 @@ export default function AeriesCaseStudyPage() {
     projectDuration: "2 weeks",
     projectImages: [
       {
-        src: "/PROJECTS/AERIES.png",
-        alt: "Aeries business homepage design",
-        caption: "Clean, modern homepage design with professional business aesthetic"
+        src: "/projects/gallery/aeries-1-min.png",
+        alt: "Aeries business homepage design"
       },
       {
-        src: "/PROJECTS/AERIES.png",
-        alt: "Mobile responsive business website",
-        caption: "Perfect mobile experience for business professionals on-the-go"
+        src: "/projects/gallery/aeries-2-min.png",
+        alt: "Mobile responsive business website"
       },
       {
-        src: "/PROJECTS/AERIES.png",
-        alt: "Smooth animations and interactions",
-        caption: "Engaging animations and micro-interactions for better user experience"
+        src: "/projects/gallery/aeries-3-min.png",
+        alt: "Smooth animations and interactions"
       }
     ],
     ctaText: "Start Your Project",

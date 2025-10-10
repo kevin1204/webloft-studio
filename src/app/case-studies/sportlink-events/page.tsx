@@ -80,19 +80,28 @@ export default function SportlinkCaseStudyPage() {
     projectDuration: "6 weeks",
     projectImages: [
       {
-        src: "/PROJECTS/SPORTLINK.png",
-        alt: "Sportlink Events registration platform",
-        caption: "Comprehensive event registration system with secure payment processing"
+        src: "/projects/gallery/sportlink1-min.png",
+        alt: "Sportlink Events registration platform"
       },
       {
-        src: "/PROJECTS/SPORTLINK.png",
-        alt: "Mobile-responsive event management",
-        caption: "Perfect mobile experience for event registration on-the-go"
+        src: "/projects/gallery/sportlink2-min.png",
+        alt: "Mobile-responsive event management"
       },
       {
-        src: "/PROJECTS/SPORTLINK.png",
-        alt: "Admin dashboard and participant management",
-        caption: "Powerful admin dashboard for managing events and participants"
+        src: "/projects/gallery/sportlink3-min.png",
+        alt: "Admin dashboard and participant management"
+      },
+      {
+        src: "/projects/gallery/sportlink4-min.png",
+        alt: "Event details and participant information"
+      },
+      {
+        src: "/projects/gallery/sportlink5-min.png",
+        alt: "Payment processing and confirmation system"
+      },
+      {
+        src: "/projects/gallery/sportlink6-min.png",
+        alt: "Mobile event registration interface"
       }
     ],
     ctaText: "Start Your Project",

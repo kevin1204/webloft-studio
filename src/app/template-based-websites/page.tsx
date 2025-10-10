@@ -1,74 +1,102 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-
-export const metadata = {
-  title: "Template-Based Websites | Fast & Affordable Web Design | Webloft Studio",
-  description: "Get a professional website fast with our template-based solutions. Perfect for small businesses, freelancers, and startups. SEO-friendly, mobile-responsive, and ready to launch.",
-  alternates: {
-    canonical: 'https://webloftstudio.com/template-based-websites'
-  }
-};
+import { useState } from "react";
 
 export default function TemplateBasedWebsites() {
+  const [expandedTemplates, setExpandedTemplates] = useState<Record<string, boolean>>({});
+
+  const toggleExpand = (templateId: string) => {
+    setExpandedTemplates(prev => ({
+      ...prev,
+      [templateId]: !prev[templateId]
+    }));
+  };
+
   const templates = [
-    {
-      id: 'business-pro',
-      name: 'Business Pro',
-      description: 'Perfect for professional services, consultants, and agencies. Clean, modern design that builds trust and credibility.',
-      price: '$1,299',
-      pages: ['Home', 'About', 'Services', 'Portfolio', 'Contact'],
-      features: ['SEO Optimized', 'Mobile Responsive', 'Contact Forms', 'Social Media Integration'],
-      image: '/PROJECTS/AERIES.png',
-      demoUrl: '/demo/business-pro'
-    },
     {
       id: 'startup-venture',
       name: 'Startup Venture',
       description: 'Ideal for tech startups, SaaS companies, and innovative businesses. Bold design that showcases your cutting-edge solutions.',
-      price: '$1,199',
+      price: '$400',
       pages: ['Home', 'Features', 'Pricing', 'About', 'Contact'],
-      features: ['SEO Optimized', 'Mobile Responsive', 'Pricing Tables', 'CTA Optimization'],
-      image: '/PROJECTS/FLOWGA.png',
+      features: [
+        'SEO Optimized',
+        'Mobile Responsive', 
+        'Contact Forms',
+        'Pricing Tables',
+        'CTA Optimization',
+        'Newsletter Signup',
+        'Feature Comparison',
+        'FAQ Section',
+        'Social Media Links',
+        'Fast Loading Speed'
+      ],
+      image: '/template-based-sites/startup-venture.png',
       demoUrl: '/demo/startup-venture'
-    },
-    {
-      id: 'creative-studio',
-      name: 'Creative Studio',
-      description: 'Designed for creative professionals, artists, photographers, and designers. Visually stunning with portfolio focus.',
-      price: '$1,399',
-      pages: ['Home', 'Portfolio', 'About', 'Services', 'Contact'],
-      features: ['SEO Optimized', 'Mobile Responsive', 'Gallery Showcase', 'Client Testimonials'],
-      image: '/PROJECTS/LILAHART.png',
-      demoUrl: '/demo/creative-studio'
     },
     {
       id: 'roofing-pro',
       name: 'Roofing Pro',
       description: 'Perfect for roofing contractors, home improvement services, and construction companies. Professional design that builds trust and drives conversions.',
-      price: '$1,499',
+      price: '$800',
       pages: ['Home', 'About', 'Services', 'Projects', 'Testimonials', 'Contact'],
-      features: ['SEO Optimized', 'Mobile Responsive', 'Project Gallery', 'Emergency CTA', 'Service Area Map'],
-      image: '/PROJECTS/AMIGO CONTRACTING SERVICES.png',
+      features: [
+        'SEO Optimized',
+        'Mobile Responsive',
+        'Contact Forms',
+        'Project Gallery',
+        'Before/After Slider',
+        'Emergency CTA',
+        'Service Area Map',
+        'Testimonial Carousel',
+        'Team Profiles',
+        'FAQ Section'
+      ],
+      image: '/template-based-sites/roofing-pro.png',
       demoUrl: '/demo/roofing-pro'
     },
     {
       id: 'dental-pro',
       name: 'Dental Pro',
       description: 'Modern dental practice website with appointment booking, before/after gallery, and patient testimonials. Designed to build trust and convert visitors into patients.',
-      price: '$1,599',
+      price: '$600',
       pages: ['Home', 'About', 'Services', 'Team', 'Gallery', 'Testimonials', 'Blog', 'Contact'],
-      features: ['SEO Optimized', 'Mobile Responsive', 'Appointment Booking', 'Before/After Gallery', 'Team Profiles', 'Patient Testimonials'],
-      image: '/PROJECTS/AERIES.png',
+      features: [
+        'SEO Optimized',
+        'Mobile Responsive',
+        'Appointment Booking',
+        'Contact Forms',
+        'Before/After Gallery',
+        'Team Profiles',
+        'Patient Testimonials',
+        'Insurance Info Section',
+        'FAQ Section',
+        'Google Maps Integration'
+      ],
+      image: '/template-based-sites/dental-pro.png',
       demoUrl: '/demo/dental-pro'
     },
     {
       id: 'smile-pro',
       name: 'Smile Pro',
       description: 'Premium dental clinic website with floating animations, interactive hero section, and modern aqua-to-white gradient design. Perfect for high-end dental practices.',
-      price: '$2,999',
+      price: '$600',
       pages: ['Home', 'Services', 'About', 'Team', 'Testimonials', 'Blog', 'Contact'],
-      features: ['Floating Animations', 'Interactive Hero', 'Service Icons Bar', 'Specialist Profiles', 'Blog Integration', 'Discount Plans', 'Modern Design'],
-      image: '/PROJECTS/FLOWGA.png',
+      features: [
+        'SEO Optimized',
+        'Mobile Responsive',
+        'Floating Animations',
+        'Interactive Hero',
+        'Contact Forms',
+        'Service Icons Bar',
+        'Specialist Profiles',
+        'Blog Integration',
+        'Before/After Gallery',
+        'Discount Plans Display'
+      ],
+      image: '/template-based-sites/smile-pro.png',
       demoUrl: '/demo/smile-pro',
       isNew: true
     }
@@ -94,6 +122,98 @@ export default function TemplateBasedWebsites() {
                 Get Started Today
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Get Live in One Week Section */}
+      <section className="py-20 bg-gradient-to-r from-green-500 to-emerald-600">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-white text-sm font-medium mb-6 animate-fade-in-up">
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              Fast Launch Solution
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in-up stagger-1">
+              Launch Your Professional Website in Just <span className="text-yellow-300">One Week</span>
+            </h2>
+            <p className="text-xl text-green-100 max-w-4xl mx-auto leading-relaxed animate-fade-in-up stagger-2">
+              Stop waiting months for a website. Our template-based solution gets you online fast without sacrificing quality. 
+              Start generating leads and establishing credibility within one week—not one month.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {[
+              {
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                ),
+                title: "Live in One Week",
+                description: "Professional website ready to launch in just 7 days",
+                highlight: "7 Days"
+              },
+              {
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                ),
+                title: "Local SEO Optimized",
+                description: "Built-in SEO foundations to help you rank in local search results",
+                highlight: "SEO Ready"
+              },
+              {
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                ),
+                title: "Lead Generation Ready",
+                description: "Contact forms and conversion optimization built-in from day one",
+                highlight: "Convert Ready"
+              },
+              {
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                  </svg>
+                ),
+                title: "Cost Effective",
+                description: "Professional results at a fraction of custom development costs",
+                highlight: "Great ROI"
+              }
+            ].map((item, index) => (
+              <div key={index} className="group relative">
+                <div className="absolute inset-0 bg-white/10 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hover:border-white/40 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 animate-fade-in-up text-center" style={{animationDelay: `${index * 0.1}s`}}>
+                  <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-yellow-300 transition-colors duration-300">{item.title}</h3>
+                  <p className="text-green-100 mb-4 text-sm leading-relaxed">{item.description}</p>
+                  <div className="text-2xl font-bold text-yellow-300">{item.highlight}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="#templates" className="bg-white text-green-600 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl">
+                Choose Your Template
+              </Link>
+              <Link href="/contact" className="border-2 border-white text-white hover:bg-white hover:text-green-600 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
+                Get Started Today
+              </Link>
+            </div>
+            <p className="text-green-100 text-sm mt-4">
+              ✅ No technical knowledge required • ✅ Professional quality guaranteed • ✅ Mobile responsive included
+            </p>
           </div>
         </div>
       </section>
@@ -198,13 +318,14 @@ export default function TemplateBasedWebsites() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {templates.map((template) => (
-              <div key={template.id} className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-green-500 transition-colors duration-300">
-                <div className="relative h-48 bg-gray-700">
+              <div key={template.id} className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-green-500 transition-colors duration-300 flex flex-col h-full">
+                <div className="relative h-48 bg-gray-700 overflow-hidden">
                   <Image
                     src={template.image}
                     alt={`${template.name} template preview`}
                     fill
-                    className="object-cover"
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-black/20"></div>
                   <div className="absolute top-4 right-4">
@@ -214,7 +335,7 @@ export default function TemplateBasedWebsites() {
                   </div>
                 </div>
                 
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <h3 className="text-2xl font-bold text-white mb-3">{template.name}</h3>
                   <p className="text-gray-300 mb-4">{template.description}</p>
                   
@@ -229,21 +350,51 @@ export default function TemplateBasedWebsites() {
                     </div>
                   </div>
                   
-                  <div className="mb-6">
+                  <div className="mb-6 flex-grow">
                     <h4 className="text-sm font-semibold text-gray-400 mb-2">FEATURES:</h4>
                     <div className="space-y-1">
-                      {template.features.map((feature) => (
-                        <div key={feature} className="flex items-center text-sm text-gray-300">
-                          <svg className="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      {template.features.slice(0, expandedTemplates[template.id] ? template.features.length : 5).map((feature, index) => (
+                        <div 
+                          key={feature} 
+                          className={`flex items-center text-sm text-gray-300 transition-all duration-300 ${
+                            expandedTemplates[template.id] && index >= 5 ? 'animate-fade-in-up' : ''
+                          }`}
+                          style={{
+                            animationDelay: expandedTemplates[template.id] && index >= 5 ? `${(index - 5) * 50}ms` : '0ms'
+                          }}
+                        >
+                          <svg className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
                           {feature}
                         </div>
                       ))}
                     </div>
+                    
+                    {template.features.length > 5 && (
+                      <button
+                        onClick={() => toggleExpand(template.id)}
+                        className="mt-3 w-full flex items-center justify-center text-green-400 hover:text-green-300 text-sm font-medium transition-colors duration-200 py-2 px-3 rounded-lg hover:bg-green-500/10"
+                        aria-label={expandedTemplates[template.id] ? 'Show fewer features' : 'Show more features'}
+                      >
+                        <span className="mr-2">
+                          {expandedTemplates[template.id] ? 'Show Less' : 'See More Features'}
+                        </span>
+                        <svg 
+                          className={`w-4 h-4 transition-transform duration-300 ${
+                            expandedTemplates[template.id] ? 'rotate-180' : ''
+                          }`} 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    )}
                   </div>
                   
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-3 mt-auto">
                     <Link
                       href={template.demoUrl}
                       className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors duration-300"

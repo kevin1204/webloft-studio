@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface CaseStudyProps {
   projectTitle: string;
@@ -58,6 +58,55 @@ export default function CaseStudy({
   date,
 }: CaseStudyProps) {
   const [selectedImage, setSelectedImage] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isLightboxOpen) return;
+      
+      switch (event.key) {
+        case 'Escape':
+          setIsLightboxOpen(false);
+          break;
+        case 'ArrowLeft':
+          event.preventDefault();
+          goToPreviousImage();
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          goToNextImage();
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen, lightboxImageIndex]);
+
+  const openLightbox = (index: number) => {
+    setLightboxImageIndex(index);
+    setIsLightboxOpen(true);
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  };
+
+  const closeLightbox = () => {
+    setIsLightboxOpen(false);
+    document.body.style.overflow = 'unset'; // Restore scrolling
+  };
+
+  const goToNextImage = () => {
+    setLightboxImageIndex((prev) => 
+      prev === projectImages.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const goToPreviousImage = () => {
+    setLightboxImageIndex((prev) => 
+      prev === 0 ? projectImages.length - 1 : prev - 1
+    );
+  };
 
   return (
     <article className="max-w-6xl mx-auto bg-white dark:bg-gray-900 rounded-3xl shadow-2xl overflow-hidden">
@@ -132,12 +181,15 @@ export default function CaseStudy({
             </h2>
             
             {/* Main Image */}
-            <div className="relative aspect-video rounded-xl overflow-hidden mb-6">
+            <div 
+              className="relative aspect-video rounded-xl overflow-hidden mb-6 cursor-pointer group"
+              onClick={() => openLightbox(selectedImage)}
+            >
               <Image
                 src={projectImages[selectedImage].src}
                 alt={projectImages[selectedImage].alt}
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
                 priority={false}
               />
@@ -146,6 +198,14 @@ export default function CaseStudy({
                   <p className="text-sm">{projectImages[selectedImage].caption}</p>
                 </div>
               )}
+              {/* Click to expand overlay */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-3">
+                  <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                  </svg>
+                </div>
+              </div>
             </div>
 
             {/* Thumbnail Gallery */}
@@ -154,8 +214,11 @@ export default function CaseStudy({
                 {projectImages.map((image, index) => (
                   <button
                     key={index}
-                    onClick={() => setSelectedImage(index)}
-                    className={`relative aspect-video rounded-lg overflow-hidden transition-all duration-300 ${
+                    onClick={() => {
+                      setSelectedImage(index);
+                      openLightbox(index);
+                    }}
+                    className={`relative aspect-video rounded-lg overflow-hidden transition-all duration-300 group ${
                       selectedImage === index
                         ? 'ring-2 ring-green-500 scale-105'
                         : 'hover:scale-105 opacity-70 hover:opacity-100'
@@ -169,6 +232,14 @@ export default function CaseStudy({
                       loading="lazy"
                       priority={false}
                     />
+                    {/* Click to expand indicator */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-2">
+                        <svg className="w-4 h-4 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                        </svg>
+                      </div>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -351,6 +422,82 @@ export default function CaseStudy({
           </div>
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {isLightboxOpen && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={closeLightbox}
+        >
+          {/* Modal Content */}
+          <div 
+            className="relative max-w-7xl max-h-full w-full h-full flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Previous Button */}
+            {projectImages.length > 1 && (
+              <button
+                onClick={goToPreviousImage}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 text-white rounded-full p-3 transition-colors duration-200"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+            )}
+
+            {/* Next Button */}
+            {projectImages.length > 1 && (
+              <button
+                onClick={goToNextImage}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 text-white rounded-full p-3 transition-colors duration-200"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            )}
+
+            {/* Image Container with Close Button */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <div className="relative max-w-full max-h-full">
+                {/* Close Button positioned directly on the image */}
+                <button
+                  onClick={closeLightbox}
+                  className="absolute top-2 right-2 z-30 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors duration-200"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+
+                <Image
+                  src={projectImages[lightboxImageIndex].src}
+                  alt={projectImages[lightboxImageIndex].alt}
+                  width={1200}
+                  height={800}
+                  className="max-w-full max-h-full object-contain rounded-lg"
+                  priority={true}
+                />
+              </div>
+            </div>
+
+            {/* Image Counter */}
+            {projectImages.length > 1 && (
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/20 text-white px-4 py-2 rounded-full text-sm">
+                {lightboxImageIndex + 1} / {projectImages.length}
+              </div>
+            )}
+
+            {/* Caption */}
+            {projectImages[lightboxImageIndex].caption && (
+              <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-lg text-sm max-w-md text-center">
+                {projectImages[lightboxImageIndex].caption}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </article>
   );
 }
