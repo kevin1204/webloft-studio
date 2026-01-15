@@ -4,6 +4,11 @@ import { NextRequest, NextResponse } from 'next/server';
 const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY;
 
 async function verifyTurnstileToken(token: string, ip?: string): Promise<boolean> {
+  if (!TURNSTILE_SECRET_KEY) {
+    console.error('TURNSTILE_SECRET_KEY is not configured');
+    return false;
+  }
+
   try {
     const formData = new FormData();
     formData.append('secret', TURNSTILE_SECRET_KEY);
