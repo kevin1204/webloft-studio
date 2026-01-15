@@ -1,12 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { trackContactFormSubmission } from '@/lib/analytics';
 
 interface FormStatus {
   type: 'success' | 'error' | 'loading' | null;
   message: string;
 }
+
+// Cloudflare Turnstile Site Key
+const TURNSTILE_SITE_KEY = '0x4AAAAAACMuI6UiH_wsKL5g';
 
 export default function Contact() {
   // Add canonical URL to head
@@ -21,6 +24,67 @@ export default function Contact() {
     };
   }, []);
 
+  // Track when form was loaded (for time-based validation)
+  const formLoadTime = useRef<number>(Date.now());
+  
+  // Turnstile widget reference
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetId = useRef<string | null>(null);
+  const turnstileToken = useRef<string | null>(null);
+
+  // Load Turnstile script and initialize widget
+  useEffect(() => {
+    // Check if script already exists
+    if (document.querySelector('script[src*="turnstile"]')) {
+      // Script already loaded, initialize widget
+      if (turnstileRef.current && typeof window !== 'undefined' && (window as any).turnstile) {
+        initializeTurnstile();
+      }
+      return;
+    }
+
+    // Load Turnstile script
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    script.async = true;
+    script.defer = true;
+    
+    script.onload = () => {
+      // Initialize widget after script loads
+      if (turnstileRef.current && typeof window !== 'undefined' && (window as any).turnstile) {
+        initializeTurnstile();
+      }
+    };
+    
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup script on unmount
+      const existingScript = document.querySelector('script[src*="turnstile"]');
+      if (existingScript && existingScript.parentNode) {
+        existingScript.parentNode.removeChild(existingScript);
+      }
+    };
+  }, []);
+
+  const initializeTurnstile = () => {
+    if (turnstileRef.current && typeof window !== 'undefined' && (window as any).turnstile) {
+      const widgetId = (window as any).turnstile.render(turnstileRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+        callback: (token: string) => {
+          turnstileToken.current = token;
+        },
+        'error-callback': () => {
+          turnstileToken.current = null;
+        },
+        'expired-callback': () => {
+          turnstileToken.current = null;
+        },
+      });
+      turnstileWidgetId.current = widgetId;
+    }
+  };
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,6 +92,7 @@ export default function Contact() {
     projectType: '',
     budget: '',
     message: '',
+    website: '', // Honeypot field - bots will fill this, humans won't see it
   });
 
   const [formStatus, setFormStatus] = useState<FormStatus>({ type: null, message: '' });
@@ -90,15 +155,32 @@ export default function Contact() {
       return;
     }
 
+    // Check if Turnstile token exists
+    if (!turnstileToken.current) {
+      setFormStatus({ 
+        type: 'error', 
+        message: 'Please wait a moment for security verification to complete, then try again.' 
+      });
+      trackContactFormSubmission('contact_form', false);
+      return;
+    }
+
     setFormStatus({ type: 'loading', message: 'Sending your message...' });
 
     try {
+      // Calculate time spent on form (in seconds)
+      const timeSpent = Math.floor((Date.now() - formLoadTime.current) / 1000);
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          turnstileToken: turnstileToken.current,
+          timeSpent: timeSpent,
+        }),
       });
 
       const result = await response.json();
@@ -120,7 +202,17 @@ export default function Contact() {
           projectType: '',
           budget: '',
           message: '',
+          website: '',
         });
+        
+        // Reset Turnstile
+        if (turnstileWidgetId.current && typeof window !== 'undefined' && (window as any).turnstile) {
+          (window as any).turnstile.reset(turnstileWidgetId.current);
+          turnstileToken.current = null;
+        }
+        
+        // Reset form load time
+        formLoadTime.current = Date.now();
         
         // Clear status after 5 seconds
         setTimeout(() => {
@@ -136,6 +228,12 @@ export default function Contact() {
         message: 'There was an error sending your message. Please try again or contact us directly.' 
       });
       trackContactFormSubmission('contact_form', false);
+      
+      // Reset Turnstile on error
+      if (turnstileWidgetId.current && typeof window !== 'undefined' && (window as any).turnstile) {
+        (window as any).turnstile.reset(turnstileWidgetId.current);
+        turnstileToken.current = null;
+      }
     }
   };
 
@@ -327,6 +425,25 @@ export default function Contact() {
                   {fieldErrors.message && (
                     <p className="mt-1 text-sm text-red-600 dark:text-red-400">{fieldErrors.message}</p>
                   )}
+                </div>
+
+                {/* Honeypot field - hidden from users, bots will fill it */}
+                <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}>
+                  <label htmlFor="website">Website (leave blank)</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
+                {/* Cloudflare Turnstile Widget */}
+                <div className="flex justify-center">
+                  <div ref={turnstileRef}></div>
                 </div>
 
                 <button

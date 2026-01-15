@@ -34,3 +34,29 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Environment Variables
+
+This project requires the following environment variables to be set:
+
+### Required Variables
+
+- `RESEND_API_KEY` - Your Resend API key for sending emails. Get it from [Resend API Keys](https://resend.com/api-keys)
+- `TURNSTILE_SECRET_KEY` - Your Cloudflare Turnstile secret key for spam protection. Get it from [Cloudflare Turnstile Dashboard](https://dash.cloudflare.com/?to=/:account/turnstile)
+
+### Setting Environment Variables in Vercel
+
+1. Go to your project in Vercel Dashboard
+2. Navigate to **Settings** → **Environment Variables**
+3. Add each variable:
+   - `RESEND_API_KEY` = `re_xxxxxxxxxxxxx`
+   - `TURNSTILE_SECRET_KEY` = `0x4AAAAAACMuI884fEc5tD-BNtqwjUTsjWU`
+
+### Spam Protection
+
+This project uses a 3-layer spam protection system:
+1. **Cloudflare Turnstile** - Invisible CAPTCHA that blocks 99% of bots
+2. **Honeypot Field** - Hidden field that catches bots that slip through
+3. **Time Validation** - Rejects forms submitted too quickly (< 3 seconds)
+
+The Turnstile Site Key is already configured in the contact form. You only need to set the `TURNSTILE_SECRET_KEY` environment variable.

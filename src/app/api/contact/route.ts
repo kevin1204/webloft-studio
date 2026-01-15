@@ -1,5 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Cloudflare Turnstile Secret Key
+const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY;
+
+async function verifyTurnstileToken(token: string, ip?: string): Promise<boolean> {
+  try {
+    const formData = new FormData();
+    formData.append('secret', TURNSTILE_SECRET_KEY);
+    formData.append('response', token);
+    if (ip) {
+      formData.append('remoteip', ip);
+    }
+
+    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const result = await response.json();
+    return result.success === true;
+  } catch (error) {
+    console.error('Turnstile verification error:', error);
+    return false;
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     console.log('=== CONTACT FORM API CALLED ===');
@@ -7,7 +32,69 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     console.log('Request body received:', body);
     
-    const { name, email, company, projectType, budget, message } = body;
+    const { 
+      name, 
+      email, 
+      company, 
+      projectType, 
+      budget, 
+      message, 
+      website, // Honeypot field
+      turnstileToken, 
+      timeSpent 
+    } = body;
+
+    // ===== SPAM PROTECTION LAYER 1: Honeypot Check =====
+    if (website && website.trim() !== '') {
+      console.log('🚫 SPAM DETECTED: Honeypot field was filled');
+      return NextResponse.json(
+        { error: 'Invalid submission' },
+        { status: 400 }
+      );
+    }
+
+    // ===== SPAM PROTECTION LAYER 2: Time Validation =====
+    // Reject submissions that happen too quickly (less than 3 seconds)
+    // Real users take time to fill out forms
+    if (timeSpent !== undefined && timeSpent < 3) {
+      console.log('🚫 SPAM DETECTED: Form submitted too quickly:', timeSpent, 'seconds');
+      return NextResponse.json(
+        { error: 'Please take your time filling out the form' },
+        { status: 400 }
+      );
+    }
+
+    // ===== SPAM PROTECTION LAYER 3: Turnstile Verification =====
+    if (!TURNSTILE_SECRET_KEY) {
+      console.error('TURNSTILE_SECRET_KEY is not set in environment variables');
+      // Continue without Turnstile if not configured (for development)
+      // In production, you might want to return an error here
+    } else {
+      if (!turnstileToken) {
+        console.log('🚫 SPAM DETECTED: Missing Turnstile token');
+        return NextResponse.json(
+          { error: 'Security verification failed. Please refresh the page and try again.' },
+          { status: 400 }
+        );
+      }
+
+      // Get client IP for Turnstile verification
+      const ip = request.headers.get('x-forwarded-for') || 
+                 request.headers.get('x-real-ip') || 
+                 'unknown';
+
+      const isTurnstileValid = await verifyTurnstileToken(turnstileToken, ip);
+      
+      if (!isTurnstileValid) {
+        console.log('🚫 SPAM DETECTED: Invalid Turnstile token');
+        return NextResponse.json(
+          { error: 'Security verification failed. Please refresh the page and try again.' },
+          { status: 400 }
+        );
+      }
+    }
+
+    console.log('✅ All spam protection checks passed');
 
     // Validate required fields
     if (!name || !email || !projectType || !message) {
