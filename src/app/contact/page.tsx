@@ -11,6 +11,23 @@ interface FormStatus {
 // Cloudflare Turnstile Site Key
 const TURNSTILE_SITE_KEY = '0x4AAAAAACMuI6UiH_wsKL5g';
 
+// TypeScript types for Cloudflare Turnstile
+interface TurnstileOptions {
+  sitekey: string;
+  callback?: (token: string) => void;
+  'error-callback'?: () => void;
+  'expired-callback'?: () => void;
+}
+
+interface Turnstile {
+  render: (element: HTMLElement, options: TurnstileOptions) => string;
+  reset: (widgetId: string) => void;
+}
+
+interface WindowWithTurnstile extends Window {
+  turnstile?: Turnstile;
+}
+
 export default function Contact() {
   // Add canonical URL to head
   useEffect(() => {
@@ -34,10 +51,12 @@ export default function Contact() {
 
   // Load Turnstile script and initialize widget
   useEffect(() => {
+    const windowWithTurnstile = window as WindowWithTurnstile;
+    
     // Check if script already exists
     if (document.querySelector('script[src*="turnstile"]')) {
       // Script already loaded, initialize widget
-      if (turnstileRef.current && typeof window !== 'undefined' && (window as any).turnstile) {
+      if (turnstileRef.current && typeof window !== 'undefined' && windowWithTurnstile.turnstile) {
         initializeTurnstile();
       }
       return;
@@ -51,7 +70,7 @@ export default function Contact() {
     
     script.onload = () => {
       // Initialize widget after script loads
-      if (turnstileRef.current && typeof window !== 'undefined' && (window as any).turnstile) {
+      if (turnstileRef.current && typeof window !== 'undefined' && windowWithTurnstile.turnstile) {
         initializeTurnstile();
       }
     };
@@ -68,8 +87,9 @@ export default function Contact() {
   }, []);
 
   const initializeTurnstile = () => {
-    if (turnstileRef.current && typeof window !== 'undefined' && (window as any).turnstile) {
-      const widgetId = (window as any).turnstile.render(turnstileRef.current, {
+    const windowWithTurnstile = window as WindowWithTurnstile;
+    if (turnstileRef.current && typeof window !== 'undefined' && windowWithTurnstile.turnstile) {
+      const widgetId = windowWithTurnstile.turnstile.render(turnstileRef.current, {
         sitekey: TURNSTILE_SITE_KEY,
         callback: (token: string) => {
           turnstileToken.current = token;
@@ -206,8 +226,9 @@ export default function Contact() {
         });
         
         // Reset Turnstile
-        if (turnstileWidgetId.current && typeof window !== 'undefined' && (window as any).turnstile) {
-          (window as any).turnstile.reset(turnstileWidgetId.current);
+        const windowWithTurnstile = window as WindowWithTurnstile;
+        if (turnstileWidgetId.current && typeof window !== 'undefined' && windowWithTurnstile.turnstile) {
+          windowWithTurnstile.turnstile.reset(turnstileWidgetId.current);
           turnstileToken.current = null;
         }
         
@@ -230,8 +251,9 @@ export default function Contact() {
       trackContactFormSubmission('contact_form', false);
       
       // Reset Turnstile on error
-      if (turnstileWidgetId.current && typeof window !== 'undefined' && (window as any).turnstile) {
-        (window as any).turnstile.reset(turnstileWidgetId.current);
+      const windowWithTurnstile = window as WindowWithTurnstile;
+      if (turnstileWidgetId.current && typeof window !== 'undefined' && windowWithTurnstile.turnstile) {
+        windowWithTurnstile.turnstile.reset(turnstileWidgetId.current);
         turnstileToken.current = null;
       }
     }
