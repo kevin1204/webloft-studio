@@ -131,7 +131,7 @@ export default function FreeWebsiteAuditForm() {
                 </p>
 
                 {errorMessage && (
-                  <div className="mb-6 p-4 rounded-lg body text-sm" style={{ background: 'var(--bg-elev-2)', borderLeft: '3px solid #ef4444', color: 'var(--ink)' }}>
+                  <div className="mb-6 p-4 rounded-lg body text-sm" style={{ background: 'var(--bg-elev-2)', borderLeft: '3px solid var(--error)', color: 'var(--ink)' }}>
                     {errorMessage}
                   </div>
                 )}

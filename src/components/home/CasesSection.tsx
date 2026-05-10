@@ -88,7 +88,7 @@ function CaseCard({ c, index }: { c: (typeof CASES)[0]; index: number }) {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to bottom, transparent 60%, rgba(10,13,11,0.5) 100%)',
+            background: 'linear-gradient(to bottom, transparent 60%, color-mix(in oklch, var(--bg), transparent 50%) 100%)',
             pointerEvents: 'none',
           }}
         />
@@ -100,10 +100,10 @@ function CaseCard({ c, index }: { c: (typeof CASES)[0]; index: number }) {
             left: 16,
             fontFamily: 'var(--font-mono)',
             fontSize: 10,
-            color: 'rgba(255,255,255,0.7)',
+            color: 'color-mix(in oklch, var(--ink), transparent 30%)',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            background: 'rgba(0,0,0,0.4)',
+            background: 'var(--glass-bg)',
             padding: '4px 10px',
             borderRadius: 99,
             backdropFilter: 'blur(6px)',

@@ -70,6 +70,11 @@ function buildSchema(post: BlogPost) {
         {
           '@type': 'ListItem',
           position: 2,
+          name: post.category,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
           name: post.title,
           item: url,
         },
@@ -91,13 +96,13 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
       <main className="wl-blog-post-page">
         <section className="wl-blog-post-hero">
           <div className="ds-container">
-            <div className="wl-blog-meta-row reveal">
-              <Link href="/blog" className="eyebrow wl-blog-back-link">
-                <span className="dot" />
-                Blog
-              </Link>
-              <div className="wl-blog-kicker">({post.number}) - {post.category}</div>
-            </div>
+            <nav className="wl-blog-breadcrumb reveal" aria-label="Breadcrumb">
+              <Link href="/blog">Blog</Link>
+              <span className="wl-blog-breadcrumb-sep" aria-hidden="true">/</span>
+              <span>{post.category}</span>
+              <span className="wl-blog-breadcrumb-sep" aria-hidden="true">/</span>
+              <span className="wl-blog-breadcrumb-current" aria-current="page">{post.title}</span>
+            </nav>
 
             <div className="wl-blog-post-hero-grid">
               <div className="reveal">

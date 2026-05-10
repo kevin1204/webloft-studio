@@ -424,8 +424,8 @@ export default function HighConvertingWebsites() {
             {formStatus.type && (
               <div className={`mb-6 p-4 rounded-lg border`} style={{
                 background: formStatus.type === 'success' ? 'color-mix(in srgb, var(--accent) 10%, var(--bg-elev-2))' : formStatus.type === 'error' ? 'rgba(239,68,68,0.1)' : 'var(--bg-elev-2)',
-                borderColor: formStatus.type === 'success' ? 'var(--accent)' : formStatus.type === 'error' ? '#ef4444' : 'var(--line)',
-                color: formStatus.type === 'success' ? 'var(--accent)' : formStatus.type === 'error' ? '#ef4444' : 'var(--ink)',
+                borderColor: formStatus.type === 'success' ? 'var(--accent)' : formStatus.type === 'error' ? 'var(--error)' : 'var(--line)',
+                color: formStatus.type === 'success' ? 'var(--accent)' : formStatus.type === 'error' ? 'var(--error)' : 'var(--ink)',
               }}>
                 <div className="flex items-center">
                   {formStatus.type === 'success' && (
@@ -462,11 +462,11 @@ export default function HighConvertingWebsites() {
                     value={formData.name}
                     onChange={handleChange}
                     className={inputClass}
-                    style={{ ...inputStyle, borderColor: fieldErrors.name ? '#ef4444' : 'var(--line)' }}
+                    style={{ ...inputStyle, borderColor: fieldErrors.name ? 'var(--error)' : 'var(--line)' }}
                     placeholder="Your name"
                   />
                   {fieldErrors.name && (
-                    <p className="mt-1 text-sm" style={{ color: '#ef4444' }}>{fieldErrors.name}</p>
+                    <p className="mt-1 text-sm" style={{ color: 'var(--error)' }}>{fieldErrors.name}</p>
                   )}
                 </div>
                 <div>
@@ -480,11 +480,11 @@ export default function HighConvertingWebsites() {
                     value={formData.email}
                     onChange={handleChange}
                     className={inputClass}
-                    style={{ ...inputStyle, borderColor: fieldErrors.email ? '#ef4444' : 'var(--line)' }}
+                    style={{ ...inputStyle, borderColor: fieldErrors.email ? 'var(--error)' : 'var(--line)' }}
                     placeholder="your@email.com"
                   />
                   {fieldErrors.email && (
-                    <p className="mt-1 text-sm" style={{ color: '#ef4444' }}>{fieldErrors.email}</p>
+                    <p className="mt-1 text-sm" style={{ color: 'var(--error)' }}>{fieldErrors.email}</p>
                   )}
                 </div>
               </div>
@@ -501,11 +501,11 @@ export default function HighConvertingWebsites() {
                     value={formData.company}
                     onChange={handleChange}
                     className={inputClass}
-                    style={{ ...inputStyle, borderColor: fieldErrors.company ? '#ef4444' : 'var(--line)' }}
+                    style={{ ...inputStyle, borderColor: fieldErrors.company ? 'var(--error)' : 'var(--line)' }}
                     placeholder="Your company name"
                   />
                   {fieldErrors.company && (
-                    <p className="mt-1 text-sm" style={{ color: '#ef4444' }}>{fieldErrors.company}</p>
+                    <p className="mt-1 text-sm" style={{ color: 'var(--error)' }}>{fieldErrors.company}</p>
                   )}
                 </div>
                 <div>

@@ -1,5 +1,5 @@
 interface PageHeaderProps {
-  kicker: string;
+  kicker?: string;
   index: string;
   title: string;
   italic?: string;
@@ -21,10 +21,12 @@ export default function PageHeader({ kicker, index, title, italic, blurb }: Page
             gap: 24,
           }}
         >
-          <div className="eyebrow">
-            <span className="dot" />
-            {kicker}
-          </div>
+          {kicker ? (
+            <div className="eyebrow">
+              <span className="dot" />
+              {kicker}
+            </div>
+          ) : <div />}
           <div
             style={{
               fontFamily: 'var(--font-mono)',

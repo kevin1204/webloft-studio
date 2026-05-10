@@ -51,7 +51,21 @@ function ContactLine({ label, value, href }: { label: string; value: string; hre
   return (
     <Tag
       href={href}
-      style={{ display: 'block', padding: '16px 0', borderBottom: '1px solid var(--line)' }}
+      style={{
+        display: 'block',
+        padding: '16px 0',
+        borderBottom: '1px solid var(--line)',
+        textDecoration: 'none',
+        transition: 'color 0.3s var(--ease)',
+      }}
+      {...(href ? {
+        onMouseEnter: (e: React.MouseEvent<HTMLAnchorElement>) => {
+          e.currentTarget.querySelector<HTMLElement>('.contact-line-value')!.style.color = 'var(--accent)';
+        },
+        onMouseLeave: (e: React.MouseEvent<HTMLAnchorElement>) => {
+          e.currentTarget.querySelector<HTMLElement>('.contact-line-value')!.style.color = 'var(--ink)';
+        },
+      } : {})}
     >
       <div
         style={{
@@ -65,8 +79,19 @@ function ContactLine({ label, value, href }: { label: string; value: string; hre
       >
         {label}
       </div>
-      <div style={{ fontFamily: 'var(--font-display)', fontSize: 18, color: 'var(--ink)' }}>
+      <div
+        className="contact-line-value"
+        style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 18,
+          color: 'var(--ink)',
+          transition: 'color 0.3s var(--ease)',
+        }}
+      >
         {value}
+        {href && (
+          <span style={{ marginLeft: 6, fontSize: 14, opacity: 0.6 }}>&#8599;</span>
+        )}
       </div>
     </Tag>
   );

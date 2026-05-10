@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import ServiceWorkerRegistration from "../components/ServiceWorkerRegistration";
 import CustomCursor from "../components/CustomCursor";
 import RevealObserver from "../components/RevealObserver";
+import { ThemeProvider } from "@/lib/theme";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -81,8 +82,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="dark" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('wl-theme');var theme=t==='light'||t==='dark'?t:(window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',theme);document.documentElement.classList.add(theme)}catch(e){}})()` }} />
         <link rel="icon" href="/wflogo.svg" type="image/svg+xml" />
         <link rel="shortcut icon" href="/wflogo.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -108,14 +110,16 @@ export default function RootLayout({
           `}
         </Script>
 
-        <ServiceWorkerRegistration />
-        <RevealObserver />
-        <CustomCursor />
-        <Navbar />
-        <main className="pt-[72px] overflow-visible">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider>
+          <ServiceWorkerRegistration />
+          <RevealObserver />
+          <CustomCursor />
+          <Navbar />
+          <main className="pt-[72px] overflow-visible">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

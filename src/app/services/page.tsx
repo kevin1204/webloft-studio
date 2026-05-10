@@ -8,7 +8,6 @@ export default function ServicesPage() {
   return (
     <>
       <PageHeader
-        kicker="What we do"
         index="(02) — Services"
         title="Eight services,"
         italic="one outcome."

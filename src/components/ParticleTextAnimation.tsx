@@ -1,9 +1,14 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useTheme } from '@/lib/theme';
 
-const GREEN = '#009E69';
-const WHITE = '#ffffff';
+function getThemeColors(theme: string) {
+  return {
+    GREEN: theme === 'light' ? '#0f8a4f' : '#009E69',
+    WHITE: theme === 'light' ? '#1a1f1b' : '#ffffff',
+  };
+}
 
 interface MouseState {
   x: number;
@@ -108,7 +113,9 @@ const buildParticleSet = (
   width: number,
   height: number,
   sampleStep: number,
-  particleSize: number
+  particleSize: number,
+  GREEN: string = '#009E69',
+  WHITE: string = '#ffffff'
 ): ParticleBuildResult => {
   const offscreen = document.createElement('canvas');
   const offscreenCtx = offscreen.getContext('2d');
@@ -239,6 +246,7 @@ const buildParticleSet = (
 };
 
 export default function ParticleTextAnimation() {
+  const { theme } = useTheme();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
@@ -391,11 +399,14 @@ export default function ParticleTextAnimation() {
 
       mouseRef.current.radius = compactLayout ? 60 : 120;
 
+      const colors = getThemeColors(theme);
       const { particles, linkDistance, linkWidth } = buildParticleSet(
         drawWidth,
         drawHeight,
         sampleStep,
-        particleSize
+        particleSize,
+        colors.GREEN,
+        colors.WHITE
       );
 
       if (particles.length === 0) {
@@ -434,10 +445,11 @@ export default function ParticleTextAnimation() {
 
         ctx.globalAlpha = Math.min(0.32, easedAlpha);
         ctx.lineWidth = lineWidth;
+        const fallbackColor = getThemeColors(theme).WHITE;
         const strokeColor =
           particleA.strokeColor === particleB.strokeColor
             ? particleA.strokeColor
-            : '#ffffff';
+            : fallbackColor;
         ctx.strokeStyle = strokeColor;
         ctx.beginPath();
         ctx.moveTo(particleA.x, particleA.y);
@@ -569,22 +581,23 @@ export default function ParticleTextAnimation() {
       wrapper.removeEventListener('touchend', handlePointerLeave);
       wrapper.removeEventListener('touchcancel', handlePointerLeave);
     };
-  }, [prefersReducedMotion, sweepAnimationCompleted, startSweepAnimation, shouldContinueAnimation]);
+  }, [prefersReducedMotion, sweepAnimationCompleted, startSweepAnimation, shouldContinueAnimation, theme]);
 
   return (
-    <div className="w-full bg-black overflow-visible particle-container">
+    <div className="w-full overflow-visible particle-container" style={{ background: 'var(--bg)' }}>
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           ref={wrapperRef}
-          className="relative mx-auto h-44 sm:h-56 md:h-64 lg:h-72 bg-black overflow-visible"
+          className="relative mx-auto h-44 sm:h-56 md:h-64 lg:h-72 overflow-visible"
           aria-hidden="true"
-          style={{ 
-            willChange: 'transform'
+          style={{
+            willChange: 'transform',
+            background: 'var(--bg)',
           }}
         >
           {!prefersReducedMotion ? (
-            <canvas 
-              ref={canvasRef} 
+            <canvas
+              ref={canvasRef}
               className="pointer-events-none absolute inset-0"
               style={{
                 willChange: 'transform'
@@ -593,8 +606,8 @@ export default function ParticleTextAnimation() {
           ) : (
             <div className="flex h-full w-full items-center justify-center">
               <div className="flex flex-col items-center gap-2 text-center text-sm sm:text-base md:text-lg tracking-[0.5em] uppercase sm:flex-row">
-                <span className="text-[color:#009E69]">WEBLOFT</span>
-                <span className="text-white">STUDIO</span>
+                <span style={{ color: 'var(--accent)' }}>WEBLOFT</span>
+                <span style={{ color: 'var(--ink)' }}>STUDIO</span>
               </div>
             </div>
           )}

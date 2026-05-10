@@ -570,7 +570,7 @@ export default function CaseStudy({
           border-radius: 12px;
           border: 1px solid var(--line-strong);
           background: var(--bg-elev-2);
-          box-shadow: 0 32px 80px rgba(0, 0, 0, 0.58);
+          box-shadow: 0 32px 80px color-mix(in oklch, var(--bg), transparent 42%);
           transform: rotate(-1.5deg);
           transition: transform 0.6s var(--ease), border-color 0.3s var(--ease);
         }
@@ -769,9 +769,9 @@ export default function CaseStudy({
           gap: 10px;
           padding: 12px 18px;
           border-radius: 999px;
-          background: rgba(0, 0, 0, 0.55);
+          background: var(--glass-bg);
           color: var(--ink);
-          border: 1px solid rgba(255, 255, 255, 0.18);
+          border: 1px solid var(--glass-border);
           backdrop-filter: blur(8px);
           font-family: var(--font-mono);
           font-size: 11px;
@@ -1037,7 +1037,7 @@ export default function CaseStudy({
           align-items: center;
           justify-content: center;
           padding: clamp(16px, 4vw, 48px);
-          background: rgba(0, 0, 0, 0.9);
+          background: color-mix(in oklch, var(--bg), transparent 10%);
           backdrop-filter: blur(12px);
         }
 
@@ -1056,9 +1056,9 @@ export default function CaseStudy({
         .wl-case-lightbox-caption {
           position: absolute;
           z-index: 2;
-          border: 1px solid rgba(255, 255, 255, 0.18);
+          border: 1px solid var(--glass-border);
           border-radius: 999px;
-          background: rgba(10, 13, 11, 0.72);
+          background: var(--glass-bg);
           color: var(--ink);
           font-family: var(--font-mono);
           font-size: 11px;

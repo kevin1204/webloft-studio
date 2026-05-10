@@ -259,7 +259,7 @@ export default function HeroSection() {
                   borderRadius: 10,
                   overflow: 'hidden',
                   border: '1px solid var(--line)',
-                  boxShadow: '0 12px 48px rgba(0,0,0,0.5)',
+                  boxShadow: '0 12px 48px color-mix(in oklch, var(--bg), transparent 50%)',
                   transform: ready ? 'rotate(4deg)' : 'rotate(4deg) translateY(32px)',
                   opacity: ready ? 0.55 : 0,
                   transition: `transform 1.2s ${ease} 0.5s, opacity 0.9s ${ease} 0.5s`,
@@ -293,8 +293,8 @@ export default function HeroSection() {
                     overflow: 'hidden',
                     border: '1px solid var(--line-strong)',
                     boxShadow: hovering
-                      ? '0 48px 120px rgba(0,0,0,0.8), 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.06)'
-                      : '0 32px 80px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.03)',
+                      ? `0 48px 120px color-mix(in oklch, var(--bg), transparent 20%), 0 16px 40px color-mix(in oklch, var(--bg), transparent 60%), 0 0 0 1px var(--glass-border)`
+                      : `0 32px 80px color-mix(in oklch, var(--bg), transparent 35%), 0 0 0 1px var(--glass-border)`,
                     transform: ready ? 'rotate(-2deg)' : 'rotate(-2deg) translateY(40px)',
                     opacity: ready ? 1 : 0,
                     transition: `transform 1.2s ${ease} 0.3s, opacity 0.9s ${ease} 0.3s, box-shadow 0.45s ${ease}`,
