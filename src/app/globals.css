@@ -2249,9 +2249,9 @@ section { position: relative; }
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 768px) {
   .wl-blog-hero {
-    padding-top: 68px;
+    padding-top: 28px;
   }
 
   .wl-blog-post-hero {
@@ -2825,6 +2825,12 @@ section { position: relative; }
 .page-header-section {
   padding-top: clamp(72px, 10vh, 120px);
   padding-bottom: calc(var(--section-y) * 0.5);
+}
+@media (max-width: 768px) {
+  .page-header-section {
+    padding-top: 28px;
+    padding-bottom: calc(var(--section-y) * 0.35);
+  }
 }
 
 /* --- Team grid --- */

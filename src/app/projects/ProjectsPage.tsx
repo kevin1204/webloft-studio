@@ -949,9 +949,9 @@ export default function ProjectsPage() {
           }
         }
 
-        @media (max-width: 680px) {
+        @media (max-width: 768px) {
           .projects-hero {
-            padding-top: clamp(56px, 14vw, 72px);
+            padding-top: 28px;
           }
 
           .projects-hero-title {
@@ -981,10 +981,6 @@ export default function ProjectsPage() {
           }
 
           .projects-hero-visual {
-            min-height: 330px;
-          }
-
-          .projects-hero-back {
             display: none;
           }
 
@@ -1031,10 +1027,6 @@ export default function ProjectsPage() {
 
           .projects-index {
             font-size: 10px;
-          }
-
-          .projects-hero-visual {
-            min-height: 300px;
           }
 
           .projects-browser-bar {

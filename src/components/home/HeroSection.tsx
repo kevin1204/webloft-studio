@@ -138,6 +138,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
+      className="wl-hero-section"
       style={{
         paddingTop: 'clamp(72px, 10vh, 120px)',
         paddingBottom: 'calc(var(--section-y) * 0.7)',
@@ -149,6 +150,7 @@ export default function HeroSection() {
 
         {/* ── Meta row ── */}
         <div
+          className="hero-meta-row"
           style={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -167,6 +169,7 @@ export default function HeroSection() {
           </div>
           {time && (
             <div
+              className="hero-status"
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: 12,
@@ -488,12 +491,24 @@ export default function HeroSection() {
         /* Stack hero on tablet / mobile */
         @media (max-width: 960px) {
           .hero-grid { grid-template-columns: 1fr !important; }
-          /* Hide the entire mockup column when it would wrap below the text */
           .hero-mockup-wrapper { display: none !important; }
         }
-        /* Stack sub-row on mobile */
+        /* Mobile: hero fills viewport, content flows from top */
         @media (max-width: 768px) {
-          .hero-sub-row { grid-template-columns: 1fr !important; }
+          .wl-hero-section {
+            min-height: calc(100svh - 72px) !important;
+            padding-top: 24px !important;
+            padding-bottom: 32px !important;
+            box-sizing: border-box !important;
+          }
+          @supports not (min-height: 100svh) {
+            .wl-hero-section {
+              min-height: calc(85vh - 72px) !important;
+            }
+          }
+          .hero-meta-row { margin-bottom: 24px !important; }
+          .hero-status { margin-top: 16px; }
+          .hero-sub-row { grid-template-columns: 1fr !important; margin-top: 32px !important; }
           .hero-sub-row > div:last-child { justify-self: start !important; }
         }
       `}</style>

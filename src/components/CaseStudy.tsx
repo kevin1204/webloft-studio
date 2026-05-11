@@ -1162,9 +1162,9 @@ export default function CaseStudy({
           }
         }
 
-        @media (max-width: 680px) {
+        @media (max-width: 768px) {
           .wl-case-hero {
-            padding-top: clamp(56px, 14vw, 72px);
+            padding-top: 28px;
           }
 
           .wl-case-title {
