@@ -59,10 +59,10 @@ function ContactLine({ label, value, href }: { label: string; value: string; hre
         transition: 'color 0.3s var(--ease)',
       }}
       {...(href ? {
-        onMouseEnter: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
           e.currentTarget.querySelector<HTMLElement>('.contact-line-value')!.style.color = 'var(--accent)';
         },
-        onMouseLeave: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
           e.currentTarget.querySelector<HTMLElement>('.contact-line-value')!.style.color = 'var(--ink)';
         },
       } : {})}

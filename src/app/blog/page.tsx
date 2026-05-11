@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { BLOG_POSTS } from '@/lib/blog-posts';
+import { getAllPostCards } from '@/sanity/lib/queries';
+import { getAllPosts } from '@/lib/blog';
+import type { BlogCardData } from '@/sanity/lib/types';
 import BlogIndex from '@/components/BlogIndex';
 import SubscribeModal from '@/components/SubscribeModal';
 import SubscribeForm from '@/components/SubscribeForm';
@@ -31,9 +33,37 @@ function ArrowIcon() {
   );
 }
 
-export default function Blog() {
-  const featured = BLOG_POSTS.filter((post) => post.featured);
-  const latest = [...BLOG_POSTS].sort((a, b) => Number(new Date(b.isoDate)) - Number(new Date(a.isoDate)));
+/** Convert static posts to BlogCardData shape */
+function staticToCards(): BlogCardData[] {
+  return getAllPosts().map((p) => ({
+    slug: p.slug,
+    number: p.number,
+    title: p.title,
+    excerpt: p.excerpt,
+    category: p.category,
+    date: p.date,
+    isoDate: p.isoDate,
+    readTime: p.readTime,
+    image: p.image,
+    featured: p.featured,
+  }));
+}
+
+export default async function Blog() {
+  /* Always show static posts + any new Sanity posts, deduped by slug */
+  const staticPosts = staticToCards();
+  let sanityPosts: BlogCardData[] = [];
+
+  try {
+    sanityPosts = await getAllPostCards();
+  } catch { /* Sanity unreachable — static posts still show */ }
+
+  const staticSlugs = new Set(staticPosts.map((p) => p.slug));
+  const newSanityPosts = sanityPosts.filter((p) => !staticSlugs.has(p.slug));
+  const posts = [...staticPosts, ...newSanityPosts];
+
+  const featured = posts.filter((post) => post.featured);
+  const latest = [...posts].sort((a, b) => Number(new Date(b.isoDate)) - Number(new Date(a.isoDate)));
   const topPost = latest[0];
 
   return (
@@ -45,7 +75,7 @@ export default function Blog() {
               <span className="dot" />
               Webloft Journal
             </div>
-            <div className="wl-blog-kicker">({String(BLOG_POSTS.length).padStart(2, '0')}) - Articles</div>
+            <div className="wl-blog-kicker">({String(posts.length).padStart(2, '0')}) - Articles</div>
           </div>
 
           <div className="wl-blog-hero-grid">
@@ -144,7 +174,7 @@ export default function Blog() {
         </div>
       </section>
 
-      <BlogIndex posts={BLOG_POSTS} />
+      <BlogIndex posts={posts} />
 
       <section className="wl-blog-newsletter-section">
         <div className="ds-container">

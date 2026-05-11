@@ -6,9 +6,10 @@ import { getPost, getAllPostSlugs, getAllPostCards } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image';
 import PortableTextRenderer, { extractHeadings } from '@/components/PortableTextRenderer';
 import SubscribeForm from '@/components/SubscribeForm';
+import SubscribeToast from '@/components/SubscribeToast';
 
-/* ── Static blog-posts.ts fallback (remove after full migration) ── */
-import { getBlogPost, getBlogPostMetadata } from '@/lib/blog-posts';
+/* ── Static posts fallback ── */
+import { getBlogPost, getPostMetadata, getAllSlugs } from '@/lib/blog';
 import BlogPostPage from '@/components/BlogPostPage';
 
 function ArrowIcon() {
@@ -20,28 +21,18 @@ function ArrowIcon() {
 }
 
 export async function generateStaticParams() {
+  const staticSlugs = getAllSlugs();
+  const params = staticSlugs.map((slug) => ({ slug }));
+
   try {
     const sanity = await getAllPostSlugs();
-    const params = sanity.map((p) => ({ slug: p.slug }));
-
-    // Also include static slugs during migration
-    const staticSlugs = [
-      'why-webflow-best-platform-small-medium-businesses',
-      'real-roi-great-website-investment-not-expense',
-      'seo-local-seo-secret-getting-found-online',
-      '5-common-website-mistakes-costing-clients',
-      'how-often-update-website-why-matters',
-      'web-design-services-toronto-ontario',
-    ];
-    const existing = new Set(params.map((p) => p.slug));
-    for (const s of staticSlugs) {
-      if (!existing.has(s)) params.push({ slug: s });
+    const existing = new Set(staticSlugs);
+    for (const p of sanity) {
+      if (!existing.has(p.slug)) params.push({ slug: p.slug });
     }
+  } catch { /* Sanity unreachable — static posts still covered */ }
 
-    return params;
-  } catch {
-    return [];
-  }
+  return params;
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -71,8 +62,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   // Fallback to static metadata
   try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return getBlogPostMetadata(slug as any) || {};
+    return getPostMetadata(slug) || {};
   } catch {
     return {};
   }
@@ -100,7 +90,7 @@ export default async function BlogPostRoute({ params }: { params: Promise<{ slug
     const headings = extractHeadings(post.body || []);
 
     /* Related posts from Sanity */
-    let relatedCards;
+    let relatedCards: import('@/sanity/lib/types').BlogCardData[] = [];
     try {
       const all = await getAllPostCards();
       relatedCards = all.filter((p) => p.slug !== slug).slice(0, 3);
@@ -318,15 +308,15 @@ export default async function BlogPostRoute({ params }: { params: Promise<{ slug
             </section>
           )}
         </main>
+        <SubscribeToast />
       </>
     );
   }
 
-  /* ── Fallback to static blog-posts.ts ── */
+  /* ── Fallback to static posts ── */
   try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const staticPost = getBlogPost(slug as any);
-    if (staticPost) return <BlogPostPage post={staticPost} />;
+    const staticPost = getBlogPost(slug);
+    if (staticPost) return <><BlogPostPage post={staticPost} /><SubscribeToast /></>;
   } catch { /* not found */ }
 
   notFound();

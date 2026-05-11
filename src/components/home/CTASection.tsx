@@ -111,10 +111,12 @@ export default function CTASection() {
               onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
             >
-              Book a free 30-min call <ArrowIcon />
+              Start a project <ArrowIcon />
             </Link>
-            <Link
-              href="mailto:info@webloftstudio.com"
+            <a
+              href="https://calendly.com/webloftstudio-info/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -132,8 +134,8 @@ export default function CTASection() {
                 transition: 'border-color 0.3s var(--ease)',
               }}
             >
-              info@webloftstudio.com <ArrowIcon />
-            </Link>
+              Book a free call <ArrowIcon />
+            </a>
           </div>
 
           {/* Decorative asterisk */}

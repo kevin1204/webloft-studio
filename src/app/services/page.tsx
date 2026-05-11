@@ -8,12 +8,13 @@ export default function ServicesPage() {
   return (
     <>
       <PageHeader
-        index="(02) — Services"
+        kicker="What we do"
+        index="(08) — Services"
         title="Eight services,"
-        italic="one outcome."
-        blurb="More qualified leads. Pick what you need à la carte, or bundle them as a Studio package."
+        italic="one growth engine."
+        blurb="Every service is fixed-fee, scope-clear, and led by a senior designer. Pick what you need à la carte, or bundle them as a Studio package."
       />
-      <ServicesSection />
+      <ServicesSection hideIntro />
       <ProcessSection />
       <PricingSection />
       <CTASection />

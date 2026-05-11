@@ -200,67 +200,71 @@ function ServiceRow({
   );
 }
 
-export default function ServicesSection() {
+export default function ServicesSection({ hideIntro = false }: { hideIntro?: boolean }) {
   return (
     <section
       style={{
         background: 'var(--bg-elev)',
-        paddingTop: 'calc(var(--section-y) * 1.3)',
+        paddingTop: hideIntro ? 'var(--section-y)' : 'calc(var(--section-y) * 1.3)',
         paddingBottom: 'var(--section-y)',
       }}
     >
       <div className="ds-container">
-        <div
-          className="reveal"
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            marginBottom: 56,
-          }}
-        >
-          <div className="eyebrow">
-            <span className="dot" />
-            What we do
-          </div>
-          <div
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 12,
-              color: 'var(--ink-mute)',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-            }}
-          >
-            (08) — Services
-          </div>
-        </div>
+        {!hideIntro && (
+          <>
+            <div
+              className="reveal"
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginBottom: 56,
+              }}
+            >
+              <div className="eyebrow">
+                <span className="dot" />
+                What we do
+              </div>
+              <div
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 12,
+                  color: 'var(--ink-mute)',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                (08) — Services
+              </div>
+            </div>
 
-        <div
-          className="services-intro-grid"
-          style={{
-            marginBottom: 64,
-            display: 'grid',
-            gridTemplateColumns: '1.1fr 1fr',
-            gap: 48,
-            alignItems: 'end',
-          }}
-        >
-          <h2 className="h-1 reveal">
-            Eight ways we turn your{' '}
-            <span className="italic-serif" style={{ color: 'var(--accent)' }}>
-              website
-            </span>{' '}
-            into a{' '}
-            <span className="italic-serif" style={{ color: 'var(--accent)' }}>
-              growth engine
-            </span>
-            .
-          </h2>
-          <p className="body-lg reveal services-intro-copy" style={{ maxWidth: 440, justifySelf: 'end' }}>
-            Pick what you need or bundle the lot. Every service is fixed-fee, scope-clear, and
-            led by a senior designer.
-          </p>
-        </div>
+            <div
+              className="services-intro-grid"
+              style={{
+                marginBottom: 64,
+                display: 'grid',
+                gridTemplateColumns: '1.1fr 1fr',
+                gap: 48,
+                alignItems: 'end',
+              }}
+            >
+              <h2 className="h-1 reveal">
+                Eight ways we turn your{' '}
+                <span className="italic-serif" style={{ color: 'var(--accent)' }}>
+                  website
+                </span>{' '}
+                into a{' '}
+                <span className="italic-serif" style={{ color: 'var(--accent)' }}>
+                  growth engine
+                </span>
+                .
+              </h2>
+              <p className="body-lg reveal services-intro-copy" style={{ maxWidth: 440, justifySelf: 'end' }}>
+                Pick what you need or bundle the lot. Every service is fixed-fee, scope-clear, and
+                led by a senior designer.
+              </p>
+            </div>
+          </>
+        )}
 
         <div style={{ borderTop: '1px solid var(--line)' }}>
           {SERVICES.map((s) => (

@@ -109,7 +109,7 @@ export default function Footer() {
             items={[
               ['info@webloftstudio.com', 'mailto:info@webloftstudio.com'],
               ['Instagram', 'https://instagram.com/webloftstudio'],
-              ['LinkedIn', 'https://linkedin.com/company/webloftstudio'],
+              ['Facebook', 'https://www.facebook.com/people/Webloft-Studio/61582282381001/'],
               ['Book a call', '/contact'],
             ]}
           />
@@ -157,9 +157,17 @@ export default function Footer() {
               color: 'var(--ink-mute)',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '6px 16px',
+              alignItems: 'center',
             }}
           >
-            © {new Date().getFullYear()} Webloft Studio · All rights reserved
+            <span>© {new Date().getFullYear()} Webloft Studio</span>
+            <span aria-hidden="true">·</span>
+            <Link href="/privacy" style={{ color: 'var(--ink-mute)', textDecoration: 'none', transition: 'color 0.3s var(--ease)' }} onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent)')} onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-mute)')}>Privacy</Link>
+            <span aria-hidden="true">·</span>
+            <Link href="/terms" style={{ color: 'var(--ink-mute)', textDecoration: 'none', transition: 'color 0.3s var(--ease)' }} onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent)')} onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-mute)')}>Terms</Link>
           </div>
           <div style={{ display: 'flex', gap: 16 }}>
             {[

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getRelatedBlogPosts, type BlogPost } from '@/lib/blog-posts';
+import { getRelatedPosts, type BlogPost } from '@/lib/blog';
 import SubscribeForm from '@/components/SubscribeForm';
 
 function ArrowIcon() {
@@ -84,7 +84,7 @@ function buildSchema(post: BlogPost) {
 }
 
 export default function BlogPostPage({ post }: { post: BlogPost }) {
-  const related = getRelatedBlogPosts(post);
+  const related = getRelatedPosts(post);
 
   return (
     <>

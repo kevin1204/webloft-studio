@@ -56,7 +56,7 @@ export default function HeroSection() {
   return (
     <section
       style={{
-        paddingTop: 'clamp(80px, 12vh, 150px)',
+        paddingTop: 'clamp(72px, 10vh, 120px)',
         paddingBottom: 'calc(var(--section-y) * 0.7)',
         position: 'relative',
         overflow: 'hidden',

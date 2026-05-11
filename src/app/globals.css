@@ -1579,7 +1579,7 @@ section { position: relative; }
     linear-gradient(180deg, color-mix(in oklch, var(--accent), transparent 96%), transparent 42%),
     var(--bg);
   border-bottom: 1px solid var(--line);
-  padding: clamp(80px, 12vh, 150px) 0 clamp(72px, 8vw, 112px);
+  padding: clamp(72px, 10vh, 120px) 0 clamp(72px, 8vw, 112px);
 }
 
 .wl-blog-meta-row,
@@ -2251,7 +2251,7 @@ section { position: relative; }
 
 @media (max-width: 520px) {
   .wl-blog-hero {
-    padding-top: 80px;
+    padding-top: 68px;
   }
 
   .wl-blog-post-hero {
@@ -2823,7 +2823,7 @@ section { position: relative; }
 
 /* --- Page header --- */
 .page-header-section {
-  padding-top: clamp(80px, 12vh, 150px);
+  padding-top: clamp(72px, 10vh, 120px);
   padding-bottom: calc(var(--section-y) * 0.5);
 }
 
@@ -2837,4 +2837,282 @@ section { position: relative; }
 @media (max-width: 900px) {
   .team-grid { grid-template-columns: 1fr !important; }
   .team-grid > div { border-right: none !important; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   Subscribe Toast
+   ═══════════════════════════════════════════════════════ */
+
+@keyframes wl-toast-in {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes wl-toast-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(24px) scale(0.97); }
+}
+
+@keyframes wl-overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes wl-overlay-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* Backdrop overlay */
+.wl-subscribe-toast-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 91;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: wl-overlay-in 0.35s var(--ease) both;
+  cursor: pointer;
+}
+.wl-subscribe-toast-overlay--hiding {
+  animation: wl-overlay-out 0.3s var(--ease) both;
+  pointer-events: none;
+}
+
+/* Toast card — centered via inset + margin auto (no transform needed) */
+.wl-subscribe-toast {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+  z-index: 92;
+  width: min(520px, calc(100vw - 48px));
+  background: var(--bg-elev);
+  border: 1px solid var(--accent);
+  border-radius: var(--r-lg);
+  padding: 44px 40px 36px;
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--accent), transparent 70%),
+    0 16px 56px rgba(0, 0, 0, 0.22),
+    0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: wl-toast-in 0.45s var(--ease) both;
+  cursor: default;
+  text-align: center;
+}
+
+.wl-subscribe-toast--hiding {
+  animation: wl-toast-out 0.3s var(--ease) both;
+  pointer-events: none;
+}
+
+.wl-subscribe-toast--suppressed {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease);
+}
+
+/* Close button */
+.wl-subscribe-toast-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  background: var(--bg-elev-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  color: var(--ink-mute);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.wl-subscribe-toast-close:hover {
+  color: var(--ink);
+  background: var(--bg-elev);
+}
+
+/* Free badge */
+.wl-subscribe-toast-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 100px;
+  margin-bottom: 22px;
+}
+
+/* Title */
+.wl-subscribe-toast-title {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.2vw, 30px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  margin: 0 0 14px;
+}
+.wl-subscribe-toast-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* Description */
+.wl-subscribe-toast-desc {
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 auto 22px;
+  max-width: 420px;
+}
+
+/* Perks list */
+.wl-subscribe-toast-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  max-width: 380px;
+}
+.wl-subscribe-toast-perks li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+.wl-subscribe-toast-perk-icon {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* Trust line */
+.wl-subscribe-toast-trust {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+  margin: 14px 0 0;
+  text-align: center;
+}
+
+/* Form overrides inside toast */
+.wl-subscribe-toast .wl-subscribe-row {
+  grid-template-columns: 1fr auto;
+  max-width: 420px;
+  margin-inline: auto;
+}
+.wl-subscribe-toast .wl-subscribe-input {
+  cursor: text;
+}
+.wl-subscribe-toast .wl-subscribe-btn-submit {
+  cursor: pointer;
+}
+
+/* ── Minimized pill (bottom-right corner) ── */
+@keyframes wl-mini-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.wl-subscribe-mini {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-elev);
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  padding: 10px 20px 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--accent), transparent 75%),
+    0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: wl-mini-in 0.35s var(--ease) both;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.wl-subscribe-mini svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.wl-subscribe-mini:hover {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 2px color-mix(in oklch, var(--accent), transparent 60%),
+    0 6px 20px rgba(0, 0, 0, 0.14);
+}
+
+/* ── Tablet ── */
+@media (max-width: 600px) {
+  .wl-subscribe-toast {
+    width: calc(100vw - 32px);
+    padding: 36px 28px 28px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .wl-subscribe-toast {
+    width: calc(100vw - 24px);
+    padding: 32px 20px 24px;
+  }
+
+  .wl-subscribe-toast-title {
+    font-size: 22px;
+  }
+
+  .wl-subscribe-toast-desc {
+    font-size: 14px;
+  }
+
+  .wl-subscribe-toast .wl-subscribe-row {
+    grid-template-columns: 1fr;
+  }
+
+  .wl-subscribe-toast .wl-subscribe-btn-submit {
+    width: 100%;
+  }
+
+  .wl-subscribe-toast-perks {
+    max-width: 100%;
+  }
+
+  /* Hide minimized pill on mobile */
+  .wl-subscribe-mini {
+    display: none;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .wl-subscribe-toast,
+  .wl-subscribe-toast-overlay,
+  .wl-subscribe-mini {
+    animation: none;
+    opacity: 1;
+  }
+  .wl-subscribe-toast--hiding,
+  .wl-subscribe-toast-overlay--hiding {
+    animation: none;
+    opacity: 0;
+    transition: opacity 0.01s;
+  }
 }

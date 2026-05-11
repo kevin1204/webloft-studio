@@ -3,7 +3,9 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import type { BlogPost } from '@/lib/blog-posts';
+import type { BlogCardData } from '@/sanity/lib/types';
+
+type BlogPost = BlogCardData;
 
 function ArrowIcon() {
   return (

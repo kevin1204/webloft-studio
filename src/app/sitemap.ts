@@ -1,8 +1,17 @@
 import { MetadataRoute } from 'next'
 import { servicePageSlugs } from '@/lib/service-pages'
+import { getAllPostSlugs } from '@/sanity/lib/queries'
+import { getAllSlugs as getStaticBlogSlugs } from '@/lib/blog'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://webloftstudio.com'
+
+  /* ── Blog slugs: static posts + any additional Sanity posts ── */
+  const blogSlugs = new Set(getStaticBlogSlugs())
+  try {
+    const sanity = await getAllPostSlugs()
+    for (const p of sanity) blogSlugs.add(p.slug)
+  } catch { /* Sanity unreachable — static slugs still covered */ }
 
   return [
     // ── Core pages ──────────────────────────────────────────────────────────
@@ -79,49 +88,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
-    // ── Blog ─────────────────────────────────────────────────────────────────
+    // ── Blog (dynamic from Sanity) ──────────────────────────────────────────
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date('2025-01-20'),
+      lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
-    {
-      url: `${baseUrl}/blog/web-design-services-toronto-ontario`,
-      lastModified: new Date('2025-01-20'),
-      changeFrequency: 'monthly',
+    ...[...blogSlugs].map((slug) => ({
+      url: `${baseUrl}/blog/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
       priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/why-webflow-best-platform-small-medium-businesses`,
-      lastModified: new Date('2025-01-15'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/real-roi-great-website-investment-not-expense`,
-      lastModified: new Date('2025-01-12'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/seo-local-seo-secret-getting-found-online`,
-      lastModified: new Date('2025-01-10'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/5-common-website-mistakes-costing-clients`,
-      lastModified: new Date('2025-01-08'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/how-often-update-website-why-matters`,
-      lastModified: new Date('2025-01-05'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
+    })),
     // ── Service pages ─────────────────────────────────────────────────────────
     ...servicePageSlugs.map((slug) => ({
       url: `${baseUrl}/services/${slug}`,

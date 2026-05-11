@@ -1,0 +1,222 @@
+import type { BlogPost } from '@/lib/blog';
+
+const post: BlogPost = {
+  slug: 'why-your-small-business-website-is-not-getting-leads',
+  number: '07',
+  title: 'Why Your Small Business Website Is Not Getting Leads',
+  shortTitle: 'Website leads',
+  excerpt:
+    'Your website should do more than look good. It should help people understand what you offer, trust your business, and take action. If your website is not generating leads, the problem usually comes down to weak messaging, poor user experience, missing SEO, or unclear calls to action.',
+  category: 'Website Strategy',
+  date: 'May 11, 2026',
+  isoDate: '2026-05-11',
+  readTime: '5 min read',
+  featured: true,
+  image: '/blog/blog-07.png',
+  keywords: [
+    'small business website',
+    'website leads',
+    'local SEO',
+    'website redesign',
+    'conversion optimization',
+    'business website tips',
+    'lead generation',
+  ],
+  takeaways: [
+    'A good-looking website is not enough if it does not clearly explain your services.',
+    'Strong calls to action and trust signals help turn visitors into leads.',
+    'Local SEO helps customers find your business when they are actively searching.',
+  ],
+  sections: [
+    {
+      id: 'intro',
+      heading: 'Why Your Small Business Website Is Not Getting Leads',
+      paragraphs: [
+        'For many small businesses, a website is one of the first things potential customers see before deciding whether to call, book, request a quote, or move on to a competitor.',
+        'But here is the problem: having a website does not automatically mean it is working.',
+        'A website can look clean, modern, and professional, but still fail to bring in leads. If people are visiting your site but not contacting you, there is usually a reason. Most of the time, it comes down to a few common issues: unclear messaging, weak calls to action, poor mobile experience, missing trust signals, or weak search engine visibility.',
+        'The good news is that these problems can usually be fixed with the right strategy.',
+      ],
+    },
+    {
+      id: 'unclear-messaging',
+      heading: 'Your website does not clearly explain what you do',
+      paragraphs: [
+        'One of the biggest mistakes small businesses make is assuming visitors already understand their services.',
+        'They do not.',
+        'When someone lands on your website, they should immediately understand three things: what you offer, who you help, and what action they should take next.',
+        'If your homepage is too vague, too generic, or too focused on sounding "professional" instead of being clear, people may leave before they even understand why they should contact you.',
+        'For example, instead of saying something like "We provide quality solutions for your business needs," a stronger message would be "Professional website design and SEO for small businesses that want more local leads."',
+        'The second version is clearer. It tells the visitor what the business does, who it helps, and what result they can expect.',
+        'Clarity beats cleverness.',
+      ],
+    },
+    {
+      id: 'weak-cta',
+      heading: 'Your call to action is weak or hard to find',
+      paragraphs: [
+        'A visitor should never have to guess what to do next.',
+        'If your website does not clearly guide people toward an action, many of them will simply leave. This is especially important for service businesses that depend on quote requests, phone calls, bookings, or form submissions.',
+        'Your call to action should be visible, simple, and direct.',
+        'Your website should also repeat the call to action in key areas, especially on the homepage, service pages, and at the end of important sections.',
+        'This does not mean you need to overwhelm people with buttons everywhere. It simply means the next step should always be easy to find.',
+      ],
+      bullets: [
+        'Get a Free Estimate',
+        'Request a Quote',
+        'Book a Free Call',
+        'Start Your Project',
+        'Contact Us Today',
+      ],
+    },
+    {
+      id: 'trust-signals',
+      heading: 'Your website does not build enough trust',
+      paragraphs: [
+        'People are careful before contacting a business online. They want to know they are dealing with someone reliable.',
+        'If your website does not show enough trust signals, visitors may hesitate.',
+        'For local businesses, trust is especially important. A potential customer may be comparing you against three or four other companies. If your website feels empty, outdated, or incomplete, they may choose the competitor that looks more established.',
+        'Your website should make people feel confident that reaching out to you is a safe and smart decision.',
+      ],
+      bullets: [
+        'Google reviews',
+        'Testimonials',
+        'Project photos',
+        'Before-and-after examples',
+        'Case studies',
+        'Certifications',
+        'Years of experience',
+        'Clear contact information',
+        'Real photos of your business or team',
+      ],
+    },
+    {
+      id: 'mobile-design',
+      heading: 'Your website is not designed for mobile users',
+      paragraphs: [
+        'Most people browsing for local services are using their phones.',
+        'That means your website needs to look good and work properly on mobile. If the text is too small, buttons are hard to tap, images load poorly, or sections feel broken, visitors may leave quickly.',
+        'A strong mobile experience should feel smooth, simple, and fast.',
+        'For small businesses, mobile design is not optional. It is often the difference between someone contacting you or going back to Google to find someone else.',
+      ],
+      bullets: [
+        'Easy-to-read text',
+        'Clear buttons',
+        'Fast loading speed',
+        'Simple navigation',
+        'Clickable phone numbers',
+        'Forms that are easy to complete',
+        'Clean spacing between sections',
+      ],
+    },
+    {
+      id: 'local-seo',
+      heading: 'Your website is not optimized for local SEO',
+      intro:
+        'Even the best-looking website will struggle if people cannot find it.',
+      paragraphs: [
+        'Local SEO helps your business appear when people search for services in your area. For example: web designer in London Ontario, roofing company near me, asphalt sealing services in London, restaurant website design Canada, or local SEO for contractors.',
+        'If your website does not include the right keywords, service pages, location signals, and optimized content, Google may not fully understand what your business offers or where you serve customers.',
+        'SEO is not just about ranking. It is about helping the right people find your business at the exact moment they are searching for your services.',
+      ],
+      bullets: [
+        'Clear service pages',
+        'Location-based keywords',
+        'Optimized page titles and descriptions',
+        'Internal links between related pages',
+        'Google Business Profile optimization',
+        'Fast-loading pages',
+        'Helpful blog content',
+        'Consistent business information across the web',
+      ],
+    },
+    {
+      id: 'customer-focus',
+      heading: 'Your website talks too much about you and not enough about the customer',
+      paragraphs: [
+        'Many business websites make the mistake of focusing only on the company.',
+        'They say things like: we are passionate, we are experienced, we are professional, we provide quality service. Those things are fine, but they are not enough.',
+        'Your website should connect your services to the customer\'s problem. A visitor wants to know how you can help them save time, avoid stress, get better results, make more sales, improve their property, or solve a specific issue.',
+        'Instead of only saying what you do, explain why it matters.',
+        'For example, "We build modern websites for small businesses" is okay. But "We build modern websites that help small businesses look professional, explain their services clearly, and turn more visitors into leads" is stronger because it connects the service to a real business outcome.',
+      ],
+    },
+    {
+      id: 'website-speed',
+      heading: 'Your website is too slow',
+      paragraphs: [
+        'Website speed matters more than many business owners realize.',
+        'If your website takes too long to load, people may leave before they even see your offer. A slow website can also hurt your search engine performance and make your business feel less professional.',
+        'A fast website creates a better experience and helps visitors move through your pages without frustration.',
+      ],
+      bullets: [
+        'Large images',
+        'Too many plugins',
+        'Poor hosting',
+        'Unoptimized code',
+        'Heavy animations',
+        'Old website themes',
+        'Uncompressed media files',
+      ],
+    },
+    {
+      id: 'contact-form',
+      heading: 'Your contact form has too much friction',
+      paragraphs: [
+        'A contact form should be simple.',
+        'If your form asks for too much information too soon, potential customers may abandon it. Most people do not want to complete a long form just to ask a question or request a quote.',
+        'For many small businesses, a good lead form should ask for only the essentials: name, email or phone number, service needed, and brief project details.',
+        'You can always collect more information later.',
+        'The goal of the form is not to get every detail immediately. The goal is to start the conversation.',
+      ],
+    },
+    {
+      id: 'tracking',
+      heading: 'Your website does not track what is happening',
+      paragraphs: [
+        'If you do not have tracking set up, you are guessing.',
+        'Tools like Google Analytics and Google Search Console can help you understand how people find your website, which pages they visit, what keywords bring traffic, and where users may be dropping off.',
+        'Without tracking, it is hard to know what is working and what needs to be improved.',
+        'A good website should not just exist. It should give you useful information that helps you make smarter business decisions.',
+      ],
+    },
+    {
+      id: 'sales-tool',
+      heading: 'A better website should work like a sales tool',
+      paragraphs: [
+        'Your website should not be treated as a digital business card.',
+        'This does not mean your website needs to be complicated. In fact, the best small business websites are often simple, clear, and focused.',
+        'The goal is not just to have a nice-looking site.',
+        'The goal is to have a website that helps your business grow.',
+      ],
+      bullets: [
+        'Attract the right visitors',
+        'Explain your services clearly',
+        'Build trust',
+        'Answer common questions',
+        'Guide users toward action',
+        'Support your local SEO',
+        'Help generate leads consistently',
+      ],
+    },
+    {
+      id: 'final-thoughts',
+      heading: 'Final thoughts',
+      paragraphs: [
+        'If your website is not generating leads, it does not always mean you need to start from zero. Sometimes, small improvements can make a big difference.',
+        'Improving your messaging, calls to action, mobile experience, SEO, trust signals, and contact flow can help turn your website into a stronger business asset.',
+        'Your website should help people understand your value, trust your business, and take the next step with confidence.',
+      ],
+    },
+  ],
+  ctaTitle: 'Is your website helping your business grow?',
+  ctaText:
+    'If your website looks good but is not bringing in leads, WebLoft Studio can help you improve the strategy, design, SEO, and user experience behind it. Start your project today and let\'s turn your website into a stronger tool for your business.',
+  related: [
+    '5-common-website-mistakes-costing-clients',
+    'real-roi-great-website-investment-not-expense',
+    'seo-local-seo-secret-getting-found-online',
+  ],
+};
+
+export default post;
