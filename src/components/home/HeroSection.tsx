@@ -287,7 +287,7 @@ export default function HeroSection() {
                 <span style={{ color: 'var(--ink)' }}>look more professional</span>, earn trust
                 faster, and turn clicks into real leads.
               </p>
-              <div style={{ display: 'flex', gap: 12, justifySelf: 'end', flexWrap: 'wrap' }}>
+              <div className="hero-cta-group" style={{ display: 'flex', gap: 12, justifySelf: 'end', flexWrap: 'wrap' }}>
                 <MagneticButton href="/contact" className="ds-btn ds-btn-primary">
                   Book a free call <ArrowIcon />
                 </MagneticButton>
@@ -510,6 +510,19 @@ export default function HeroSection() {
           .hero-status { margin-top: 16px; }
           .hero-sub-row { grid-template-columns: 1fr !important; margin-top: 32px !important; }
           .hero-sub-row > div:last-child { justify-self: start !important; }
+          .hero-cta-group {
+            flex-direction: column !important;
+            width: 100% !important;
+          }
+          .hero-cta-group > * {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+          .asterisk {
+            font-size: 0.28em !important;
+            top: -0.15em !important;
+            right: -0.05em !important;
+          }
         }
       `}</style>
     </section>
