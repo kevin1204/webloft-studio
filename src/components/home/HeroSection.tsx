@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 function ArrowIcon() {
   return (
@@ -12,12 +12,94 @@ function ArrowIcon() {
   );
 }
 
+/* ── Magnetic button wrapper ── */
+function MagneticButton({ children, className, href }: { children: React.ReactNode; className?: string; href: string }) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    setCanHover(window.matchMedia('(hover: hover)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }, []);
+
+  const handleMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!canHover || !ref.current) return;
+    const { left, top, width, height } = ref.current.getBoundingClientRect();
+    const x = ((e.clientX - left) / width - 0.5) * 12; // max ~6px
+    const y = ((e.clientY - top) / height - 0.5) * 12;
+    setOffset({ x, y });
+  }, [canHover]);
+
+  const handleLeave = useCallback(() => setOffset({ x: 0, y: 0 }), []);
+
+  return (
+    <Link
+      ref={ref}
+      href={href}
+      className={className}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      style={{
+        transform: `translate(${offset.x}px, ${offset.y}px)`,
+        transition: offset.x === 0 && offset.y === 0
+          ? 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)'
+          : 'transform 0.12s linear',
+        willChange: canHover ? 'transform' : undefined,
+      }}
+    >
+      {children}
+    </Link>
+  );
+}
+
 export default function HeroSection() {
   const [time, setTime] = useState('');
   const [ready, setReady] = useState(false);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
   const mockupRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const [parallax, setParallax] = useState({ text: 0, mockup: 0, glowOpacity: 1 });
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  // Scroll parallax — desktop only
+  useEffect(() => {
+    if (reducedMotion) return;
+    const isDesktop = window.innerWidth >= 768;
+    if (!isDesktop) return;
+
+    let rafId: number;
+    let active = true;
+
+    const onScroll = () => {
+      if (!active) return;
+      rafId = requestAnimationFrame(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        // Only active while hero is partially in viewport
+        if (rect.bottom < 0) { active = false; return; }
+        const scrollY = window.scrollY;
+        setParallax({
+          text: scrollY * 0.15,
+          mockup: scrollY * 0.05,
+          glowOpacity: Math.max(0, 1 - scrollY / 600),
+        });
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(rafId); };
+  }, [reducedMotion]);
 
   useEffect(() => {
     const fmt = () =>
@@ -55,6 +137,7 @@ export default function HeroSection() {
 
   return (
     <section
+      ref={sectionRef}
       style={{
         paddingTop: 'clamp(72px, 10vh, 120px)',
         paddingBottom: 'calc(var(--section-y) * 0.7)',
@@ -109,7 +192,10 @@ export default function HeroSection() {
         >
 
           {/* ── Left column: headline + sub row ── */}
-          <div>
+          <div
+            ref={textRef}
+            style={!reducedMotion ? { transform: `translateY(-${parallax.text}px)`, willChange: 'transform' } : undefined}
+          >
             <h1
               className="h-display"
               style={{
@@ -199,12 +285,12 @@ export default function HeroSection() {
                 faster, and turn clicks into real leads.
               </p>
               <div style={{ display: 'flex', gap: 12, justifySelf: 'end', flexWrap: 'wrap' }}>
-                <Link href="/contact" className="ds-btn ds-btn-primary">
+                <MagneticButton href="/contact" className="ds-btn ds-btn-primary">
                   Book a free call <ArrowIcon />
-                </Link>
-                <Link href="/projects" className="ds-btn ds-btn-ghost">
+                </MagneticButton>
+                <MagneticButton href="/projects" className="ds-btn ds-btn-ghost">
                   See our work <ArrowIcon />
-                </Link>
+                </MagneticButton>
               </div>
             </div>
           </div>
@@ -216,7 +302,12 @@ export default function HeroSection() {
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={handleMouseLeave}
-            style={{ position: 'relative', perspective: '1000px', cursor: 'default' }}
+            style={{
+              position: 'relative',
+              perspective: '1000px',
+              cursor: 'default',
+              ...(!reducedMotion ? { transform: `translateY(-${parallax.mockup}px)`, willChange: 'transform' } : {}),
+            }}
           >
             {/* 3D tilt layer — wraps both cards together */}
             <div
@@ -233,6 +324,7 @@ export default function HeroSection() {
             >
               {/* Soft green ambient glow behind the cards */}
               <div
+                className="wl-hero-glow"
                 aria-hidden="true"
                 style={{
                   position: 'absolute',
@@ -240,11 +332,11 @@ export default function HeroSection() {
                   left: '-5%',
                   width: '110%',
                   height: '80%',
-                  background: 'radial-gradient(ellipse, color-mix(in oklch, var(--accent), transparent 80%) 0%, transparent 68%)',
+                  background: 'radial-gradient(ellipse at 50% 50%, color-mix(in oklch, var(--accent), transparent 80%) 0%, transparent 68%)',
                   filter: 'blur(48px)',
                   pointerEvents: 'none',
-                  opacity: ready ? 1 : 0,
-                  transition: `opacity 2s ${ease} 0.9s`,
+                  opacity: ready ? parallax.glowOpacity : 0,
+                  transition: ready ? undefined : `opacity 2s ${ease} 0.9s`,
                 }}
               />
 

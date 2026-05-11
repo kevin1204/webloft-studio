@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import ThemeToggle from './ThemeToggle';
 
 function ArrowIcon() {
@@ -24,6 +24,17 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener('change', handler);
+    const t = setTimeout(() => setReady(true), 60);
+    return () => { mq.removeEventListener('change', handler); clearTimeout(t); };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -38,6 +49,20 @@ export default function Navbar() {
     document.addEventListener('keydown', onKeyDown);
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [menuOpen]);
+
+  const ease = 'cubic-bezier(0.16, 1, 0.3, 1)';
+
+  const entranceStyle = useCallback(
+    (delay: number): React.CSSProperties =>
+      reducedMotion
+        ? {}
+        : {
+            opacity: ready ? 1 : 0,
+            transform: ready ? 'translateY(0)' : 'translateY(-8px)',
+            transition: `opacity 0.5s ${ease} ${delay}s, transform 0.5s ${ease} ${delay}s`,
+          },
+    [ready, reducedMotion],
+  );
 
   return (
     <header
@@ -69,7 +94,7 @@ export default function Navbar() {
         <Link
           href="/"
           className="wl-logo"
-          style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
+          style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', ...entranceStyle(0) }}
         >
           <svg
             width="56"
@@ -90,7 +115,7 @@ export default function Navbar() {
           className="wl-nav-links"
           style={{ display: 'flex', gap: 4, alignItems: 'center' }}
         >
-          {navLinks.map(({ label, href }) => (
+          {navLinks.map(({ label, href }, i) => (
             <Link
               key={label}
               href={href}
@@ -101,8 +126,9 @@ export default function Navbar() {
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
                 color: 'var(--ink-dim)',
-                transition: 'color 0.3s var(--ease)',
+                transition: `color 0.3s var(--ease)${reducedMotion ? '' : `, opacity 0.5s ${ease} ${0.06 + i * 0.06}s, transform 0.5s ${ease} ${0.06 + i * 0.06}s`}`,
                 textDecoration: 'none',
+                ...(reducedMotion ? {} : { opacity: ready ? 1 : 0, transform: ready ? 'translateY(0)' : 'translateY(-8px)' }),
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ink)')}
               onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-dim)')}
@@ -113,7 +139,7 @@ export default function Navbar() {
         </nav>
 
         {/* CTA + Theme toggle (desktop) */}
-        <div className="wl-nav-links" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div className="wl-nav-links" style={{ display: 'flex', alignItems: 'center', gap: 12, ...entranceStyle(0.42) }}>
           <ThemeToggle />
           <Link
             href="/contact"
@@ -125,7 +151,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile: theme toggle + hamburger */}
-        <div className="wl-mobile-controls" style={{ display: 'none', alignItems: 'center', gap: 8 }}>
+        <div className="wl-mobile-controls" style={{ display: 'none', alignItems: 'center', gap: 8, ...entranceStyle(0.1) }}>
           <ThemeToggle />
           <button
             onClick={() => setMenuOpen((o) => !o)}

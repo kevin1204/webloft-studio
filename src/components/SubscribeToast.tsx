@@ -5,32 +5,31 @@ import SubscribeForm from './SubscribeForm';
 
 const STORAGE_KEY = 'wl-subscribe-toast';
 const DELAY_MS = 6_000;
+const EXPAND_DELAY_MS = 3_000;
+const EXPAND_VISIBLE_MS = 8_000;
+const COLLAPSE_MS = 500;
 
-/* Cooldown escalation: 3 days → 30 days → 90 days */
-const COOLDOWNS_MS = [
-  3 * 24 * 60 * 60 * 1000,   // 1st dismiss → 3 days
-  30 * 24 * 60 * 60 * 1000,  // 2nd dismiss → 30 days
-  90 * 24 * 60 * 60 * 1000,  // 3rd+ dismiss → 90 days
-];
-
-function getState(): { show: boolean } {
+function isSubscribed(): boolean {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { show: true };
+    if (!raw) return false;
     const data = JSON.parse(raw);
-
-    if (data.subscribed) return { show: false };
-
-    if (data.dismissCount > 0 && data.ts) {
-      const idx = Math.min(data.dismissCount - 1, COOLDOWNS_MS.length - 1);
-      const cooldown = COOLDOWNS_MS[idx];
-      const elapsed = Date.now() - data.ts;
-      return { show: elapsed >= cooldown };
-    }
-
-    return { show: true };
+    return !!data.subscribed;
   } catch {
-    return { show: true };
+    return false;
+  }
+}
+
+function shouldShowToast(): boolean {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return true;
+    const data = JSON.parse(raw);
+    if (data.subscribed) return false;
+    if (data.dismissCount > 0) return false;
+    return true;
+  } catch {
+    return true;
   }
 }
 
@@ -63,7 +62,10 @@ function persistDismiss(reason: 'dismissed' | 'subscribed') {
 export default function SubscribeToast() {
   const [visible, setVisible] = useState(false);
   const [hiding, setHiding] = useState(false);
-  const [minimized, setMinimized] = useState(false);
+  const [showPill, setShowPill] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [collapsing, setCollapsing] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
   const toastRef = useRef<HTMLDivElement>(null);
   const dismissed = useRef(false);
 
@@ -79,7 +81,12 @@ export default function SubscribeToast() {
     setTimeout(() => {
       setVisible(false);
       setHiding(false);
-      if (reason === 'dismissed') setMinimized(true);
+      if (reason === 'subscribed') {
+        setShowPill(false);
+        setSubscribed(true);
+      } else {
+        setShowPill(true);
+      }
     }, 320);
   }, []);
 
@@ -87,38 +94,61 @@ export default function SubscribeToast() {
 
   const reopen = useCallback(() => {
     dismissed.current = false;
-    setMinimized(false);
+    setShowPill(false);
+    setExpanded(false);
+    setCollapsing(false);
     setVisible(true);
   }, []);
 
-  /* ── Show after 6 seconds on page ── */
+  /* ── Init: decide whether to show toast or pill ── */
   useEffect(() => {
-    if (!getState().show) {
-      dismissed.current = true;
+    if (isSubscribed()) {
+      setSubscribed(true);
       return;
     }
 
-    let mutObs: MutationObserver | undefined;
-
-    const timerHandle = setTimeout(() => show(), DELAY_MS);
-
-    function watchSuccess() {
-      const node = toastRef.current;
-      if (!node) return;
-      mutObs = new MutationObserver(() => {
-        if (node.querySelector('.wl-subscribe-success')) {
-          setTimeout(() => dismiss('subscribed'), 3000);
-        }
-      });
-      mutObs.observe(node, { childList: true, subtree: true });
+    if (shouldShowToast()) {
+      const timerHandle = setTimeout(() => show(), DELAY_MS);
+      return () => clearTimeout(timerHandle);
+    } else {
+      dismissed.current = true;
+      setShowPill(true);
     }
-    requestAnimationFrame(watchSuccess);
+  }, [show]);
+
+  /* ── Watch for subscription success inside the toast ── */
+  useEffect(() => {
+    if (!visible) return;
+    const node = toastRef.current;
+    if (!node) return;
+
+    const mutObs = new MutationObserver(() => {
+      if (node.querySelector('.wl-subscribe-success')) {
+        setTimeout(() => dismiss('subscribed'), 3000);
+      }
+    });
+    mutObs.observe(node, { childList: true, subtree: true });
+    return () => mutObs.disconnect();
+  }, [visible, dismiss]);
+
+  /* ── Pill expand / collapse cycle ── */
+  useEffect(() => {
+    if (!showPill || subscribed) return;
+
+    const expandTimer = setTimeout(() => setExpanded(true), EXPAND_DELAY_MS);
+    const collapseTimer = setTimeout(() => {
+      setCollapsing(true);
+      setTimeout(() => {
+        setExpanded(false);
+        setCollapsing(false);
+      }, COLLAPSE_MS);
+    }, EXPAND_DELAY_MS + EXPAND_VISIBLE_MS);
 
     return () => {
-      clearTimeout(timerHandle);
-      mutObs?.disconnect();
+      clearTimeout(expandTimer);
+      clearTimeout(collapseTimer);
     };
-  }, [show, dismiss]);
+  }, [showPill, subscribed]);
 
   /* ── Escape key ── */
   useEffect(() => {
@@ -130,19 +160,26 @@ export default function SubscribeToast() {
     return () => document.removeEventListener('keydown', onKey);
   }, [visible, hiding, closeClick]);
 
-  /* ── Minimized pill (desktop/tablet only, hidden via CSS on mobile) ── */
-  if (minimized) {
+  if (subscribed) return null;
+
+  /* ── Pill (desktop/tablet only, hidden via CSS on mobile) ── */
+  if (showPill && !visible) {
     return (
       <button
-        className="wl-subscribe-mini"
+        className={`wl-subscribe-mini${expanded && !collapsing ? ' expanded' : ''}${collapsing ? ' collapsing' : ''}`}
         onClick={reopen}
         aria-label="Open newsletter subscription"
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M2 7l10 7 10-7" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-        </svg>
-        Subscribe — it&apos;s free
+        <span className="wl-subscribe-mini-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" />
+            <path d="M2 7l10 7 10-7" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+          </svg>
+          Subscribe — it&apos;s free
+        </span>
+        <span className="wl-subscribe-mini-teaser">
+          Short reads to help your business grow and win more customers.
+        </span>
       </button>
     );
   }
