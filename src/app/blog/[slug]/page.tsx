@@ -8,6 +8,7 @@ import PortableTextRenderer, { extractHeadings } from '@/components/PortableText
 import SubscribeForm from '@/components/SubscribeForm';
 import SubscribeToast from '@/components/SubscribeToast';
 import ShareButtons from '@/components/ShareButtons';
+import BlogViewTracker from '@/components/BlogViewTracker';
 
 /* ── Static posts fallback ── */
 import { getBlogPost, getPostMetadata, getAllSlugs } from '@/lib/blog';
@@ -144,6 +145,7 @@ export default async function BlogPostRoute({ params }: { params: Promise<{ slug
 
     return (
       <>
+        <BlogViewTracker slug={slug} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -318,7 +320,7 @@ export default async function BlogPostRoute({ params }: { params: Promise<{ slug
   /* ── Fallback to static posts ── */
   try {
     const staticPost = getBlogPost(slug);
-    if (staticPost) return <><BlogPostPage post={staticPost} /><SubscribeToast /></>;
+    if (staticPost) return <><BlogViewTracker slug={slug} /><BlogPostPage post={staticPost} /><SubscribeToast /></>;
   } catch { /* not found */ }
 
   notFound();

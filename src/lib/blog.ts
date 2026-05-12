@@ -39,6 +39,10 @@ import post04 from '@/content/blog/5-common-website-mistakes-costing-clients';
 import post05 from '@/content/blog/how-often-update-website-why-matters';
 import post06 from '@/content/blog/web-design-services-toronto-ontario';
 import post07 from '@/content/blog/why-your-small-business-website-is-not-getting-leads';
+import post08 from '@/content/blog/how-small-businesses-use-ai-get-more-leads';
+import post09 from '@/content/blog/grow-roofing-company-online-local-leads';
+import post10 from '@/content/blog/best-ai-tools-small-businesses-save-time-grow';
+import post11 from '@/content/blog/best-marketing-books-small-business-get-clients';
 
 const ALL_POSTS: BlogPost[] = [
   post01,
@@ -48,6 +52,10 @@ const ALL_POSTS: BlogPost[] = [
   post05,
   post06,
   post07,
+  post08,
+  post09,
+  post10,
+  post11,
 ];
 
 /* ── Public helpers ────────────────────────────────────────────────── */

@@ -164,14 +164,14 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
                 <section id={section.id} className="wl-blog-content-block reveal" key={section.id}>
                   <div className="wl-blog-section-number">{String(index + 1).padStart(2, '0')}</div>
                   <h2>{section.heading}</h2>
-                  {section.intro && <p className="wl-blog-intro">{section.intro}</p>}
+                  {section.intro && <p className="wl-blog-intro" dangerouslySetInnerHTML={{ __html: section.intro }} />}
                   {section.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
+                    <p key={paragraph} dangerouslySetInnerHTML={{ __html: paragraph }} />
                   ))}
                   {section.bullets && (
                     <ul>
                       {section.bullets.map((bullet) => (
-                        <li key={bullet}>{bullet}</li>
+                        <li key={bullet} dangerouslySetInnerHTML={{ __html: bullet }} />
                       ))}
                     </ul>
                   )}

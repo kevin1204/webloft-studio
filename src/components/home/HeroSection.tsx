@@ -78,16 +78,14 @@ export default function HeroSection() {
     if (!isDesktop) return;
 
     let rafId: number;
-    let active = true;
 
     const onScroll = () => {
-      if (!active) return;
       rafId = requestAnimationFrame(() => {
         const section = sectionRef.current;
         if (!section) return;
         const rect = section.getBoundingClientRect();
-        // Only active while hero is partially in viewport
-        if (rect.bottom < 0) { active = false; return; }
+        // Skip updates only while hero is fully above viewport
+        if (rect.bottom < 0) return;
         const scrollY = window.scrollY;
         setParallax({
           text: scrollY * 0.15,
