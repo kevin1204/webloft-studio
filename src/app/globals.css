@@ -2078,6 +2078,11 @@ section { position: relative; }
   min-width: 0;
 }
 
+.wl-blog-prose img {
+  max-width: 100%;
+  height: auto;
+}
+
 .wl-blog-content-block {
   border-bottom: 1px solid var(--line);
   scroll-margin-top: 120px;

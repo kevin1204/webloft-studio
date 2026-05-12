@@ -44,6 +44,7 @@ const post: BlogPost = {
       heading: '1. Building a StoryBrand by Donald Miller',
       intro: 'Clarify your message so customers actually listen.',
       paragraphs: [
+        '<img src="/blog/blog-11-storybrand.jpg" alt="Building a StoryBrand by Donald Miller book cover" style="max-width:200px;border-radius:8px;margin:0 0 1rem 0;box-shadow:0 4px 12px rgba(0,0,0,0.15)" />',
         'If you\u2019ve ever struggled to explain what your business does in a way that clicks with people, this is the book. Donald Miller\u2019s framework is simple: your customer is the hero, and your business is the guide. Your job is to help them solve a problem\u2014not talk about how great you are.',
         'This is the #1 book we\u2019d recommend to any small business owner before building or redesigning a website. Because if your messaging is unclear, nothing else matters. Visitors land on your homepage, can\u2019t figure out what you do in five seconds, and leave.',
         'The StoryBrand framework gives you a fill-in-the-blank structure for your homepage, about page, and every service page. It forces you to answer: What problem do you solve? What does the customer\u2019s life look like after you solve it? What\u2019s the clear next step?',
@@ -58,6 +59,7 @@ const post: BlogPost = {
       heading: '2. They Ask, You Answer by Marcus Sheridan',
       intro: 'Answer your customers\u2019 real questions and watch your traffic grow.',
       paragraphs: [
+        '<img src="/blog/blog-11-they-ask.jpg" alt="They Ask, You Answer by Marcus Sheridan book cover" style="max-width:200px;border-radius:8px;margin:0 0 1rem 0;box-shadow:0 4px 12px rgba(0,0,0,0.15)" />',
         'Marcus Sheridan was running a fibreglass pool company during the 2008 recession. Instead of cutting marketing, he started writing blog posts that answered every question his customers were asking\u2014about pricing, comparisons, problems, and process. His website became the most-visited pool site in the world.',
         'The core idea is dead simple: your potential customers are already Googling questions about your industry. If your website answers those questions honestly and helpfully, you build trust before they ever pick up the phone. And you rank higher on Google in the process.',
         'For small businesses in Ontario and across Canada, this is especially powerful. Local service businesses\u2014contractors, accountants, clinics, agencies\u2014can dominate local search by publishing content that addresses the exact concerns their prospects have.',
@@ -72,6 +74,7 @@ const post: BlogPost = {
       heading: '3. $100M Offers by Alex Hormozi',
       intro: 'Make your offer so good people feel stupid saying no.',
       paragraphs: [
+        '<img src="/blog/blog-11-100m-offers.jpg" alt="$100M Offers by Alex Hormozi book cover" style="max-width:200px;border-radius:8px;margin:0 0 1rem 0;box-shadow:0 4px 12px rgba(0,0,0,0.15)" />',
         'Alex Hormozi built multiple businesses past $100M in revenue, and this book distills what he learned about crafting irresistible offers. The premise: most businesses have a decent service but a weak offer. When your offer is unclear, generic, or hard to understand, customers default to comparing you on price.',
         'A strong offer isn\u2019t about discounting. It\u2019s about stacking value, reducing risk, and making the outcome crystal clear. Hormozi walks through how to structure what you sell so that the perceived value far exceeds the price.',
         'This directly impacts your website. If your services page just lists what you do without explaining the value, the result, the guarantee, or what\u2019s included, you\u2019re making visitors work too hard to say yes. Your website is where your offer lives\u2014it needs to be compelling.',
@@ -86,6 +89,7 @@ const post: BlogPost = {
       heading: '4. This Is Marketing by Seth Godin',
       intro: 'Stop trying to be for everyone. Start being essential to someone.',
       paragraphs: [
+        '<img src="/blog/blog-11-this-is-marketing.jpg" alt="This Is Marketing by Seth Godin book cover" style="max-width:200px;border-radius:8px;margin:0 0 1rem 0;box-shadow:0 4px 12px rgba(0,0,0,0.15)" />',
         'Seth Godin has been writing about marketing for decades, and this book is his most focused take on what marketing actually is. Spoiler: it\u2019s not advertising. It\u2019s about understanding a specific group of people, earning their trust, and making a promise you can keep.',
         'The biggest mistake small businesses make is trying to appeal to everyone. "We serve all industries!" "Our services are for anyone!" That\u2019s not marketing\u2014it\u2019s noise. Godin\u2019s book helps you get specific about who you serve, what change you\u2019re making in their life, and why they should care.',
         'This mindset shift is critical for your website. A homepage that tries to speak to every possible visitor ends up speaking to no one. The best-performing small business websites have a clear audience, a specific problem, and a direct path to the solution.',
@@ -100,6 +104,7 @@ const post: BlogPost = {
       heading: '5. Influence: The Psychology of Persuasion by Robert Cialdini',
       intro: 'Understand why people say yes\u2014and build your website around it.',
       paragraphs: [
+        '<img src="/blog/blog-11-influence.jpg" alt="Influence: The Psychology of Persuasion by Robert Cialdini book cover" style="max-width:200px;border-radius:8px;margin:0 0 1rem 0;box-shadow:0 4px 12px rgba(0,0,0,0.15)" />',
         'Robert Cialdini\u2019s Influence is the classic book on persuasion psychology. Originally published in 1984 and revised multiple times since, it breaks down six principles that drive human decision-making: reciprocity, commitment, social proof, authority, liking, and scarcity.',
         'You don\u2019t need to be manipulative to use these principles. In fact, you\u2019re probably already using some of them without realizing it. When you show testimonials on your website, that\u2019s social proof. When you display a professional headshot and credentials, that\u2019s authority. When you offer a free consultation, that\u2019s reciprocity.',
         'This book helps you understand the psychology behind why a visitor decides to contact you\u2014or doesn\u2019t. And once you understand that, you can design every page of your website to reduce hesitation and build confidence.',
