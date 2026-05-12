@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 const ITEMS = [
   {
@@ -37,6 +38,39 @@ const ITEMS = [
     client: 'Lila Hart Creative',
     category: 'Creative Portfolio',
     href: '/case-studies/lila-hart',
+  },
+];
+
+const QUOTES = [
+  {
+    quote: 'We went from maybe one or two online bookings a week to having our schedule almost full. The new site just made it so much easier for people to find us and actually book.',
+    name: 'Mia Chen',
+    role: 'Owner',
+    company: 'Flowga Yoga Studio',
+  },
+  {
+    quote: 'Kevin and the team completely nailed the rebrand. Our old site looked like every other contractor out there. Now clients tell us we look like the most professional option before we even show up to the job.',
+    name: 'Carlos Rivera',
+    role: 'Founder',
+    company: 'Amigo Contracting Services',
+  },
+  {
+    quote: 'Honestly, I was sceptical about spending money on a new website. But within the first month we could already see the difference in how long people stayed on the site and how many were reaching out.',
+    name: 'Daniel Okoro',
+    role: 'Co-Founder',
+    company: 'Aeries',
+  },
+  {
+    quote: 'We needed a registration system that could handle hundreds of athletes signing up at once. Webloft built something that worked smoothly from day one — no crashes, no confusion.',
+    name: 'James Park',
+    role: 'Director',
+    company: 'Sportlink Events',
+  },
+  {
+    quote: 'Before the redesign I was getting maybe a couple inquiries a month through my site. Now it actually works for me — people reach out saying they loved the portfolio and want to work together.',
+    name: 'Lila Hart',
+    role: 'Creative Director',
+    company: 'Lila Hart Creative',
   },
 ];
 
@@ -109,6 +143,139 @@ function ResultCard({ item }: { item: (typeof ITEMS)[0] }) {
   );
 }
 
+function QuoteCarousel() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % QUOTES.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const q = QUOTES[active];
+
+  return (
+    <div className="ds-container">
+      <div
+        className="reveal"
+        style={{
+          padding: 'clamp(40px, 5vw, 72px) 0',
+        }}
+      >
+        <style>{`
+          .testimonial-quote-wrap {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 48px;
+            align-items: center;
+          }
+          @media (max-width: 768px) {
+            .testimonial-quote-wrap {
+              grid-template-columns: 1fr;
+              gap: 24px;
+            }
+          }
+        `}</style>
+        <div className="testimonial-quote-wrap">
+          {/* Quote */}
+          <div style={{ position: 'relative', minHeight: 120 }}>
+            <div
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'clamp(28px, 3vw, 42px)',
+                lineHeight: 1.1,
+                color: 'var(--accent)',
+                position: 'absolute',
+                top: -8,
+                left: -4,
+                opacity: 0.3,
+                userSelect: 'none',
+              }}
+              aria-hidden="true"
+            >
+              &ldquo;
+            </div>
+            <p
+              key={active}
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(17px, 1.6vw, 21px)',
+                lineHeight: 1.6,
+                letterSpacing: '-0.01em',
+                color: 'var(--ink)',
+                maxWidth: 680,
+                paddingLeft: 20,
+                animation: 'quoteIn 0.5s var(--ease) both',
+              }}
+            >
+              {q.quote}
+            </p>
+          </div>
+
+          {/* Attribution + dots */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <div
+              key={`attr-${active}`}
+              style={{ animation: 'quoteIn 0.5s var(--ease) 0.1s both' }}
+            >
+              <div
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 15,
+                  fontWeight: 600,
+                  color: 'var(--ink)',
+                  marginBottom: 2,
+                }}
+              >
+                {q.name}
+              </div>
+              <div
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 11,
+                  color: 'var(--ink-mute)',
+                  letterSpacing: '0.06em',
+                }}
+              >
+                {q.role}, {q.company}
+              </div>
+            </div>
+
+            {/* Dots */}
+            <div style={{ display: 'flex', gap: 8 }}>
+              {QUOTES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  aria-label={`View testimonial ${i + 1}`}
+                  style={{
+                    width: i === active ? 24 : 8,
+                    height: 8,
+                    borderRadius: 99,
+                    border: 'none',
+                    background: i === active ? 'var(--accent)' : 'var(--line-strong)',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s var(--ease)',
+                    padding: 0,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <style>{`
+          @keyframes quoteIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+          }
+        `}</style>
+      </div>
+    </div>
+  );
+}
+
 export default function TestimonialsSection() {
   const doubled = [...ITEMS, ...ITEMS];
   const reversed = [...ITEMS].reverse();
@@ -161,6 +328,9 @@ export default function TestimonialsSection() {
           ))}
         </div>
       </div>
+
+      {/* Client quotes */}
+      <QuoteCarousel />
 
       {/* Row 2 — reverse */}
       <div className="marquee-wrap-full" style={{ paddingTop: 24 }}>

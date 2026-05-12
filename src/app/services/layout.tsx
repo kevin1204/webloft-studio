@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Website Design, Development, SEO & Automation Services | Webloft Studio",
-  description: "Explore Webloft Studio services for custom website design, website development, redesigns, landing pages, SEO setup, lead capture, maintenance, and analytics tracking.",
+  title: "Web Design & Development Services | Fixed-Fee, 21-Day Delivery | Webloft Studio",
+  description: "8 fixed-fee web design services for service businesses. Custom design, Webflow builds, SEO, landing pages, lead capture, and more. No surprises — book a free call today.",
   keywords: [
     'website design services',
     'website development services',

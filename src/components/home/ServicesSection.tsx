@@ -159,11 +159,11 @@ function ServiceRow({
         </Link>
       </div>
 
-      {/* Expanded tags */}
+      {/* Expanded tags + micro-CTA */}
       <div
         className="service-tags-wrap"
         style={{
-          maxHeight: open ? 80 : 0,
+          maxHeight: open ? 120 : 0,
           overflow: 'hidden',
           transition: 'max-height 0.5s var(--ease), margin-top 0.5s var(--ease)',
           marginTop: open ? 20 : 0,
@@ -175,6 +175,7 @@ function ServiceRow({
             gap: 8,
             flexWrap: 'wrap',
             paddingLeft: 92,
+            alignItems: 'center',
           }}
         >
           {s.tags.map((tag) => (
@@ -194,6 +195,29 @@ function ServiceRow({
               {tag}
             </span>
           ))}
+          <Link
+            href={`/contact?service=${encodeURIComponent(s.title)}`}
+            onClick={(e) => e.stopPropagation()}
+            className="wl-service-micro-cta"
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 11,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              padding: '6px 14px',
+              borderRadius: 99,
+              background: 'var(--accent)',
+              color: 'var(--accent-ink)',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              marginLeft: 4,
+              transition: 'opacity 0.2s ease',
+            }}
+          >
+            Get a quote <ArrowIcon />
+          </Link>
         </div>
       </div>
     </div>

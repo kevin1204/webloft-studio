@@ -45,6 +45,11 @@ export type ServicePageData = {
     question: string;
     answer: string;
   }[];
+  caseStudies?: {
+    name: string;
+    slug: string;
+    result: string;
+  }[];
   related: ServiceSlug[];
 };
 
@@ -61,7 +66,7 @@ export const SERVICE_PAGES: ServicePageData[] = [
       'Bespoke website design for service businesses that need a premium digital presence, clearer messaging, and a site that turns attention into qualified enquiries.',
     metaTitle: 'Custom Website Design Services | Conversion-Focused Web Design | Webloft Studio',
     metaDescription:
-      'Custom website design services for growing businesses. Webloft Studio creates responsive, conversion-focused websites with strong UX, premium visuals, and SEO-ready structure.',
+      'Custom website design for service businesses — conversion-focused, mobile-ready, and built to earn leads. Fixed-fee, 21-day delivery. Book a free call with Webloft Studio.',
     keywords: [
       'custom website design',
       'custom web design services',
@@ -101,6 +106,11 @@ export const SERVICE_PAGES: ServicePageData[] = [
       { question: 'Can you design only and let my team build it?', answer: 'Yes. We can provide design files, responsive guidance, and component specs for your internal team or developer.' },
       { question: 'Is SEO considered during design?', answer: 'Yes. Page hierarchy, headings, content structure, internal linking opportunities, and conversion paths are planned from the start.' },
     ],
+    caseStudies: [
+      { name: 'Amigo Contracting', slug: 'amigo-contracting-services', result: '+180% leads' },
+      { name: 'Lila Hart Creative', slug: 'lila-hart', result: '+150% inquiries' },
+      { name: 'Flowga Yoga Studio', slug: 'flowga-yoga-studio', result: '+300% bookings' },
+    ],
     related: ['webflow-development', 'seo-optimization', 'analytics-monthly-reports'],
   },
   {
@@ -115,7 +125,7 @@ export const SERVICE_PAGES: ServicePageData[] = [
       'High-quality website development for businesses that need clean implementation, simple editing, strong performance, and a technical foundation that supports SEO and lead generation.',
     metaTitle: 'Website Development Services | Webflow, Next.js & CMS Development | Webloft Studio',
     metaDescription:
-      'Website development services for fast, responsive, SEO-ready websites. Webloft Studio builds Webflow, CMS, and custom websites designed for performance and easy updates.',
+      'Webflow, Next.js, and CMS website development — fast, responsive, and SEO-ready. 98/100 PageSpeed on every build. Get a free quote from Webloft Studio.',
     keywords: [
       'website development services',
       'webflow development',
@@ -155,6 +165,11 @@ export const SERVICE_PAGES: ServicePageData[] = [
       { question: 'Can you work from existing designs?', answer: 'Yes. We can build from Figma or similar design files, and we will flag responsive or content issues before development starts.' },
       { question: 'Will I be able to update the website?', answer: 'Yes. We structure editable content so routine updates can be handled without developer support.' },
     ],
+    caseStudies: [
+      { name: 'Sportlink Events', slug: 'sportlink-events', result: '500+ participants managed' },
+      { name: 'Aeries', slug: 'aeries', result: '+150% engagement' },
+      { name: 'Lila Hart Creative', slug: 'lila-hart', result: '1.9s load time' },
+    ],
     related: ['web-design', 'hosting-security-setup', 'analytics-monthly-reports'],
   },
   {
@@ -169,7 +184,7 @@ export const SERVICE_PAGES: ServicePageData[] = [
       'Strategic website redesign services for businesses with an outdated, confusing, slow, or low-converting site that needs clearer positioning and a stronger conversion path.',
     metaTitle: 'Website Redesign Services | SEO-Safe Website Redesign | Webloft Studio',
     metaDescription:
-      'Website redesign services for outdated or underperforming websites. Improve UX, conversions, performance, SEO structure, and lead generation with Webloft Studio.',
+      'Website redesign services that turn underperforming sites into lead-generating assets. SEO-safe migration, modern UX, and stronger conversion paths. Book a free audit.',
     keywords: [
       'website redesign services',
       'website redesign',
@@ -209,6 +224,10 @@ export const SERVICE_PAGES: ServicePageData[] = [
       { question: 'Can you redesign without changing every page?', answer: 'Yes. Some projects only need priority pages redesigned first, then supporting pages can follow the same system.' },
       { question: 'Do you review analytics before redesigning?', answer: 'Yes. Analytics, conversion paths, search data, and user behavior are part of the redesign strategy when available.' },
     ],
+    caseStudies: [
+      { name: 'Flowga Yoga Studio', slug: 'flowga-yoga-studio', result: '+300% bookings' },
+      { name: 'Amigo Contracting', slug: 'amigo-contracting-services', result: '+180% leads' },
+    ],
     related: ['seo-optimization', 'analytics-monthly-reports', 'lead-capture-automation'],
   },
   {
@@ -223,7 +242,7 @@ export const SERVICE_PAGES: ServicePageData[] = [
       'Conversion-focused landing page design and development for ads, launches, lead magnets, offers, events, waitlists, and service campaigns.',
     metaTitle: 'Landing Page Design Services | High-Converting Landing Pages | Webloft Studio',
     metaDescription:
-      'Landing page design services for campaigns, paid ads, launches, and lead generation. Webloft Studio builds fast, persuasive, conversion-focused landing pages.',
+      'High-converting landing pages for paid ads, launches, and lead gen. Single-page, single-goal — built to turn clicks into customers. Get a free quote.',
     keywords: [
       'landing page design services',
       'high converting landing pages',
@@ -277,7 +296,7 @@ export const SERVICE_PAGES: ServicePageData[] = [
       'Technical and on-page SEO setup for websites that need better structure, metadata, schema, internal links, performance basics, and content foundations.',
     metaTitle: 'SEO & On-Page Setup Services | Technical SEO Foundation | Webloft Studio',
     metaDescription:
-      'SEO and on-page setup services for growing websites. Improve metadata, schema, headings, internal linking, indexing, page speed basics, and content structure.',
+      'On-page SEO setup done right — schema, metadata, sitemaps, Core Web Vitals, and content structure. Rank higher and convert more visitors. See our SEO services.',
     keywords: [
       'seo on page setup',
       'technical seo setup',
@@ -317,6 +336,11 @@ export const SERVICE_PAGES: ServicePageData[] = [
       { question: 'Is this monthly SEO?', answer: 'This service is focused on setup and optimization. Ongoing content, reporting, and SEO retainers can be added when needed.' },
       { question: 'Can you optimize an existing website?', answer: 'Yes. We can audit and optimize an existing site without redesigning it, although major UX or technical issues may require deeper work.' },
     ],
+    caseStudies: [
+      { name: 'Flowga Yoga Studio', slug: 'flowga-yoga-studio', result: '#1 for "yoga studio London ON"' },
+      { name: 'Amigo Contracting', slug: 'amigo-contracting-services', result: '#2 for target keywords' },
+      { name: 'Lila Hart Creative', slug: 'lila-hart', result: '+180% portfolio views' },
+    ],
     related: ['website-redesign', 'analytics-monthly-reports', 'landing-pages'],
   },
   {
@@ -331,7 +355,7 @@ export const SERVICE_PAGES: ServicePageData[] = [
       'Lead capture systems, forms, CRM routing, email notifications, booking flows, and lightweight automations that turn website interest into follow-up-ready opportunities.',
     metaTitle: 'Lead Capture & Automation Services | Website Forms, CRM & Follow-Up | Webloft Studio',
     metaDescription:
-      'Lead capture and automation services for websites. Improve forms, CRM routing, booking flows, email notifications, and follow-up workflows for better lead generation.',
+      'Never miss a lead again. Smart forms, CRM integration, automated follow-ups, AI chatbots, and missed-call text-back — all set up and ready to capture leads 24/7.',
     keywords: [
       'lead capture automation',
       'website lead generation forms',
@@ -371,6 +395,10 @@ export const SERVICE_PAGES: ServicePageData[] = [
       { question: 'Do you build multi-step forms?', answer: 'Yes. Multi-step forms can improve completion when the offer requires qualification, quoting, or segmented routing.' },
       { question: 'Can you reduce spam submissions?', answer: 'Yes. We can add spam protection, validation, hidden fields, and better form logic to reduce low-quality submissions.' },
     ],
+    caseStudies: [
+      { name: 'Sportlink Events', slug: 'sportlink-events', result: '100% payment success' },
+      { name: 'Amigo Contracting', slug: 'amigo-contracting-services', result: '+250% form submissions' },
+    ],
     related: ['landing-pages', 'analytics-monthly-reports', 'webflow-development'],
   },
   {
@@ -385,7 +413,7 @@ export const SERVICE_PAGES: ServicePageData[] = [
       'Website hosting support, domain and DNS setup, SSL, uptime checks, backups, updates, and maintenance guidance for businesses that want fewer technical headaches.',
     metaTitle: 'Hosting, Domains & Website Maintenance Services | Webloft Studio',
     metaDescription:
-      'Hosting, domain, DNS, SSL, backup, update, and website maintenance services. Webloft Studio helps keep business websites stable, secure, and easier to manage.',
+      'Website hosting, SSL, backups, updates, and maintenance handled for you. We manage the infrastructure so you never think about uptime, security, or renewals.',
     keywords: [
       'website maintenance services',
       'website hosting support',
@@ -439,7 +467,7 @@ export const SERVICE_PAGES: ServicePageData[] = [
       'GA4, Google Tag Manager, conversion events, dashboards, call tracking, heatmaps, and reporting setup for teams that want cleaner marketing decisions.',
     metaTitle: 'Analytics & Tracking Setup Services | GA4, GTM & Conversion Tracking | Webloft Studio',
     metaDescription:
-      'Analytics and tracking setup services for business websites. Set up GA4, Google Tag Manager, conversion events, dashboards, call tracking, and performance reporting.',
+      'GA4, Google Tag Manager, conversion tracking, heatmaps, and monthly performance reports. See what is actually working on your website — and what to fix next.',
     keywords: [
       'analytics tracking setup',
       'ga4 setup services',
@@ -478,6 +506,10 @@ export const SERVICE_PAGES: ServicePageData[] = [
       { question: 'Can you set up GA4 and Google Tag Manager?', answer: 'Yes. We can configure GA4, GTM, events, triggers, conversion tracking, and reporting views.' },
       { question: 'Can you track form submissions and phone clicks?', answer: 'Yes. We can track form submissions, phone taps, email clicks, booking actions, downloads, and other key conversion events.' },
       { question: 'Do you provide monthly reports?', answer: 'Yes. We can set up dashboards and monthly reporting focused on leads, traffic quality, page performance, and conversion trends.' },
+    ],
+    caseStudies: [
+      { name: 'Aeries', slug: 'aeries', result: '-40% bounce rate' },
+      { name: 'Flowga Yoga Studio', slug: 'flowga-yoga-studio', result: '+300% bookings tracked' },
     ],
     related: ['lead-capture-automation', 'seo-optimization', 'landing-pages'],
   },

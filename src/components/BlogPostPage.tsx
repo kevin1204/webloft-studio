@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getRelatedPosts, type BlogPost } from '@/lib/blog';
 import SubscribeForm from '@/components/SubscribeForm';
+import ShareButtons from '@/components/ShareButtons';
 
 function ArrowIcon() {
   return (
@@ -176,6 +177,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
                   )}
                 </section>
               ))}
+              <ShareButtons title={post.title} slug={post.slug} />
             </div>
           </div>
         </article>

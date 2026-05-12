@@ -22,5 +22,22 @@ export const metadata: Metadata = {
 };
 
 export default function FreeWebsiteAuditPage() {
-  return <FreeWebsiteAuditForm />;
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://webloftstudio.com' },
+      { '@type': 'ListItem', position: 2, name: 'Free Website Audit', item: 'https://webloftstudio.com/free-website-audit' },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <FreeWebsiteAuditForm />
+    </>
+  );
 }

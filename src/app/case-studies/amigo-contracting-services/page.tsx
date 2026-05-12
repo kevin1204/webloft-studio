@@ -1,8 +1,8 @@
 import CaseStudy from "@/components/CaseStudy";
 
 export const metadata = {
-  title: "Case Study - Amigo Contracting Services | Webloft Studio",
-  description: "See how we helped Amigo Contracting Services increase leads by 180% with a professional construction website and lead capture optimization.",
+  title: "Amigo Contracting: +180% Leads with Full Rebrand | Case Study | Webloft Studio",
+  description: "How we helped Amigo Contracting increase leads by 180% with a full brand identity and website rebuild. Construction industry case study — see the results.",
 };
 
 export default function AmigoCaseStudyPage() {
@@ -91,6 +91,12 @@ export default function AmigoCaseStudyPage() {
         src: "/PROJECTS/gallery/amigo-contracting-3.webp",
         alt: "Service pages and project gallery"
       }
+    ],
+    servicesUsed: [
+      { name: 'Custom website design', href: '/services/web-design' },
+      { name: 'Website development', href: '/services/webflow-development' },
+      { name: 'Lead capture & automation', href: '/services/lead-capture-automation' },
+      { name: 'SEO & on-page setup', href: '/services/seo-optimization' },
     ],
     ctaText: "Start Your Project",
     ctaLink: "/contact",

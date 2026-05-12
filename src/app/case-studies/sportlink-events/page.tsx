@@ -1,8 +1,8 @@
 import CaseStudy from "@/components/CaseStudy";
 
 export const metadata = {
-  title: "Case Study - Sportlink Events Platform | Webloft Studio",
-  description: "See how we helped Sportlink Events manage 500+ participants with a comprehensive event management platform and registration system.",
+  title: "Sportlink Events: 500+ Participants Managed | Case Study | Webloft Studio",
+  description: "How we built Sportlink Events a registration platform handling 500+ athletes, with 400% faster sign-ups and zero failed transactions. See the full case study.",
 };
 
 export default function SportlinkCaseStudyPage() {
@@ -103,6 +103,11 @@ export default function SportlinkCaseStudyPage() {
         src: "/PROJECTS/gallery/sportlink6.webp",
         alt: "Mobile event registration interface"
       }
+    ],
+    servicesUsed: [
+      { name: 'Website development', href: '/services/webflow-development' },
+      { name: 'Custom website design', href: '/services/web-design' },
+      { name: 'Lead capture & automation', href: '/services/lead-capture-automation' },
     ],
     ctaText: "Start Your Project",
     ctaLink: "/contact",

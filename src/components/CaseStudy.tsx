@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 interface CaseStudyProps {
   projectTitle: string;
@@ -25,6 +26,10 @@ interface CaseStudyProps {
     avatar?: string;
   };
   technologies: string[];
+  servicesUsed?: {
+    name: string;
+    href: string;
+  }[];
   projectDuration: string;
   projectImages: {
     src: string;
@@ -84,6 +89,7 @@ export default function CaseStudy({
   results,
   testimonial,
   technologies,
+  servicesUsed,
   projectDuration,
   projectImages,
   ctaText = 'Start Your Project',
@@ -154,7 +160,24 @@ export default function CaseStudy({
   const selectedGalleryImage = galleryImages[selectedImage] ?? galleryImages[0];
   const lightboxImage = galleryImages[lightboxImageIndex] ?? galleryImages[0];
 
+  const pathname = usePathname();
+  const caseStudyUrl = `https://webloftstudio.com${pathname}`;
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://webloftstudio.com' },
+      { '@type': 'ListItem', position: 2, name: 'Case Studies', item: 'https://webloftstudio.com/projects' },
+      { '@type': 'ListItem', position: 3, name: projectTitle, item: caseStudyUrl },
+    ],
+  };
+
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+    />
     <article className="wl-case">
       <section className="wl-case-hero">
         <div className="ds-container">
@@ -387,6 +410,41 @@ export default function CaseStudy({
                   <span key={tech}>{tech}</span>
                 ))}
               </div>
+
+              {servicesUsed && servicesUsed.length > 0 && (
+                <div style={{ marginTop: 40 }}>
+                  <div className="eyebrow" style={{ marginBottom: 16 }}>
+                    <span className="dot" />
+                    Services delivered
+                  </div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                    {servicesUsed.map((s) => (
+                      <Link
+                        key={s.href}
+                        href={s.href}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 8,
+                          border: '1px solid var(--line-strong)',
+                          borderRadius: 999,
+                          color: 'var(--ink-dim)',
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: 11,
+                          letterSpacing: '0.06em',
+                          padding: '10px 16px',
+                          textDecoration: 'none',
+                          textTransform: 'uppercase',
+                          transition: 'background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease)',
+                        }}
+                        className="wl-case-service-link"
+                      >
+                        {s.name} <ArrowIcon />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="wl-case-testimonial ds-card reveal">
@@ -891,6 +949,13 @@ export default function CaseStudy({
           transform: translateY(-1px);
         }
 
+        .wl-case-service-link:hover {
+          background: var(--accent) !important;
+          border-color: var(--accent) !important;
+          color: var(--accent-ink) !important;
+          transform: translateY(-1px);
+        }
+
         .wl-case-testimonial {
           padding: clamp(32px, 5vw, 64px);
           background: var(--bg-elev-2);
@@ -1325,5 +1390,6 @@ export default function CaseStudy({
         }
       `}</style>
     </article>
+    </>
   );
 }

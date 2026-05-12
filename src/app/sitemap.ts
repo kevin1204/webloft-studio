@@ -2,6 +2,8 @@ import { MetadataRoute } from 'next'
 import { servicePageSlugs } from '@/lib/service-pages'
 import { getAllPostSlugs } from '@/sanity/lib/queries'
 import { getAllSlugs as getStaticBlogSlugs } from '@/lib/blog'
+import { getAllCitySlugs } from '@/lib/city-pages'
+import { getAllIndustrySlugs } from '@/lib/industry-pages'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://webloftstudio.com'
@@ -46,10 +48,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/pricing`,
+      lastModified: new Date('2025-05-01'),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/case-study`,
       lastModified: new Date('2025-01-15'),
       changeFrequency: 'monthly',
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/results`,
+      lastModified: new Date('2025-05-01'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/free-website-audit`,
@@ -108,24 +122,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
-    // ── Local SEO pages ───────────────────────────────────────────────────────
-    {
-      url: `${baseUrl}/web-design-toronto`,
-      lastModified: new Date('2025-02-01'),
-      changeFrequency: 'monthly',
+    // ── Local SEO pages (city landing pages) ─────────────────────────────────
+    ...getAllCitySlugs().map((slug) => ({
+      url: `${baseUrl}/${slug}`,
+      lastModified: new Date('2025-05-01'),
+      changeFrequency: 'monthly' as const,
       priority: 0.9,
+    })),
+    // ── Industry landing pages ─────────────────────────────────────────────
+    ...getAllIndustrySlugs().map((slug) => ({
+      url: `${baseUrl}/${slug}`,
+      lastModified: new Date('2025-05-01'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    })),
+    // ── Lead magnets ──────────────────────────────────────────────────────
+    {
+      url: `${baseUrl}/free-ebook/service-business-website-blueprint`,
+      lastModified: new Date('2025-05-01'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
     {
-      url: `${baseUrl}/web-design-london-ontario`,
-      lastModified: new Date('2025-02-01'),
+      url: `${baseUrl}/free-ebook/website-launch-checklist`,
+      lastModified: new Date('2025-05-01'),
       changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/web-design-mississauga`,
-      lastModified: new Date('2025-02-01'),
-      changeFrequency: 'monthly',
-      priority: 0.9,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/web-design-toronto/webflow-development`,

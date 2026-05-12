@@ -1,8 +1,8 @@
 import CaseStudy from "@/components/CaseStudy";
 
 export const metadata = {
-  title: "Case Study - Flowga Yoga Studio | Webloft Studio",
-  description: "See how we helped Flowga Yoga Studio increase online bookings by 300% with a complete website redesign and mobile optimization.",
+  title: "Flowga Yoga Studio: +300% Online Bookings | Case Study | Webloft Studio",
+  description: "How we helped Flowga Yoga Studio increase online bookings by 300% with a full website redesign, mobile optimization, and local SEO. See the results and start your project.",
 };
 
 export default function FlowgaCaseStudyPage() {
@@ -88,6 +88,11 @@ export default function FlowgaCaseStudyPage() {
         src: "/PROJECTS/gallery/flowga-2.webp",
         alt: "Mobile responsive design for yoga classes"
       }
+    ],
+    servicesUsed: [
+      { name: 'Website redesign', href: '/services/website-redesign' },
+      { name: 'SEO & on-page setup', href: '/services/seo-optimization' },
+      { name: 'Custom website design', href: '/services/web-design' },
     ],
     ctaText: "Start Your Project",
     ctaLink: "/contact",

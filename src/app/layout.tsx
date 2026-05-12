@@ -9,6 +9,7 @@ import ServiceWorkerRegistration from "../components/ServiceWorkerRegistration";
 import CustomCursor from "../components/CustomCursor";
 import RevealObserver from "../components/RevealObserver";
 import { ThemeProvider } from "@/lib/theme";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -119,6 +120,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <ExitIntentPopup />
         </ThemeProvider>
         <Analytics />
       </body>

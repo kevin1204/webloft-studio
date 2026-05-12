@@ -386,6 +386,33 @@ export default function PricingSection() {
           ))}
         </div>
 
+        {/* Guarantee */}
+        <div
+          className="reveal"
+          style={{
+            marginTop: 32,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 12,
+            padding: '16px 24px',
+          }}
+        >
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
+            <path d="M9 1L11.3 6.1L17 6.9L13 10.8L13.8 16.5L9 13.9L4.2 16.5L5 10.8L1 6.9L6.7 6.1L9 1Z" stroke="var(--accent)" strokeWidth="1.3" fill="none" />
+          </svg>
+          <span
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 14,
+              color: 'var(--ink-dim)',
+              letterSpacing: '-0.01em',
+            }}
+          >
+            We don&apos;t launch until you love it. Fixed-fee means no surprises — if the scope changes, we talk first.
+          </span>
+        </div>
+
         {/* Custom Build note */}
         <div
           className="reveal"

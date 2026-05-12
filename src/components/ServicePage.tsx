@@ -64,12 +64,18 @@ function buildSchema(service: ServicePageData) {
         {
           '@type': 'ListItem',
           position: 1,
+          name: 'Home',
+          item: 'https://webloftstudio.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
           name: 'Services',
           item: 'https://webloftstudio.com/services',
         },
         {
           '@type': 'ListItem',
-          position: 2,
+          position: 3,
           name: service.title,
           item: url,
         },
@@ -234,6 +240,42 @@ export default function ServicePage({ service }: { service: ServicePageData }) {
             </div>
           </div>
         </section>
+
+        {service.caseStudies && service.caseStudies.length > 0 && (
+          <section className="wl-service-section wl-service-cases-section">
+            <div className="ds-container">
+              <div className="wl-service-cases-head reveal">
+                <div>
+                  <div className="eyebrow">
+                    <span className="dot" />
+                    Real results
+                  </div>
+                  <h2 className="h-2">
+                    See this service in{' '}
+                    <span className="italic-serif" style={{ color: 'var(--accent)' }}>
+                      action.
+                    </span>
+                  </h2>
+                </div>
+              </div>
+              <div className="wl-service-cases-grid">
+                {service.caseStudies.map((cs) => (
+                  <Link
+                    href={`/case-studies/${cs.slug}`}
+                    className="wl-service-case-card ds-card reveal"
+                    key={cs.slug}
+                  >
+                    <span className="wl-service-case-name">{cs.name}</span>
+                    <strong className="wl-service-case-result">{cs.result}</strong>
+                    <div className="wl-service-case-link">
+                      Read case study <ArrowIcon />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="wl-service-section wl-service-faq-section">
           <div className="ds-container">
@@ -580,6 +622,77 @@ export default function ServicePage({ service }: { service: ServicePageData }) {
           text-transform: uppercase;
         }
 
+        .wl-service-cases-section {
+          background: var(--bg-elev);
+        }
+
+        .wl-service-cases-head {
+          margin-bottom: clamp(36px, 5vw, 56px);
+        }
+
+        .wl-service-cases-head .h-2 {
+          margin-top: 22px;
+          max-width: 780px;
+        }
+
+        .wl-service-cases-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 16px;
+        }
+
+        .wl-service-case-card {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          padding: clamp(22px, 2.4vw, 30px);
+          text-decoration: none;
+          min-height: 200px;
+        }
+
+        .wl-service-case-name {
+          font-family: var(--font-mono);
+          font-size: 12px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--ink-mute);
+        }
+
+        .wl-service-case-result {
+          font-family: var(--font-display);
+          font-size: clamp(24px, 2.6vw, 36px);
+          font-weight: 500;
+          letter-spacing: -0.02em;
+          line-height: 1.1;
+          color: var(--accent);
+          margin-top: auto;
+        }
+
+        .wl-service-case-link {
+          align-items: center;
+          color: var(--ink-dim);
+          display: flex;
+          font-family: var(--font-mono);
+          font-size: 12px;
+          gap: 10px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        .wl-service-case-card:hover {
+          background: var(--bg-elev-2);
+          border-color: color-mix(in oklch, var(--accent), var(--line-strong) 55%);
+          transform: translateY(-5px);
+        }
+
+        .wl-service-case-card:hover .wl-service-case-link {
+          color: var(--accent);
+        }
+
+        .wl-service-case-card:hover .ds-arrow {
+          transform: translate(3px, -3px);
+        }
+
         .wl-service-faqs {
           border-top: 1px solid var(--line);
         }
@@ -697,7 +810,8 @@ export default function ServicePage({ service }: { service: ServicePageData }) {
             grid-template-columns: repeat(2, minmax(0, 1fr));
           }
 
-          .wl-service-related-grid {
+          .wl-service-related-grid,
+          .wl-service-cases-grid {
             grid-template-columns: 1fr;
           }
         }

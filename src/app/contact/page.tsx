@@ -505,6 +505,89 @@ export default function ContactPage() {
               <ContactLine label="London" value="695 Talbot St" />
               <ContactLine label="Hours" value="Mon–Fri · 9–6 EST" />
 
+              {/* Response time */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 10,
+                  padding: '16px 0',
+                  borderBottom: '1px solid var(--line)',
+                }}
+              >
+                <span
+                  style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: 99,
+                    background: 'var(--accent)',
+                    boxShadow: '0 0 0 3px color-mix(in oklch, var(--accent), transparent 80%)',
+                    flexShrink: 0,
+                  }}
+                />
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 11,
+                    color: 'var(--ink-dim)',
+                    letterSpacing: '0.06em',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  Avg. response time: under 3 hours
+                </span>
+              </div>
+
+              {/* Client quote */}
+              <div
+                style={{
+                  margin: '24px 0',
+                  padding: 20,
+                  borderRadius: 'var(--r-md)',
+                  border: '1px solid var(--line)',
+                  background: 'var(--bg-elev)',
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: 'var(--font-serif)',
+                    fontSize: 22,
+                    lineHeight: 1,
+                    color: 'var(--accent)',
+                    opacity: 0.4,
+                    marginBottom: 8,
+                  }}
+                  aria-hidden="true"
+                >
+                  &ldquo;
+                </div>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 14,
+                    lineHeight: 1.6,
+                    color: 'var(--ink)',
+                    margin: 0,
+                  }}
+                >
+                  Kevin and the team completely nailed the rebrand. Our clients tell us we look like
+                  the most professional option before we even show up to the job.
+                </p>
+                <div style={{ marginTop: 12, display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 10,
+                      color: 'var(--ink-mute)',
+                      letterSpacing: '0.06em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    Carlos R. &mdash; Amigo Contracting
+                  </span>
+                </div>
+              </div>
+
               {/* 1D — What happens next (between Direct Lines and Availability) */}
               <div style={{ padding: '16px 0', borderBottom: '1px solid var(--line)' }}>
                 <div
@@ -561,10 +644,43 @@ export default function ContactPage() {
               >
                 ● Availability
               </div>
-              <p className="body-sm">
-                Now booking new projects for Q3 2026. We take on a limited number of projects
+              <p className="body-sm" style={{ margin: 0 }}>
+                Now booking for Q3 2026. We take on a limited number of projects
                 each month to make sure every client gets our full attention.
               </p>
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  marginTop: 12,
+                  padding: '8px 14px',
+                  borderRadius: 99,
+                  background: 'color-mix(in oklch, var(--accent), transparent 90%)',
+                  border: '1px solid color-mix(in oklch, var(--accent), transparent 70%)',
+                }}
+              >
+                <span
+                  style={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: 99,
+                    background: 'var(--accent)',
+                    flexShrink: 0,
+                  }}
+                />
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 10,
+                    color: 'var(--accent)',
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  3 project slots remaining
+                </span>
+              </div>
 
               <CalendlyCard />
             </div>

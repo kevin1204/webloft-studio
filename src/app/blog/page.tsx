@@ -11,7 +11,7 @@ import CTASection from '@/components/home/CTASection';
 export const metadata = {
   title: 'Web Design Blog | SEO, Conversion & Website Growth | Webloft Studio',
   description:
-    'Actionable website strategy, SEO, conversion, Webflow, maintenance, and local web design insights from Webloft Studio.',
+    'Practical notes on web design, SEO, and conversion for service businesses. Learn what makes websites earn more leads — and how to fix yours. Read free guides.',
   keywords: [
     'web design blog',
     'website strategy',
@@ -66,8 +66,21 @@ export default async function Blog() {
   const latest = [...posts].sort((a, b) => Number(new Date(b.isoDate)) - Number(new Date(a.isoDate)));
   const topPost = latest[0];
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://webloftstudio.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://webloftstudio.com/blog' },
+    ],
+  };
+
   return (
     <main className="wl-blog-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <section className="wl-blog-hero">
         <div className="ds-container">
           <div className="wl-blog-meta-row reveal">

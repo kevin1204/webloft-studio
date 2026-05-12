@@ -1,8 +1,8 @@
 import CaseStudy from "@/components/CaseStudy";
 
 export const metadata = {
-  title: "Case Study - Lila Hart Portfolio Website | Webloft Studio",
-  description: "See how we helped Lila Hart enhance her brand presence with an elegant portfolio website featuring smooth animations and optimized performance.",
+  title: "Lila Hart Creative: +150% Client Inquiries | Case Study | Webloft Studio",
+  description: "How we helped Lila Hart increase client inquiries by 150% with an elegant portfolio redesign. Smooth animations, fast performance. See the full case study.",
 };
 
 export default function LilaHartCaseStudyPage() {
@@ -91,6 +91,11 @@ export default function LilaHartCaseStudyPage() {
         src: "/PROJECTS/gallery/lilahart5.webp",
         alt: "Mobile-responsive creative portfolio"
       }
+    ],
+    servicesUsed: [
+      { name: 'Custom website design', href: '/services/web-design' },
+      { name: 'Website development', href: '/services/webflow-development' },
+      { name: 'SEO & on-page setup', href: '/services/seo-optimization' },
     ],
     ctaText: "Start Your Project",
     ctaLink: "/contact",

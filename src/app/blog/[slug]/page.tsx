@@ -7,6 +7,7 @@ import { urlFor } from '@/sanity/lib/image';
 import PortableTextRenderer, { extractHeadings } from '@/components/PortableTextRenderer';
 import SubscribeForm from '@/components/SubscribeForm';
 import SubscribeToast from '@/components/SubscribeToast';
+import ShareButtons from '@/components/ShareButtons';
 
 /* ── Static posts fallback ── */
 import { getBlogPost, getPostMetadata, getAllSlugs } from '@/lib/blog';
@@ -229,6 +230,7 @@ export default async function BlogPostRoute({ params }: { params: Promise<{ slug
 
               <div className="wl-blog-prose">
                 <PortableTextRenderer value={post.body} />
+                <ShareButtons title={post.title} slug={slug} />
               </div>
             </div>
           </article>

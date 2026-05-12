@@ -1,8 +1,8 @@
 import CaseStudy from "@/components/CaseStudy";
 
 export const metadata = {
-  title: "Case Study - Aeries Business Website | Webloft Studio",
-  description: "See how we helped Aeries improve user experience and engagement with a modern, responsive business website built with Webflow.",
+  title: "Aeries: +150% User Engagement | Case Study | Webloft Studio",
+  description: "How we helped Aeries boost user engagement by 150% with a modern, responsive business website. Clean design, fast performance. See the full case study.",
 };
 
 export default function AeriesCaseStudyPage() {
@@ -91,6 +91,11 @@ export default function AeriesCaseStudyPage() {
         src: "/PROJECTS/gallery/aeries-3.webp",
         alt: "Smooth animations and interactions"
       }
+    ],
+    servicesUsed: [
+      { name: 'Custom website design', href: '/services/web-design' },
+      { name: 'Website development', href: '/services/webflow-development' },
+      { name: 'Analytics & tracking', href: '/services/analytics-monthly-reports' },
     ],
     ctaText: "Start Your Project",
     ctaLink: "/contact",
