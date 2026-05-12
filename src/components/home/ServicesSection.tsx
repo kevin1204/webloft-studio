@@ -229,7 +229,7 @@ export default function ServicesSection({ hideIntro = false }: { hideIntro?: boo
     <section
       style={{
         background: 'var(--bg-elev)',
-        paddingTop: hideIntro ? 'var(--section-y)' : 'calc(var(--section-y) * 1.3)',
+        paddingTop: 'var(--section-y)',
         paddingBottom: 'var(--section-y)',
       }}
     >
