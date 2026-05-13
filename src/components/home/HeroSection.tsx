@@ -71,7 +71,7 @@ export default function HeroSection() {
   const [parallax, setParallax] = useState({ text: 0, mockup: 0, glowOpacity: 1 });
   const [reducedMotion, setReducedMotion] = useState(false);
   const [cardIndex, setCardIndex] = useState(0);
-  const [animPhase, setAnimPhase] = useState<'idle' | 'exit' | 'enter'>('idle');
+  const [exitingIndex, setExitingIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -135,27 +135,22 @@ export default function HeroSection() {
     });
   }, []);
 
-  // Card rotation timer — schedule next swap after idle
+  // Card rotation timer — schedule next swap
   useEffect(() => {
-    if (hovering || reducedMotion || !ready || animPhase !== 'idle') return;
-    const timer = setTimeout(() => setAnimPhase('exit'), 3000);
+    if (hovering || reducedMotion || !ready || exitingIndex !== null) return;
+    const timer = setTimeout(() => {
+      setExitingIndex(cardIndex);
+      setCardIndex(prev => (prev + 1) % showcaseProjects.length);
+    }, 3000);
     return () => clearTimeout(timer);
-  }, [cardIndex, hovering, reducedMotion, ready, animPhase]);
+  }, [cardIndex, hovering, reducedMotion, ready, exitingIndex]);
 
-  // Handle animation phase transitions
+  // Clear exiting card after animation completes
   useEffect(() => {
-    if (animPhase === 'exit') {
-      const timer = setTimeout(() => {
-        setCardIndex(prev => (prev + 1) % showcaseProjects.length);
-        setAnimPhase('enter');
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-    if (animPhase === 'enter') {
-      const timer = setTimeout(() => setAnimPhase('idle'), 600);
-      return () => clearTimeout(timer);
-    }
-  }, [animPhase]);
+    if (exitingIndex === null) return;
+    const timer = setTimeout(() => setExitingIndex(null), 650);
+    return () => clearTimeout(timer);
+  }, [exitingIndex]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = mockupRef.current;
@@ -412,13 +407,71 @@ export default function HeroSection() {
               <div
                 className="hero-mockup-lift"
                 style={{
-                  transform: hovering && animPhase === 'idle' ? 'translateY(-8px)' : 'translateY(0px)',
+                  position: 'relative',
+                  transform: hovering && exitingIndex === null ? 'translateY(-8px)' : 'translateY(0px)',
                   transition: `transform 0.45s ${ease}`,
                 }}
               >
+                {/* Exiting card (previous project, animating out) */}
+                {exitingIndex !== null && (
+                  <div
+                    className="hero-mockup-front hero-card-exit"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      zIndex: 2,
+                      borderRadius: 12,
+                      overflow: 'hidden',
+                      border: '1px solid var(--line-strong)',
+                      boxShadow: `0 32px 80px color-mix(in oklch, var(--bg), transparent 35%), 0 0 0 1px var(--glass-border)`,
+                    }}
+                  >
+                    <div
+                      style={{
+                        background: 'var(--bg-elev-2)',
+                        borderBottom: '1px solid var(--line)',
+                        padding: '10px 14px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 7,
+                      }}
+                    >
+                      <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57', flexShrink: 0 }} />
+                      <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ffbd2e', flexShrink: 0 }} />
+                      <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#28ca41', flexShrink: 0 }} />
+                      <div
+                        style={{
+                          flex: 1,
+                          margin: '0 8px',
+                          background: 'var(--bg)',
+                          borderRadius: 5,
+                          padding: '3px 10px',
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: 10,
+                          color: 'var(--ink-mute)',
+                          letterSpacing: '0.04em',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {showcaseProjects[exitingIndex].url}
+                      </div>
+                    </div>
+                    <div style={{ position: 'relative', aspectRatio: '16/10' }}>
+                      <Image
+                        src={showcaseProjects[exitingIndex].image}
+                        alt={showcaseProjects[exitingIndex].alt}
+                        fill
+                        style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                      />
+                    </div>
+                  </div>
+                )}
+
                 {/* Front card — current project with browser chrome */}
                 <div
-                  className={`hero-mockup-front${animPhase === 'exit' ? ' hero-card-exit' : ''}${animPhase === 'enter' ? ' hero-card-enter' : ''}`}
+                  className={`hero-mockup-front${exitingIndex !== null ? ' hero-card-enter' : ''}`}
                   style={{
                     position: 'relative',
                     zIndex: 1,
@@ -428,16 +481,11 @@ export default function HeroSection() {
                     boxShadow: hovering
                       ? `0 48px 120px color-mix(in oklch, var(--bg), transparent 20%), 0 16px 40px color-mix(in oklch, var(--bg), transparent 60%), 0 0 0 1px var(--glass-border)`
                       : `0 32px 80px color-mix(in oklch, var(--bg), transparent 35%), 0 0 0 1px var(--glass-border)`,
-                    ...(animPhase === 'idle' ? {
-                      transform: ready ? 'rotate(-2deg)' : 'rotate(-2deg) translateY(40px)',
-                      opacity: ready ? 1 : 0,
-                      transition: `transform 1.2s ${ease} 0.3s, opacity 0.9s ${ease} 0.3s, box-shadow 0.45s ${ease}`,
-                    } : {
-                      transition: `box-shadow 0.45s ${ease}`,
-                    }),
+                    transform: ready ? 'rotate(-2deg)' : 'rotate(-2deg) translateY(40px)',
+                    opacity: ready ? 1 : 0,
+                    transition: `transform 1.2s ${ease} 0.3s, opacity 0.9s ${ease} 0.3s, box-shadow 0.45s ${ease}`,
                   }}
                 >
-                  {/* Browser chrome bar */}
                   <div
                     style={{
                       background: 'var(--bg-elev-2)',
@@ -470,7 +518,6 @@ export default function HeroSection() {
                       {showcaseProjects[cardIndex].url}
                     </div>
                   </div>
-                  {/* Screenshot */}
                   <div style={{ position: 'relative', aspectRatio: '16/10' }}>
                     <Image
                       src={showcaseProjects[cardIndex].image}
@@ -534,9 +581,9 @@ export default function HeroSection() {
           100% { transform: rotate(-6deg) translateY(40px) scale(0.92); opacity: 0; }
         }
         @keyframes heroCardEnter {
-          0% { transform: rotate(4deg) translateY(80px) scale(0.92); opacity: 0; }
-          40% { opacity: 1; }
-          100% { transform: rotate(-2deg) translateY(0) scale(1); opacity: 1; }
+          0% { transform: rotate(4deg) translate(12px, 28px) scale(0.88); opacity: 0.55; }
+          50% { opacity: 1; }
+          100% { transform: rotate(-2deg) translate(0, 0) scale(1); opacity: 1; }
         }
         .hero-card-exit {
           animation: heroCardExit 0.5s cubic-bezier(0.16, 1, 0.3, 1) both !important;
