@@ -10,6 +10,11 @@ export type BlogSection = {
   bullets?: string[];
 };
 
+export type PodcastChapter = {
+  timestamp: string;
+  title: string;
+};
+
 export type BlogPost = {
   slug: string;
   number: string;
@@ -28,6 +33,16 @@ export type BlogPost = {
   ctaTitle: string;
   ctaText: string;
   related: string[];
+
+  /* Optional podcast fields */
+  audioUrl?: string;
+  audioDuration?: string;
+  chapters?: PodcastChapter[];
+  podcastLinks?: {
+    spotify?: string;
+    applePodcasts?: string;
+    youtube?: string;
+  };
 };
 
 /* ── Post registry (add new imports here) ──────────────────────────── */
@@ -43,6 +58,7 @@ import post08 from '@/content/blog/how-small-businesses-use-ai-get-more-leads';
 import post09 from '@/content/blog/grow-roofing-company-online-local-leads';
 import post10 from '@/content/blog/best-ai-tools-small-businesses-save-time-grow';
 import post11 from '@/content/blog/best-marketing-books-small-business-get-clients';
+import post12 from '@/content/blog/what-small-businesses-can-learn-from-building-a-storybrand';
 
 const ALL_POSTS: BlogPost[] = [
   post01,
@@ -56,6 +72,7 @@ const ALL_POSTS: BlogPost[] = [
   post09,
   post10,
   post11,
+  post12,
 ];
 
 /* ── Public helpers ────────────────────────────────────────────────── */

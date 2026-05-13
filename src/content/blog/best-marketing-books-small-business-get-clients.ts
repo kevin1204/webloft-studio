@@ -52,6 +52,7 @@ const post: BlogPost = {
       bullets: [
         '<strong>Website lesson:</strong> Your homepage should not say "quality service" or "years of experience." It should clearly name the problem you solve and the result the customer gets.',
         '<strong>Get it on Amazon:</strong> <a href="https://www.amazon.ca/dp/0718033329" target="_blank" rel="noopener noreferrer">Amazon Canada</a> | <a href="https://www.amazon.com/dp/0718033329" target="_blank" rel="noopener noreferrer">Amazon US</a>',
+        '<strong>Go deeper:</strong> We created a full article and podcast episode breaking down the StoryBrand framework and how to apply it to your website. <a href="/blog/what-small-businesses-can-learn-from-building-a-storybrand">Read the full breakdown and listen to the episode &rarr;</a>',
       ],
     },
     {

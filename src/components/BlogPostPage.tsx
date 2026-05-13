@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getRelatedPosts, type BlogPost } from '@/lib/blog';
 import SubscribeForm from '@/components/SubscribeForm';
 import ShareButtons from '@/components/ShareButtons';
+import PodcastPlayer from '@/components/PodcastPlayer';
 
 function ArrowIcon() {
   return (
@@ -25,7 +26,7 @@ function countWords(post: BlogPost): number {
 function buildSchema(post: BlogPost) {
   const url = `https://webloftstudio.com/blog/${post.slug}`;
 
-  return [
+  const schema: Record<string, unknown>[] = [
     {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
@@ -82,6 +83,31 @@ function buildSchema(post: BlogPost) {
       ],
     },
   ];
+
+  if (post.audioUrl) {
+    schema.push({
+      '@context': 'https://schema.org',
+      '@type': 'PodcastEpisode',
+      name: post.title,
+      description: post.excerpt,
+      url,
+      datePublished: post.isoDate,
+      associatedMedia: {
+        '@type': 'AudioObject',
+        contentUrl: post.audioUrl.startsWith('http')
+          ? post.audioUrl
+          : `https://webloftstudio.com${post.audioUrl}`,
+        encodingFormat: 'audio/mp4',
+      },
+      partOfSeries: {
+        '@type': 'PodcastSeries',
+        name: 'Webloft Studio Podcast',
+        url: 'https://webloftstudio.com/blog',
+      },
+    });
+  }
+
+  return schema;
 }
 
 export default function BlogPostPage({ post }: { post: BlogPost }) {
@@ -143,6 +169,36 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
                 </div>
               </aside>
             </div>
+
+            {post.audioUrl && (
+              <PodcastPlayer
+                audioUrl={post.audioUrl}
+                title={post.title}
+                image={post.image}
+                duration={post.audioDuration || ''}
+                chapters={post.chapters}
+              />
+            )}
+
+            {post.podcastLinks && (post.podcastLinks.spotify || post.podcastLinks.applePodcasts || post.podcastLinks.youtube) && (
+              <div className="wl-podcast-platforms">
+                {post.podcastLinks.spotify && (
+                  <a href={post.podcastLinks.spotify} className="wl-podcast-platform-link" target="_blank" rel="noopener noreferrer">
+                    Spotify
+                  </a>
+                )}
+                {post.podcastLinks.applePodcasts && (
+                  <a href={post.podcastLinks.applePodcasts} className="wl-podcast-platform-link" target="_blank" rel="noopener noreferrer">
+                    Apple Podcasts
+                  </a>
+                )}
+                {post.podcastLinks.youtube && (
+                  <a href={post.podcastLinks.youtube} className="wl-podcast-platform-link" target="_blank" rel="noopener noreferrer">
+                    YouTube
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         </section>
 
