@@ -26,6 +26,10 @@ function formatTime(seconds: number): string {
   return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
 }
 
+function audioTypeFor(url: string): string {
+  return url.includes('.mp3') ? 'audio/mpeg' : 'audio/mp4';
+}
+
 export default function PodcastPlayer({
   audioUrl,
   title,
@@ -50,11 +54,12 @@ export default function PodcastPlayer({
     if (!el.paused) {
       el.pause();
     } else {
-      // Show loading state — file is large and takes time to buffer on mobile
-      setWaiting(true);
       // iOS: play() must be called directly in user gesture call stack.
       // Do NOT call load() before play() — it breaks the gesture chain on iOS.
-      el.play().catch(() => {
+      const playAttempt = el.play();
+      // Show loading state while the browser buffers enough audio to start.
+      setWaiting(true);
+      playAttempt.catch(() => {
         setWaiting(false);
       });
     }
@@ -164,7 +169,9 @@ export default function PodcastPlayer({
 
   return (
     <div className="wl-podcast-player">
-      <audio ref={audioRef} src={audioUrl} preload="none" />
+      <audio ref={audioRef} preload="metadata">
+        <source src={audioUrl} type={audioTypeFor(audioUrl)} />
+      </audio>
 
       {/* Header: cover + title */}
       <div className="wl-podcast-player-header">
