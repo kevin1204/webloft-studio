@@ -41,7 +41,6 @@ export default function PodcastPlayer({
   const [totalDuration, setTotalDuration] = useState(0);
   const [speedIdx, setSpeedIdx] = useState(0);
   const [chaptersOpen, setChaptersOpen] = useState(false);
-  const [loaded, setLoaded] = useState(false);
 
   const toggle = useCallback(() => {
     const el = audioRef.current;
@@ -49,26 +48,14 @@ export default function PodcastPlayer({
 
     if (playing) {
       el.pause();
-      setPlaying(false);
     } else {
-      // On mobile, browsers require load() before first play if not preloaded
-      if (!loaded) {
-        el.load();
-        setLoaded(true);
-      }
-      const playPromise = el.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => setPlaying(true))
-          .catch(() => {
-            // Autoplay blocked — retry on next user tap
-            setPlaying(false);
-          });
-      } else {
-        setPlaying(true);
-      }
+      // iOS: play() must be called directly in user gesture call stack.
+      // Do NOT call load() before play() — it breaks the gesture chain on iOS.
+      el.play().catch(() => {
+        // Autoplay policy blocked — will work on next user tap
+      });
     }
-  }, [playing, loaded]);
+  }, [playing]);
 
   const skip = useCallback((delta: number) => {
     const el = audioRef.current;
@@ -85,22 +72,11 @@ export default function PodcastPlayer({
   const seekTo = useCallback((seconds: number) => {
     const el = audioRef.current;
     if (!el) return;
-    if (!loaded) {
-      el.load();
-      setLoaded(true);
-    }
     el.currentTime = seconds;
     if (!playing) {
-      const playPromise = el.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => setPlaying(true))
-          .catch(() => setPlaying(false));
-      } else {
-        setPlaying(true);
-      }
+      el.play().catch(() => {});
     }
-  }, [playing, loaded]);
+  }, [playing]);
 
   const handleProgressClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
@@ -109,16 +85,11 @@ export default function PodcastPlayer({
       if (!bar || !el) return;
       const rect = bar.getBoundingClientRect();
       const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-      if (!loaded) {
-        el.load();
-        setLoaded(true);
-      }
-      // Wait for duration to be available, then seek
       if (el.duration && isFinite(el.duration)) {
         el.currentTime = pct * el.duration;
       }
     },
-    [loaded]
+    []
   );
 
   // Touch support for progress bar
@@ -130,15 +101,11 @@ export default function PodcastPlayer({
       const touch = e.touches[0];
       const rect = bar.getBoundingClientRect();
       const pct = Math.max(0, Math.min(1, (touch.clientX - rect.left) / rect.width));
-      if (!loaded) {
-        el.load();
-        setLoaded(true);
-      }
       if (el.duration && isFinite(el.duration)) {
         el.currentTime = pct * el.duration;
       }
     },
-    [loaded]
+    []
   );
 
   useEffect(() => {
@@ -154,7 +121,6 @@ export default function PodcastPlayer({
     const onEnd = () => setPlaying(false);
     const onPlay = () => setPlaying(true);
     const onPause = () => setPlaying(false);
-    const onCanPlay = () => setLoaded(true);
 
     el.addEventListener('timeupdate', onTime);
     el.addEventListener('loadedmetadata', onMeta);
@@ -162,7 +128,6 @@ export default function PodcastPlayer({
     el.addEventListener('ended', onEnd);
     el.addEventListener('play', onPlay);
     el.addEventListener('pause', onPause);
-    el.addEventListener('canplay', onCanPlay);
     return () => {
       el.removeEventListener('timeupdate', onTime);
       el.removeEventListener('loadedmetadata', onMeta);
@@ -170,7 +135,6 @@ export default function PodcastPlayer({
       el.removeEventListener('ended', onEnd);
       el.removeEventListener('play', onPlay);
       el.removeEventListener('pause', onPause);
-      el.removeEventListener('canplay', onCanPlay);
     };
   }, []);
 
@@ -178,8 +142,7 @@ export default function PodcastPlayer({
 
   return (
     <div className="wl-podcast-player">
-      {/* Use playsinline for iOS, preload metadata */}
-      <audio ref={audioRef} src={audioUrl} preload="metadata" playsInline />
+      <audio ref={audioRef} src={audioUrl} preload="none" />
 
       {/* Header: cover + title */}
       <div className="wl-podcast-player-header">
