@@ -41,17 +41,34 @@ export default function PodcastPlayer({
   const [totalDuration, setTotalDuration] = useState(0);
   const [speedIdx, setSpeedIdx] = useState(0);
   const [chaptersOpen, setChaptersOpen] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   const toggle = useCallback(() => {
     const el = audioRef.current;
     if (!el) return;
+
     if (playing) {
       el.pause();
+      setPlaying(false);
     } else {
-      el.play();
+      // On mobile, browsers require load() before first play if not preloaded
+      if (!loaded) {
+        el.load();
+        setLoaded(true);
+      }
+      const playPromise = el.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setPlaying(true))
+          .catch(() => {
+            // Autoplay blocked — retry on next user tap
+            setPlaying(false);
+          });
+      } else {
+        setPlaying(true);
+      }
     }
-    setPlaying(!playing);
-  }, [playing]);
+  }, [playing, loaded]);
 
   const skip = useCallback((delta: number) => {
     const el = audioRef.current;
@@ -68,23 +85,60 @@ export default function PodcastPlayer({
   const seekTo = useCallback((seconds: number) => {
     const el = audioRef.current;
     if (!el) return;
+    if (!loaded) {
+      el.load();
+      setLoaded(true);
+    }
     el.currentTime = seconds;
     if (!playing) {
-      el.play();
-      setPlaying(true);
+      const playPromise = el.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setPlaying(true))
+          .catch(() => setPlaying(false));
+      } else {
+        setPlaying(true);
+      }
     }
-  }, [playing]);
+  }, [playing, loaded]);
 
   const handleProgressClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       const bar = progressRef.current;
       const el = audioRef.current;
-      if (!bar || !el || !el.duration) return;
+      if (!bar || !el) return;
       const rect = bar.getBoundingClientRect();
       const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-      el.currentTime = pct * el.duration;
+      if (!loaded) {
+        el.load();
+        setLoaded(true);
+      }
+      // Wait for duration to be available, then seek
+      if (el.duration && isFinite(el.duration)) {
+        el.currentTime = pct * el.duration;
+      }
     },
-    []
+    [loaded]
+  );
+
+  // Touch support for progress bar
+  const handleProgressTouch = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      const bar = progressRef.current;
+      const el = audioRef.current;
+      if (!bar || !el) return;
+      const touch = e.touches[0];
+      const rect = bar.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(1, (touch.clientX - rect.left) / rect.width));
+      if (!loaded) {
+        el.load();
+        setLoaded(true);
+      }
+      if (el.duration && isFinite(el.duration)) {
+        el.currentTime = pct * el.duration;
+      }
+    },
+    [loaded]
   );
 
   useEffect(() => {
@@ -92,16 +146,31 @@ export default function PodcastPlayer({
     if (!el) return;
 
     const onTime = () => setCurrent(el.currentTime);
-    const onMeta = () => setTotalDuration(el.duration);
+    const onMeta = () => {
+      if (el.duration && isFinite(el.duration)) {
+        setTotalDuration(el.duration);
+      }
+    };
     const onEnd = () => setPlaying(false);
+    const onPlay = () => setPlaying(true);
+    const onPause = () => setPlaying(false);
+    const onCanPlay = () => setLoaded(true);
 
     el.addEventListener('timeupdate', onTime);
     el.addEventListener('loadedmetadata', onMeta);
+    el.addEventListener('durationchange', onMeta);
     el.addEventListener('ended', onEnd);
+    el.addEventListener('play', onPlay);
+    el.addEventListener('pause', onPause);
+    el.addEventListener('canplay', onCanPlay);
     return () => {
       el.removeEventListener('timeupdate', onTime);
       el.removeEventListener('loadedmetadata', onMeta);
+      el.removeEventListener('durationchange', onMeta);
       el.removeEventListener('ended', onEnd);
+      el.removeEventListener('play', onPlay);
+      el.removeEventListener('pause', onPause);
+      el.removeEventListener('canplay', onCanPlay);
     };
   }, []);
 
@@ -109,7 +178,8 @@ export default function PodcastPlayer({
 
   return (
     <div className="wl-podcast-player">
-      <audio ref={audioRef} src={audioUrl} preload="metadata" />
+      {/* Use playsinline for iOS, preload metadata */}
+      <audio ref={audioRef} src={audioUrl} preload="metadata" playsInline />
 
       {/* Header: cover + title */}
       <div className="wl-podcast-player-header">
@@ -128,6 +198,7 @@ export default function PodcastPlayer({
         className="wl-podcast-progress"
         ref={progressRef}
         onClick={handleProgressClick}
+        onTouchStart={handleProgressTouch}
         role="slider"
         aria-label="Seek"
         aria-valuemin={0}

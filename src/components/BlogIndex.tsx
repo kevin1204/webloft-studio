@@ -7,6 +7,17 @@ import type { BlogCardData } from '@/sanity/lib/types';
 
 type BlogPost = BlogCardData;
 
+const CATEGORY_COLORS: Record<string, string> = {
+  Strategy: '#e8a735',
+  SEO: '#4ecdc4',
+  AI: '#a78bfa',
+  Webflow: '#3b82f6',
+  Conversion: '#f97316',
+  Marketing: '#ec4899',
+  Design: '#10b981',
+  Podcast: '#ef4444',
+};
+
 function ArrowIcon() {
   return (
     <svg className="ds-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -15,10 +26,17 @@ function ArrowIcon() {
   );
 }
 
-export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
+export default function BlogIndex({
+  posts,
+  popularSlugs = [],
+}: {
+  posts: BlogPost[];
+  popularSlugs?: string[];
+}) {
   const [activeFilter, setActiveFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const searchRef = useRef<HTMLInputElement>(null);
+  const popularSet = useMemo(() => new Set(popularSlugs), [popularSlugs]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -75,7 +93,9 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
                 key={cat}
                 className={`wl-blog-filter-pill${activeFilter === cat ? ' active' : ''}`}
                 onClick={() => setActiveFilter(cat)}
+                style={cat !== 'All' && CATEGORY_COLORS[cat] ? { '--cat-color': CATEGORY_COLORS[cat] } as React.CSSProperties : undefined}
               >
+                {cat !== 'All' && <span className="wl-blog-filter-dot" />}
                 {cat.toUpperCase()}&nbsp;
                 <span className="wl-blog-filter-count">{counts[cat]}</span>
               </button>
@@ -121,7 +141,10 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
                 <div className="wl-blog-card-image">
                   <div className="wl-blog-card-badge">
                     <span className="wl-blog-card-number">{post.number}</span>
-                    <span className="wl-blog-card-cat">{post.category}</span>
+                    <div className="wl-blog-card-badge-right">
+                      {popularSet.has(post.slug) && <span className="wl-blog-popular-tag">Popular</span>}
+                      <span className="wl-blog-card-cat">{post.category}</span>
+                    </div>
                   </div>
                   <Image src={post.image} alt={post.title} fill sizes="(max-width: 900px) 100vw, 33vw" />
                 </div>
@@ -132,8 +155,14 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
                   </div>
                   <h3>{post.title}</h3>
                   <p>{post.excerpt}</p>
-                  <div className="wl-blog-card-link">
-                    Read article <ArrowIcon />
+                  <div className="wl-blog-card-footer">
+                    <div className="wl-blog-author">
+                      <Image src="/kevin4.png" alt="Kevin Ortega" width={28} height={28} className="wl-blog-author-avatar" />
+                      <span className="wl-blog-author-name">Kevin Ortega</span>
+                    </div>
+                    <div className="wl-blog-card-link">
+                      Read article <ArrowIcon />
+                    </div>
                   </div>
                 </div>
               </Link>

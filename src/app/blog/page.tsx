@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getAllPostCards } from '@/sanity/lib/queries';
 import { getAllPosts } from '@/lib/blog';
+import { redis } from '@/lib/redis';
 import type { BlogCardData } from '@/sanity/lib/types';
 import BlogIndex from '@/components/BlogIndex';
 import SubscribeModal from '@/components/SubscribeModal';
@@ -49,6 +50,25 @@ function staticToCards(): BlogCardData[] {
   }));
 }
 
+/** Fetch all view counts from Redis in one batch */
+async function getViewCounts(slugs: string[]): Promise<Record<string, number>> {
+  const counts: Record<string, number> = {};
+  try {
+    const pipeline = redis.pipeline();
+    for (const slug of slugs) {
+      pipeline.get(`blog:views:${slug}`);
+    }
+    const results = await pipeline.exec();
+    slugs.forEach((slug, i) => {
+      counts[slug] = (results[i] as number) ?? 0;
+    });
+  } catch {
+    // Redis unreachable — return zeros
+    slugs.forEach((slug) => { counts[slug] = 0; });
+  }
+  return counts;
+}
+
 export default async function Blog() {
   /* Always show static posts + any new Sanity posts, deduped by slug */
   const staticPosts = staticToCards();
@@ -65,6 +85,18 @@ export default async function Blog() {
   const featured = posts.filter((post) => post.featured);
   const latest = [...posts].sort((a, b) => Number(new Date(b.isoDate)) - Number(new Date(a.isoDate)));
   const topPost = latest[0];
+
+  /* Fetch view counts (used only for "Popular" badge logic, not displayed) */
+  const viewCounts = await getViewCounts(posts.map((p) => p.slug));
+
+  /* Determine popular posts (top 3 by views, min 5 views to qualify) */
+  const popularSlugs = new Set(
+    Object.entries(viewCounts)
+      .filter(([, v]) => v >= 5)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 3)
+      .map(([slug]) => slug)
+  );
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -118,7 +150,7 @@ export default async function Blog() {
       {topPost && (
         <section className="wl-blog-featured-section">
           <div className="ds-container">
-            <Link href={`/blog/${topPost.slug}`} className="wl-blog-feature-card reveal">
+            <Link href={`/blog/${topPost.slug}`} className="wl-blog-feature-card wl-blog-feature-editorial reveal">
               <div className="wl-blog-feature-image">
                 <Image
                   src={topPost.image}
@@ -129,15 +161,24 @@ export default async function Blog() {
                 />
               </div>
               <div className="wl-blog-feature-copy">
+                <div className="wl-blog-feature-label">
+                  <span className="wl-blog-feature-latest-tag">Latest</span>
+                  <span className="wl-blog-card-cat">{topPost.category}</span>
+                </div>
                 <div className="wl-blog-card-meta">
-                  <span>{topPost.category}</span>
                   <span>{topPost.date}</span>
                   <span>{topPost.readTime}</span>
                 </div>
                 <h2>{topPost.title}</h2>
                 <p>{topPost.excerpt}</p>
-                <div className="wl-blog-card-link">
-                  Read latest <ArrowIcon />
+                <div className="wl-blog-feature-footer">
+                  <div className="wl-blog-author">
+                    <Image src="/kevin4.png" alt="Kevin Ortega" width={32} height={32} className="wl-blog-author-avatar" />
+                    <span className="wl-blog-author-name">Kevin Ortega</span>
+                  </div>
+                  <div className="wl-blog-card-link">
+                    Read latest <ArrowIcon />
+                  </div>
                 </div>
               </div>
             </Link>
@@ -162,11 +203,14 @@ export default async function Blog() {
 
           <div className="wl-blog-card-grid wl-blog-card-grid-featured">
             {featured.map((post) => (
-              <Link href={`/blog/${post.slug}`} className="wl-blog-card ds-card reveal" key={post.slug}>
+              <Link href={`/blog/${post.slug}`} className="wl-blog-card wl-blog-card-feat ds-card reveal" key={post.slug}>
                 <div className="wl-blog-card-image">
                   <div className="wl-blog-card-badge">
                     <span className="wl-blog-card-number">{post.number}</span>
-                    <span className="wl-blog-card-cat">{post.category}</span>
+                    <div className="wl-blog-card-badge-right">
+                      {popularSlugs.has(post.slug) && <span className="wl-blog-popular-tag">Popular</span>}
+                      <span className="wl-blog-card-cat">{post.category}</span>
+                    </div>
                   </div>
                   <Image src={post.image} alt={post.title} fill sizes="(max-width: 900px) 100vw, 50vw" />
                 </div>
@@ -177,8 +221,14 @@ export default async function Blog() {
                   </div>
                   <h3>{post.title}</h3>
                   <p>{post.excerpt}</p>
-                  <div className="wl-blog-card-link">
-                    Read article <ArrowIcon />
+                  <div className="wl-blog-card-footer">
+                    <div className="wl-blog-author">
+                      <Image src="/kevin4.png" alt="Kevin Ortega" width={28} height={28} className="wl-blog-author-avatar" />
+                      <span className="wl-blog-author-name">Kevin Ortega</span>
+                    </div>
+                    <div className="wl-blog-card-link">
+                      Read article <ArrowIcon />
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -187,7 +237,7 @@ export default async function Blog() {
         </div>
       </section>
 
-      <BlogIndex posts={posts} />
+      <BlogIndex posts={posts} popularSlugs={Array.from(popularSlugs)} />
 
       <section className="wl-blog-newsletter-section">
         <div className="ds-container">

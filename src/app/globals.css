@@ -1783,7 +1783,7 @@ section { position: relative; }
   font-size: 12px;
   gap: 10px;
   letter-spacing: 0.08em;
-  margin-top: 28px;
+  margin-top: 0;
   text-transform: uppercase;
 }
 
@@ -1850,11 +1850,16 @@ section { position: relative; }
 
 .wl-blog-card p {
   font-size: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 24px;
 }
 
 .wl-blog-card .wl-blog-card-link {
-  margin-top: auto;
-  padding-top: 28px;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .wl-blog-newsletter-section,
@@ -2264,12 +2269,23 @@ section { position: relative; }
   }
 
   .wl-blog-card-meta {
-    display: grid;
-    gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
   }
 
   .wl-blog-card-meta span + span::before {
     display: none;
+  }
+
+  .wl-blog-feature-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .wl-blog-feature-editorial {
+    min-height: auto;
   }
 }
 
@@ -2421,6 +2437,190 @@ section { position: relative; }
   letter-spacing: 0.1em;
   padding: 3px 8px;
   text-transform: uppercase;
+}
+
+/* ── Author byline ───────────────────────────────────────── */
+
+.wl-blog-author {
+  align-items: center;
+  display: inline-flex;
+  gap: 10px;
+}
+
+.wl-blog-author-avatar {
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  height: 28px;
+  object-fit: cover;
+  width: 28px;
+}
+
+.wl-blog-feature-card .wl-blog-author-avatar {
+  height: 32px;
+  width: 32px;
+}
+
+.wl-blog-author-name {
+  color: var(--ink-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* ── Card footer (author + read link) ────────────────────── */
+
+.wl-blog-card-footer,
+.wl-blog-feature-footer {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.wl-blog-card-footer .wl-blog-card-link,
+.wl-blog-feature-footer .wl-blog-card-link {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.wl-blog-card .wl-blog-card-footer {
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+/* ── View counts ─────────────────────────────────────────── */
+
+.wl-blog-views {
+  align-items: center;
+  display: inline-flex;
+  gap: 5px;
+}
+
+.wl-blog-views svg {
+  opacity: 0.6;
+}
+
+/* ── Popular tag ─────────────────────────────────────────── */
+
+.wl-blog-popular-tag {
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  border-radius: 4px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  text-transform: uppercase;
+}
+
+/* ── Latest tag (hero feature card) ──────────────────────── */
+
+.wl-blog-feature-latest-tag {
+  background: var(--accent);
+  border-radius: 4px;
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  text-transform: uppercase;
+}
+
+.wl-blog-feature-label {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+/* ── Editorial hero feature card ─────────────────────────── */
+
+.wl-blog-feature-editorial {
+  min-height: 460px;
+  position: relative;
+}
+
+.wl-blog-feature-editorial .wl-blog-feature-image {
+  position: relative;
+}
+
+.wl-blog-feature-editorial .wl-blog-feature-image::after {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    color-mix(in oklch, var(--bg-elev), transparent 10%) 100%
+  );
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.wl-blog-feature-editorial .wl-blog-feature-copy {
+  gap: 12px;
+  justify-content: center;
+}
+
+.wl-blog-feature-editorial .wl-blog-feature-copy h2 {
+  font-size: clamp(28px, 3vw, 50px);
+  line-height: 1.06;
+}
+
+.wl-blog-feature-editorial .wl-blog-feature-copy p {
+  margin: 8px 0 0;
+}
+
+.wl-blog-feature-editorial .wl-blog-feature-footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+/* ── Featured card differentiation ───────────────────────── */
+
+.wl-blog-card-feat .wl-blog-card-image {
+  aspect-ratio: 16 / 10;
+}
+
+.wl-blog-card-feat h3 {
+  font-size: clamp(19px, 1.6vw, 26px);
+}
+
+/* ── Badge right group ───────────────────────────────────── */
+
+.wl-blog-card-badge-right {
+  align-items: flex-start;
+  display: flex;
+  gap: 6px;
+}
+
+/* ── Filter pill colored dots ────────────────────────────── */
+
+.wl-blog-filter-dot {
+  background: var(--cat-color, var(--ink-mute));
+  border-radius: 999px;
+  display: inline-block;
+  height: 7px;
+  width: 7px;
+  flex-shrink: 0;
+}
+
+.wl-blog-filter-pill.active .wl-blog-filter-dot {
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--cat-color, var(--accent)), transparent 60%);
+}
+
+.wl-blog-filter-pill.active {
+  background: color-mix(in oklch, var(--cat-color, var(--accent)), transparent 88%);
+  border-color: color-mix(in oklch, var(--cat-color, var(--accent)), transparent 40%);
+  color: var(--ink);
 }
 
 /* ── Empty state ──────────────────────────────────────────── */
@@ -3352,8 +3552,10 @@ section { position: relative; }
   font-weight: 600;
   background: var(--bg-elev-2);
   border-radius: var(--r-sm);
-  padding: 4px 10px;
+  padding: 4px 0;
   color: var(--ink-dim);
+  min-width: 52px;
+  text-align: center;
 }
 
 .wl-podcast-btn-speed:hover {
