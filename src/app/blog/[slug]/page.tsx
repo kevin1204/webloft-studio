@@ -132,7 +132,7 @@ export default async function BlogPostRoute({ params }: { params: Promise<{ slug
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Blog', item: 'https://webloftstudio.com/blog' },
         ...(post.categories?.[0]
-          ? [{ '@type': 'ListItem', position: 2, name: post.categories[0].title }]
+          ? [{ '@type': 'ListItem', position: 2, name: post.categories[0].title, item: 'https://webloftstudio.com/blog' }]
           : []),
         {
           '@type': 'ListItem',

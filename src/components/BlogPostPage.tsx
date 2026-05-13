@@ -73,6 +73,7 @@ function buildSchema(post: BlogPost) {
           '@type': 'ListItem',
           position: 2,
           name: post.category,
+          item: 'https://webloftstudio.com/blog',
         },
         {
           '@type': 'ListItem',
