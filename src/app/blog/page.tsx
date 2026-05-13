@@ -82,7 +82,6 @@ export default async function Blog() {
   const newSanityPosts = sanityPosts.filter((p) => !staticSlugs.has(p.slug));
   const posts = [...staticPosts, ...newSanityPosts];
 
-  const featured = posts.filter((post) => post.featured);
   const latest = [...posts].sort((a, b) => Number(new Date(b.isoDate)) - Number(new Date(a.isoDate)));
   const topPost = latest[0];
 
@@ -185,57 +184,6 @@ export default async function Blog() {
           </div>
         </section>
       )}
-
-      <section className="wl-blog-list-section">
-        <div className="ds-container">
-          <div className="wl-blog-section-head reveal">
-            <div>
-              <div className="eyebrow">
-                <span className="dot" />
-                Featured
-              </div>
-              <h2 className="h-2">Useful, not noisy.</h2>
-            </div>
-            <p className="body-lg">
-              Start with the strategy pieces that help most businesses make better website decisions before they spend on design, SEO, or ads.
-            </p>
-          </div>
-
-          <div className="wl-blog-card-grid wl-blog-card-grid-featured">
-            {featured.map((post) => (
-              <Link href={`/blog/${post.slug}`} className="wl-blog-card wl-blog-card-feat ds-card reveal" key={post.slug}>
-                <div className="wl-blog-card-image">
-                  <div className="wl-blog-card-badge">
-                    <span className="wl-blog-card-number">{post.number}</span>
-                    <div className="wl-blog-card-badge-right">
-                      {popularSlugs.has(post.slug) && <span className="wl-blog-popular-tag">Popular</span>}
-                      <span className="wl-blog-card-cat">{post.category}</span>
-                    </div>
-                  </div>
-                  <Image src={post.image} alt={post.title} fill sizes="(max-width: 900px) 100vw, 50vw" />
-                </div>
-                <div className="wl-blog-card-body">
-                  <div className="wl-blog-card-meta">
-                    <span>{post.date}</span>
-                    <span>{post.readTime}</span>
-                  </div>
-                  <h3>{post.title}</h3>
-                  <p>{post.excerpt}</p>
-                  <div className="wl-blog-card-footer">
-                    <div className="wl-blog-author">
-                      <Image src="/kevin4.png" alt="Kevin Ortega" width={28} height={28} className="wl-blog-author-avatar" />
-                      <span className="wl-blog-author-name">Kevin Ortega</span>
-                    </div>
-                    <div className="wl-blog-card-link">
-                      Read article <ArrowIcon />
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <BlogIndex posts={posts} popularSlugs={Array.from(popularSlugs)} />
 

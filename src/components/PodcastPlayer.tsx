@@ -37,6 +37,7 @@ export default function PodcastPlayer({
   const progressRef = useRef<HTMLDivElement>(null);
 
   const [playing, setPlaying] = useState(false);
+  const [waiting, setWaiting] = useState(false);
   const [currentTime, setCurrent] = useState(0);
   const [totalDuration, setTotalDuration] = useState(0);
   const [speedIdx, setSpeedIdx] = useState(0);
@@ -49,10 +50,12 @@ export default function PodcastPlayer({
     if (playing) {
       el.pause();
     } else {
+      // Show loading state — file is large and takes time to buffer on mobile
+      setWaiting(true);
       // iOS: play() must be called directly in user gesture call stack.
       // Do NOT call load() before play() — it breaks the gesture chain on iOS.
       el.play().catch(() => {
-        // Autoplay policy blocked — will work on next user tap
+        setWaiting(false);
       });
     }
   }, [playing]);
@@ -118,9 +121,11 @@ export default function PodcastPlayer({
         setTotalDuration(el.duration);
       }
     };
-    const onEnd = () => setPlaying(false);
-    const onPlay = () => setPlaying(true);
-    const onPause = () => setPlaying(false);
+    const onEnd = () => { setPlaying(false); setWaiting(false); };
+    const onPlay = () => { setPlaying(true); setWaiting(false); };
+    const onPause = () => { setPlaying(false); setWaiting(false); };
+    const onWaiting = () => setWaiting(true);
+    const onCanPlay = () => setWaiting(false);
 
     el.addEventListener('timeupdate', onTime);
     el.addEventListener('loadedmetadata', onMeta);
@@ -128,6 +133,8 @@ export default function PodcastPlayer({
     el.addEventListener('ended', onEnd);
     el.addEventListener('play', onPlay);
     el.addEventListener('pause', onPause);
+    el.addEventListener('waiting', onWaiting);
+    el.addEventListener('canplaythrough', onCanPlay);
     return () => {
       el.removeEventListener('timeupdate', onTime);
       el.removeEventListener('loadedmetadata', onMeta);
@@ -135,6 +142,8 @@ export default function PodcastPlayer({
       el.removeEventListener('ended', onEnd);
       el.removeEventListener('play', onPlay);
       el.removeEventListener('pause', onPause);
+      el.removeEventListener('waiting', onWaiting);
+      el.removeEventListener('canplaythrough', onCanPlay);
     };
   }, []);
 
@@ -142,7 +151,9 @@ export default function PodcastPlayer({
 
   return (
     <div className="wl-podcast-player">
-      <audio ref={audioRef} src={audioUrl} preload="none" />
+      <audio ref={audioRef} preload="none">
+        <source src={audioUrl} type="audio/mp4" />
+      </audio>
 
       {/* Header: cover + title */}
       <div className="wl-podcast-player-header">
@@ -196,10 +207,15 @@ export default function PodcastPlayer({
         <button
           className="wl-podcast-btn wl-podcast-btn-play"
           onClick={toggle}
-          aria-label={playing ? 'Pause' : 'Play'}
+          aria-label={waiting ? 'Loading' : playing ? 'Pause' : 'Play'}
           type="button"
         >
-          {playing ? (
+          {waiting && !playing ? (
+            <svg className="wl-podcast-spinner" width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2.5" opacity="0.25" />
+              <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+            </svg>
+          ) : playing ? (
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
               <rect x="6" y="4" width="4" height="16" rx="1" />
               <rect x="14" y="4" width="4" height="16" rx="1" />

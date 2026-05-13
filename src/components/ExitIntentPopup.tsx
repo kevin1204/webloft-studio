@@ -113,6 +113,18 @@ export default function ExitIntentPopup() {
           backdrop-filter: blur(4px);
           z-index: 9998;
           animation: wlExitFadeIn 0.3s ease;
+          cursor: auto;
+        }
+
+        .wl-exit-popup,
+        .wl-exit-popup * {
+          cursor: auto;
+        }
+
+        .wl-exit-popup button,
+        .wl-exit-popup a,
+        .wl-exit-popup [role="button"] {
+          cursor: pointer;
         }
 
         .wl-exit-popup {

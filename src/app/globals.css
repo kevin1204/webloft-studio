@@ -2452,6 +2452,7 @@ section { position: relative; }
   border-radius: 999px;
   height: 28px;
   object-fit: cover;
+  object-position: center 15%;
   width: 28px;
 }
 
@@ -3544,6 +3545,13 @@ section { position: relative; }
 .wl-podcast-btn-play:hover {
   color: var(--accent-ink);
   transform: scale(1.06);
+}
+
+@keyframes wl-spin {
+  to { transform: rotate(360deg); }
+}
+.wl-podcast-spinner {
+  animation: wl-spin 0.8s linear infinite;
 }
 
 .wl-podcast-btn-speed {
