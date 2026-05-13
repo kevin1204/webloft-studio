@@ -84,6 +84,7 @@ export default function Footer() {
             items={[
               ['Work', '/projects'],
               ['Services', '/services'],
+              ['Areas we serve', '/areas-we-serve'],
               ['About', '/about'],
               ['Contact', '/contact'],
               ['Blog', '/blog'],

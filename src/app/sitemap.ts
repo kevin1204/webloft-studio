@@ -66,6 +66,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/areas-we-serve`,
+      lastModified: new Date('2025-05-13'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/free-website-audit`,
       lastModified: new Date('2025-02-01'),
       changeFrequency: 'monthly',

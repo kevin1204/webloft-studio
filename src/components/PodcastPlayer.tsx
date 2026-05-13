@@ -151,9 +151,7 @@ export default function PodcastPlayer({
 
   return (
     <div className="wl-podcast-player">
-      <audio ref={audioRef} preload="none">
-        <source src={audioUrl} type="audio/mp4" />
-      </audio>
+      <audio ref={audioRef} src={audioUrl} preload="none" />
 
       {/* Header: cover + title */}
       <div className="wl-podcast-player-header">
