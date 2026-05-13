@@ -127,20 +127,105 @@ export default function AreasWeServe() {
           overflow: 'hidden',
         }}
       >
-        {/* Decorative grid bg */}
+        {/* Decorative grid bg — base lines */}
         <div
+          className="areas-grid-bg"
           style={{
             position: 'absolute',
             inset: 0,
             backgroundImage:
-              'linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px)',
+              'linear-gradient(var(--line-strong) 1px, transparent 1px), linear-gradient(90deg, var(--line-strong) 1px, transparent 1px)',
             backgroundSize: '64px 64px',
-            opacity: 0.35,
-            maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 70%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 70%)',
+            opacity: 0.6,
+            maskImage: 'radial-gradient(ellipse 80% 70% at 50% 45%, black 20%, transparent 65%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 45%, black 20%, transparent 65%)',
             pointerEvents: 'none',
           }}
         />
+
+        {/* Running horizontal illumination lines */}
+        <div className="areas-running-h-1" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
+          <div style={{
+            position: 'absolute', top: '20%', left: 0, width: '100%', height: 1,
+            background: 'linear-gradient(90deg, transparent 0%, var(--accent) 15%, var(--accent) 25%, transparent 40%)',
+            opacity: 0.5,
+            animation: 'areasRunH 4s linear infinite',
+          }} />
+        </div>
+        <div className="areas-running-h-2" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
+          <div style={{
+            position: 'absolute', top: '55%', left: 0, width: '100%', height: 1,
+            background: 'linear-gradient(90deg, transparent 0%, var(--accent) 15%, var(--accent) 25%, transparent 40%)',
+            opacity: 0.35,
+            animation: 'areasRunH 5.5s linear infinite',
+            animationDelay: '-2s',
+          }} />
+        </div>
+        <div className="areas-running-h-3" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
+          <div style={{
+            position: 'absolute', top: '80%', left: 0, width: '100%', height: 1,
+            background: 'linear-gradient(90deg, transparent 0%, var(--accent) 15%, var(--accent) 25%, transparent 40%)',
+            opacity: 0.25,
+            animation: 'areasRunH 6.5s linear infinite',
+            animationDelay: '-4s',
+          }} />
+        </div>
+
+        {/* Running vertical illumination lines */}
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
+          <div style={{
+            position: 'absolute', left: '15%', top: 0, height: '100%', width: 1,
+            background: 'linear-gradient(180deg, transparent 0%, var(--accent) 20%, var(--accent) 30%, transparent 45%)',
+            opacity: 0.4,
+            animation: 'areasRunV 5s linear infinite',
+            animationDelay: '-1s',
+          }} />
+        </div>
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
+          <div style={{
+            position: 'absolute', left: '50%', top: 0, height: '100%', width: 1,
+            background: 'linear-gradient(180deg, transparent 0%, var(--accent) 20%, var(--accent) 30%, transparent 45%)',
+            opacity: 0.3,
+            animation: 'areasRunV 4.5s linear infinite',
+            animationDelay: '-3s',
+          }} />
+        </div>
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
+          <div style={{
+            position: 'absolute', left: '82%', top: 0, height: '100%', width: 1,
+            background: 'linear-gradient(180deg, transparent 0%, var(--accent) 20%, var(--accent) 30%, transparent 45%)',
+            opacity: 0.35,
+            animation: 'areasRunV 6s linear infinite',
+            animationDelay: '-0.5s',
+          }} />
+        </div>
+
+        {/* Intersection glow dots — where running lines cross */}
+        {[
+          { top: '20%', left: '15%', delay: '0s' },
+          { top: '20%', left: '50%', delay: '1.2s' },
+          { top: '55%', left: '82%', delay: '0.6s' },
+          { top: '80%', left: '50%', delay: '1.8s' },
+          { top: '55%', left: '15%', delay: '2.5s' },
+        ].map((dot, i) => (
+          <div
+            key={i}
+            style={{
+              position: 'absolute',
+              top: dot.top,
+              left: dot.left,
+              width: 4,
+              height: 4,
+              borderRadius: '50%',
+              background: 'var(--accent)',
+              boxShadow: '0 0 12px 4px color-mix(in oklch, var(--accent), transparent 40%)',
+              animation: 'areasGlowDot 3s ease-in-out infinite',
+              animationDelay: dot.delay,
+              pointerEvents: 'none',
+              transform: 'translate(-50%, -50%)',
+            }}
+          />
+        ))}
 
         <div className="ds-container" style={{ position: 'relative', zIndex: 1 }}>
           <div
@@ -713,6 +798,24 @@ export default function AreasWeServe() {
           50% { transform: scale(1.8); opacity: 0; }
         }
 
+        /* Running illumination — horizontal */
+        @keyframes areasRunH {
+          0%   { transform: translateX(-40%); }
+          100% { transform: translateX(100%); }
+        }
+
+        /* Running illumination — vertical */
+        @keyframes areasRunV {
+          0%   { transform: translateY(-45%); }
+          100% { transform: translateY(100%); }
+        }
+
+        /* Intersection glow pulse */
+        @keyframes areasGlowDot {
+          0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+          50%      { opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
+        }
+
         @media (max-width: 900px) {
           .map-grid {
             grid-template-columns: 1fr !important;
@@ -729,6 +832,15 @@ export default function AreasWeServe() {
           }
           .industry-grid {
             grid-template-columns: 1fr !important;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .areas-running-h-1 div,
+          .areas-running-h-2 div,
+          .areas-running-h-3 div {
+            animation: none !important;
+            opacity: 0.15 !important;
           }
         }
       `}</style>

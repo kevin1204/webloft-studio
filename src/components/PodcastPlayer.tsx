@@ -47,7 +47,7 @@ export default function PodcastPlayer({
     const el = audioRef.current;
     if (!el) return;
 
-    if (playing) {
+    if (!el.paused) {
       el.pause();
     } else {
       // Show loading state — file is large and takes time to buffer on mobile
@@ -58,7 +58,7 @@ export default function PodcastPlayer({
         setWaiting(false);
       });
     }
-  }, [playing]);
+  }, []);
 
   const skip = useCallback((delta: number) => {
     const el = audioRef.current;
@@ -122,28 +122,41 @@ export default function PodcastPlayer({
       }
     };
     const onEnd = () => { setPlaying(false); setWaiting(false); };
-    const onPlay = () => { setPlaying(true); setWaiting(false); };
+    const onPlay = () => { setWaiting(true); };
+    const onPlaying = () => { setPlaying(true); setWaiting(false); };
     const onPause = () => { setPlaying(false); setWaiting(false); };
     const onWaiting = () => setWaiting(true);
-    const onCanPlay = () => setWaiting(false);
+    const onCanPlay = () => {
+      setWaiting(false);
+      setPlaying(!el.paused);
+    };
+    const onError = () => { setPlaying(false); setWaiting(false); };
 
     el.addEventListener('timeupdate', onTime);
     el.addEventListener('loadedmetadata', onMeta);
     el.addEventListener('durationchange', onMeta);
     el.addEventListener('ended', onEnd);
     el.addEventListener('play', onPlay);
+    el.addEventListener('playing', onPlaying);
     el.addEventListener('pause', onPause);
     el.addEventListener('waiting', onWaiting);
+    el.addEventListener('stalled', onWaiting);
     el.addEventListener('canplaythrough', onCanPlay);
+    el.addEventListener('canplay', onCanPlay);
+    el.addEventListener('error', onError);
     return () => {
       el.removeEventListener('timeupdate', onTime);
       el.removeEventListener('loadedmetadata', onMeta);
       el.removeEventListener('durationchange', onMeta);
       el.removeEventListener('ended', onEnd);
       el.removeEventListener('play', onPlay);
+      el.removeEventListener('playing', onPlaying);
       el.removeEventListener('pause', onPause);
       el.removeEventListener('waiting', onWaiting);
+      el.removeEventListener('stalled', onWaiting);
       el.removeEventListener('canplaythrough', onCanPlay);
+      el.removeEventListener('canplay', onCanPlay);
+      el.removeEventListener('error', onError);
     };
   }, []);
 
