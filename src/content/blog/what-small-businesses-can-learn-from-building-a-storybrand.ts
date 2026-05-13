@@ -32,7 +32,7 @@ const post: BlogPost = {
   ],
 
   /* Podcast fields */
-  audioUrl: '/api/audio?file=podcast/building-a-story-brand.m4a&v=2026-05-13-2',
+  audioUrl: 'https://media.webloftstudio.com/podcast/building-a-story-brand.mp3',
   audioDuration: '36 min',
   podcastLinks: {
     spotify: '',

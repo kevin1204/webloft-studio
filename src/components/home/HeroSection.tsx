@@ -52,6 +52,14 @@ function MagneticButton({ children, className, href }: { children: React.ReactNo
   );
 }
 
+const showcaseProjects = [
+  { image: '/PROJECTS/gallery/amigo-contracting-1.webp', url: 'amigocontracting.com', alt: 'Amigo Contracting website' },
+  { image: '/PROJECTS/gallery/flowga-1.webp', url: 'flowgav2.webflow.io', alt: 'Flowga Yoga website' },
+  { image: '/PROJECTS/gallery/aeries-1.webp', url: 'aeries.webflow.io', alt: 'Aeries website' },
+  { image: '/PROJECTS/gallery/sportlink1.webp', url: 'sportlink-events.webflow.io', alt: 'Sportlink Events website' },
+  { image: '/PROJECTS/gallery/lilahart3.webp', url: 'lilahart.webflow.io', alt: 'Lila Hart website' },
+];
+
 export default function HeroSection() {
   const [time, setTime] = useState('');
   const [ready, setReady] = useState(false);
@@ -62,6 +70,8 @@ export default function HeroSection() {
   const textRef = useRef<HTMLDivElement>(null);
   const [parallax, setParallax] = useState({ text: 0, mockup: 0, glowOpacity: 1 });
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [cardIndex, setCardIndex] = useState(0);
+  const [animPhase, setAnimPhase] = useState<'idle' | 'exit' | 'enter'>('idle');
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -116,6 +126,36 @@ export default function HeroSection() {
       clearTimeout(t);
     };
   }, []);
+
+  // Preload all showcase project images
+  useEffect(() => {
+    showcaseProjects.forEach(p => {
+      const img = new window.Image();
+      img.src = p.image;
+    });
+  }, []);
+
+  // Card rotation timer — schedule next swap after idle
+  useEffect(() => {
+    if (hovering || reducedMotion || !ready || animPhase !== 'idle') return;
+    const timer = setTimeout(() => setAnimPhase('exit'), 3000);
+    return () => clearTimeout(timer);
+  }, [cardIndex, hovering, reducedMotion, ready, animPhase]);
+
+  // Handle animation phase transitions
+  useEffect(() => {
+    if (animPhase === 'exit') {
+      const timer = setTimeout(() => {
+        setCardIndex(prev => (prev + 1) % showcaseProjects.length);
+        setAnimPhase('enter');
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+    if (animPhase === 'enter') {
+      const timer = setTimeout(() => setAnimPhase('idle'), 600);
+      return () => clearTimeout(timer);
+    }
+  }, [animPhase]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = mockupRef.current;
@@ -296,7 +336,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* ── Right column: stacked browser mockups with 3D tilt ── */}
+          {/* ── Right column: rotating card stack with 3D tilt ── */}
           <div
             ref={mockupRef}
             className="hero-mockup-wrapper"
@@ -310,7 +350,7 @@ export default function HeroSection() {
               ...(!reducedMotion ? { transform: `translateY(-${parallax.mockup}px)`, willChange: 'transform' } : {}),
             }}
           >
-            {/* 3D tilt layer — wraps both cards together */}
+            {/* 3D tilt layer */}
             <div
               className="hero-mockup-tilt"
               style={{
@@ -323,7 +363,7 @@ export default function HeroSection() {
                 willChange: 'transform',
               }}
             >
-              {/* Soft green ambient glow behind the cards */}
+              {/* Soft green ambient glow */}
               <div
                 className="wl-hero-glow"
                 aria-hidden="true"
@@ -341,7 +381,7 @@ export default function HeroSection() {
                 }}
               />
 
-              {/* Back card — Flowga, rotated clockwise, peeks below-right */}
+              {/* Back card — next project peek */}
               <div
                 className="hero-mockup-back"
                 style={{
@@ -360,25 +400,25 @@ export default function HeroSection() {
               >
                 <div style={{ position: 'relative', aspectRatio: '16/10' }}>
                   <Image
-                    src="/PROJECTS/gallery/flowga-1.webp"
-                    alt="Flowga Yoga website"
+                    src={showcaseProjects[(cardIndex + 1) % showcaseProjects.length].image}
+                    alt={showcaseProjects[(cardIndex + 1) % showcaseProjects.length].alt}
                     fill
                     style={{ objectFit: 'cover', objectPosition: 'top center' }}
                   />
                 </div>
               </div>
 
-              {/* Lift wrapper — only the front card lifts on hover */}
+              {/* Lift wrapper */}
               <div
                 className="hero-mockup-lift"
                 style={{
-                  transform: hovering ? 'translateY(-8px)' : 'translateY(0px)',
+                  transform: hovering && animPhase === 'idle' ? 'translateY(-8px)' : 'translateY(0px)',
                   transition: `transform 0.45s ${ease}`,
                 }}
               >
-                {/* Front card — Amigo Contracting, with browser chrome */}
+                {/* Front card — current project with browser chrome */}
                 <div
-                  className="hero-mockup-front"
+                  className={`hero-mockup-front${animPhase === 'exit' ? ' hero-card-exit' : ''}${animPhase === 'enter' ? ' hero-card-enter' : ''}`}
                   style={{
                     position: 'relative',
                     zIndex: 1,
@@ -388,9 +428,13 @@ export default function HeroSection() {
                     boxShadow: hovering
                       ? `0 48px 120px color-mix(in oklch, var(--bg), transparent 20%), 0 16px 40px color-mix(in oklch, var(--bg), transparent 60%), 0 0 0 1px var(--glass-border)`
                       : `0 32px 80px color-mix(in oklch, var(--bg), transparent 35%), 0 0 0 1px var(--glass-border)`,
-                    transform: ready ? 'rotate(-2deg)' : 'rotate(-2deg) translateY(40px)',
-                    opacity: ready ? 1 : 0,
-                    transition: `transform 1.2s ${ease} 0.3s, opacity 0.9s ${ease} 0.3s, box-shadow 0.45s ${ease}`,
+                    ...(animPhase === 'idle' ? {
+                      transform: ready ? 'rotate(-2deg)' : 'rotate(-2deg) translateY(40px)',
+                      opacity: ready ? 1 : 0,
+                      transition: `transform 1.2s ${ease} 0.3s, opacity 0.9s ${ease} 0.3s, box-shadow 0.45s ${ease}`,
+                    } : {
+                      transition: `box-shadow 0.45s ${ease}`,
+                    }),
                   }}
                 >
                   {/* Browser chrome bar */}
@@ -404,11 +448,9 @@ export default function HeroSection() {
                       gap: 7,
                     }}
                   >
-                    {/* macOS traffic-light dots */}
                     <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57', flexShrink: 0 }} />
                     <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ffbd2e', flexShrink: 0 }} />
                     <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#28ca41', flexShrink: 0 }} />
-                    {/* Fake URL bar */}
                     <div
                       style={{
                         flex: 1,
@@ -425,17 +467,17 @@ export default function HeroSection() {
                         whiteSpace: 'nowrap',
                       }}
                     >
-                      amigocontracting.com
+                      {showcaseProjects[cardIndex].url}
                     </div>
                   </div>
                   {/* Screenshot */}
                   <div style={{ position: 'relative', aspectRatio: '16/10' }}>
                     <Image
-                      src="/PROJECTS/gallery/amigo-contracting-1.webp"
-                      alt="Amigo Contracting website"
+                      src={showcaseProjects[cardIndex].image}
+                      alt={showcaseProjects[cardIndex].alt}
                       fill
                       style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                      priority
+                      priority={cardIndex === 0}
                     />
                   </div>
                 </div>
@@ -486,6 +528,26 @@ export default function HeroSection() {
       </div>
 
       <style>{`
+        /* Card rotation animations */
+        @keyframes heroCardExit {
+          0% { transform: rotate(-2deg); opacity: 1; }
+          100% { transform: rotate(-6deg) translateY(40px) scale(0.92); opacity: 0; }
+        }
+        @keyframes heroCardEnter {
+          0% { transform: rotate(4deg) translateY(80px) scale(0.92); opacity: 0; }
+          40% { opacity: 1; }
+          100% { transform: rotate(-2deg) translateY(0) scale(1); opacity: 1; }
+        }
+        .hero-card-exit {
+          animation: heroCardExit 0.5s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+        }
+        .hero-card-enter {
+          animation: heroCardEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-card-exit, .hero-card-enter { animation: none !important; }
+        }
+
         /* Stack hero on tablet / mobile */
         @media (max-width: 960px) {
           .hero-grid { grid-template-columns: 1fr !important; }
