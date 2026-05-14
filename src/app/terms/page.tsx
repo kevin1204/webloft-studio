@@ -3,6 +3,21 @@ import Link from "next/link";
 export const metadata = {
   title: "Terms of Service - Webloft Studio",
   description: "Terms of Service for Webloft Studio. Read our terms and conditions for using our web development services.",
+  alternates: {
+    canonical: 'https://webloftstudio.com/terms',
+  },
+  openGraph: {
+    title: 'Terms of Service - Webloft Studio',
+    description: 'Terms of Service for Webloft Studio. Read our terms and conditions for using our web development services.',
+    url: 'https://webloftstudio.com/terms',
+    siteName: 'Webloft Studio',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Terms of Service - Webloft Studio',
+    description: 'Terms of Service for Webloft Studio. Read our terms and conditions for using our web development services.',
+  },
 };
 
 export default function TermsOfService() {

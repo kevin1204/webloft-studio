@@ -3,6 +3,21 @@ import CaseStudy from "@/components/CaseStudy";
 export const metadata = {
   title: "Amigo Contracting: +180% Leads with Full Rebrand | Case Study | Webloft Studio",
   description: "How we helped Amigo Contracting increase leads by 180% with a full brand identity and website rebuild. Construction industry case study — see the results.",
+  alternates: {
+    canonical: 'https://webloftstudio.com/case-studies/amigo-contracting-services',
+  },
+  openGraph: {
+    title: 'Amigo Contracting: +180% Leads with Full Rebrand | Case Study | Webloft Studio',
+    description: 'How we helped Amigo Contracting increase leads by 180% with a full brand identity and website rebuild. Construction industry case study — see the results.',
+    url: 'https://webloftstudio.com/case-studies/amigo-contracting-services',
+    siteName: 'Webloft Studio',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Amigo Contracting: +180% Leads with Full Rebrand | Case Study',
+    description: 'How we helped Amigo Contracting increase leads by 180% with a full brand identity and website rebuild.',
+  },
 };
 
 export default function AmigoCaseStudyPage() {

@@ -3,6 +3,21 @@ import CaseStudy from "@/components/CaseStudy";
 export const metadata = {
   title: "Sportlink Events: 500+ Participants Managed | Case Study | Webloft Studio",
   description: "How we built Sportlink Events a registration platform handling 500+ athletes, with 400% faster sign-ups and zero failed transactions. See the full case study.",
+  alternates: {
+    canonical: 'https://webloftstudio.com/case-studies/sportlink-events',
+  },
+  openGraph: {
+    title: 'Sportlink Events: 500+ Participants Managed | Case Study | Webloft Studio',
+    description: 'How we built Sportlink Events a registration platform handling 500+ athletes, with 400% faster sign-ups and zero failed transactions.',
+    url: 'https://webloftstudio.com/case-studies/sportlink-events',
+    siteName: 'Webloft Studio',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sportlink Events: 500+ Participants Managed | Case Study',
+    description: 'How we built Sportlink Events a registration platform handling 500+ athletes, with 400% faster sign-ups.',
+  },
 };
 
 export default function SportlinkCaseStudyPage() {

@@ -3,6 +3,21 @@ import CaseStudy from "@/components/CaseStudy";
 export const metadata = {
   title: "Flowga Yoga Studio: +300% Online Bookings | Case Study | Webloft Studio",
   description: "How we helped Flowga Yoga Studio increase online bookings by 300% with a full website redesign, mobile optimization, and local SEO. See the results and start your project.",
+  alternates: {
+    canonical: 'https://webloftstudio.com/case-studies/flowga-yoga-studio',
+  },
+  openGraph: {
+    title: 'Flowga Yoga Studio: +300% Online Bookings | Case Study | Webloft Studio',
+    description: 'How we helped Flowga Yoga Studio increase online bookings by 300% with a full website redesign, mobile optimization, and local SEO.',
+    url: 'https://webloftstudio.com/case-studies/flowga-yoga-studio',
+    siteName: 'Webloft Studio',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Flowga Yoga Studio: +300% Online Bookings | Case Study',
+    description: 'How we helped Flowga Yoga Studio increase online bookings by 300% with a full website redesign and local SEO.',
+  },
 };
 
 export default function FlowgaCaseStudyPage() {

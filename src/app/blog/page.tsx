@@ -24,6 +24,18 @@ export const metadata = {
   alternates: {
     canonical: 'https://webloftstudio.com/blog',
   },
+  openGraph: {
+    title: 'Web Design Blog | SEO, Conversion & Website Growth | Webloft Studio',
+    description: 'Practical notes on web design, SEO, and conversion for service businesses. Learn what makes websites earn more leads — and how to fix yours.',
+    url: 'https://webloftstudio.com/blog',
+    siteName: 'Webloft Studio',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Web Design Blog | Webloft Studio',
+    description: 'Practical notes on web design, SEO, and conversion for service businesses.',
+  },
 };
 
 function ArrowIcon() {

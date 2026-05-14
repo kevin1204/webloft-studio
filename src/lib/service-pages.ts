@@ -543,12 +543,14 @@ export function getServiceMetadata(slug: ServiceSlug): Metadata {
       description: service.metaDescription,
       url,
       siteName: 'Webloft Studio',
+      images: [{ url: '/webloftstudio.png', width: 1200, height: 630, alt: `${service.title} | Webloft Studio` }],
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
       title: service.metaTitle,
       description: service.metaDescription,
+      images: ['/webloftstudio.png'],
     },
   };
 }

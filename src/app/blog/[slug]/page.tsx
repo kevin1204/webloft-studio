@@ -4,7 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getPost, getAllPostSlugs, getAllPostCards } from '@/sanity/lib/queries';
 import { urlFor } from '@/sanity/lib/image';
-import PortableTextRenderer, { extractHeadings } from '@/components/PortableTextRenderer';
+import { extractHeadings } from '@/components/PortableTextRenderer';
+import SanityBlogContent from '@/components/SanityBlogContent';
+import PodcastPlayer from '@/components/PodcastPlayer';
 import SubscribeForm from '@/components/SubscribeForm';
 import SubscribeToast from '@/components/SubscribeToast';
 import ShareButtons from '@/components/ShareButtons';
@@ -47,13 +49,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       return {
         title: `${post.title} | Webloft Studio Blog`,
         description: post.excerpt || '',
-        keywords: post.tags || [],
+        keywords: post.keywords || post.tags || [],
         openGraph: {
           title: post.title,
           description: post.excerpt || '',
           type: 'article',
           publishedTime: post.publishedAt,
+          modifiedTime: post._updatedAt || post.publishedAt,
           images: imageUrl ? [{ url: imageUrl }] : [],
+          siteName: 'Webloft Studio',
+        },
+        twitter: {
+          card: 'summary_large_image',
+          title: post.title,
+          description: post.excerpt || '',
+          ...(imageUrl ? { images: [imageUrl] } : {}),
         },
         alternates: {
           canonical: `https://webloftstudio.com/blog/${slug}`,
@@ -107,10 +117,10 @@ export default async function BlogPostRoute({ params }: { params: Promise<{ slug
       description: post.excerpt,
       url: `https://webloftstudio.com/blog/${slug}`,
       datePublished: post.publishedAt,
-      dateModified: post.publishedAt,
+      dateModified: post._updatedAt || post.publishedAt,
       articleSection: post.categories?.[0]?.title,
       timeRequired: post.readTime,
-      keywords: post.tags,
+      keywords: post.keywords || post.tags,
       image: imageUrl,
       author: {
         '@type': 'Person',
@@ -213,6 +223,36 @@ export default async function BlogPostRoute({ params }: { params: Promise<{ slug
                 </aside>
               </div>
             </div>
+
+            {post.audioUrl && (
+              <PodcastPlayer
+                audioUrl={post.audioUrl}
+                title={post.title}
+                image={imageUrl || ''}
+                duration={post.audioDuration || ''}
+                chapters={post.chapters}
+              />
+            )}
+
+            {post.podcastLinks && (post.podcastLinks.spotify || post.podcastLinks.applePodcasts || post.podcastLinks.youtube) && (
+              <div className="wl-podcast-platforms">
+                {post.podcastLinks.spotify && (
+                  <a href={post.podcastLinks.spotify} className="wl-podcast-platform-link" target="_blank" rel="noopener noreferrer">
+                    Spotify
+                  </a>
+                )}
+                {post.podcastLinks.applePodcasts && (
+                  <a href={post.podcastLinks.applePodcasts} className="wl-podcast-platform-link" target="_blank" rel="noopener noreferrer">
+                    Apple Podcasts
+                  </a>
+                )}
+                {post.podcastLinks.youtube && (
+                  <a href={post.podcastLinks.youtube} className="wl-podcast-platform-link" target="_blank" rel="noopener noreferrer">
+                    YouTube
+                  </a>
+                )}
+              </div>
+            )}
           </section>
 
           <article className="wl-blog-article-section">
@@ -231,7 +271,7 @@ export default async function BlogPostRoute({ params }: { params: Promise<{ slug
               )}
 
               <div className="wl-blog-prose">
-                <PortableTextRenderer value={post.body} />
+                <SanityBlogContent body={post.body || []} />
                 <ShareButtons title={post.title} slug={slug} />
               </div>
             </div>

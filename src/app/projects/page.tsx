@@ -5,8 +5,20 @@ export const metadata: Metadata = {
   title: "Web Design Portfolio | Real Projects, Real Results | Webloft Studio",
   description: "See our work — custom websites that drove +300% bookings, +150% engagement, and more leads for service businesses. View case studies and start your project.",
   alternates: {
-    canonical: 'https://webloftstudio.com/projects'
-  }
+    canonical: 'https://webloftstudio.com/projects',
+  },
+  openGraph: {
+    title: 'Web Design Portfolio | Real Projects, Real Results | Webloft Studio',
+    description: 'See our work — custom websites that drove +300% bookings, +150% engagement, and more leads for service businesses.',
+    url: 'https://webloftstudio.com/projects',
+    siteName: 'Webloft Studio',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Web Design Portfolio | Real Projects, Real Results',
+    description: 'Custom websites that drove +300% bookings, +150% engagement, and more leads for service businesses.',
+  },
 };
 
 export default function Projects() {

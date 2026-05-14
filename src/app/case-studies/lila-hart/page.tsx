@@ -3,6 +3,21 @@ import CaseStudy from "@/components/CaseStudy";
 export const metadata = {
   title: "Lila Hart Creative: +150% Client Inquiries | Case Study | Webloft Studio",
   description: "How we helped Lila Hart increase client inquiries by 150% with an elegant portfolio redesign. Smooth animations, fast performance. See the full case study.",
+  alternates: {
+    canonical: 'https://webloftstudio.com/case-studies/lila-hart',
+  },
+  openGraph: {
+    title: 'Lila Hart Creative: +150% Client Inquiries | Case Study | Webloft Studio',
+    description: 'How we helped Lila Hart increase client inquiries by 150% with an elegant portfolio redesign. Smooth animations, fast performance.',
+    url: 'https://webloftstudio.com/case-studies/lila-hart',
+    siteName: 'Webloft Studio',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Lila Hart Creative: +150% Client Inquiries | Case Study',
+    description: 'How we helped Lila Hart increase client inquiries by 150% with an elegant portfolio redesign.',
+  },
 };
 
 export default function LilaHartCaseStudyPage() {

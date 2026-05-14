@@ -17,8 +17,10 @@ export type BlogCardData = {
 /** Full post shape returned by Sanity for single-post pages */
 export type SanityPost = {
   _id: string;
+  _updatedAt?: string;
   title: string;
   subtitle?: string;
+  shortTitle?: string;
   slug: { current: string };
   excerpt?: string;
   publishedAt: string;
@@ -27,11 +29,22 @@ export type SanityPost = {
   mainImage?: any;
   body?: any;
   tags?: string[];
+  keywords?: string[];
   takeaways?: string[];
   ctaTitle?: string;
   ctaText?: string;
   author?: { name: string; image?: any; bio?: string };
   categories?: { title: string; slug: { current: string } }[];
+
+  /* Podcast / Audio */
+  audioUrl?: string;
+  audioDuration?: string;
+  chapters?: { title: string; timestamp: string }[];
+  podcastLinks?: {
+    spotify?: string;
+    applePodcasts?: string;
+    youtube?: string;
+  };
 };
 
 /** Raw list item shape from Sanity query */

@@ -3,6 +3,21 @@ import CaseStudy from "@/components/CaseStudy";
 export const metadata = {
   title: "Aeries: +150% User Engagement | Case Study | Webloft Studio",
   description: "How we helped Aeries boost user engagement by 150% with a modern, responsive business website. Clean design, fast performance. See the full case study.",
+  alternates: {
+    canonical: 'https://webloftstudio.com/case-studies/aeries',
+  },
+  openGraph: {
+    title: 'Aeries: +150% User Engagement | Case Study | Webloft Studio',
+    description: 'How we helped Aeries boost user engagement by 150% with a modern, responsive business website. Clean design, fast performance. See the full case study.',
+    url: 'https://webloftstudio.com/case-studies/aeries',
+    siteName: 'Webloft Studio',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Aeries: +150% User Engagement | Case Study | Webloft Studio',
+    description: 'How we helped Aeries boost user engagement by 150% with a modern, responsive business website.',
+  },
 };
 
 export default function AeriesCaseStudyPage() {

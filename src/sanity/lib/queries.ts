@@ -52,8 +52,10 @@ export async function getPost(slug: string): Promise<SanityPost | null> {
   return client.fetch(
     `*[_type == "post" && slug.current == $slug][0] {
       _id,
+      _updatedAt,
       title,
       subtitle,
+      shortTitle,
       slug,
       excerpt,
       publishedAt,
@@ -62,11 +64,16 @@ export async function getPost(slug: string): Promise<SanityPost | null> {
       mainImage,
       body,
       tags,
+      keywords,
       takeaways,
       ctaTitle,
       ctaText,
       author->{ name, image, bio },
-      categories[]->{ title, slug }
+      categories[]->{ title, slug },
+      audioUrl,
+      audioDuration,
+      chapters[]{ title, timestamp },
+      podcastLinks
     }`,
     { slug }
   );
