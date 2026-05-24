@@ -222,37 +222,37 @@ export default async function BlogPostRoute({ params }: { params: Promise<{ slug
                   )}
                 </aside>
               </div>
+
+              {post.audioUrl && (
+                <PodcastPlayer
+                  audioUrl={post.audioUrl}
+                  title={post.title}
+                  image={imageUrl || ''}
+                  duration={post.audioDuration || ''}
+                  chapters={post.chapters}
+                />
+              )}
+
+              {post.podcastLinks && (post.podcastLinks.spotify || post.podcastLinks.applePodcasts || post.podcastLinks.youtube) && (
+                <div className="wl-podcast-platforms">
+                  {post.podcastLinks.spotify && (
+                    <a href={post.podcastLinks.spotify} className="wl-podcast-platform-link" target="_blank" rel="noopener noreferrer">
+                      Spotify
+                    </a>
+                  )}
+                  {post.podcastLinks.applePodcasts && (
+                    <a href={post.podcastLinks.applePodcasts} className="wl-podcast-platform-link" target="_blank" rel="noopener noreferrer">
+                      Apple Podcasts
+                    </a>
+                  )}
+                  {post.podcastLinks.youtube && (
+                    <a href={post.podcastLinks.youtube} className="wl-podcast-platform-link" target="_blank" rel="noopener noreferrer">
+                      YouTube
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
-
-            {post.audioUrl && (
-              <PodcastPlayer
-                audioUrl={post.audioUrl}
-                title={post.title}
-                image={imageUrl || ''}
-                duration={post.audioDuration || ''}
-                chapters={post.chapters}
-              />
-            )}
-
-            {post.podcastLinks && (post.podcastLinks.spotify || post.podcastLinks.applePodcasts || post.podcastLinks.youtube) && (
-              <div className="wl-podcast-platforms">
-                {post.podcastLinks.spotify && (
-                  <a href={post.podcastLinks.spotify} className="wl-podcast-platform-link" target="_blank" rel="noopener noreferrer">
-                    Spotify
-                  </a>
-                )}
-                {post.podcastLinks.applePodcasts && (
-                  <a href={post.podcastLinks.applePodcasts} className="wl-podcast-platform-link" target="_blank" rel="noopener noreferrer">
-                    Apple Podcasts
-                  </a>
-                )}
-                {post.podcastLinks.youtube && (
-                  <a href={post.podcastLinks.youtube} className="wl-podcast-platform-link" target="_blank" rel="noopener noreferrer">
-                    YouTube
-                  </a>
-                )}
-              </div>
-            )}
           </section>
 
           <article className="wl-blog-article-section">
