@@ -331,7 +331,7 @@ async function migrate() {
     }
 
     // Build document
-    const doc: Record<string, any> = {
+    const doc: { _id: string; _type: string } & Record<string, any> = {
       _id: `post-${post.slug}`,
       _type: 'post',
       title: post.title,
